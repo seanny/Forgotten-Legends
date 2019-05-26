@@ -18,18 +18,39 @@ public class NPC : Actor
     public ActorCombat m_CombatScript;
     public NPCMovement m_MovementScript;
     public NPCSight m_SightScript;
+    public NPCEnemy m_EnemyScript;
 
     private void Start()
     {
         m_CombatScript = GetComponent<ActorCombat>();
+        if (!m_CombatScript)
+        {
+            m_CombatScript = gameObject.AddComponent<ActorCombat>();
+        }
+
         m_MovementScript = GetComponent<NPCMovement>();
+        if (!m_MovementScript)
+        {
+            m_MovementScript = gameObject.AddComponent<NPCMovement>();
+        }
+
         m_SightScript = GetComponent<NPCSight>();
+        if (!m_SightScript)
+        {
+            m_SightScript = gameObject.AddComponent<NPCSight>();
+        }
+
+        m_EnemyScript = GetComponent<NPCEnemy>();
+        if(!m_EnemyScript)
+        {
+            m_EnemyScript = gameObject.AddComponent<NPCEnemy>();
+        }
     }
 
     private void Update()
     {
         Actor actor = m_SightScript.NearestActor();
-        if(actor != null)
+        if(actor != null && m_EnemyScript.IsEnemy(actor) == true)
         {
             m_CombatScript.Attack(actor);
         }

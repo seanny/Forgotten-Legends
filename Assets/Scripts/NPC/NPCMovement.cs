@@ -38,6 +38,12 @@ public class NPCMovement : MonoBehaviour
         MoveTowards(m_NavMeshDests[rand].transform.position);
     }
 
+    public void StopMovement()
+    {
+        m_Agent.isStopped = true;
+        m_Agent.velocity = Vector3.zero;
+    }
+
     public bool IsAtDestionation()
     {
         float dist = Vector3.Distance(m_Destination, transform.position);

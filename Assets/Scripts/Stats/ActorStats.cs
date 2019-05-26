@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 // Base Class for all characters, including NPC's and the player character
 [Serializable]
@@ -20,4 +21,7 @@ public class ActorStats
     public int intelligence;
     public int sneak;
     public int luck;
+
+    // Actor factions
+    public List<uint> factions;
 }

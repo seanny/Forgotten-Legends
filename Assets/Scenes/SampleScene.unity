@@ -163,6 +163,50 @@ Transform:
   m_Father: {fileID: 818767304}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &125852323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 125852324}
+  - component: {fileID: 125852325}
+  m_Layer: 0
+  m_Name: Factions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &125852324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125852323}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1689046980}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &125852325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125852323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 971b173f552ff446ab575d42c1e86233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factions: []
 --- !u!1 &245233135
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,10 +502,10 @@ MonoBehaviour:
     intelligence: 0
     sneak: 0
     luck: 0
+    factions: 
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
   m_SightScript: {fileID: 0}
-  hasScaledStats: 0
 --- !u!114 &551833697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1362,6 +1406,7 @@ MonoBehaviour:
     intelligence: 0
     sneak: 0
     luck: 0
+    factions: 
 --- !u!1 &1382685033
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,10 +1609,10 @@ MonoBehaviour:
     intelligence: 0
     sneak: 0
     luck: 0
+    factions: 
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
   m_SightScript: {fileID: 0}
-  hasScaledStats: 0
 --- !u!114 &1429672081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2078,6 +2123,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 980321538}
+  - {fileID: 125852324}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

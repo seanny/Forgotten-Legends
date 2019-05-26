@@ -35,7 +35,10 @@ public class NPCSight : MonoBehaviour
         for (int i = 0; i < actorsInSight.Count; i++)
         {
             // TODO: Check if actor is an actual enemy;
-            return actorsInSight[i];
+            if(m_ParentScript.m_EnemyScript.IsEnemy(actorsInSight[i]))
+            {
+                return actorsInSight[i];
+            }
         }
         return null;
     }
@@ -61,7 +64,11 @@ public class NPCSight : MonoBehaviour
             {
                 continue;
             }
-            if(Vector3.Distance(actors[i].transform.position, transform.position) <= CalculateLineOfSight())
+            if (actorsInSight.Contains(actors[i]) == true && Vector3.Distance(actors[i].transform.position, transform.position) > CalculateLineOfSight())
+            {
+                actorsInSight.Remove(actors[i]);
+            }
+            if (actorsInSight.Contains(actors[i]) == false && Vector3.Distance(actors[i].transform.position, transform.position) <= CalculateLineOfSight())
             {
                 actorsInSight.Add(actors[i]);
             }
