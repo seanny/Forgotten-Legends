@@ -22,6 +22,6 @@ public class ActorStats
     public int sneak;
     public int luck;
 
-    // Actor factions
-    public List<uint> factions;
+    // Actor faction
+    public List<string> factions;
 }

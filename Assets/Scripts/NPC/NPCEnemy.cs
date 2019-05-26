@@ -23,17 +23,21 @@ public class NPCEnemy : MonoBehaviour
     {
         // Check if any actor faction ID is in the NPC faction enemy list
         // We will do this by looking up the NPC factions and then comparing the faction enemy list with actor factions
+        // FIXME: Some enemies are not detected as enemies
         for (int i = 0; i < m_ParentScript.m_ActorStats.factions.Count; i++)
         {
             for (int x = 0; x < actor.m_ActorStats.factions.Count; x++)
             {
-                for (int y = 0; y < CoreFactions.Instance.factions[i].enemyFactions.Length; y++)
+                for (int y = 0; y < CoreFactions.Instance.factions[i].enemyFactions.Count; y++)
                 {
-                    if(CoreFactions.Instance.factions[y].id == actor.m_ActorStats.factions[x])
+                    // Check if NPC faction contains actor faction listed inside of enemyFactions
+                    if (CoreFactions.Instance.factions[i].enemyFactions.Contains(actor.m_ActorStats.factions[x]))
                     {
                         Debug.Log($"Actor {actor.gameObject.name} is an in enemy faction of {gameObject.name}");
                         return true;
                     }
+
+                    //if (CoreFactions.Instance.factions[y].id == actor.m_ActorStats.factions[x])
                 }
             }
         }
@@ -44,12 +48,14 @@ public class NPCEnemy : MonoBehaviour
     {
         // Determine if the specified actor is an enemy by: 
         // a. checking the faction affiliation of the actor
+        // If the NPC faction enemyFactions property contains the actors faction then return true
         if(IsEnemyInEnemyFaction(actor))
         {
+            Debug.Log($"[{gameObject.name}]: IsEnemy({actor.gameObject.name}) == true");
             return true;
         }
-        // If the NPC faction enemyFactions property contains the actors faction then return true
-        // or b. by checking if the NPC has the aggression level of frenzied.
+        // or b. by checking if the NPC has the aggression level of frenzied (not yet implemented)
+        Debug.Log($"[{gameObject.name}]: IsEnemy({actor.gameObject.name}) == false");
         return false;
     }
 }

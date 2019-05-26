@@ -57,7 +57,7 @@ public class ActorCombat : MonoBehaviour
         {
             attackStrength = 1f;
         }
-        Debug.Log($"Attack Strength by {gameObject.name} against {enemy.gameObject.name}: {attackStrength}");
+        Debug.Log($"[{gameObject.name}]: Attack Strength by {gameObject.name} against {enemy.gameObject.name}: {attackStrength}");
         currentTime = waitTime;
 
         // Calculation: ((0 <-> Luck) / 2) + (Strength * Level) - (Endurance / 2)

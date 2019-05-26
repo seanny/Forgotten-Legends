@@ -1,1 +1,1 @@
-{"id":2,"name":"Guard Faction","enemyFactions":[1]}
+{"id":"2","name":"Guard Faction","enemyFactions":["bandit"]}

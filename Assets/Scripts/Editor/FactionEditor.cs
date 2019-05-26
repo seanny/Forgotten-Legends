@@ -9,19 +9,20 @@
 //
 using System;
 using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
 public class FactionEditor : EditorWindow
 {
     string path = Path.Combine(Application.streamingAssetsPath, CoreFactions.FACTION_DIR);
-    public int factionID;
+    public string factionID;
     public string factionName;
     public string factionFileName;
 
     SerializedObject serializedObject;
 
-    public int[] factionEnemies;
+    public List<string> factionEnemies;
 
     [MenuItem("Tools/Faction Editor")]
     static void Init()
@@ -72,17 +73,17 @@ public class FactionEditor : EditorWindow
     {
         if (GUILayout.Button("Clear Window"))
         {
-            factionID = 0;
+            factionID = string.Empty;
             factionName = string.Empty;
             factionFileName = string.Empty;
-            Array.Clear(factionEnemies, 0, factionEnemies.Length);
+            factionEnemies.Clear();
         }
     }
 
     private void FactionInfo()
     {
         GUILayout.Label("Faction Information", EditorStyles.boldLabel);
-        factionID = EditorGUILayout.IntField("Faction ID", factionID);
+        factionID = EditorGUILayout.TextField("Faction ID", factionID);
         factionName = EditorGUILayout.TextField("Faction Name", factionName);
         factionFileName = EditorGUILayout.TextField("Faction File Name", factionFileName);
     }

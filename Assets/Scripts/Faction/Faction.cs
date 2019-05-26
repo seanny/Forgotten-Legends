@@ -16,7 +16,7 @@ public class Faction
     /// <summary>
     /// Identifier
     /// </summary>
-    public int id;
+    public string id;
 
     /// <summary>
     /// Name
@@ -26,5 +26,5 @@ public class Faction
     /// <summary>
     /// Enemy Factions
     /// </summary>
-    public int[] enemyFactions;
+    public List<string> enemyFactions;
 }
