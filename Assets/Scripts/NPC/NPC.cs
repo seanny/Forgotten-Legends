@@ -13,12 +13,14 @@ using System.Collections;
 [RequireComponent(typeof(ActorCombat))]
 [RequireComponent(typeof(NPCMovement))]
 [RequireComponent(typeof(NPCSight))]
+[RequireComponent(typeof(ActorHealth))]
 public class NPC : Actor
 {
     public ActorCombat m_CombatScript;
     public NPCMovement m_MovementScript;
     public NPCSight m_SightScript;
     public NPCEnemy m_EnemyScript;
+    public ActorHealth m_HealthScript;
 
     private void Start()
     {
@@ -44,6 +46,12 @@ public class NPC : Actor
         if(!m_EnemyScript)
         {
             m_EnemyScript = gameObject.AddComponent<NPCEnemy>();
+        }
+
+        m_HealthScript = GetComponent<ActorHealth>();
+        if (!m_HealthScript)
+        {
+            m_HealthScript = gameObject.AddComponent<ActorHealth>();
         }
     }
 

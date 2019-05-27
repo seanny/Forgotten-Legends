@@ -30,7 +30,7 @@ public class NPCEnemy : MonoBehaviour
             {
                 for (int y = 0; y < CoreFactions.Instance.factions[i].enemyFactions.Count; y++)
                 {
-                    // Check if NPC faction contains actor faction listed inside of enemyFactions
+                    // Check if NPC faction contains actor faction listed    inside of enemyFactions
                     if (CoreFactions.Instance.factions[i].enemyFactions.Contains(actor.m_ActorStats.factions[x]))
                     {
                         Debug.Log($"Actor {actor.gameObject.name} is an in enemy faction of {gameObject.name}");

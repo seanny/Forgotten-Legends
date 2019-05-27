@@ -46,8 +46,9 @@ public class NPCMovement : MonoBehaviour
 
     public bool IsAtDestionation()
     {
-        float dist = Vector3.Distance(m_Destination, transform.position);
-        if (dist > 1.5f)
+        //float dist = Vector3.Distance(m_Destination, transform.position);
+        //if (dist > 1.5f)
+        if(m_Agent.remainingDistance > m_Agent.stoppingDistance)
         {
             return false;
         }
