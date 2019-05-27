@@ -53,6 +53,7 @@ public class ActorCombat : MonoBehaviour
             return false;
         }
         float attackStrength = ((Random.Range(0, m_ParentScript.m_ActorStats.luck) / 2) + (m_ParentScript.m_ActorStats.strength * m_ParentScript.m_ActorStats.currentLevel) - m_ParentScript.m_ActorStats.endurance) / 2;
+        attackStrength += ClassAttackModifier(ref attackStrength);
         if (attackStrength < 1f)
         {
             attackStrength = 1f;
@@ -63,5 +64,22 @@ public class ActorCombat : MonoBehaviour
         // Calculation: ((0 <-> Luck) / 2) + (Strength * Level) - (Endurance / 2)
         // Example:     (10 / 2) + (10 + 2) - (10 / 2) = 12dmg
         return true;
+    }
+
+    public float ClassAttackModifier(ref float attackStrength)
+    {
+        switch(m_ParentScript.m_ActorStats.actorClass)
+        {
+            case (int)m_ParentScript.m_ActorClass.Class.Fighter:
+                attackStrength += 1.5f;
+                break;
+            case (int)m_ParentScript.m_ActorClass.Class.Barbarian:
+                attackStrength += 0.5f;
+                break;
+            case (int)m_ParentScript.m_ActorClass.Class.Paladin:
+                attackStrength += 0.2f;
+                break;
+        }
+        return attackStrength;
     }
 }

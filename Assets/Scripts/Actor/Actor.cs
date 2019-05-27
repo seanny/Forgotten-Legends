@@ -13,4 +13,5 @@ using System.Collections;
 public abstract class Actor : MonoBehaviour
 {
     public ActorStats m_ActorStats;
+    public ActorClass m_ActorClass;
 }
