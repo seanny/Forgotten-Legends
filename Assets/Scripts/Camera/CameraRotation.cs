@@ -10,7 +10,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class CameraRotation : MonoBehaviour
+public class CameraRotation : Singleton<CameraRotation>
 {
     private const float Y_ANGLE_MIN = -50f;
     private const float Y_ANGLE_MAX = 50f;
@@ -18,9 +18,16 @@ public class CameraRotation : MonoBehaviour
     public float currentX { get; private set; }
     public float currentY { get; private set; }
     public Vector3 currentRot { get; private set; }
+    public float distanceCheck = 2.5f;
 
+    private bool m_RotationLocked;
     private float rotationSmoothTime = .12f;
     private Vector3 rotationSmoothVelocity;
+
+    public void ToggleRotation(bool toggle)
+    {
+        m_RotationLocked = toggle;
+    }
 
     // Use this for initialization
     void Start()
@@ -31,15 +38,18 @@ public class CameraRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Set the current camera position
-        currentX += Input.GetAxis("Mouse X");
-        currentY += Input.GetAxis("Mouse Y");
+        if(!m_RotationLocked)
+        {
+            // Set the current camera position
+            currentX += Input.GetAxis("Mouse X");
+            currentY += Input.GetAxis("Mouse Y");
 
-        // Prevent the position from going above constant floats.
-        // We should also have an X angle min/max so as to prevent the player from going 360d over and over
-        currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
+            // Prevent the position from going above constant floats.
+            // We should also have an X angle min/max so as to prevent the player from going 360d over and over
+            currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
 
-        currentRot = Vector3.SmoothDamp(currentRot, new Vector3(currentY, currentX), ref rotationSmoothVelocity, rotationSmoothTime);
-        CameraController.Instance.cameraTransform.eulerAngles = currentRot;
+            currentRot = Vector3.SmoothDamp(currentRot, new Vector3(currentY, currentX), ref rotationSmoothVelocity, rotationSmoothTime);
+            CameraController.Instance.cameraTransform.eulerAngles = currentRot;
+        }
     }
 }

@@ -27,4 +27,9 @@ public class Faction
     /// Enemy Factions
     /// </summary>
     public List<string> enemyFactions;
+
+    /// <summary>
+    /// Is Hidden
+    /// </summary>
+    public bool isHidden;
 }

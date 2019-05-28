@@ -38,7 +38,7 @@ public class ActorCombat : MonoBehaviour
 
     public bool CanAttack()
     {
-        if(currentTime > 0)
+        if (currentTime > 0)
         {
             return false;
         }
@@ -61,22 +61,22 @@ public class ActorCombat : MonoBehaviour
         Debug.Log($"[{gameObject.name}]: Attack Strength by {gameObject.name} against {enemy.gameObject.name}: {attackStrength}");
         currentTime = waitTime;
 
-        // Calculation: ((0 <-> Luck) / 2) + (Strength * Level) - (Endurance / 2)
-        // Example:     (10 / 2) + (10 + 2) - (10 / 2) = 12dmg
+        // Calculation: ((0 <-> Luck) / 2) + (Strength * Level) - (Endurance / 2) + ClassAttackModifier
+        // Example:     (10 / 2) + (10 + 2) - (10 / 2) + 1.5f = 13.5dmg
         return true;
     }
 
     public float ClassAttackModifier(ref float attackStrength)
     {
-        switch(m_ParentScript.m_ActorStats.actorClass)
+        switch(m_ParentScript.m_ActorClass.currentClass)
         {
-            case (int)m_ParentScript.m_ActorClass.Class.Fighter:
+            case ActorClass.Class.Fighter:
                 attackStrength += 1.5f;
                 break;
-            case (int)m_ParentScript.m_ActorClass.Class.Barbarian:
+            case ActorClass.Class.Barbarian:
                 attackStrength += 0.5f;
                 break;
-            case (int)m_ParentScript.m_ActorClass.Class.Paladin:
+            case ActorClass.Class.Paladin:
                 attackStrength += 0.2f;
                 break;
         }

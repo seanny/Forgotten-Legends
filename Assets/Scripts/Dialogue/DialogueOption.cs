@@ -8,18 +8,27 @@
 // 	without the consent of Outlaw Games Studio.
 //
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
-public class NewMonoBehaviour : MonoBehaviour
+public class DialogueOption : MonoBehaviour
 {
-    // Use this for initialization
-    void Start()
-    {
+    public string dialogueFile;
+    public string resultingDialogue;
+    public string optionText;
 
+    public Text text;
+
+    private void Start()
+    {
+        if(!text)
+        {
+            text = GetComponentInChildren<Text>();
+        }
+        text.text = optionText;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnSelectOption()
     {
 
     }

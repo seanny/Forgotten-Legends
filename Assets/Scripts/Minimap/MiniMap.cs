@@ -10,17 +10,19 @@
 using UnityEngine;
 using System.Collections;
 
-public class NewMonoBehaviour : MonoBehaviour
+public class MiniMap : MonoBehaviour
 {
-    // Use this for initialization
-    void Start()
-    {
+    public Transform player;
 
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
-
+        Vector3 newPos = player.position;
+        newPos.y = transform.position.y;
+        transform.position = newPos;
     }
 }

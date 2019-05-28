@@ -74,4 +74,10 @@ public class NPCSight : MonoBehaviour
             }
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, lineOfSight);
+    }
 }

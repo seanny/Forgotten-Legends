@@ -19,6 +19,7 @@ public class FactionEditor : EditorWindow
     public string factionID;
     public string factionName;
     public string factionFileName;
+    public bool factionIsHidden;
 
     SerializedObject serializedObject;
 
@@ -65,6 +66,7 @@ public class FactionEditor : EditorWindow
                 factionName = faction.name;
                 factionFileName = fileName;
                 factionEnemies = faction.enemyFactions;
+                factionIsHidden = faction.isHidden;
             }
         }
     }
@@ -76,6 +78,7 @@ public class FactionEditor : EditorWindow
             factionID = string.Empty;
             factionName = string.Empty;
             factionFileName = string.Empty;
+            factionIsHidden = false;
             factionEnemies.Clear();
         }
     }
@@ -86,6 +89,7 @@ public class FactionEditor : EditorWindow
         factionID = EditorGUILayout.TextField("Faction ID", factionID);
         factionName = EditorGUILayout.TextField("Faction Name", factionName);
         factionFileName = EditorGUILayout.TextField("Faction File Name", factionFileName);
+        factionIsHidden = EditorGUILayout.Toggle("Faction Hidden", factionIsHidden);
     }
 
     private void WriteFaction()
@@ -94,7 +98,8 @@ public class FactionEditor : EditorWindow
         {
             id = factionID,
             name = factionName,
-            enemyFactions = factionEnemies
+            enemyFactions = factionEnemies,
+            isHidden = factionIsHidden
         };
         string jsonData = JsonUtility.ToJson(faction);
         string finalPath = Path.Combine(path, $"{factionFileName}.fctn");

@@ -24,6 +24,4 @@ public class ActorStats
 
     // Actor faction
     public List<string> factions;
-
-    public int actorClass;
 }

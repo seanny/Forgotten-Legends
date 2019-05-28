@@ -7,6 +7,7 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealth : ActorHealth
@@ -35,6 +36,8 @@ public class PlayerHealth : ActorHealth
 
     private void LateUpdate()
     {
-        scrollbar.size = currentHealth / maxHealth;
+        // Make sure that we cast currentHealth as a float otherwise C# will floor it for some reason.
+        float healthPoints = (float)currentHealth / maxHealth;
+        scrollbar.size = healthPoints;
     }
 }

@@ -40,4 +40,6 @@ public class ActorClass
         Rogue,
         Thief
     }
+
+    public Class currentClass;
 }

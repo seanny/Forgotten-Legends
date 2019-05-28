@@ -10,7 +10,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class CameraScrolling : MonoBehaviour
+public class CameraScrolling : Singleton<CameraScrolling>
 {
     public float currentScroll = 0.0f;
     private const float SCROLL_MIN = 5.0f;

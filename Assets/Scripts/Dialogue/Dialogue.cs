@@ -7,20 +7,16 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+using System;
+using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 
-public class NewMonoBehaviour : MonoBehaviour
+[Serializable]
+public class Dialogue
 {
-    // Use this for initialization
-    void Start()
-    {
+    public string name;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    [TextArea(3, 10)]
+    public List<string> sentences;
 }

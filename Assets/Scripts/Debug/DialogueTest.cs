@@ -10,17 +10,22 @@
 using UnityEngine;
 using System.Collections;
 
-public class NewMonoBehaviour : MonoBehaviour
+public class DialogueTest : MonoBehaviour
 {
-    // Use this for initialization
-    void Start()
-    {
+    DialogueTrigger dialogueTrigger;
 
+    private void Start()
+    {
+        dialogueTrigger = gameObject.AddComponent<DialogueTrigger>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
+        if(Input.GetKeyUp(KeyCode.F))
+        {
+            dialogueTrigger.AddOption("Test 1", "test1");
+            dialogueTrigger.AddOption("Test 2", "test2");
+            dialogueTrigger.TriggerDialogue("Test", "test.json");
+        }
     }
 }

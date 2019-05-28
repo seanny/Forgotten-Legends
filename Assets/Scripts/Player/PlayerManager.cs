@@ -8,19 +8,23 @@
 // 	without the consent of Outlaw Games Studio.
 //
 using UnityEngine;
-using System.Collections;
 
-public class NewMonoBehaviour : MonoBehaviour
+public class PlayerManager : Singleton<PlayerManager>
 {
-    // Use this for initialization
-    void Start()
-    {
+    public Player Player { get; private set; }
 
+    private void Start()
+    {
+        AddPlayer();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddPlayer()
     {
+        Player = GameObject.FindWithTag("Player").GetComponent<Player>();
+    }
 
+    public void RemovePlayer()
+    {
+        Player = null;
     }
 }
