@@ -33,7 +33,6 @@ public class NPCEnemy : MonoBehaviour
                     // Check if NPC faction contains actor faction listed    inside of enemyFactions
                     if (CoreFactions.Instance.factions[i].enemyFactions.Contains(actor.m_ActorStats.factions[x]))
                     {
-                        Debug.Log($"Actor {actor.gameObject.name} is an in enemy faction of {gameObject.name}");
                         return true;
                     }
 
@@ -51,11 +50,9 @@ public class NPCEnemy : MonoBehaviour
         // If the NPC faction enemyFactions property contains the actors faction then return true
         if(IsEnemyInEnemyFaction(actor))
         {
-            Debug.Log($"[{gameObject.name}]: IsEnemy({actor.gameObject.name}) == true");
             return true;
         }
         // or b. by checking if the NPC has the aggression level of frenzied (not yet implemented)
-        Debug.Log($"[{gameObject.name}]: IsEnemy({actor.gameObject.name}) == false");
         return false;
     }
 }

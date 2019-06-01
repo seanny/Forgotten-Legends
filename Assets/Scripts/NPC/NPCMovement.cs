@@ -24,6 +24,8 @@ public class NPCMovement : MonoBehaviour
         m_Agent = GetComponent<NavMeshAgent>();
         m_Agent.destination = transform.position;
         m_Destination = m_Agent.destination;
+        m_Agent.autoRepath = true;
+        m_Agent.autoBraking = true;
     }
 
     public void MoveTowards(Vector3 destination)

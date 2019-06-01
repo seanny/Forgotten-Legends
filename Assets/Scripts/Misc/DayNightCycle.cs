@@ -23,6 +23,7 @@ public class DayNightCycle : MonoBehaviour
 
     void Start()
     {
+        Settings.Instance.SetProperty("TestProp", "TestValue");
         sunInitialIntensity = sun.intensity;
     }
 

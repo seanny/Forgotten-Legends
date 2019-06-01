@@ -8,7 +8,6 @@
 // 	without the consent of Outlaw Games Studio.
 //
 using UnityEngine;
-using System.Collections;
 
 public class CameraRotation : Singleton<CameraRotation>
 {
@@ -18,38 +17,49 @@ public class CameraRotation : Singleton<CameraRotation>
     public float currentX { get; private set; }
     public float currentY { get; private set; }
     public Vector3 currentRot { get; private set; }
-    public float distanceCheck = 2.5f;
+    public bool rotationLocked { get; private set; }
 
-    private bool m_RotationLocked;
     private float rotationSmoothTime = .12f;
     private Vector3 rotationSmoothVelocity;
 
     public void ToggleRotation(bool toggle)
     {
-        m_RotationLocked = toggle;
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-
+        rotationLocked = toggle;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(!m_RotationLocked)
+        if (!rotationLocked)
         {
-            // Set the current camera position
-            currentX += Input.GetAxis("Mouse X");
-            currentY += Input.GetAxis("Mouse Y");
-
-            // Prevent the position from going above constant floats.
-            // We should also have an X angle min/max so as to prevent the player from going 360d over and over
-            currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
-
-            currentRot = Vector3.SmoothDamp(currentRot, new Vector3(currentY, currentX), ref rotationSmoothVelocity, rotationSmoothTime);
-            CameraController.Instance.cameraTransform.eulerAngles = currentRot;
+            GetCameraRotation();
+            ClampCameraRotation();
+            SmoothCamera();
+            RotateCamera();
         }
+    }
+
+    private void GetCameraRotation()
+    {
+        // Set the current camera position
+        currentX += Input.GetAxis("Mouse X");
+        currentY += Input.GetAxis("Mouse Y");
+    }
+
+    private void ClampCameraRotation()
+    {
+        // Prevent the position from going above constant floats.
+        // We should also have an X angle min/max so as to prevent the player from going 360 degrees over and over
+        currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
+    }
+
+    private void SmoothCamera()
+    {
+        currentRot = Vector3.SmoothDamp(currentRot, new Vector3(currentY, currentX), ref rotationSmoothVelocity, rotationSmoothTime);
+    }
+
+    private void RotateCamera()
+    {
+        CameraController.Instance.cameraTransform.eulerAngles = currentRot;
     }
 }

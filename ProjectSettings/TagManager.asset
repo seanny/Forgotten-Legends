@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sun
   - HealthBar
+  - CameraTarget
   layers:
   - Default
   - TransparentFX

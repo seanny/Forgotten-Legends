@@ -17,7 +17,7 @@ public class CameraController : Singleton<CameraController>
     #region Variables
 
     // Private Variables
-    public Transform lookAt { get; private set; }
+    public Transform lookAt;
     public Transform cameraTransform { get; private set; }
     #endregion
 
@@ -25,6 +25,5 @@ public class CameraController : Singleton<CameraController>
     {
         MouseCursor.LockCursor(true);
         cameraTransform = transform;
-        lookAt = GameObject.FindWithTag("Player").transform;
     }
 }

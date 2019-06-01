@@ -7,16 +7,18 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
-using System;
-using System.IO;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
-[Serializable]
-public class Dialogue
+public class Interactable : MonoBehaviour
 {
-    public string name;
+    public virtual void Interact()
+    {
+        Debug.Log($"Interacting with {gameObject.name}");
+    }
 
-    [TextArea(3, 10)]
-    public List<string> sentences;
+    public virtual void StopInteracting()
+    {
+        Debug.Log($"Stoping interacting with {gameObject.name}");
+    }
 }
