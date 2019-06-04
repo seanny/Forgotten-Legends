@@ -50,7 +50,7 @@ public class InteractableManager : Singleton<InteractableManager>
         Interactable[] interactables = FindObjectsOfType<Interactable>();
         for (int i = 0; i < interactables.Length; i++)
         {
-            if(Vector3.Distance(PlayerManager.Instance.Player.transform.position, interactables[i].transform.position) < 2.0f)
+            if(interactables[i].IsClose())
             {
                 return interactables[i];
             }

@@ -60,7 +60,7 @@ public class AIPath : MonoBehaviour
             return;
         }
 
-        line.SetVertexCount(path.corners.Length);
+        line.positionCount = path.corners.Length;
         for (int i = 0; i < path.corners.Length; i++)
         {
             line.SetPosition(i, path.corners[i]);

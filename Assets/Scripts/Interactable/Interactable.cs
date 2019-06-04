@@ -12,9 +12,19 @@ using System.Collections;
 
 public class Interactable : MonoBehaviour
 {
+    public enum InteractType
+    {
+        Generic = 0,
+        Talk,
+        Take
+    }
+
+    public InteractType interactType;
+    public string interactableName;
+
     protected virtual void OnLookAt()
     {
-        Debug.Log($"[Interactable.IsLookingAt]: Looking at {gameObject.name}");
+        Debug.Log($"[Interactable.OnLookAt]: Looking at {gameObject.name}");
     }
 
     public virtual void Interact()
@@ -31,7 +41,6 @@ public class Interactable : MonoBehaviour
     {
         Vector3 dir = (transform.position - CameraController.Instance.transform.position).normalized;
         float dot = Vector3.Dot(dir, transform.forward);
-        Debug.Log($"[Interactable.InSight]: In Sight Range for {gameObject.name}: {dir}");
         if (dot > 0.5f)
         {
             return true;
@@ -42,7 +51,6 @@ public class Interactable : MonoBehaviour
     public bool IsClose()
     {
         float dist = Vector3.Distance(transform.position, PlayerManager.Instance.Player.transform.position);
-        Debug.Log($"[Interactable.InSight]: IsClose distance for {gameObject.name}: {dist}");
         if (dist > 1.5f)
         {
             return true;
@@ -50,11 +58,37 @@ public class Interactable : MonoBehaviour
         return false;
     }
 
+    private void ShowInteractGUI()
+    {
+        if (InteractableGUI.Instance.isShown == false)
+        {
+            switch (interactType)
+            {
+                case InteractType.Generic:
+                    InteractableGUI.Instance.ShowInteractString(interactableName, "Interact");
+                    break;
+                case InteractType.Talk:
+                    InteractableGUI.Instance.ShowInteractString(interactableName, "Talk");
+                    break;
+                case InteractType.Take:
+                    // TODO: If an object is owned by another NPC, then "Take" becomes "Steal"
+                    InteractableGUI.Instance.ShowInteractString(interactableName, "Take");
+                    break;
+            }
+        }
+    }
+
     protected virtual void Update()
     {
         if (InSight() == true && IsClose() == true)
         {
+            Debug.Log($"[Interactable.Update]: {gameObject.name} is in sight and is close");
+            ShowInteractGUI();
             OnLookAt();
+        }
+        else
+        {
+            InteractableGUI.Instance.HideInteractString();
         }
     }
 }

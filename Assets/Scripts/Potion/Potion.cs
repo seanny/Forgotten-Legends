@@ -19,6 +19,7 @@ public class Potion : Interactable
 
     private void Start()
     {
+        interactableName = "Potion";
         m_AudioSource = gameObject.AddComponent<AudioSource>();
         m_AudioSource.playOnAwake = false;
         m_AudioSource.clip = soundEffect;
@@ -51,7 +52,7 @@ public class Potion : Interactable
         }
     }
 
-    private void Update()
+    protected override void Update()
     {
         if(m_Used == true && !m_AudioSource.isPlaying)
         {
