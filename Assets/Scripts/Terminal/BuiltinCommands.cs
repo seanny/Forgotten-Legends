@@ -64,7 +64,7 @@ public static class BuiltinCommands
         Terminal.Log(JoinArguments(args));
     }
 
-#if DEBUG
+#if UNITY_DEVELOPMENT || UNITY_EDITOR
     [RegisterCommand(Help = "Output the stack trace of the previous message", MaxArgCount = 0)]
     static void CommandTrace(CommandArg[] args)
     {
