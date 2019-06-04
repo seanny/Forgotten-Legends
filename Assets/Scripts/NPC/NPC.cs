@@ -20,7 +20,6 @@ public class NPC : Actor
     public NPCMovement m_MovementScript;
     public NPCSight m_SightScript;
     public NPCEnemy m_EnemyScript;
-    public ActorHealth m_HealthScript;
 
     private void Start()
     {
@@ -46,12 +45,6 @@ public class NPC : Actor
         if(!m_EnemyScript)
         {
             m_EnemyScript = gameObject.AddComponent<NPCEnemy>();
-        }
-
-        m_HealthScript = GetComponent<ActorHealth>();
-        if (!m_HealthScript)
-        {
-            m_HealthScript = gameObject.AddComponent<ActorHealth>();
         }
     }
 

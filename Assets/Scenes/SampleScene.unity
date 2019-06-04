@@ -332,11 +332,11 @@ MonoBehaviour:
     factions: []
   m_ActorClass:
     currentClass: 0
+  m_HealthScript: {fileID: 0}
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
   m_SightScript: {fileID: 0}
   m_EnemyScript: {fileID: 0}
-  m_HealthScript: {fileID: 0}
 --- !u!114 &47335597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1613,11 +1613,11 @@ MonoBehaviour:
     - guard
   m_ActorClass:
     currentClass: 0
+  m_HealthScript: {fileID: 0}
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
   m_SightScript: {fileID: 0}
   m_EnemyScript: {fileID: 0}
-  m_HealthScript: {fileID: 0}
 --- !u!114 &551833697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3724,6 +3724,7 @@ MonoBehaviour:
     factions: []
   m_ActorClass:
     currentClass: 0
+  m_HealthScript: {fileID: 0}
 --- !u!114 &1369134219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4275,11 +4276,11 @@ MonoBehaviour:
     - bandit
   m_ActorClass:
     currentClass: 0
+  m_HealthScript: {fileID: 0}
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
   m_SightScript: {fileID: 0}
   m_EnemyScript: {fileID: 0}
-  m_HealthScript: {fileID: 0}
 --- !u!114 &1429672081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5178,9 +5179,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1714634764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fbfe718017cd4e80aae2f845f94bbce, type: 3}
+  m_Script: {fileID: 11500000, guid: 185af66b21ed54d79b5d59b8a0fb3a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundEffect: {fileID: 8300000, guid: b32b94345837b4402af54c51f4dc74c3, type: 3}
+  potionStats:
+    potionTime: 0
+    healthRegen: 100
+    staminaRegen: 0
+    magicRegen: 0
 --- !u!1 &1734062518
 GameObject:
   m_ObjectHideFlags: 0
@@ -5277,11 +5284,11 @@ MonoBehaviour:
     - guard
   m_ActorClass:
     currentClass: 0
+  m_HealthScript: {fileID: 0}
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
   m_SightScript: {fileID: 0}
   m_EnemyScript: {fileID: 0}
-  m_HealthScript: {fileID: 0}
 --- !u!114 &1743492291
 MonoBehaviour:
   m_ObjectHideFlags: 0

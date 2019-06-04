@@ -13,9 +13,13 @@ using System.Collections;
 public class Player : Actor
 {
     // Use this for initialization
-    void Start()
+    protected void Start()
     {
-
+        m_HealthScript = GetComponent<PlayerHealth>();
+        if (!m_HealthScript)
+        {
+            m_HealthScript = gameObject.AddComponent<ActorHealth>();
+        }
     }
 
     // Update is called once per frame

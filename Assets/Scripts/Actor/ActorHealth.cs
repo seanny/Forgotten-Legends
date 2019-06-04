@@ -39,4 +39,13 @@ public class ActorHealth : MonoBehaviour
             }
         }
     }
+
+    public void AddHealth(int health)
+    {
+        currentHealth += health;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
 }
