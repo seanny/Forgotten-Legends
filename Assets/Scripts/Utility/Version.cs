@@ -19,6 +19,12 @@ public static class Version
     public static int patch = 0;
     public static int build = 0;
 
+    [RegisterCommand(Help = "Get Game Version")]
+    public static void CommandVersion(CommandArg[] args)
+    {
+        Debug.Log($"Current Version: {GetVersion()}");
+    }
+
     public static string GetVersion()
     {
         string settingsPath = Path.GetDirectoryName(Application.dataPath);

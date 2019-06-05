@@ -17,19 +17,19 @@ public class InteractableManager : Singleton<InteractableManager>
 
     private void Update()
     {
-        if(isInteracting == false)
+        CheckInteracting();
+    }
+
+    public void CheckInteracting()
+    {
+        if (isInteracting == false)
         {
             Interactable interactable = FindNearestInteractable();
-            if(interactable != null)
+            if (interactable != null)
             {
-                if(Input.GetKeyUp(KeyCode.F))
+                if (Input.GetKeyUp(KeyCode.F))
                 {
-                    currentInteract = interactable;
-                    interactable.Interact();
-                }
-                else
-                {
-                    Debug.Log($"Can interact with {interactable.transform.gameObject.name}");
+                    ForceInteract(interactable);
                 }
             }
         }

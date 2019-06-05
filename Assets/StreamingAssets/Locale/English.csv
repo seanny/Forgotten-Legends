@@ -1,0 +1,10 @@
+QUEST_STARTED,Started:
+QUEST_TEST_NAME,Secrets of C#
+QUEST_TEST_OBJECTIVE_01,Learn the ancient language of C#
+INTERACTABLE_INTERACT,Interactable
+INTERACTABLE_TAKE,Take
+INTERACTABLE_TALK,Talk
+INTERACTABLE_STEAL,Steal
+ITEM_POTION_HEALTH,Potion of Restore Health
+ITEM_POTION_MAGIC,Potion of Restore Magic
+ITEM_POTION_STAMINA,Potion of Restore Stamina

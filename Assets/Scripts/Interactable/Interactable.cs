@@ -51,7 +51,7 @@ public class Interactable : MonoBehaviour
     public bool IsClose()
     {
         float dist = Vector3.Distance(transform.position, PlayerManager.Instance.Player.transform.position);
-        if (dist > 1.5f)
+        if (dist <= 2.0f)
         {
             return true;
         }
