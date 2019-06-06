@@ -19,7 +19,6 @@ public class InteractableGUI : Singleton<InteractableGUI>
 
     private void Start()
     {
-        interactionText = GameObject.FindWithTag("InteractText").GetComponent<TextMeshProUGUI>();
         HideInteractString();
     }
 
