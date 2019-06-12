@@ -25,11 +25,13 @@ public class Interactable : MonoBehaviour
     protected virtual void OnLookAt()
     {
         Debug.Log($"[Interactable.OnLookAt]: Looking at {gameObject.name}");
+        ScriptExec.Instance.RunMethod("OnLook", new object[] { this });
     }
 
     public virtual void Interact()
     {
         Debug.Log($"[Interactable.Interact]: Interacting with {gameObject.name}");
+        ScriptExec.Instance.RunMethod("OnInteract", new object[] { this });
     }
 
     public virtual void StopInteracting()

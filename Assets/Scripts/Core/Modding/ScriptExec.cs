@@ -9,21 +9,21 @@
 //
 using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Reflection.Emit;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ScriptExec : Singleton<ScriptExec>
 {
+    private const string CORE_DLL = "Assembly-CSharp.dll";
+
     public string ModFolder { get; private set; }
 
-    private const string CORE_DLL = "Assembly-CSharp.dll";
-    private Assembly coreAssembly;
-    private List<Assembly> assemblies;
-    private string path;
-    private BindingFlags bindingFlags =
+    private Assembly m_CoreAssembly;
+    private List<Assembly> m_Assemblies;
+    private List<object> m_Objects;
+    private string m_Path;
+    private BindingFlags m_BindingFlags =
                 BindingFlags.Public |
                 BindingFlags.DeclaredOnly |
                 BindingFlags.Instance;
@@ -34,11 +34,19 @@ public class ScriptExec : Singleton<ScriptExec>
         InitAssemblyList();
     }
 
+    private void OnDestroy()
+    {
+        for (int i = 0; i < m_Assemblies.Count; i++)
+        {
+            //m_Assemblies[i].
+        }
+    }
+
     private void InitAssemblyList()
     {
-        if (assemblies == null)
+        if (m_Assemblies == null)
         {
-            assemblies = new List<Assembly>();
+            m_Assemblies = new List<Assembly>();
         }
     }
 
@@ -53,18 +61,24 @@ public class ScriptExec : Singleton<ScriptExec>
 
     private void LoadCoreDLL(string methodName, object[] paramaters)
     {
-        path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        m_Path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         Debug.Log($"Searching for assemblies in {Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)} ...");
-        foreach (string dll in Directory.GetFiles(path, "*.dll", SearchOption.AllDirectories))
+        foreach (string dll in Directory.GetFiles(m_Path, "*.dll", SearchOption.AllDirectories))
         {
             if (dll.Contains(CORE_DLL))
             {
                 Debug.Log($"Found core dll: {dll}");
-                coreAssembly = Assembly.LoadFile(dll);
-
-                foreach (var type in coreAssembly.GetTypes())
+                if(m_CoreAssembly == null)
                 {
-                    if (type.Name != "IDialogue")
+                    m_CoreAssembly = Assembly.LoadFrom(dll);
+                }
+
+                foreach (var type in m_CoreAssembly.GetTypes())
+                {
+                    if (type.Name != "IDialogue" 
+                        && type.Name != "IGame"
+                        && type.Name != "IInteract"
+                        && type.Name != "IMod")
                     {
                         InvokeMethod(type, methodName, paramaters);
                     }
@@ -85,7 +99,7 @@ public class ScriptExec : Singleton<ScriptExec>
             if (!dll.Contains(CORE_DLL))
             {
                 Debug.Log($"Found mod dll: {dll}");
-                assemblies.Add(Assembly.LoadFile(dll));
+                m_Assemblies.Add(Assembly.LoadFrom(dll));
             }
         }
     }
@@ -95,7 +109,7 @@ public class ScriptExec : Singleton<ScriptExec>
         // Search for all methods of methodName.
         // There may be multiple assemblies with the same method name in one or more classes ...
         // ... because they implement interface IDialogue
-        foreach (var method in type.GetMethods(bindingFlags))
+        foreach (var method in type.GetMethods(m_BindingFlags))
         {
             // If the method matches the name, proceed otherwise keep looking.
             if (method.Name == methodName)
@@ -103,6 +117,7 @@ public class ScriptExec : Singleton<ScriptExec>
                 // Call the constructor
                 ConstructorInfo ctor = type.GetConstructor(Type.EmptyTypes);
                 object classObj = ctor.Invoke(new object[] { });
+
 
                 // Call the specified method
                 Debug.Log($"Calling {method.Name} from {type.Name}");
@@ -113,11 +128,11 @@ public class ScriptExec : Singleton<ScriptExec>
 
     private void RunFunction(string methodName, object[] paramaters)
     {
-        for (int i = 0; i < assemblies.Count; i++)
+        for (int i = 0; i < m_Assemblies.Count; i++)
         {
-            foreach (var type in assemblies[i].GetTypes())
+            foreach (var type in m_Assemblies[i].GetTypes())
             {
-                foreach (var method in type.GetMethods(bindingFlags))
+                foreach (var method in type.GetMethods(m_BindingFlags))
                 {
                     InvokeMethod(type, methodName, paramaters);
                 }

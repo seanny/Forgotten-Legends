@@ -105,6 +105,7 @@ public class DialogueManager : Singleton<DialogueManager>
         npcDialogue.text = m_CurrentDiscussion.Peek();
         m_CurrentDiscussion.Dequeue();
 
+        dialogueBoxHolder.SetActive(true);
         for(int i = 0; i < m_DialogueOptions.Count; i++)
         {
             GameObject _gameObject = Instantiate(dialogOptionPrefab);
