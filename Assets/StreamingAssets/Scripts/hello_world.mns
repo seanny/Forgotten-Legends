@@ -1,0 +1,16 @@
+// Example Comment, this should be ignored
+// This should also be ignored
+Int exampleInt = 69;
+Float exampleFloat = 42.0;
+String exampleString = "Hello World";
+Bool exampleBool = True;
+
+Function ExampleFunction()
+    System.Debug.Log("Hello World"); // Should show Hello World
+    System.Debug.Log(exampleString); // Should show contents of exampleString
+    System.Debug.Log(exampleInt); // Should show contents of exampleInt as String
+    System.Debug.Log(exampleFloat); // Should show contents of exampleFloat as String
+    System.Debug.Log(exampleBool); // Should show contents of exampleBool as String
+    System.Debug.Log("Hello" + 1); // Should output: "Hello1";
+    System.Debug.Log(1 + 2); // Should output: 3
+EndFunction

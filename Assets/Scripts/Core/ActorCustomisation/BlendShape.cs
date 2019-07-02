@@ -7,12 +7,15 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
-using System;
-namespace ForgottenLegends.Core
+
+public class BlendShape
 {
-    public interface IMod
+    public int positiveIndex { get; set; }
+    public int negativeIndex { get; set; }
+
+    public BlendShape(int positive, int negative)
     {
-        string Name { get; }
-        string Description { get; }
+        positiveIndex = positive;
+        negativeIndex = negative;
     }
 }

@@ -14,6 +14,6 @@ public class GameManager : Singleton<GameManager>
 {
     private void Start()
     {
-        ScriptExec.Instance.RunMethod("OnGameLoad", new object[] { });
+        //ScriptExec.Instance.RunMethod("OnGameLoad", new object[] { });
     }
 }
