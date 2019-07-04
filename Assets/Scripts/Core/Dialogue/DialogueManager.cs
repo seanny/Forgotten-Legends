@@ -115,6 +115,6 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void ExecuteDialogOption(string dialogueFile, string key)
     {
-        //ScriptExec.Instance.RunMethod("OnDialogueOption", new object[] { key });
+        ScriptManager.Instance.CallFunction("OnDialogueOption", new object[] { key });
     }
 }

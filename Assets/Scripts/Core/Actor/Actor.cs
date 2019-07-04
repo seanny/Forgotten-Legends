@@ -12,7 +12,13 @@ using System.Collections;
 
 public abstract class Actor : MonoBehaviour
 {
+    public string actorID;
     public ActorStats m_ActorStats;
     public ActorClass m_ActorClass;
     public ActorHealth m_HealthScript;
+
+    protected virtual void Start()
+    {
+        actorID = gameObject.name;
+    }
 }
