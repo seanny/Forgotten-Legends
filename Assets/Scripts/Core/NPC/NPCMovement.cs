@@ -28,6 +28,11 @@ public class NPCMovement : MonoBehaviour
         m_Agent.autoBraking = true;
     }
 
+    public void MoveTowardsActor(Actor actor)
+    {
+        MoveTowards(actor.transform.position);
+    }
+
     public void MoveTowards(Vector3 destination)
     {
         m_Destination = destination;
@@ -44,6 +49,15 @@ public class NPCMovement : MonoBehaviour
     {
         m_Agent.isStopped = true;
         m_Agent.velocity = Vector3.zero;
+    }
+
+    public bool IsAtActor(Actor actor)
+    {
+        if (Vector3.Distance(actor.transform.position, transform.position) > 1.5f)
+        {
+            return false;
+        }
+        return true;
     }
 
     public bool IsAtDestionation()

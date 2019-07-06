@@ -1,13 +1,4 @@
-﻿//
-// 	Copyright (C) 2019 Outlaw Games Studio. All Rights Reserved.
-//
-// 	This document is the property of Outlaw Games Studio.
-// 	It is considered confidential and proprietary.
-//
-// 	This document may not be reproduced or transmitted in any form
-// 	without the consent of Outlaw Games Studio.
-//
-using System;
+﻿using System;
 using System.Collections.Generic;
 using MoonSharp.Interpreter;
 using MoonSharp.VsCodeDebugger;
@@ -24,11 +15,11 @@ public class LuaVM
     /// <summary>
     /// The Moonsharp script object
     /// </summary>
-    private readonly Script m_LuaScript = null;
-    private static Type[] m_APITypeList = null;
-    private LuaAPIBase[] m_APIList = null;
-    private static DynValue m_EnumTables = null;
-
+    private readonly Script                     m_LuaScript     = null;
+    private static Type[]                       m_APITypeList   = null;
+	private LuaAPIBase[]	                    m_APIList		= null;
+    private static DynValue                     m_EnumTables    = null;
+    
     /// <summary>
     /// Settings to control the behaviour of the VM
     /// </summary>
@@ -38,29 +29,29 @@ public class LuaVM
         /// <summary>
         /// No custom code will be attached
         /// </summary>
-        None = 0,
-
+        None            = 0,
+        
         /// <summary>
         /// We'll attach anything deriving from LuaAPIBase
         /// </summary>
-        AttachAPIs = 1 << 0,
-
+        AttachAPIs      = 1 << 0,
+        
         /// <summary>
         /// We'll attach any enum with the LuaApiEnum attribute
         /// </summary>
-        AttachEnums = 1 << 1,
-
+        AttachEnums     = 1 << 1,
+        
         /// <summary>
         /// Attach everything we know about
         /// </summary>
-        AttachAll = ~0u,
+        AttachAll       = ~0u,
     }
 
     /// <summary>
     /// The Moonsharp remote debugger service
     /// </summary>
-    private static MoonSharpVsCodeDebugServer s_RemoteDebugger = null;
-
+	private static MoonSharpVsCodeDebugServer   s_RemoteDebugger = null;
+    
     /// <summary>
     /// Default to attaching all apis and enums
     /// </summary>
@@ -68,7 +59,7 @@ public class LuaVM
         : this(VMSettings.AttachAll)
     {
     }
-
+    
     /// <summary>
     /// Default settings are a soft sandbox and setting up the file system script loader
     /// </summary>
@@ -88,7 +79,7 @@ public class LuaVM
         {
             AttachAPIS();
         }
-
+        
         if ((vmSettings & VMSettings.AttachEnums) == VMSettings.AttachEnums)
         {
             AttachLuaEnums();
@@ -104,7 +95,7 @@ public class LuaVM
     {
         Table table = null;
 
-        if (SetGlobal(tableName, DynValue.NewTable(m_LuaScript)))
+        if(SetGlobal(tableName, DynValue.NewTable(m_LuaScript)))
         {
             table = GetGlobal(tableName).Table;
         }
@@ -157,72 +148,72 @@ public class LuaVM
         return result;
     }
 
-    /// <summary>
-    /// Attempts to retrive a value from the Lua globals, allowing the user to pass parent and children names in
-    /// </summary>
-    /// <returns>The global.</returns>
-    /// <param name="keys">Keys.</param>
-    public DynValue GetGlobal(params object[] keys)
-    {
+	/// <summary>
+	/// Attempts to retrive a value from the Lua globals, allowing the user to pass parent and children names in
+	/// </summary>
+	/// <returns>The global.</returns>
+	/// <param name="keys">Keys.</param>
+	public DynValue GetGlobal(params object[] keys)
+	{
         DynValue result = DynValue.Nil;
-        try
-        {
-            result = m_LuaScript.Globals.Get(keys);
-        }
-        catch
-        {
-            Logger.Log(Channel.Lua, Priority.FatalError, "Failed to get Lua global at '{0}'",
-                string.Join(", ", Array.ConvertAll(keys, input => input.ToString())));
-        }
+		try
+		{
+			result = m_LuaScript.Globals.Get(keys);
+		}
+		catch
+		{
+			Logger.Log(Channel.Lua, Priority.FatalError, "Failed to get Lua global at '{0}'", 
+			    string.Join(", ", Array.ConvertAll(keys, input => input.ToString())));
+		}
 
-        return result;
-    }
+		return result;
+	}
 
-    /// <summary>
-    /// Attempts to retrive a table from the Lua globals
-    /// </summary>
-    /// <returns>The global table.</returns>
-    /// <param name="key">Key.</param>
-    public Table GetGlobalTable(string key)
-    {
-        Table result = null;
-        DynValue tableDyn = GetGlobal(key);
-        if (tableDyn != null)
-        {
-            if (tableDyn.Type == DataType.Table)
-            {
-                result = tableDyn.Table;
-            }
-            else
-            {
-                Logger.Log(Channel.Lua, Priority.FatalError, "Lua global {0} is not type table, has type {1}", key, tableDyn.Type.ToString());
-            }
-        }
-        return result;
-    }
+	/// <summary>
+	/// Attempts to retrive a table from the Lua globals
+	/// </summary>
+	/// <returns>The global table.</returns>
+	/// <param name="key">Key.</param>
+	public Table GetGlobalTable(string key)
+	{
+		Table result = null;
+		DynValue tableDyn = GetGlobal (key);
+		if (tableDyn != null)
+		{
+			if(tableDyn.Type == DataType.Table)
+			{
+				result = tableDyn.Table;
+			}
+			else
+			{
+				Logger.Log(Channel.Lua, Priority.FatalError, "Lua global {0} is not type table, has type {1}", key, tableDyn.Type.ToString());
+			}
+		}
+		return result;
+	}
 
-    /// <summary>
-    /// Attempts to retrive a table from the Lua globals, allowing the user to pass parent and children names in
-    /// </summary>
-    /// <returns>The global table.</returns>
-    /// <param name="keys">Key.</param>
-    public Table GetGlobalTable(params object[] keys)
-    {
-        Table result = null;
-        DynValue tableDyn = GetGlobal(keys);
-        if (tableDyn != null)
-        {
-            if (tableDyn.Type == DataType.Table)
-            {
-                result = tableDyn.Table;
-            }
-            else
-            {
-                Logger.Log(Channel.Lua, Priority.FatalError, "Lua global {0} is not type table, has type {1}", keys, tableDyn.Type.ToString());
-            }
-        }
-        return result;
-    }
+	/// <summary>
+	/// Attempts to retrive a table from the Lua globals, allowing the user to pass parent and children names in
+	/// </summary>
+	/// <returns>The global table.</returns>
+	/// <param name="keys">Key.</param>
+	public Table GetGlobalTable(params object[] keys)
+	{
+		Table result = null;
+		DynValue tableDyn = GetGlobal (keys);
+		if (tableDyn != null)
+		{
+			if(tableDyn.Type == DataType.Table)
+			{
+				result = tableDyn.Table;
+			}
+			else
+			{
+				Logger.Log(Channel.Lua, Priority.FatalError, "Lua global {0} is not type table, has type {1}", keys, tableDyn.Type.ToString());
+			}
+		}
+		return result;
+	}
 
     /// <summary>
     /// Return the global table for this vm
@@ -303,7 +294,7 @@ public class LuaVM
 
         return result;
     }
-
+    
     /// <summary>
     /// Attemps to load a string containing lua code
     /// </summary>
@@ -396,8 +387,8 @@ public class LuaVM
     {
         if (s_RemoteDebugger == null)
         {
-            s_RemoteDebugger = new MoonSharpVsCodeDebugServer();
-            s_RemoteDebugger.Start();
+			s_RemoteDebugger = new MoonSharpVsCodeDebugServer();
+			s_RemoteDebugger.Start ();
         }
     }
 
@@ -406,16 +397,16 @@ public class LuaVM
     /// </summary>
     public void AttachDebugger()
     {
-        if (s_RemoteDebugger != null)
+        if(s_RemoteDebugger != null)
         {
-            s_RemoteDebugger.AttachToScript(m_LuaScript, "Lua script");
+			s_RemoteDebugger.AttachToScript (m_LuaScript, "Lua script");
         }
         else
         {
             Logger.Log(Channel.Lua, Priority.Error, "Tried to attach script to debugger before debugger was started");
         }
     }
-
+    
     /// <summary>
     /// Return the current script object
     /// </summary>
@@ -443,14 +434,18 @@ public class LuaVM
 
         m_APIList = new LuaAPIBase[m_APITypeList.Length];
 
+        Logger.Log(Channel.Loading, $"Adding {m_APITypeList.Length} instances");
         for (int i = 0; i < m_APITypeList.Length; ++i)
         {
+            Logger.Log(Channel.Lua, $"{m_APITypeList[i].Name}");
             m_APIList[i] = Activator.CreateInstance(m_APITypeList[i]) as LuaAPIBase;
         }
 
+        Logger.Log(Channel.Loading, "Iterate apis and tell them to update this lua vm");
         // Iterate apis and tell them to update this lua vm
         foreach (LuaAPIBase api in m_APIList)
         {
+            Logger.Log(Channel.Lua, $"{api.APIName}");
             api.AddAPIToLuaInstance(this);
         }
     }
@@ -465,7 +460,7 @@ public class LuaVM
             // Create a new prime table
             // Prime tables can be shared between scripts 
             m_EnumTables = DynValue.NewPrimeTable();
-
+    
             // Get all enums with the lua attribute
             List<Type> luaEnumList = new List<Type>();
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
@@ -473,16 +468,16 @@ public class LuaVM
                 luaEnumList.AddRange((assembly.GetTypes()
                     .Where(luaEnumType => Attribute.IsDefined(luaEnumType, typeof(LuaApiEnum)))));
             }
-
+            
             foreach (Type enumType in luaEnumList)
             {
                 // Get the attribute
-                LuaApiEnum apiEnumAttrib = (LuaApiEnum)enumType.GetCustomAttributes(typeof(LuaApiEnum), false)[0];
+                LuaApiEnum apiEnumAttrib = (LuaApiEnum) enumType.GetCustomAttributes(typeof(LuaApiEnum), false)[0];
 
                 // Create the table for this enum and get a reference to it 
                 m_EnumTables.Table.Set(apiEnumAttrib.name, DynValue.NewPrimeTable());
                 Table enumTable = m_EnumTables.Table.Get(apiEnumAttrib.name).Table;
-
+                
                 // Foreach value in the enum list
                 foreach (var enumValue in Enum.GetValues(enumType))
                 {
@@ -490,16 +485,16 @@ public class LuaVM
                     var attribute = memberInfo[0].GetCustomAttributes(typeof(LuaApiEnumValue), false);
 
                     // Double check they've not been flagged as hidden
-                    if (attribute.Length > 0 && ((LuaApiEnumValue)attribute[0]).hidden)
+                    if (attribute.Length > 0 && ((LuaApiEnumValue) attribute[0]).hidden)
                     {
                         continue;
                     }
-
-                    enumTable.Set(enumValue.ToString(), DynValue.NewNumber((int)enumValue));
+                    
+                    enumTable.Set(enumValue.ToString(), DynValue.NewNumber((int) enumValue));
                 }
             }
         }
-
+        
         // Iterate through the enum cache and copy the values into our globals
         foreach (var enumPair in m_EnumTables.Table.Pairs)
         {

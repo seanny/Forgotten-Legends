@@ -1,4 +1,5 @@
 function OnStart()
     print("OnStart fruit.lua")
-    Player.SetActorPos("Player", 1, 2, 3)
+    Actor.SetActorPos("Player", 1.1, 2.2, 3.3)
+    print("Platform = " .. Debug.GetPlatformName())
 end

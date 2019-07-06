@@ -22,6 +22,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     // References the dialogue option key, which will be used to get a localised string and also handle it's script response.
     private List<string> m_DialogueOptions;
+    private List<GameObject> m_DialogueObjects;
 
     // Current NPC discussion key with whatever is first in queue shown first, then 2nd, 3rd, etc
     private Queue<string> m_CurrentDiscussion;
@@ -32,18 +33,26 @@ public class DialogueManager : Singleton<DialogueManager>
     public TextMeshProUGUI npcName;
     public TextMeshProUGUI npcDialogue;
     public GameObject dialogueOptionHolder;
+    public bool choicesShown;
 
     [Header("Dialogue Option Prefab")]
     public GameObject dialogOptionPrefab;
 
+    private void Start()
+    {
+        m_CurrentDiscussion = new Queue<string>();
+        m_DialogueOptions = new List<string>();
+        m_DialogueObjects = new List<GameObject>();
+    }
+
     private string ReadAsset(string folder, string fileName)
     {
-        string langName = LocalisationManager.Instance.getCurrentLanguage().getLanguage().ToString();
-        string filePath = Path.Combine(Application.streamingAssetsPath, folder, langName, fileName);
+        //string langName = LocalisationManager.Instance.getCurrentLanguage().getLanguage().ToString();
+        string filePath = Path.Combine(Application.streamingAssetsPath, folder, fileName);
 
         if (!File.Exists(filePath))
         {
-            Debug.LogError($"Cannot load dialogue data for {langName} language.");
+            Debug.LogError($"Cannot load dialogue data for {fileName}.");
             return null;
         }
         return File.ReadAllText(filePath);
@@ -56,14 +65,11 @@ public class DialogueManager : Singleton<DialogueManager>
     public void SetDiscussion(string fileName)
     {
         m_CurrentDiscussion.Clear();
-        string dataAsJson = ReadAsset("Dialogue", Path.Combine("Dialogue", fileName));
+        string dataAsJson = ReadAsset("Dialogue", fileName);
         DialogueData dialogueData = JsonUtility.FromJson<DialogueData>(dataAsJson);
-        for (int i = 0; i < dialogueData.dialogueKey.Length; i++)
+        for (int i = 0; i < dialogueData.discussion.Length; i++)
         {
-            if(dialogueData.isOption[i] == false)
-            {
-                m_CurrentDiscussion.Enqueue(dialogueData.dialogueKey[i]);
-            }
+            m_CurrentDiscussion.Enqueue(dialogueData.discussion[i]);
         }
     }
 
@@ -74,13 +80,13 @@ public class DialogueManager : Singleton<DialogueManager>
     public void AddOption(string fileName, string optionKey)
     {
         m_CurrentDiscussion.Clear();
-        string dataAsJson = ReadAsset("Dialogue", Path.Combine("Dialogue", fileName));
+        string dataAsJson = ReadAsset("Dialogue", fileName);
         DialogueData dialogueData = JsonUtility.FromJson<DialogueData>(dataAsJson);
-        for (int i = 0; i < dialogueData.dialogueKey.Length; i++)
+        for (int i = 0; i < dialogueData.options.Length; i++)
         {
-            if (dialogueData.dialogueKey[i] == optionKey && dialogueData.isOption[i] == false)
+            if (dialogueData.options[i] == optionKey)
             {
-                m_DialogueOptions.Add(dialogueData.dialogueKey[i]);
+                m_DialogueOptions.Add(dialogueData.options[i]);
             }
         }
     }
@@ -89,11 +95,12 @@ public class DialogueManager : Singleton<DialogueManager>
     /// Starts the dialogue with the player.
     /// </summary>
     /// <param name="npc">NPC to chat with</param>
-    public void StartDialogue(NPC npc)
+    public void StartDialogue(NPC npc, string dialogueFile)
     {
         // Set InDialogue to true
         InDialogue = true;
 
+        Time.timeScale = 0;
         // Set the dialogue box active
         dialogueBoxHolder.SetActive(true);
 
@@ -102,19 +109,49 @@ public class DialogueManager : Singleton<DialogueManager>
 
         // Set it to the correct NPC chat string.
         // TODO: Reference Key to get correct string for dialogue option in correct language
+        SetDiscussion(dialogueFile);
+
         npcDialogue.text = m_CurrentDiscussion.Peek();
         m_CurrentDiscussion.Dequeue();
 
-        dialogueBoxHolder.SetActive(true);
         for(int i = 0; i < m_DialogueOptions.Count; i++)
         {
             GameObject _gameObject = Instantiate(dialogOptionPrefab);
             _gameObject.transform.SetParent(dialogueOptionHolder.transform);
+            m_DialogueObjects.Add(_gameObject);
         }
+    }
+
+    public void ExitDialogue()
+    {
+        // Set InDialogue to false
+        InDialogue = false;
+
+        for (int i = 0; i < m_DialogueObjects.Count; i++)
+        {
+            Destroy(m_DialogueObjects[i]);
+        }
+
+        // Set the dialogue box active
+        dialogueBoxHolder.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void ExecuteDialogOption(string dialogueFile, string key)
     {
-        ScriptManager.Instance.CallFunction("OnDialogueOption", new object[] { key });
+        ScriptManager.Instance.CallFunction("OnDialogueOption", new object[] { dialogueFile, key });
+    }
+
+    public void ShowDialogueChoices(bool toggle)
+    {
+        choicesShown = toggle;
+        if (choicesShown == true)
+        {
+            dialogueOptionHolder.SetActive(true);
+        }
+        else
+        {
+            dialogueOptionHolder.SetActive(false);
+        }
     }
 }

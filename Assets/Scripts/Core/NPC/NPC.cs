@@ -20,9 +20,12 @@ public class NPC : Actor
     public NPCMovement m_MovementScript;
     public NPCSight m_SightScript;
     public NPCEnemy m_EnemyScript;
+    public NPCDialogue NPCDialogueScript;
+    public Interactable NPCInteractionScript;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         m_CombatScript = GetComponent<ActorCombat>();
         if (!m_CombatScript)
         {
@@ -46,6 +49,25 @@ public class NPC : Actor
         {
             m_EnemyScript = gameObject.AddComponent<NPCEnemy>();
         }
+
+
+        NPCDialogueScript = gameObject.AddComponent<NPCDialogue>();
+
+        NPCInteractionScript = gameObject.AddComponent<Interactable>();
+        NPCInteractionScript.interactType = Interactable.InteractType.Talk;
+    }
+
+    public static NPC FindNPC(string actorID)
+    {
+        NPC[] npcs = GameObject.FindObjectsOfType<NPC>();
+        foreach (NPC npc in npcs)
+        {
+            if (npc.actorID == actorID)
+            {
+                return npc;
+            }
+        }
+        return null;
     }
 
     private void Update()

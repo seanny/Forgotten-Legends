@@ -1,13 +1,4 @@
-﻿//
-// 	Copyright (C) 2019 Outlaw Games Studio. All Rights Reserved.
-//
-// 	This document is the property of Outlaw Games Studio.
-// 	It is considered confidential and proprietary.
-//
-// 	This document may not be reproduced or transmitted in any form
-// 	without the consent of Outlaw Games Studio.
-//
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using System;
 using UnityEditor;
 using System.Collections.Generic;
@@ -83,7 +74,7 @@ public static class LuaDocGenerator
             apiTypeList.AddRange(assembly.GetTypes()
                 .Where(type => type.IsSubclassOf(typeof(LuaAPIBase))));
         }
-
+        
         List<LuaApiInfo> apiInfoArray = new List<LuaApiInfo>(apiTypeList.Count);
 
         // Iterate all types deriving from LuaApiBase
@@ -99,7 +90,7 @@ public static class LuaDocGenerator
                 };
 
                 // Iterate all methods
-                foreach (MethodInfo methodType in apiType.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static))
+                foreach(MethodInfo methodType in apiType.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static))
                 {
                     // Grab the LuaApiFunction if it exists
                     LuaApiFunction[] functionAttribs = methodType.GetCustomAttributes(typeof(LuaApiFunction), false) as LuaApiFunction[];
@@ -107,15 +98,15 @@ public static class LuaDocGenerator
                     if (functionAttribs != null && functionAttribs.Length > 0)
                     {
                         apiInfo.functions.Add(new LuaFunction_Info
-                        {
-                            Attribute = functionAttribs[0],
-                            MethodInfo = methodType,
-                        });
+                            {
+                                Attribute = functionAttribs[0],
+                                MethodInfo = methodType,
+                            });
                     }
                 }
 
                 // Iterate all variables
-                foreach (FieldInfo fieldInfo in apiType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic |
+                foreach(FieldInfo fieldInfo in apiType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic |
                     BindingFlags.Public | BindingFlags.Static))
                 {
                     LuaApiVariable[] varaibleAttribs =
@@ -123,10 +114,9 @@ public static class LuaDocGenerator
 
                     if (varaibleAttribs != null && varaibleAttribs.Length > 0)
                     {
-                        apiInfo.variables.Add(new LuaVariableInfo
-                        {
+                        apiInfo.variables.Add(new LuaVariableInfo{
                             Attribute = varaibleAttribs[0],
-                            FieldInfo = fieldInfo,
+                            FieldInfo =  fieldInfo,
                         });
                     }
                 }
@@ -150,7 +140,7 @@ public static class LuaDocGenerator
             luaEnumList.AddRange((assembly.GetTypes()
                 .Where(luaEnumType => Attribute.IsDefined(luaEnumType, typeof(LuaApiEnum)))));
         }
-
+        
         List<LuaEnumInfo> result = new List<LuaEnumInfo>(luaEnumList.Count);
 
         foreach (Type enumType in luaEnumList)
@@ -158,7 +148,7 @@ public static class LuaDocGenerator
             LuaEnumInfo enumInfo = new LuaEnumInfo
             {
                 ApiType = enumType,
-                Attribute = (LuaApiEnum)enumType.GetCustomAttributes(typeof(LuaApiEnum), false)[0],
+                Attribute = (LuaApiEnum) enumType.GetCustomAttributes(typeof(LuaApiEnum), false)[0],
             };
 
             foreach (var enumVal in Enum.GetValues(enumType))
@@ -184,7 +174,7 @@ public static class LuaDocGenerator
     [MenuItem("Lua/Docs/Generate MediaWiki Docs")]
     private static void GenerateMediaWikiDocs()
     {
-        Debug.Log("[LuaDocGenerator] Beginning Lua doc generation for MediaWiki");
+        Logger.Log (Channel.Lua, "Beginning Lua doc generation for MediaWiki");
 
         string documentationPath =
             EditorUtility.OpenFolderPanel("Choose a location to place wiki files", string.Empty, string.Empty);
@@ -201,7 +191,7 @@ public static class LuaDocGenerator
 
                 StreamWriter documentation = File.CreateText(apiDocPath);
 
-                Debug.Log($"[LuaDocGenerator] Generating documentation for api: {luaApiDetails.luaName}");
+                Logger.Log(Channel.Lua, "Generating documentation for api: {0}", luaApiDetails.luaName);
 
                 documentation.WriteLine("= {0} =", luaApiDetails.luaName);
 
@@ -223,9 +213,9 @@ public static class LuaDocGenerator
                 foreach (LuaFunction_Info method in api.functions)
                 {
                     // Grab the LuaApiFunction if it exists
-                    LuaApiFunction luaMethodDetails = method.Attribute;
+                    LuaApiFunction luaMethodDetails =  method.Attribute;
 
-                    Debug.Log($"\t {luaMethodDetails.name}");
+                    Logger.Log(Channel.Lua, "\t {0}", luaMethodDetails.name);
 
                     documentation.WriteLine("=== {0} ===", luaMethodDetails.name);
 
@@ -321,7 +311,7 @@ public static class LuaDocGenerator
                 {
                     enumDocumentation.WriteLine(enumInfo.Attribute.description);
                 }
-
+                
                 enumDocumentation.WriteLine("{| class=\"wikitable\"");
                 enumDocumentation.WriteLine("|-");
                 enumDocumentation.WriteLine("! Usage !! Description");
@@ -337,29 +327,29 @@ public static class LuaDocGenerator
                         enumInfo.Attribute.name,
                         value.StringValue,
                         value.Attribute != null ? value.Attribute.description : string.Empty);
-                }
-
+                }                
+                        
                 enumDocumentation.WriteLine("|}");
             }
-
+            
             enumDocumentation.Close();
         }
 
-        Debug.Log("[LuaDocGenerator] Completed Lua doc generation");
+        Logger.Log (Channel.Lua, "Completed Lua doc generation");
     }
 
     private class VSCodeSnippet
     {
-        public string prefix;
-        public string[] body;
-        public string description;
+        public string     prefix;
+        public string[]   body;
+        public string     description;
     }
 
     [MenuItem("Lua/Docs/Generate VSCode Snippets")]
     public static void GenerateVSCodeSnippets()
     {
         StringBuilder snippets = new StringBuilder();
-        VSCodeSnippet snippet = new VSCodeSnippet { body = new string[1] };
+        VSCodeSnippet snippet  = new VSCodeSnippet {body = new string[1]};
 
         foreach (LuaApiInfo api in GetAllApiInfo())
         {
@@ -417,10 +407,10 @@ public static class LuaDocGenerator
 
     private class AtomSnippet
     {
-        public string Prefix;
-        public string Body;
-        public string Description;
-        public string DescriptionMoreUrl;
+        public string     Prefix;
+        public string     Body;
+        public string     Description;
+        public string     DescriptionMoreUrl;
 
         private static string ToLiteral(string input)
         {
@@ -450,7 +440,7 @@ public static class LuaDocGenerator
     public static void GenerateAtomSnippets()
     {
         StringBuilder snippets = new StringBuilder();
-        AtomSnippet snippet = new AtomSnippet();
+        AtomSnippet snippet  = new AtomSnippet();
 
         snippets.AppendLine("'.source.lua':");
 
@@ -510,20 +500,20 @@ public static class LuaDocGenerator
                 {
                     continue;
                 }
-
+                
                 snippet.Prefix = string.Format("{0}.{1}", enumInfo.Attribute.name, enumValueInfo.StringValue);
                 snippet.Body = snippet.Prefix;
                 snippet.Description = enumValueInfo.Attribute != null ? enumValueInfo.Attribute.description : string.Empty;
-
+                
                 snippet.DescriptionMoreUrl = string.Empty;
-
+                
                 snippets.AppendLine(snippet.ConstructCSONString());
             }
         }
 
         EditorGUIUtility.systemCopyBuffer = snippets.ToString();
     }
-
+    
     /// <summary>
     /// Gets a clean function signature
     /// </summary>
@@ -533,22 +523,22 @@ public static class LuaDocGenerator
     /// <param name="apiAttrib">API Attribute.</param>
     private static string GetCleanFunctionSignature(MethodInfo method, LuaApiFunction functionAttrib, LuaApi apiAttrib)
     {
-        string apiName = apiAttrib.luaName;
-        string functionName = functionAttrib.name;
-        string paramsString = string.Empty;
+        string apiName          = apiAttrib.luaName;
+        string functionName     = functionAttrib.name;
+        string paramsString     = string.Empty;
 
         foreach (ParameterInfo param in method.GetParameters())
         {
-            paramsString += string.Format("{0}, ", param.Name);
+            paramsString += string.Format ("{0}, ", param.Name);
         }
 
         // Clean up last comma and space
-        if (!string.IsNullOrEmpty(paramsString))
+        if (!string.IsNullOrEmpty (paramsString))
         {
-            paramsString = paramsString.Remove(paramsString.Length - 2, 2);
+            paramsString = paramsString.Remove (paramsString.Length - 2, 2);
         }
 
-        return string.Format("{0}.{1}({2})", apiName, functionName, paramsString);
+        return string.Format ("{0}.{1}({2})", apiName, functionName, paramsString);
     }
 
     /// <summary>
@@ -564,7 +554,7 @@ public static class LuaDocGenerator
         if (type == typeof(void))
         {
             result = "Nothing";
-        }
+        } 
         else if (type == typeof(float?))
         {
             result = "number (optional)";
@@ -572,9 +562,9 @@ public static class LuaDocGenerator
         else if (type == typeof(float[]))
         {
             result = "Table of numbers";
-        }
-        else if (type == typeof(int) ||
-            type == typeof(uint) ||
+        } 
+        else if (type == typeof(int)     ||
+            type == typeof(uint)    ||
             type == typeof(float))
         {
             result = "number";
@@ -601,12 +591,12 @@ public static class LuaDocGenerator
         }
         else
         {
-            Debug.LogError($"[LuaDocGenerator] Failed to convert type {type.ToString()} to cleaner name");
-            result = type.ToString();
+            Logger.Log (Channel.Lua, Priority.Error, "Failed to convert type {0} to cleaner name", type.ToString ());
+            result = type.ToString ();
         }
 
         return result;
     }
-
+    
 }
 #endif // UNITY_EDITOR

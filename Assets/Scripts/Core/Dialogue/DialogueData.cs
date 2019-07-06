@@ -12,7 +12,8 @@ using System;
 [Serializable]
 public class DialogueData
 {
-    public string[] dialogueKey;
-    public string[] dialogueMessage;
-    public bool[] isOption;
+    public string npcID;
+    public string dialogueKey;
+    public string[] discussion;
+    public string[] options;
 }

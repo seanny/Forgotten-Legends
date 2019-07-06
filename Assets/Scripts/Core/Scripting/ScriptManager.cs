@@ -21,38 +21,68 @@ public class ScriptManager : Singleton<ScriptManager>
     private string m_ModScripts;
     private List<string> m_LoadOrder;
 
+    /// <summary>
+    /// Calls a function which is specified in functionName.
+    /// This will search ALL scripts for said function.
+    /// Function MUST exist otherwise an error will be thrown.
+    /// </summary>
+    /// <param name="functionName">Function name.</param>
     public void CallFunction(string functionName)
     {
         for (int i = 0; i < m_LoadOrder.Count; i++)
         {
-            m_LuaVM.ExecuteScript(m_LoadOrder[i]);
-            DynValue function = m_LuaVM.GetGlobal(functionName);
-            m_LuaVM.Call(function);
+            CallFunctionInScript(m_LoadOrder[i], functionName);
         }
     }
 
+    /// <summary>
+    /// Calls a function which is specified in functionName.
+    /// This will search ALL scripts for said function.
+    /// Function MUST exist otherwise an error will be thrown.
+    /// </summary>
+    /// <param name="functionName">Function name.</param>
+    /// <param name="paramaters">Paramaters.</param>
     public void CallFunction(string functionName, object[] paramaters)
     {
         for (int i = 0; i < m_LoadOrder.Count; i++)
         {
-            m_LuaVM.ExecuteScript(m_LoadOrder[i]);
-            DynValue function = m_LuaVM.GetGlobal(functionName);
-            m_LuaVM.Call(function, paramaters);
+            CallFunctionInScript(m_LoadOrder[i], functionName, paramaters);
         }
     }
 
+    /// <summary>
+    /// Calls a function which is specified in functionName inside of scriptName.
+    /// This will search ALL scripts for said function.
+    /// Function MUST exist otherwise an error will be thrown.
+    /// </summary>
+    /// <param name="scriptName">Script name.</param>
+    /// <param name="functionName">Function name.</param>
     public void CallFunctionInScript(string scriptName, string functionName)
     {
-        m_LuaVM.ExecuteScript(scriptName);
+        m_LuaVM.ExecuteScript(Path.Combine(m_CoreScripts, scriptName));
         DynValue function = m_LuaVM.GetGlobal(functionName);
-        m_LuaVM.Call(function);
+        if (function.IsNotNil())
+        {
+            m_LuaVM.Call(function);
+        }
     }
 
+    /// <summary>
+    /// Calls a function which is specified in functionName inside of scriptName.
+    /// This will search ALL scripts for said function.
+    /// Function MUST exist otherwise an error will be thrown.
+    /// </summary>
+    /// <param name="scriptName">Script name.</param>
+    /// <param name="functionName">Function name.</param>
+    /// <param name="paramaters">Paramaters.</param>
     public void CallFunctionInScript(string scriptName, string functionName, object[] paramaters)
     {
-        m_LuaVM.ExecuteScript(scriptName);
+        m_LuaVM.ExecuteScript(Path.Combine(m_CoreScripts, scriptName));
         DynValue function = m_LuaVM.GetGlobal(functionName);
-        m_LuaVM.Call(function, paramaters);
+        if (function.IsNotNil())
+        {
+            m_LuaVM.Call(function, paramaters);
+        }
     }
 
     private void InitCoreScripts()
@@ -76,11 +106,12 @@ public class ScriptManager : Singleton<ScriptManager>
             Debug.LogError($"Core Scripts directory does not exist: {m_CoreScripts}");
             return;
         }
+        Debug.Log($"Core Scripts directory found: {m_CoreScripts}");
     }
 
     private void InitLua()
     {
-        m_LuaVM = new LuaVM();
+        m_LuaVM = new LuaVM(LuaVM.VMSettings.AttachAPIs);
     }
 
     private void InitRepeatingMethods()
@@ -97,11 +128,17 @@ public class ScriptManager : Singleton<ScriptManager>
         }
     }
 
-    private void Start()
+    IEnumerator OnStart()
     {
+        yield return new WaitForSeconds(1f);
         InitScriptManager();
         InitLua();
         InitCoreScripts();
         InitRepeatingMethods();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(OnStart());
     }
 }

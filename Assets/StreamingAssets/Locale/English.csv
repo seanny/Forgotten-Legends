@@ -8,3 +8,32 @@ INTERACTABLE_STEAL,Steal
 ITEM_POTION_HEALTH,Potion of Restore Health
 ITEM_POTION_MAGIC,Potion of Restore Magic
 ITEM_POTION_STAMINA,Potion of Restore Stamina
+DIALOGUE_ONE,Lorem Ipsum Sit Doler Amet.
+DIALOGUE_TWO,Lets test commas ~c~and now a ~n~New Line
+DIALOGUE_THREE,å áéíóú ÁÉÍÓÚ äëïöü âêîôû
+DIALOGUE_FOUR,1234567890!@£$%^&*()_+-=~c~<.>/?'";:\|[]{}
+TEST_FRIEND,Test Friendly
+TEST_FRIEND_RESP01,That made my day.
+TEST_FRIEND_RESP02,Thank you for the nice comment
+TEST_FRIEND_RESP03,Ohh my~c~ you're too kind~
+TEST_FRIEND_RESP04,Me and you are becoming good friends!
+TEST_NEUTRAL,Test Neutral
+TEST_NEUTRAL_RESP01,Okay
+TEST_NEUTRAL_RESP02,Ohh~c~ I see.
+TEST_NEUTRAL_RESP03,Fine.
+TEST_NEUTRAL_RESP04,Understood.
+TEST_INSULT,Test Insult
+TEST_INSULT_RESP01,That was mean.
+TEST_INSULT_RESP02,Idiot~c~ that hurt my feelings.
+TEST_INSULT_RESP03,Why? Why are you insulting me?!
+TEST_INSULT_RESP04,Nice try~c~ fuck you.
+TEST_BYE,Test Goodbye
+TEST_BYE_RESP01,Good day to you.
+TEST_BYE_RESP02,Goodbye.
+TEST_BYE_RESP03,Alright~c~ then.
+TEST_BYE_RESP04,Bye then.
+TEST_BUY,Test Buying
+TEST_BUY_RESP01,I have a few things for sale.
+TEST_BUY_RESP02,Goods~c~ plenty of goods.
+TEST_BUY_RESP03,Finally~c~ a paying customer.
+TEST_BUY_RESP04,Ohhhh... a paying customer.

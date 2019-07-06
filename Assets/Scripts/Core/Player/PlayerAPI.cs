@@ -19,20 +19,8 @@ public class PlayerAPI : LuaAPIBase
 
     protected override void InitialiseAPITable()
     {
-        m_ApiTable["SetActorPos"] = (Func<string, float, float, float, int>)Lua_SetActorPos;
+
     }
 
-    public int Lua_SetActorPos(string actorID, float x, float y, float z)
-    {
-        Actor[] actors = GameObject.FindObjectsOfType<Actor>();
-        foreach(Actor actor in actors)
-        {
-            if(actor.actorID == actorID)
-            {
-                actor.transform.position = new Vector3(x, y, z);
-                return 0;
-            }
-        }
-        return 1;
-    }
+
 }

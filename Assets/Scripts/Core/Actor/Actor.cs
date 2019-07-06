@@ -17,8 +17,39 @@ public abstract class Actor : MonoBehaviour
     public ActorClass m_ActorClass;
     public ActorHealth m_HealthScript;
 
+    public static Actor GetPlayer()
+    {
+        return FindActor("Player");
+    }
+
+    public void SetPos(Vector3 position)
+    {
+        gameObject.transform.position = position;
+    }
+
+    public void SetPos(float x, float y, float z)
+    {
+        gameObject.transform.position = new Vector3(x, y, z);
+    }
+
+    public static Actor FindActor(string actorID)
+    {
+        Actor[] actors = GameObject.FindObjectsOfType<Actor>();
+        foreach (Actor actor in actors)
+        {
+            if (actor.actorID == actorID)
+            {
+                return actor;
+            }  
+        }
+        return null;
+    }
+
     protected virtual void Start()
     {
-        actorID = gameObject.name;
+        if(actorID == string.Empty)
+        {
+            actorID = gameObject.name;
+        }
     }
 }

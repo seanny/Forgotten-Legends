@@ -1,8 +1,16 @@
 {
-  "name":"Test Name",
-  "sentences": [
-    "Hello 1",
-    "Hello 2",
-    "Hello 3"
+  "npcID":"Guard",
+  "key":"TEST_KEY",
+  "discussion": [
+    "DIALOGUE_ONE",
+    "DIALOGUE_TWO",
+    "DIALOGUE_THREE",
+    "DIALOGUE_FOUR"
+  ],
+  "options": [
+    "TEST_FRIEND",
+    "TEST_NEUTRAL",
+    "TEST_INSULT",
+    "TEST_BYE"
   ]
 }
