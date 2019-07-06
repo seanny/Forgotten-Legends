@@ -29,6 +29,7 @@ public class InteractableManager : Singleton<InteractableManager>
             {
                 if (Input.GetKeyUp(KeyCode.F))
                 {
+                    Logger.Log(Channel.UI, $"Interacting with {interactable.gameObject.name}");
                     ForceInteract(interactable);
                 }
             }

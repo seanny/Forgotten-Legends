@@ -25,6 +25,7 @@ public class DialogueAPI : LuaAPIBase
         m_ApiTable["AddDialogueChoice"] = (Func<string, string, int>)Lua_AddDialogueChoice;
         m_ApiTable["InitiateDialogue"] = (Func<string, string, int>)Lua_InitiateDialogue;
         m_ApiTable["ExitDialogue"] = (Func<int>)Lua_ExitDialogue;
+        m_ApiTable["ClearDialogueChoices"] = (Func<int>)Lua_ClearDialogueChoices;
     }
 
     [LuaApiFunction(
@@ -63,6 +64,15 @@ public class DialogueAPI : LuaAPIBase
         name = "ExitDialogue",
         description = "Exits the dialogue menu.")]
     private int Lua_ExitDialogue()
+    {
+        DialogueManager.Instance.ExitDialogue();
+        return 1;
+    }
+
+    [LuaApiFunction(
+        name = "ClearDialogueChoices",
+        description = "Clears all dialogue choices.")]
+    private int Lua_ClearDialogueChoices()
     {
         DialogueManager.Instance.ExitDialogue();
         return 1;

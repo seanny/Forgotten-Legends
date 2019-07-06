@@ -334,6 +334,7 @@ public class LuaVM
         {
             try
             {
+                Logger.Log(Channel.Lua, $"Calling {luaFunc.CastToString()}");
                 result = m_LuaScript.Call(luaFunc, args);
             }
             catch (ScriptRuntimeException ex)

@@ -15,12 +15,21 @@ public class CameraScrolling : Singleton<CameraScrolling>
     public float currentScroll = 0.0f;
     private const float SCROLL_MIN = 5.0f;
     private const float SCROLL_MAX = 15.0f;
+    public bool rotationLocked { get; private set; }
+
+    public void ToggleScrolling(bool toggle)
+    {
+        rotationLocked = toggle;
+    }
 
     // Update is called once per frame
     private void Update()
     {
-        currentScroll += Input.GetAxis("Mouse ScrollWheel");
-        currentScroll = Mathf.Clamp(currentScroll, SCROLL_MIN, SCROLL_MAX);
+        if(rotationLocked == false)
+        {
+            currentScroll += Input.GetAxis("Mouse ScrollWheel");
+            currentScroll = Mathf.Clamp(currentScroll, SCROLL_MIN, SCROLL_MAX);
+        }
     }
 
     private void LateUpdate()

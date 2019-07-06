@@ -9,7 +9,7 @@ ITEM_POTION_HEALTH,Potion of Restore Health
 ITEM_POTION_MAGIC,Potion of Restore Magic
 ITEM_POTION_STAMINA,Potion of Restore Stamina
 DIALOGUE_ONE,Lorem Ipsum Sit Doler Amet.
-DIALOGUE_TWO,Lets test commas ~c~and now a ~n~New Line
+DIALOGUE_TWO,Lets test commas~c~ and now a ~n~New Line.
 DIALOGUE_THREE,å áéíóú ÁÉÍÓÚ äëïöü âêîôû
 DIALOGUE_FOUR,1234567890!@£$%^&*()_+-=~c~<.>/?'";:\|[]{}
 TEST_FRIEND,Test Friendly

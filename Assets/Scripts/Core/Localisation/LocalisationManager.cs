@@ -55,6 +55,11 @@ public class LocalisationManager : Singleton<LocalisationManager>
     /// </summary>
     private bool initialised = false;
 
+    private void Start()
+    {
+        initialise();
+    }
+
     public void initialise()
     {
         if(!initialised)
@@ -252,7 +257,7 @@ public class LocalisationManager : Singleton<LocalisationManager>
     {
         if(showLogMessages)
         {
-            Debug.Log(message);
+            Logger.Log(Channel.Localisation, message);
         }
     }
 }

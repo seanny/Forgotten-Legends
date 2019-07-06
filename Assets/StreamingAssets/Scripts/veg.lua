@@ -13,8 +13,12 @@ function OnStartInteract(name)
         Dialogue.AddDialogueChoice("test.json", "TEST_NEUTRAL")
         print("Adding bye choice")
         Dialogue.AddDialogueChoice("test.json", "TEST_BYE")
-        print("Showing choices")
-        Dialogue.ShowDialogueChoices(true)
     end
     return 0
+end
+
+function OnDialogueContinue(nextKey)
+    if nextKey == "DIALOGUE_FOUR" then
+        Dialogue.ShowDialogueChoices(true)
+    end
 end

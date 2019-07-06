@@ -25,7 +25,8 @@ public class DialogueManager : Singleton<DialogueManager>
     private List<GameObject> m_DialogueObjects;
 
     // Current NPC discussion key with whatever is first in queue shown first, then 2nd, 3rd, etc
-    private Queue<string> m_CurrentDiscussion;
+    private List<string> m_CurrentDiscussion;
+    private List<bool> m_CurrentDiscussionComplete;
 
     // GUI objects
     [Header("Dialogue Settings")]
@@ -40,14 +41,25 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void Start()
     {
-        m_CurrentDiscussion = new Queue<string>();
+        m_CurrentDiscussion = new List<string>();
+        m_CurrentDiscussionComplete = new List<bool>();
         m_DialogueOptions = new List<string>();
         m_DialogueObjects = new List<GameObject>();
     }
 
+    private void Update()
+    {
+        if(InDialogue == true && choicesShown == false)
+        {
+            if(Input.GetKeyUp(KeyCode.Space))
+            {
+                ShowNextDiscussion();
+            }
+        }
+    }
+
     private string ReadAsset(string folder, string fileName)
     {
-        //string langName = LocalisationManager.Instance.getCurrentLanguage().getLanguage().ToString();
         string filePath = Path.Combine(Application.streamingAssetsPath, folder, fileName);
 
         if (!File.Exists(filePath))
@@ -65,11 +77,14 @@ public class DialogueManager : Singleton<DialogueManager>
     public void SetDiscussion(string fileName)
     {
         m_CurrentDiscussion.Clear();
+        m_CurrentDiscussionComplete.Clear();
         string dataAsJson = ReadAsset("Dialogue", fileName);
         DialogueData dialogueData = JsonUtility.FromJson<DialogueData>(dataAsJson);
         for (int i = 0; i < dialogueData.discussion.Length; i++)
         {
-            m_CurrentDiscussion.Enqueue(dialogueData.discussion[i]);
+            Logger.Log(Channel.Localisation, $"Added {dialogueData.discussion[i]}");
+            m_CurrentDiscussion.Add(dialogueData.discussion[i]);
+            m_CurrentDiscussionComplete.Add(false);
         }
     }
 
@@ -79,7 +94,6 @@ public class DialogueManager : Singleton<DialogueManager>
     /// <param name="optionKey">Option key.</param>
     public void AddOption(string fileName, string optionKey)
     {
-        m_CurrentDiscussion.Clear();
         string dataAsJson = ReadAsset("Dialogue", fileName);
         DialogueData dialogueData = JsonUtility.FromJson<DialogueData>(dataAsJson);
         for (int i = 0; i < dialogueData.options.Length; i++)
@@ -87,6 +101,22 @@ public class DialogueManager : Singleton<DialogueManager>
             if (dialogueData.options[i] == optionKey)
             {
                 m_DialogueOptions.Add(dialogueData.options[i]);
+            }
+        }
+    }
+
+    private void ShowNextDiscussion()
+    {
+        for (int i = 0; i < m_CurrentDiscussion.Count; i++)
+        {
+            if(m_CurrentDiscussionComplete[i] == false)
+            {
+                string nextKey = m_CurrentDiscussion[i];
+                m_CurrentDiscussionComplete[i] = true;
+                npcDialogue.text = StringUtility.EscapeString(LocalisationManager.Instance.getStringForKey(nextKey));
+                Logger.Log(Channel.Localisation, $"Next text = {nextKey}");
+                ScriptManager.Instance.CallFunction("OnDialogueContinue", new object[] { nextKey });
+                break;
             }
         }
     }
@@ -104,6 +134,10 @@ public class DialogueManager : Singleton<DialogueManager>
         // Set the dialogue box active
         dialogueBoxHolder.SetActive(true);
 
+        // Make sure that the dialogue choices are hidden by default
+        dialogueOptionHolder.SetActive(false);
+        choicesShown = false;
+
         // Set it to the gameobject name for now.
         npcName.text = npc.gameObject.name;
 
@@ -111,15 +145,16 @@ public class DialogueManager : Singleton<DialogueManager>
         // TODO: Reference Key to get correct string for dialogue option in correct language
         SetDiscussion(dialogueFile);
 
-        npcDialogue.text = m_CurrentDiscussion.Peek();
-        m_CurrentDiscussion.Dequeue();
+        ShowNextDiscussion();
 
-        for(int i = 0; i < m_DialogueOptions.Count; i++)
+        for (int i = 0; i < m_DialogueOptions.Count; i++)
         {
             GameObject _gameObject = Instantiate(dialogOptionPrefab);
             _gameObject.transform.SetParent(dialogueOptionHolder.transform);
+            _gameObject.GetComponentInChildren<TextMeshProUGUI>().text = LocalisationManager.Instance.getStringForKey(m_DialogueOptions[i]);
             m_DialogueObjects.Add(_gameObject);
         }
+        CameraScrolling.Instance.ToggleScrolling(true);
     }
 
     public void ExitDialogue()
@@ -134,6 +169,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
         // Set the dialogue box active
         dialogueBoxHolder.SetActive(false);
+        CameraScrolling.Instance.ToggleScrolling(false);
         Time.timeScale = 1;
     }
 
