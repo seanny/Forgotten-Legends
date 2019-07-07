@@ -157,20 +157,23 @@ public class DialogueManager : Singleton<DialogueManager>
 
         // Set it to the correct NPC chat string.
         // TODO: Reference Key to get correct string for dialogue option in correct language
-        //SetDiscussion(dialogueFile);
         SetOptions(dialogueFile);
         TriggerAnotherDialogue(dialogueFile);
-
-        //ShowNextDiscussion();
 
         for (int i = 0; i < m_DialogueOptions.Count; i++)
         {
             GameObject _gameObject = Instantiate(dialogOptionPrefab);
             _gameObject.transform.SetParent(dialogueOptionHolder.transform);
             _gameObject.GetComponentInChildren<TextMeshProUGUI>().text = LocalisationManager.Instance.getStringForKey(m_DialogueOptions[i]);
+            _gameObject.GetComponent<DialogueOption>().optionKey = m_DialogueOptions[i];
             m_DialogueObjects.Add(_gameObject);
         }
         CameraScrolling.Instance.ToggleScrolling(true);
+    }
+
+    private void AddDialogueChoiceButton(string key)
+    {
+
     }
 
     public void ExitDialogue()
@@ -193,7 +196,7 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         ScriptManager.Instance.CallFunction("OnDialogueOption", new object[] { dialogueFile, key });
     }
-
+     
     public void TriggerAnotherDialogue(string file)
     {
         SetDiscussion(file);

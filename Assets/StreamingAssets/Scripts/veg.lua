@@ -1,7 +1,11 @@
 function OnDialogueOption(file, key)
-    print("OnDialogueOption veg.lua: " .. key .. " @ " .. file)
+    print("OnDialogueOption veg.lua key = " .. key)
     if key == "TEST_NEUTRAL" then
         Dialogue.ChangeDialogueDiscussion("lol.json")
+        Dialogue.ShowDialogueChoices(false)
+    end
+    if key == "TEST_BYE" then
+        Dialogue.ExitDialogue()
     end
     return 0
 end
