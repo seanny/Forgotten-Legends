@@ -24,19 +24,16 @@ public class Interactable : MonoBehaviour
 
     protected virtual void OnLookAt()
     {
-        Debug.Log($"[Interactable.OnLookAt]: Looking at {gameObject.name}");
         ScriptManager.Instance.CallFunction("OnLook", new object[] { gameObject.name });
     }
 
     public virtual void Interact()
     {
-        Debug.Log($"[Interactable.Interact]: Interacting with {gameObject.name}");
         ScriptManager.Instance.CallFunction("OnStartInteract", new object[] { gameObject.name });
     }
 
     public virtual void StopInteracting()
     {
-        Debug.Log($"[Interactable.StopInteracting]: Stoping interacting with {gameObject.name}");
         ScriptManager.Instance.CallFunction("OnStopInteract", new object[] { gameObject.name });
     }
 
@@ -85,7 +82,6 @@ public class Interactable : MonoBehaviour
     {
         if (InSight() == true && IsClose() == true)
         {
-            Debug.Log($"[Interactable.Update]: {gameObject.name} is in sight and is close");
             ShowInteractGUI();
             OnLookAt();
         }

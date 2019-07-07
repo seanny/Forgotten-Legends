@@ -21,20 +21,10 @@ public class DebugAPI : LuaAPIBase
 
     protected override void InitialiseAPITable()
     {
-        m_ApiTable["WriteLog"] = (Func<string, string>)Lua_WriteLog;
         m_ApiTable["GetPlatformName"] = (Func<string>)Lua_GetPlatformName;
         m_ApiTable["GetConfigName"] = (Func<string>)Lua_GetConfigName;
         m_ApiTable["GetVersion"] = (Func<string>)Lua_GetVersion;
         m_ApiTable["QuitGame"] = (Func<string>)Lua_QuitGame;
-    }
-
-    [LuaApiFunction(
-        name = "WriteLog",
-        description = "Write to the log console.")]
-    private string Lua_WriteLog(string log)
-    {
-        Logger.Log(Channel.LuaNative, log);
-        return "0";
     }
 
     [LuaApiFunction(

@@ -95,7 +95,6 @@ public class ScriptManager : Singleton<ScriptManager>
     {
         m_LoadOrder.Add(Path.Combine(folder, scriptName));
         CallFunctionInScript(scriptName, "OnStart");
-        Logger.Log(Channel.Loading, $"Added {scriptName} to load order");
     }
 
     private void InitScriptManager()
@@ -107,7 +106,6 @@ public class ScriptManager : Singleton<ScriptManager>
             Debug.LogError($"Core Scripts directory does not exist: {m_CoreScripts}");
             return;
         }
-        Debug.Log($"Core Scripts directory found: {m_CoreScripts}");
     }
 
     private void InitLua()

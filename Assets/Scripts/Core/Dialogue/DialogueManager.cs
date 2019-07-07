@@ -49,7 +49,6 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void Update()
     {
-        Logger.Log(Channel.Localisation, $"Update(): InDialogue = {InDialogue}, choicesShown = {choicesShown}");
         if(InDialogue == true && choicesShown == false)
         {
             if(Input.GetKeyUp(KeyCode.Space))
@@ -68,7 +67,6 @@ public class DialogueManager : Singleton<DialogueManager>
             Debug.LogError($"Cannot load dialogue data for {fileName}.");
             return null;
         }
-        Debug.Log($"Successfully read {fileName}");
         return File.ReadAllText(filePath);
     }
 
@@ -120,7 +118,6 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void ShowNextDiscussion()
     {
-        Debug.Log($"m_CurrentDiscussion = {m_CurrentDiscussion.Count}");
         for (int i = 0; i < m_CurrentDiscussion.Count; i++)
         {
             if(m_CurrentDiscussionComplete[i] == false)
@@ -128,7 +125,6 @@ public class DialogueManager : Singleton<DialogueManager>
                 string nextKey = m_CurrentDiscussion[i];
                 m_CurrentDiscussionComplete[i] = true;
                 npcDialogue.text = StringUtility.EscapeString(LocalisationManager.Instance.getStringForKey(nextKey));
-                Logger.Log(Channel.Localisation, $"Next text = {nextKey}");
                 ScriptManager.Instance.CallFunction("OnDialogueContinue", new object[] { nextKey });
                 break;
             }
@@ -141,6 +137,10 @@ public class DialogueManager : Singleton<DialogueManager>
     /// <param name="npc">NPC to chat with</param>
     public void StartDialogue(NPC npc, string dialogueFile)
     {
+        if(InDialogue == true)
+        {
+            return;
+        }
         // Set InDialogue to true
         InDialogue = true;
 
@@ -169,9 +169,7 @@ public class DialogueManager : Singleton<DialogueManager>
             _gameObject.transform.SetParent(dialogueOptionHolder.transform);
             _gameObject.GetComponentInChildren<TextMeshProUGUI>().text = LocalisationManager.Instance.getStringForKey(m_DialogueOptions[i]);
             m_DialogueObjects.Add(_gameObject);
-            Logger.Log(Channel.Localisation, $"Added {m_DialogueOptions[i]} as choice");
         }
-        Logger.Log(Channel.Localisation, $"Current Choices: {m_DialogueOptions.Count}");
         CameraScrolling.Instance.ToggleScrolling(true);
     }
 

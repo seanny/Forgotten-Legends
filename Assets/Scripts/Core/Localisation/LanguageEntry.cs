@@ -38,7 +38,6 @@ public class LanguageEntry
         }
 
         translationDict = CSVUtils.parseLocalisationFile(data);
-        Logger.Log(Channel.Localisation, $"Loaded {language} with {translationDict.Count} entries");
     }
 
     public bool hasStringForKey(string key)

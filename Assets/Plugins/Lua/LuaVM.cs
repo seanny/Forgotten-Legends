@@ -439,7 +439,6 @@ public class LuaVM
             m_APIList[i] = Activator.CreateInstance(m_APITypeList[i]) as LuaAPIBase;
         }
 
-        Logger.Log(Channel.Loading, "Iterate apis and tell them to update this lua vm");
         // Iterate apis and tell them to update this lua vm
         foreach (LuaAPIBase api in m_APIList)
         {

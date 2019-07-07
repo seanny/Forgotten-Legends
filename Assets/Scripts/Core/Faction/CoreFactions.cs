@@ -37,7 +37,6 @@ public class CoreFactions : Singleton<CoreFactions>
             string dataAsJson = File.ReadAllText(Path.Combine(path, files[i]));
             Faction _fac = JsonUtility.FromJson<Faction>(dataAsJson);
             factions.Add(_fac);
-            Debug.Log($"Added faction {_fac.id}: {_fac.name}");
         }
     }
 }

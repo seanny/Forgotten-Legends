@@ -21,7 +21,6 @@ public class PlayerManager : Singleton<PlayerManager>
     public void AddPlayer()
     {
         Player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        Debug.Log($"Added player: {Player.gameObject.name}");
     }
 
     public void RemovePlayer()

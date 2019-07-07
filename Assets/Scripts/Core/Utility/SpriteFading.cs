@@ -23,18 +23,13 @@ public class SpriteFading : Singleton<SpriteFading>
 
     private IEnumerator OnFadeSprite(SpriteRenderer spriteRenderer, float value, float time)
     {
-        Debug.Log("1");
         alpha = spriteRenderer.material.color.a;
         for (float i = 0.0f; i < 1.0f; i += Time.deltaTime / time)
         {
-            Debug.Log("2");
             Color color = new Color(spriteRenderer.material.color.r, spriteRenderer.material.color.g, spriteRenderer.material.color.b, Mathf.Lerp(alpha, value, i));
-            Debug.Log("3");
             spriteRenderer.material.color = color;
-            Debug.Log("4");
             yield return null;
         }
-        Debug.Log("5");
         isFading = false;
     }
 }

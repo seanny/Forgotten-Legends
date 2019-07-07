@@ -43,14 +43,12 @@ public class Settings : Singleton<Settings>
     private void Start()
     {
         FolderName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games", GAME_FOLDER_NAME);
-        Debug.Log($"FolderName: {FolderName}");
         if (!Directory.Exists(FolderName))
         {
             Directory.CreateDirectory(FolderName);
         }
 
         ConfigFile = Path.Combine(FolderName, CONFIG_FILE_NAME);
-        Debug.Log($"configFile: {ConfigFile}");
         //if (!File.Exists(ConfigFile))
         //{
 
