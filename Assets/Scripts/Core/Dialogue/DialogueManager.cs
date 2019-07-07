@@ -18,7 +18,7 @@ public class DialogueManager : Singleton<DialogueManager>
     public bool InDialogue { get; private set; }
 
     // The NPC that is the player is currently having a chat with.
-    private NPC m_CurrentNPC;
+    public NPC m_CurrentNPC;
 
     // References the dialogue option key, which will be used to get a localised string and also handle it's script response.
     private List<string> m_DialogueOptions;
@@ -141,52 +141,60 @@ public class DialogueManager : Singleton<DialogueManager>
         {
             return;
         }
+
         // Set InDialogue to true
         InDialogue = true;
 
-        Time.timeScale = 0;
-        // Set the dialogue box active
-        dialogueBoxHolder.SetActive(true);
-
-        // Make sure that the dialogue choices are hidden by default
-        dialogueOptionHolder.SetActive(false);
         choicesShown = false;
 
         // Set it to the gameobject name for now.
         npcName.text = npc.gameObject.name;
+        m_CurrentNPC = npc;
 
         // Set it to the correct NPC chat string.
         // TODO: Reference Key to get correct string for dialogue option in correct language
-        ClearDialogueChoices();
-
-        SetOptions(dialogueFile);
         TriggerAnotherDialogue(dialogueFile);
 
-        for (int i = 0; i < m_DialogueOptions.Count; i++)
-        {
-            GameObject _gameObject = Instantiate(dialogOptionPrefab);
-            _gameObject.transform.SetParent(dialogueOptionHolder.transform);
-            _gameObject.GetComponentInChildren<TextMeshProUGUI>().text = LocalisationManager.Instance.getStringForKey(m_DialogueOptions[i]);
-            _gameObject.GetComponent<DialogueOption>().optionKey = m_DialogueOptions[i];
-            m_DialogueObjects.Add(_gameObject);
-        }
         CameraScrolling.Instance.ToggleScrolling(true);
+        CameraRotation.Instance.ToggleRotation(true);
+
+        // Make sure that NPC is facing the player
+        m_CurrentNPC.m_MovementScript.StopMovement();
+        m_CurrentNPC.m_MovementScript.LookAtActor(PlayerManager.Instance.Player);
+        PlayerManager.Instance.Player.transform.LookAt(m_CurrentNPC.transform);
     }
 
-    public void ExitDialogue()
+    private void ClearDialogueOptions()
     {
-        // Set InDialogue to false
-        InDialogue = false;
-
         for (int i = 0; i < m_DialogueObjects.Count; i++)
         {
             Destroy(m_DialogueObjects[i]);
         }
+        m_DialogueObjects.Clear();
+        m_DialogueOptions.Clear();
+        ToggleDialogueUI(false);
+        ToggleDialogueChoicesUI(false);
+    }
 
-        // Set the dialogue box active
-        dialogueBoxHolder.SetActive(false);
+    private void ToggleDialogueUI(bool toggle)
+    {
+        dialogueBoxHolder.SetActive(toggle);
+    }
+
+    private void ToggleDialogueChoicesUI(bool toggle)
+    {
+        dialogueOptionHolder.SetActive(toggle);
+    }
+
+    public void ExitDialogue(bool keepNPC)
+    {
+        // Set InDialogue to false
+        InDialogue = false;
+        m_CurrentNPC.m_MovementScript.StartMovement();
+        
+        ClearDialogueOptions();
         CameraScrolling.Instance.ToggleScrolling(false);
-        Time.timeScale = 1;
+        CameraRotation.Instance.ToggleRotation(false);
     }
 
     public void ExecuteDialogOption(string dialogueFile, string key)
@@ -196,18 +204,28 @@ public class DialogueManager : Singleton<DialogueManager>
      
     public void TriggerAnotherDialogue(string file)
     {
+        ClearDialogueChoices();
+        SetOptions(file);
         SetDiscussion(file);
         ShowNextDiscussion();
+
+        for (int i = 0; i < m_DialogueOptions.Count; i++)
+        {
+            GameObject _gameObject = Instantiate(dialogOptionPrefab);
+            _gameObject.transform.SetParent(dialogueOptionHolder.transform);
+            _gameObject.GetComponentInChildren<TextMeshProUGUI>().text = LocalisationManager.Instance.getStringForKey(m_DialogueOptions[i]);
+            _gameObject.GetComponent<DialogueOption>().optionKey = m_DialogueOptions[i];
+            m_DialogueObjects.Add(_gameObject);
+        }
+
+        ToggleDialogueUI(true);
+        ToggleDialogueChoicesUI(false);
     }
 
     public void ClearDialogueChoices()
     {
-        for (int i = 0; i < m_DialogueObjects.Count; i++)
-        {
-            Destroy(m_DialogueObjects[i]);
-        }
-        m_DialogueObjects.Clear();
-        m_DialogueOptions.Clear();
+        ClearDialogueOptions();
+        choicesShown = false;
     }
 
     public void ShowDialogueChoices(bool toggle)

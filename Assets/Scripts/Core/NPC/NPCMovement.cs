@@ -33,6 +33,11 @@ public class NPCMovement : MonoBehaviour
         MoveTowards(actor.transform.position);
     }
 
+    public void LookAtActor(Actor actor)
+    {
+        transform.rotation = new Quaternion(transform.rotation.x, actor.transform.rotation.y - 180, transform.rotation.z, transform.rotation.w);
+    }
+
     public void MoveTowards(Vector3 destination)
     {
         m_Destination = destination;
@@ -49,6 +54,11 @@ public class NPCMovement : MonoBehaviour
     {
         m_Agent.isStopped = true;
         m_Agent.velocity = Vector3.zero;
+    }
+
+    public void StartMovement()
+    {
+        m_Agent.isStopped = false;
     }
 
     public bool IsAtActor(Actor actor)

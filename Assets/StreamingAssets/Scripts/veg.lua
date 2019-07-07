@@ -1,6 +1,7 @@
+-- Debug script
 function OnDialogueOption(file, key)
     print("OnDialogueOption veg.lua key = " .. key)
-    if key == "TEST_NEUTRAL" then
+    if key == "TEST_LOL" then
         Dialogue.ChangeDialogueDiscussion("lol.json")
         Dialogue.ShowDialogueChoices(false)
     end
@@ -21,6 +22,9 @@ function OnStartInteract(name)
 end
 
 function OnDialogueContinue(nextKey)
+    if nextKey == "LOL_FOUR" then
+        Dialogue.ShowDialogueChoices(true)
+    end
     if nextKey == "DIALOGUE_FOUR" then
         Dialogue.ShowDialogueChoices(true)
     end

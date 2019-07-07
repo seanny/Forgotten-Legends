@@ -66,7 +66,7 @@ public class DialogueAPI : LuaAPIBase
         description = "Exits the dialogue menu.")]
     private int Lua_ExitDialogue()
     {
-        DialogueManager.Instance.ExitDialogue();
+        DialogueManager.Instance.ExitDialogue(false);
         return 1;
     }
 

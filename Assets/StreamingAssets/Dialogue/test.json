@@ -10,7 +10,7 @@
   "options": [
     "TEST_FRIEND",
     "TEST_NEUTRAL",
-    "TEST_INSULT",
+    "TEST_LOL",
     "TEST_BYE"
   ]
 }
