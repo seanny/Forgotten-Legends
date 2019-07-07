@@ -1,44 +1,8 @@
-QUEST_STARTED,Started:
-QUEST_TEST_NAME,Secrets of C#
-QUEST_TEST_OBJECTIVE_01,Learn the ancient language of C#
-INTERACTABLE_USE,Use
-INTERACTABLE_TAKE,Take
-INTERACTABLE_TALK,Talk
-INTERACTABLE_STEAL,Steal
-ITEM_POTION_HEALTH,Potion of Restore Health
-ITEM_POTION_MAGIC,Potion of Restore Magic
-ITEM_POTION_STAMINA,Potion of Restore Stamina
-DIALOGUE_ONE,Test Dialogue Line 1
-DIALOGUE_TWO,Test Dialogue Line~c~ 2
-DIALOGUE_THREE,Test dialogue line~n~ 3
-DIALOGUE_FOUR,1234567890!()_+-=~c~.?"
-TEST_LOL,Laugh Out Loud
-LOL_ONE,hahahaha
-LOL_TWO,hehehehe
-LOL_THREE,hohohoho
-LOL_FOUR,huhuhuhuhuh
-TEST_FRIEND,Test Friendly
-TEST_FRIEND_RESP01,That made my day.
-TEST_FRIEND_RESP02,Thank you for the nice comment
-TEST_FRIEND_RESP03,Ohh my~c~ you're too kind~
-TEST_FRIEND_RESP04,Me and you are becoming good friends!
-TEST_NEUTRAL,Test Neutral
-TEST_NEUTRAL_RESP01,Okay
-TEST_NEUTRAL_RESP02,Ohh~c~ I see.
-TEST_NEUTRAL_RESP03,Fine.
-TEST_NEUTRAL_RESP04,Understood.
-TEST_INSULT,Test Insult
-TEST_INSULT_RESP01,That was mean.
-TEST_INSULT_RESP02,Idiot~c~ that hurt my feelings.
-TEST_INSULT_RESP03,Why? Why are you insulting me?!
-TEST_INSULT_RESP04,Nice try~c~ fuck you.
-TEST_BYE,Test Goodbye
-TEST_BYE_RESP01,Good day to you.
-TEST_BYE_RESP02,Goodbye.
-TEST_BYE_RESP03,Alright~c~ then.
-TEST_BYE_RESP04,Bye then.
-TEST_BUY,Test Buying
-TEST_BUY_RESP01,I have a few things for sale.
-TEST_BUY_RESP02,Goods~c~ plenty of goods.
-TEST_BUY_RESP03,Finally~c~ a paying customer.
-TEST_BUY_RESP04,Ohhhh... a paying customer.
+GuardDialogueSpeech01,Good evening~c~ Citizen.
+GuardDialogueSpeech02,How can I help you today?
+GuardDialogueOptionInsult,Fuck you pig!
+GuardDialogueOptionGoodbye,Goodbye.
+GuardDialogueArrest01,You're under arrest!
+GuardDialogueArrest02,Submit or die!
+GuardDialogueArrestOptionSubmit,Fine~c~ take me to jail.
+GuardDialogueArrestOptionEscape,You'll never take me alive.

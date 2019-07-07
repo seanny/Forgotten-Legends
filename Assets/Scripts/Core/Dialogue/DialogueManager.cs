@@ -49,6 +49,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void Update()
     {
+        Debug.Log($"InDialogue = {InDialogue}, choicesShown = {choicesShown}");
         if(InDialogue == true && choicesShown == false)
         {
             if(Input.GetKeyUp(KeyCode.Space))

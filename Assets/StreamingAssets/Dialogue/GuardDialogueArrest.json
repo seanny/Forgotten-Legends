@@ -1,0 +1,12 @@
+{
+    "npcID":"Guard",
+    "key":"GuardDialogueArrest",
+    "discussion": [
+      "GuardDialogueArrest01",
+      "GuardDialogueArrest02"
+    ],
+    "options": [
+      "GuardDialogueArrestOptionSubmit",
+      "GuardDialogueArrestOptionEscape"
+    ]
+  }

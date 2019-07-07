@@ -1,0 +1,12 @@
+{
+  "npcID":"Guard",
+  "key":"GuardDialogueInitial",
+  "discussion": [
+    "GuardDialogueSpeech01",
+    "GuardDialogueSpeech02"
+  ],
+  "options": [
+    "GuardDialogueOptionInsult",
+    "GuardDialogueOptionGoodbye"
+  ]
+}
