@@ -1,0 +1,15 @@
+{
+  "npcID":"Guard",
+  "key":"TEST_LOL",
+  "discussion": [
+    "DIALOGUE_ONE",
+    "DIALOGUE_TWO",
+    "DIALOGUE_THREE",
+    "DIALOGUE_FOUR"
+  ],
+  "options": [
+    "TEST_BUY",
+    "TEST_INSULT",
+    "TEST_BYE"
+  ]
+}

@@ -8,10 +8,10 @@ INTERACTABLE_STEAL,Steal
 ITEM_POTION_HEALTH,Potion of Restore Health
 ITEM_POTION_MAGIC,Potion of Restore Magic
 ITEM_POTION_STAMINA,Potion of Restore Stamina
-DIALOGUE_ONE,Lorem Ipsum Sit Doler Amet.
-DIALOGUE_TWO,Lets test commas~c~ and now a ~n~New Line.
-DIALOGUE_THREE,å áéíóú ÁÉÍÓÚ äëïöü âêîôû
-DIALOGUE_FOUR,1234567890!@£$%^&*()_+-=~c~<.>/?'";:\|[]{}
+DIALOGUE_ONE,Test Dialogue Line 1
+DIALOGUE_TWO,Test Dialogue Line~c~ 2
+DIALOGUE_THREE,Test dialogue line~n~ 3
+DIALOGUE_FOUR,1234567890!()_+-=~c~.?"
 TEST_FRIEND,Test Friendly
 TEST_FRIEND_RESP01,That made my day.
 TEST_FRIEND_RESP02,Thank you for the nice comment

@@ -49,6 +49,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void Update()
     {
+        Logger.Log(Channel.Localisation, $"Update(): InDialogue = {InDialogue}, choicesShown = {choicesShown}");
         if(InDialogue == true && choicesShown == false)
         {
             if(Input.GetKeyUp(KeyCode.Space))
@@ -67,6 +68,7 @@ public class DialogueManager : Singleton<DialogueManager>
             Debug.LogError($"Cannot load dialogue data for {fileName}.");
             return null;
         }
+        Debug.Log($"Successfully read {fileName}");
         return File.ReadAllText(filePath);
     }
 
@@ -82,9 +84,20 @@ public class DialogueManager : Singleton<DialogueManager>
         DialogueData dialogueData = JsonUtility.FromJson<DialogueData>(dataAsJson);
         for (int i = 0; i < dialogueData.discussion.Length; i++)
         {
-            Logger.Log(Channel.Localisation, $"Added {dialogueData.discussion[i]}");
             m_CurrentDiscussion.Add(dialogueData.discussion[i]);
             m_CurrentDiscussionComplete.Add(false);
+        }
+    }
+
+    public void SetOptions(string fileName)
+    {
+        m_CurrentDiscussion.Clear();
+        m_CurrentDiscussionComplete.Clear();
+        string dataAsJson = ReadAsset("Dialogue", fileName);
+        DialogueData dialogueData = JsonUtility.FromJson<DialogueData>(dataAsJson);
+        for (int i = 0; i < dialogueData.options.Length; i++)
+        {
+            m_DialogueOptions.Add(dialogueData.options[i]);
         }
     }
 
@@ -107,6 +120,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void ShowNextDiscussion()
     {
+        Debug.Log($"m_CurrentDiscussion = {m_CurrentDiscussion.Count}");
         for (int i = 0; i < m_CurrentDiscussion.Count; i++)
         {
             if(m_CurrentDiscussionComplete[i] == false)
@@ -143,9 +157,11 @@ public class DialogueManager : Singleton<DialogueManager>
 
         // Set it to the correct NPC chat string.
         // TODO: Reference Key to get correct string for dialogue option in correct language
-        SetDiscussion(dialogueFile);
+        //SetDiscussion(dialogueFile);
+        SetOptions(dialogueFile);
+        TriggerAnotherDialogue(dialogueFile);
 
-        ShowNextDiscussion();
+        //ShowNextDiscussion();
 
         for (int i = 0; i < m_DialogueOptions.Count; i++)
         {
@@ -153,7 +169,9 @@ public class DialogueManager : Singleton<DialogueManager>
             _gameObject.transform.SetParent(dialogueOptionHolder.transform);
             _gameObject.GetComponentInChildren<TextMeshProUGUI>().text = LocalisationManager.Instance.getStringForKey(m_DialogueOptions[i]);
             m_DialogueObjects.Add(_gameObject);
+            Logger.Log(Channel.Localisation, $"Added {m_DialogueOptions[i]} as choice");
         }
+        Logger.Log(Channel.Localisation, $"Current Choices: {m_DialogueOptions.Count}");
         CameraScrolling.Instance.ToggleScrolling(true);
     }
 
@@ -176,6 +194,21 @@ public class DialogueManager : Singleton<DialogueManager>
     public void ExecuteDialogOption(string dialogueFile, string key)
     {
         ScriptManager.Instance.CallFunction("OnDialogueOption", new object[] { dialogueFile, key });
+    }
+
+    public void TriggerAnotherDialogue(string file)
+    {
+        SetDiscussion(file);
+        ShowNextDiscussion();
+    }
+
+    public void ClearDialogueChoices()
+    {
+        for (int i = 0; i < m_DialogueOptions.Count; i++)
+        {
+            Destroy(m_DialogueObjects[i]);
+        }
+        m_DialogueOptions.Clear();
     }
 
     public void ShowDialogueChoices(bool toggle)

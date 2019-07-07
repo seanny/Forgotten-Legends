@@ -334,7 +334,6 @@ public class LuaVM
         {
             try
             {
-                Logger.Log(Channel.Lua, $"Calling {luaFunc.CastToString()}");
                 result = m_LuaScript.Call(luaFunc, args);
             }
             catch (ScriptRuntimeException ex)
@@ -435,10 +434,8 @@ public class LuaVM
 
         m_APIList = new LuaAPIBase[m_APITypeList.Length];
 
-        Logger.Log(Channel.Loading, $"Adding {m_APITypeList.Length} instances");
         for (int i = 0; i < m_APITypeList.Length; ++i)
         {
-            Logger.Log(Channel.Lua, $"{m_APITypeList[i].Name}");
             m_APIList[i] = Activator.CreateInstance(m_APITypeList[i]) as LuaAPIBase;
         }
 
@@ -446,7 +443,6 @@ public class LuaVM
         // Iterate apis and tell them to update this lua vm
         foreach (LuaAPIBase api in m_APIList)
         {
-            Logger.Log(Channel.Lua, $"{api.APIName}");
             api.AddAPIToLuaInstance(this);
         }
     }

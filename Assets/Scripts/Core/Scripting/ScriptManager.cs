@@ -59,13 +59,10 @@ public class ScriptManager : Singleton<ScriptManager>
     /// <param name="functionName">Function name.</param>
     public void CallFunctionInScript(string scriptName, string functionName)
     {
-        Logger.Log(Channel.Lua, $"Executing {scriptName}");
         m_LuaVM.ExecuteScript(Path.Combine(m_CoreScripts, scriptName));
-        Logger.Log(Channel.Lua, $"Getting global {functionName} in {scriptName}");
         DynValue function = m_LuaVM.GetGlobal(functionName);
         if (function.IsNotNil())
         {
-            Logger.Log(Channel.Lua, $"Executing global {functionName} in {scriptName}");
             m_LuaVM.Call(function);
         }
     }
@@ -80,13 +77,10 @@ public class ScriptManager : Singleton<ScriptManager>
     /// <param name="paramaters">Paramaters.</param>
     public void CallFunctionInScript(string scriptName, string functionName, object[] paramaters)
     {
-        Logger.Log(Channel.Lua, $"Executing {scriptName} with paramaters");
         m_LuaVM.ExecuteScript(Path.Combine(m_CoreScripts, scriptName));
-        Logger.Log(Channel.Lua, $"Getting global {functionName} in {scriptName} with paramaters");
         DynValue function = m_LuaVM.GetGlobal(functionName);
         if (function.IsNotNil())
         {
-            Logger.Log(Channel.Lua, $"Executing global {functionName} in {scriptName} with paramaters");
             m_LuaVM.Call(function, paramaters);
         }
     }

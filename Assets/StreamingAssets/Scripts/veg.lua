@@ -1,5 +1,8 @@
 function OnDialogueOption(file, key)
     print("OnDialogueOption veg.lua: " .. key .. " @ " .. file)
+    if key == "TEST_NEUTRAL" then
+        Dialogue.ChangeDialogueDiscussion("lol.json")
+    end
     return 0
 end
 
