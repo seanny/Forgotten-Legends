@@ -157,6 +157,8 @@ public class DialogueManager : Singleton<DialogueManager>
 
         // Set it to the correct NPC chat string.
         // TODO: Reference Key to get correct string for dialogue option in correct language
+        ClearDialogueChoices();
+
         SetOptions(dialogueFile);
         TriggerAnotherDialogue(dialogueFile);
 
@@ -169,11 +171,6 @@ public class DialogueManager : Singleton<DialogueManager>
             m_DialogueObjects.Add(_gameObject);
         }
         CameraScrolling.Instance.ToggleScrolling(true);
-    }
-
-    private void AddDialogueChoiceButton(string key)
-    {
-
     }
 
     public void ExitDialogue()
@@ -205,10 +202,11 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void ClearDialogueChoices()
     {
-        for (int i = 0; i < m_DialogueOptions.Count; i++)
+        for (int i = 0; i < m_DialogueObjects.Count; i++)
         {
             Destroy(m_DialogueObjects[i]);
         }
+        m_DialogueObjects.Clear();
         m_DialogueOptions.Clear();
     }
 

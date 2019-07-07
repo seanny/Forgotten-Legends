@@ -16,10 +16,6 @@ function OnStartInteract(name)
     if name == "Guard" then
         print("Starting dialogue with " .. name .. " (actorID: " .. actorID .. ")")
         Dialogue.InitiateDialogue("test.json", name)
-        print("Adding neutral choice")
-        Dialogue.AddDialogueChoice("test.json", "TEST_NEUTRAL")
-        print("Adding bye choice")
-        Dialogue.AddDialogueChoice("test.json", "TEST_BYE")
     end
     return 0
 end
