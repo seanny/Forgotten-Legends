@@ -1,0 +1,17 @@
+{
+    "questID":"Test01",
+    "questName":"Test01_Name",
+    "questDescription":"Test01_Description",
+    "objectiveNames": [
+      "Test01_Obj01",
+      "Test01_Obj02",
+      "Test01_Obj03",
+      "Test01_Obj04"
+    ],
+    "objectiveDescriptions": [
+      "Test01_ObjDesc01",
+      "Test01_ObjDesc02",
+      "Test01_ObjDesc03",
+      "Test01_ObjDesc04"
+    ]
+  }

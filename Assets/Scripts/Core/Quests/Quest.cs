@@ -12,8 +12,6 @@ using System;
 [Serializable]
 public class Quest
 {
-    public bool isActive;
-    public int xpReward;
     public string questID;
     public string questName;
     public string questDescription;

@@ -25,8 +25,11 @@ public class QuestJournal : Singleton<QuestJournal>
 
     private void Start()
     {
+        activeQuests = new List<Quest>();
+        completedQuests = new List<Quest>();
         ImageUtils.SetAlpha(questName, 0.0f);
         ImageUtils.SetAlpha(questObjective, 0.0f);
+        GiveQuest("Test01");
     }
 
     public void GiveQuest(string questID)
@@ -41,8 +44,12 @@ public class QuestJournal : Singleton<QuestJournal>
 
         // TODO: Show the quest added UI
         // Output: Started: Quest Name
-        string _questName = $"{LocalisationManager.Instance.getStringForKey("QuestStarted")} {LocalisationManager.Instance.getStringForKey("QuestStarted")}";
-        questName.text = 
+        Debug.Log($"QuestStarted: {LocalisationManager.Instance.getStringForKey("QuestStarted")}");
+        questName.text =
+            $"{LocalisationManager.Instance.getStringForKey("QuestStarted")} {LocalisationManager.Instance.getStringForKey(quest.questName)}";
+
+        questObjective.text = 
+            $"{LocalisationManager.Instance.getStringForKey(quest.questDescription)}";
 
         ImageUtils.FadeAlpha(questName, 1.0f, 1.0f);
         ImageUtils.FadeAlpha(questObjective, 1.0f, 1.5f);
