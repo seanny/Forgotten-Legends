@@ -1,0 +1,80 @@
+{
+    "items": [
+        {
+            "key":"GuardDialogueSpeech01",
+            "value":"Good evening~c~ Citizen."
+        },
+        {
+            "key":"GuardDialogueSpeech02",
+            "value":"How can I help you today?"
+        },
+        {
+            "key":"GuardDialogueOptionInsult",
+            "value":"Fuck you pig!"
+        },
+        {
+            "key":"GuardDialogueOptionGoodbye",
+            "value":"Goodbye."
+        },
+        {
+            "key":"GuardDialogueArrest01",
+            "value":"You're under arrest!"
+        },
+        {
+            "key":"GuardDialogueArrest02",
+            "value":"Submit or die!"
+        },
+        {
+            "key":"GuardDialogueArrestOptionSubmit",
+            "value":"Fine~c~ take me to jail."
+        },
+        {
+            "key":"GuardDialogueArrestOptionEscape",
+            "value":"You'll never take me alive."
+        },
+        {
+            "key":"QuestStarted",
+            "value":"Started:"
+        },
+        {
+            "key":"Test01_Name",
+            "value":"Test Quest"
+        },
+        {
+            "key":"Test01_Description",
+            "value":"Test Description of quest."
+        },
+        {
+            "key":"Test01_Obj01",
+            "value":"Objective 1"
+        },
+        {
+            "key":"Test01_Obj02",
+            "value":"Objective 2"
+        },
+        {
+            "key":"Test01_Obj03",
+            "value":"Objective 3"
+        },
+        {
+            "key":"Test01_Obj04",
+            "value":"Objective 4"
+        },
+        {
+            "key":"Test01_ObjDesc01",
+            "value":"Objective Description 1"
+        },
+        {
+            "key":"Test01_ObjDesc02",
+            "value":"Objective Description 2"
+        },
+        {
+            "key":"Test01_ObjDesc03",
+            "value":"Objective Description 3"
+        },
+        {
+            "key":"Test01_ObjDesc04",
+            "value":"Objective Description 4"
+        }
+    ]
+}

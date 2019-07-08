@@ -44,12 +44,12 @@ public class QuestJournal : Singleton<QuestJournal>
 
         // TODO: Show the quest added UI
         // Output: Started: Quest Name
-        Debug.Log($"QuestStarted: {LocalisationManager.Instance.getStringForKey("QuestStarted")}");
+        Debug.Log($"QuestStarted: {LocalisationManager.Instance.GetStringForKey("QuestStarted")}");
         questName.text =
-            $"{LocalisationManager.Instance.getStringForKey("QuestStarted")} {LocalisationManager.Instance.getStringForKey(quest.questName)}";
+            $"{LocalisationManager.Instance.GetStringForKey("QuestStarted")} {LocalisationManager.Instance.GetStringForKey(quest.questName)}";
 
         questObjective.text = 
-            $"{LocalisationManager.Instance.getStringForKey(quest.questDescription)}";
+            $"{LocalisationManager.Instance.GetStringForKey(quest.questDescription)}";
 
         ImageUtils.FadeAlpha(questName, 1.0f, 1.0f);
         ImageUtils.FadeAlpha(questObjective, 1.0f, 1.5f);

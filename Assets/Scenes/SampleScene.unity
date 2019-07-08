@@ -4478,18 +4478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4177c7235f39e4b459f43d6b62a87843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialiseOnAwake: 1
-  storeLanguageOnUserPrefs: 1
-  missingKeyFallback: 1
-  defaultFont: {fileID: 12800000, guid: db1d12e6fca824b8ca0f9e4961c1701d, type: 3}
-  defaultTextMeshFont: {fileID: 11400000, guid: f88f61c42303e4ac0b89e5fe12474e7d,
-    type: 2}
-  supportedLanguages:
-  - language: 10
-    translationCSVFile: English.csv
-    customFont: {fileID: 0}
-    customTextMeshFont: {fileID: 0}
-  showLogMessages: 0
 --- !u!1 &1469166369
 GameObject:
   m_ObjectHideFlags: 0
