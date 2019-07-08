@@ -603,6 +603,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255167471}
   m_CullTransparentMesh: 0
+--- !u!1 &264581174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 264581175}
+  - component: {fileID: 264581176}
+  m_Layer: 8
+  m_Name: '@QuestManager'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &264581175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264581174}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1689046980}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &264581176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264581174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 385c74bf608d44966bf306bc9b10f43b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questName: {fileID: 325027950}
+  questObjective: {fileID: 38986847}
+  activeQuests: []
+  completedQuests: []
 --- !u!1 &288628564
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,7 +735,6 @@ GameObject:
   - component: {fileID: 325027948}
   - component: {fileID: 325027951}
   - component: {fileID: 325027950}
-  - component: {fileID: 325027949}
   m_Layer: 5
   m_Name: QuestName
   m_TagString: Untagged
@@ -715,20 +761,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -250}
   m_SizeDelta: {x: 1000, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &325027949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 325027947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ee7a56b160a044eda9ea01a57e7322e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textKey: 
-  overrideFont: {fileID: 0}
 --- !u!114 &325027950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1252,7 +1284,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457920063}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
@@ -2651,6 +2683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37826c8e153b24e9eaf9870312738ac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CurrentNPC: {fileID: 0}
   dialogueBoxHolder: {fileID: 647737147}
   npcName: {fileID: 539365586}
   npcDialogue: {fileID: 1557748704}
@@ -5358,6 +5391,7 @@ Transform:
   - {fileID: 561935272}
   - {fileID: 1469166370}
   - {fileID: 9603679}
+  - {fileID: 264581175}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6461,7 +6495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2099135848
 RectTransform:
   m_ObjectHideFlags: 0

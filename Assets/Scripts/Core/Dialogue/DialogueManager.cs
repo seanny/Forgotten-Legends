@@ -59,18 +59,6 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     }
 
-    private string ReadAsset(string folder, string fileName)
-    {
-        string filePath = Path.Combine(Application.streamingAssetsPath, folder, fileName);
-
-        if (!File.Exists(filePath))
-        {
-            Debug.LogError($"Cannot load dialogue data for {fileName}.");
-            return null;
-        }
-        return File.ReadAllText(filePath);
-    }
-
     /// <summary>
     /// Set the discussion conversation in order of chat.
     /// </summary>
@@ -79,7 +67,7 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         m_CurrentDiscussion.Clear();
         m_CurrentDiscussionComplete.Clear();
-        string dataAsJson = ReadAsset("Dialogue", fileName);
+        string dataAsJson = AssetUtility.ReadAsset("Dialogue", fileName);
         DialogueData dialogueData = JsonUtility.FromJson<DialogueData>(dataAsJson);
         for (int i = 0; i < dialogueData.discussion.Length; i++)
         {
@@ -92,7 +80,7 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         m_CurrentDiscussion.Clear();
         m_CurrentDiscussionComplete.Clear();
-        string dataAsJson = ReadAsset("Dialogue", fileName);
+        string dataAsJson = AssetUtility.ReadAsset("Dialogue", fileName);
         DialogueData dialogueData = JsonUtility.FromJson<DialogueData>(dataAsJson);
         for (int i = 0; i < dialogueData.options.Length; i++)
         {
@@ -106,7 +94,7 @@ public class DialogueManager : Singleton<DialogueManager>
     /// <param name="optionKey">Option key.</param>
     public void AddOption(string fileName, string optionKey)
     {
-        string dataAsJson = ReadAsset("Dialogue", fileName);
+        string dataAsJson = AssetUtility.ReadAsset("Dialogue", fileName);
         DialogueData dialogueData = JsonUtility.FromJson<DialogueData>(dataAsJson);
         for (int i = 0; i < dialogueData.options.Length; i++)
         {

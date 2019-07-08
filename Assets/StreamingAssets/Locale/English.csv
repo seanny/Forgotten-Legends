@@ -6,3 +6,6 @@ GuardDialogueArrest01,You're under arrest!
 GuardDialogueArrest02,Submit or die!
 GuardDialogueArrestOptionSubmit,Fine~c~ take me to jail.
 GuardDialogueArrestOptionEscape,You'll never take me alive.
+QuestStarted,Started:
+TQ01_Name,Lorem Ipsum
+TQ01_Objective,Lorem Ipsum Sit Doler Amet.

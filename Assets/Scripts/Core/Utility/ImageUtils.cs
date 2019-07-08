@@ -23,6 +23,11 @@ public static class ImageUtils
         button.GetComponentInChildren<TextMeshProUGUI>().canvasRenderer.SetAlpha(alpha);
     }
 
+    public static void SetAlpha(TextMeshProUGUI text, float alpha)
+    {
+        text.GetComponent<TextMeshProUGUI>().canvasRenderer.SetAlpha(alpha);
+    }
+
     public static void FadeAlpha(Image image, float alpha, float duration)
     {
         image.CrossFadeAlpha(alpha, duration, false);
@@ -32,5 +37,10 @@ public static class ImageUtils
     {
         button.GetComponent<Image>().CrossFadeAlpha(alpha, duration, false);
         button.GetComponentInChildren<TextMeshProUGUI>().CrossFadeAlpha(alpha, duration, false);
+    }
+
+    public static void FadeAlpha(TextMeshProUGUI text, float alpha, float duration)
+    {
+        text.GetComponent<TextMeshProUGUI>().CrossFadeAlpha(alpha, duration, false);
     }
 }
