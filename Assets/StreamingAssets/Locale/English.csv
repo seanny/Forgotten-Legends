@@ -7,5 +7,13 @@ GuardDialogueArrest02,Submit or die!
 GuardDialogueArrestOptionSubmit,Fine~c~ take me to jail.
 GuardDialogueArrestOptionEscape,You'll never take me alive.
 QuestStarted,Started:
-TQ01_Name,Lorem Ipsum
-TQ01_Objective,Lorem Ipsum Sit Doler Amet.
+Test01_Name,Lorem Ipsum
+Test01_Description,Lorem Ipsum Sit Doler Amet.
+Test01_Obj01,Objective 1
+Test01_Obj02,Objective 2
+Test01_Obj03,Objective 3
+Test01_Obj04,Objective 4
+Test01_ObjDesc01,Objective Description 1
+Test01_ObjDesc02,Objective Description 2
+Test01_ObjDesc03,Objective Description 3
+Test01_ObjDesc04,Objective Description 4
