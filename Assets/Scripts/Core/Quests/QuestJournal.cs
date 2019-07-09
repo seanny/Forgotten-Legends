@@ -8,6 +8,7 @@
 // 	without the consent of Outlaw Games Studio.
 //
 using TMPro;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,7 @@ public class QuestJournal : Singleton<QuestJournal>
     public TextMeshProUGUI questName;
     public TextMeshProUGUI questObjective;
 
-    public List<Quest> activeQuests;
+    public Dictionary<Quest, string> activeQuests;
     public List<Quest> completedQuests;
 
     public AudioSource m_QuestCompletedSource;
@@ -28,20 +29,23 @@ public class QuestJournal : Singleton<QuestJournal>
 
     private void Start()
     {
-        activeQuests = new List<Quest>();
+        activeQuests = new Dictionary<Quest, string>();
         completedQuests = new List<Quest>();
         ImageUtils.SetAlpha(questName, 0.0f);
         ImageUtils.SetAlpha(questObjective, 0.0f);
-        GiveQuest("Test01");
     }
 
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {
-            CompleteQuest("Test01");
+            GiveQuest("Test01");
         }
         if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            SetQuestObjective("Test01", "Test01_Obj01");
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha3))
         {
             CompleteQuest("Test01");
         }
@@ -55,22 +59,54 @@ public class QuestJournal : Singleton<QuestJournal>
         }
         string dataAsJson = AssetUtility.ReadAsset("Quest", questID);
         Quest quest = JsonUtility.FromJson<Quest>(dataAsJson);
-        activeQuests.Add(quest);
+        activeQuests.Add(quest, quest.objectiveDescriptions[0]);
 
         // TODO: Show the quest added UI
         // Output: Started: Quest Name
-        Debug.Log($"QuestStarted: {LocalisationManager.Instance.GetLocalisedString("QuestStarted")}");
         questName.text =
             $"{LocalisationManager.Instance.GetLocalisedString("QuestStarted")} {LocalisationManager.Instance.GetLocalisedString(quest.questName)}";
 
         questObjective.text = 
             $"{LocalisationManager.Instance.GetLocalisedString(quest.questDescription)}";
 
-        ImageUtils.FadeAlpha(questName, 1.0f, 1.0f);
-        ImageUtils.FadeAlpha(questObjective, 1.0f, 1.5f);
-        StartCoroutine(FadeOutQuestName());
-        StartCoroutine(FadeOutQuestObjective());
+        FadeInName();
+        FadeInObjective();
         m_QuestStartedSource.Play();
+    }
+
+    private void FadeInName()
+    {
+        ImageUtils.FadeAlpha(questName, 1.0f, 0.5f);
+        StartCoroutine(FadeOutQuestName());
+    }
+
+    private void FadeInObjective()
+    {
+        ImageUtils.FadeAlpha(questObjective, 1.0f, 0.5f);
+        StartCoroutine(FadeOutQuestObjective());
+    }
+
+    public void SetQuestObjective(string questID, string questObjectiveID)
+    {
+        for (int i = 0; i < activeQuests.Count; i++)
+        {
+            Debug.Log($"Item = {activeQuests.ElementAt(i).Key.questID}, {activeQuests.ElementAt(i).Value}");
+            if (activeQuests.ElementAt(i).Key.questID == questID)
+            {
+                for (int x = 0; x < activeQuests.ElementAt(i).Key.objectiveNames.Length; x++)
+                {
+                    if(activeQuests.ElementAt(i).Key.objectiveNames[x] == questObjectiveID)
+                    {
+                        activeQuests[activeQuests.ElementAt(i).Key] = questObjectiveID;
+
+                        questObjective.text =
+                            $"{LocalisationManager.Instance.GetLocalisedString(questObjectiveID)}";
+                        FadeInObjective();
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     IEnumerator FadeOutQuestName()
@@ -87,21 +123,20 @@ public class QuestJournal : Singleton<QuestJournal>
 
     public void CompleteQuest(string questID)
     {
-        for (int i = 0; i < activeQuests.Count; i++)
+        for(int i = 0; i < activeQuests.Count; i++)
         {
-            if(activeQuests[i].questID == questID)
+            if(activeQuests.ElementAt(i).Key.questID == questID)
             {
-                completedQuests.Add(activeQuests[i]);
+                completedQuests.Add(activeQuests.ElementAt(i).Key);
 
                 // TODO: Show the quest completed UI
                 questName.text =
-                    $"{LocalisationManager.Instance.GetLocalisedString("QuestCompleted")} {LocalisationManager.Instance.GetLocalisedString(activeQuests[i].questName)}";
+                    $"{LocalisationManager.Instance.GetLocalisedString("QuestCompleted")} {LocalisationManager.Instance.GetLocalisedString(activeQuests.ElementAt(i).Key.questName)}";
 
-                ImageUtils.FadeAlpha(questName, 1.0f, 1.0f);
-                StartCoroutine(FadeOutQuestName());
+                FadeInName();
 
                 m_QuestCompletedSource.Play();
-                activeQuests.RemoveAt(i);
+                activeQuests.Remove(activeQuests.ElementAt(i).Key);
             }
         }
     }

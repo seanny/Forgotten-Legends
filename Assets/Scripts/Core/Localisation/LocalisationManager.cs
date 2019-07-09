@@ -20,6 +20,11 @@ public class LocalisationManager : Singleton<LocalisationManager>
 
     private void Start()
     {
+        InitIfNotAlready();
+    }
+
+    private void Initialise()
+    {
         m_LocalisationInfo = new Dictionary<string, string>();
         m_SystemLanguage = Application.systemLanguage;
         AddLocalisedText(m_SystemLanguage.ToString() + ".json"); isReady = true;
@@ -36,9 +41,18 @@ public class LocalisationManager : Singleton<LocalisationManager>
         isReady = true;
     }
 
+    private void InitIfNotAlready()
+    {
+        if (m_LocalisationInfo == null)
+        {
+            Initialise();
+        }
+    }
+
     public string GetLocalisedString(string key)
     {
         string returnValue = key;
+        InitIfNotAlready();
         foreach (var item in m_LocalisationInfo)
         {
             if (item.Key == key)
