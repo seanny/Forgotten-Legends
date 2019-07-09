@@ -113,7 +113,7 @@ public class DialogueManager : Singleton<DialogueManager>
             {
                 string nextKey = m_CurrentDiscussion[i];
                 m_CurrentDiscussionComplete[i] = true;
-                npcDialogue.text = StringUtility.EscapeString(LocalisationManager.Instance.GetStringForKey(nextKey));
+                npcDialogue.text = StringUtility.EscapeString(LocalisationManager.Instance.GetLocalisedString(nextKey));
                 ScriptManager.Instance.CallFunction("OnDialogueContinue", new object[] { nextKey });
                 break;
             }
@@ -202,7 +202,7 @@ public class DialogueManager : Singleton<DialogueManager>
         {
             GameObject _gameObject = Instantiate(dialogOptionPrefab);
             _gameObject.transform.SetParent(dialogueOptionHolder.transform);
-            _gameObject.GetComponentInChildren<TextMeshProUGUI>().text = LocalisationManager.Instance.GetStringForKey(m_DialogueOptions[i]);
+            _gameObject.GetComponentInChildren<TextMeshProUGUI>().text = LocalisationManager.Instance.GetLocalisedString(m_DialogueOptions[i]);
             _gameObject.GetComponent<DialogueOption>().optionKey = m_DialogueOptions[i];
             m_DialogueObjects.Add(_gameObject);
         }

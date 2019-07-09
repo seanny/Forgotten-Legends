@@ -23,6 +23,9 @@ public class QuestJournal : Singleton<QuestJournal>
     public List<Quest> activeQuests;
     public List<Quest> completedQuests;
 
+    public AudioSource m_QuestCompletedSource;
+    public AudioSource m_QuestStartedSource;
+
     private void Start()
     {
         activeQuests = new List<Quest>();
@@ -30,6 +33,18 @@ public class QuestJournal : Singleton<QuestJournal>
         ImageUtils.SetAlpha(questName, 0.0f);
         ImageUtils.SetAlpha(questObjective, 0.0f);
         GiveQuest("Test01");
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            CompleteQuest("Test01");
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            CompleteQuest("Test01");
+        }
     }
 
     public void GiveQuest(string questID)
@@ -44,17 +59,18 @@ public class QuestJournal : Singleton<QuestJournal>
 
         // TODO: Show the quest added UI
         // Output: Started: Quest Name
-        Debug.Log($"QuestStarted: {LocalisationManager.Instance.GetStringForKey("QuestStarted")}");
+        Debug.Log($"QuestStarted: {LocalisationManager.Instance.GetLocalisedString("QuestStarted")}");
         questName.text =
-            $"{LocalisationManager.Instance.GetStringForKey("QuestStarted")} {LocalisationManager.Instance.GetStringForKey(quest.questName)}";
+            $"{LocalisationManager.Instance.GetLocalisedString("QuestStarted")} {LocalisationManager.Instance.GetLocalisedString(quest.questName)}";
 
         questObjective.text = 
-            $"{LocalisationManager.Instance.GetStringForKey(quest.questDescription)}";
+            $"{LocalisationManager.Instance.GetLocalisedString(quest.questDescription)}";
 
         ImageUtils.FadeAlpha(questName, 1.0f, 1.0f);
         ImageUtils.FadeAlpha(questObjective, 1.0f, 1.5f);
         StartCoroutine(FadeOutQuestName());
         StartCoroutine(FadeOutQuestObjective());
+        m_QuestStartedSource.Play();
     }
 
     IEnumerator FadeOutQuestName()
@@ -76,9 +92,16 @@ public class QuestJournal : Singleton<QuestJournal>
             if(activeQuests[i].questID == questID)
             {
                 completedQuests.Add(activeQuests[i]);
-                activeQuests.RemoveAt(i);
 
                 // TODO: Show the quest completed UI
+                questName.text =
+                    $"{LocalisationManager.Instance.GetLocalisedString("QuestCompleted")} {LocalisationManager.Instance.GetLocalisedString(activeQuests[i].questName)}";
+
+                ImageUtils.FadeAlpha(questName, 1.0f, 1.0f);
+                StartCoroutine(FadeOutQuestName());
+
+                m_QuestCompletedSource.Play();
+                activeQuests.RemoveAt(i);
             }
         }
     }

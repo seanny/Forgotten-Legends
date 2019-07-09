@@ -36,7 +36,7 @@ public class LocalisationManager : Singleton<LocalisationManager>
         isReady = true;
     }
 
-    public string GetStringForKey(string key)
+    public string GetLocalisedString(string key)
     {
         string returnValue = key;
         foreach (var item in m_LocalisationInfo)

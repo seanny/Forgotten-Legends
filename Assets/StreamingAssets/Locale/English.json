@@ -37,6 +37,10 @@
             "value":"Started:"
         },
         {
+            "key":"QuestCompleted",
+            "value":"Completed:"
+        },
+        {
             "key":"Test01_Name",
             "value":"Test Quest"
         },
