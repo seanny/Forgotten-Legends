@@ -1,0 +1,12 @@
+{
+    "npcID":"Guard",
+    "key":"GuardDialogueBanditBounty",
+    "discussion": [
+      "GuardDialogueBanditBounty01",
+      "GuardDialogueBanditBounty02"
+    ],
+    "options": [
+      "GuardDialogueBanditBountyOptionOkay",
+      "GuardDialogueBanditBountyOptionNevermind"
+    ]
+  }

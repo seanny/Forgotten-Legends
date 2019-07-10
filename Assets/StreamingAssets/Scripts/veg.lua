@@ -28,6 +28,10 @@ function OnDialogueOption(file, key)
     -- Those keys are also used in the localisation system, which is used to translate the keys into human readable text.
     -- "GuardDialogueOptionInsult" will then become "Fuck you pig!"
     -- "GuardDialogueOptionGoodbye" will also become "Goodbye!"
+    if key == "GuardDialogueOptionBanditBounty" then
+        -- If the player insults the guard, he/she will then say that the player is under arrest.
+        Dialogue.ChangeDialogueDiscussion("GuardDialogueBanditBounty.json")
+    end
     if key == "GuardDialogueOptionInsult" then
         -- If the player insults the guard, he/she will then say that the player is under arrest.
         Dialogue.ChangeDialogueDiscussion("GuardDialogueArrest.json")

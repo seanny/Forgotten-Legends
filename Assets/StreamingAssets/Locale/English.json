@@ -2,11 +2,15 @@
     "items": [
         {
             "key":"GuardDialogueSpeech01",
-            "value":"Good evening~c~ Citizen."
+            "value":"Good evening~c~ Citizen. I have a job for you~c~ if you're interested."
         },
         {
             "key":"GuardDialogueSpeech02",
-            "value":"How can I help you today?"
+            "value":"There is a bounty on a bandit at Developer Zone.~n~Would you be able to deal with this bandit? There is gold for you plus bandit loot."
+        },
+        {
+            "key":"GuardDialogueOptionBanditBounty",
+            "value":"Sure, I can take care of that for you."
         },
         {
             "key":"GuardDialogueOptionInsult",
@@ -42,15 +46,15 @@
         },
         {
             "key":"Test01_Name",
-            "value":"Test Quest"
+            "value":"Bounty Hunter"
         },
         {
             "key":"Test01_Description",
-            "value":"Test Description of quest."
+            "value":"Kill the bandit at Developer Zone."
         },
         {
             "key":"Test01_Obj01",
-            "value":"Objective 1"
+            "value":"Return to the guard for your reward."
         },
         {
             "key":"Test01_Obj02",

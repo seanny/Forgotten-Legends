@@ -6,6 +6,7 @@
     "GuardDialogueSpeech02"
   ],
   "options": [
+    "GuardDialogueOptionBanditBounty",
     "GuardDialogueOptionInsult",
     "GuardDialogueOptionGoodbye"
   ]
