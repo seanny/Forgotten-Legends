@@ -22,6 +22,8 @@ public class WorldspaceManager : Singleton<WorldspaceManager>
         
         // Load all worldspaces
         LoadAllWorldspaces();
+        
+        // Load the test worldspace to ensure that the worldspace system gets loaded.
         SetPlayerWorldspace("TestWorldspace");
     }
 
