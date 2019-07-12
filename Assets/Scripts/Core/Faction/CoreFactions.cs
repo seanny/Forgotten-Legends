@@ -24,7 +24,7 @@ public class CoreFactions : Singleton<CoreFactions>
         LoadFactions();
     }
 
-    public void LoadFactions()
+    private void LoadFactions()
     {
         string path = Path.Combine(Application.streamingAssetsPath, FACTION_DIR);
         string[] files = Directory.GetFiles(path);
