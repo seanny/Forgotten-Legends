@@ -30,6 +30,7 @@ public class ActorAPI : LuaAPIBase
         m_ApiTable["GetActorZ"] = (Func<string, float>)Lua_GetActorZ;
         m_ApiTable["GetGender"] = (Func<string, int>)Lua_GetGender;
         m_ApiTable["GetClass"] = (Func<string, int>)Lua_GetClass;
+        m_ApiTable["SetWorldspace"] = (Func<string, string, int>)Lua_SetWorldspace;
     }
 
     [LuaApiFunction(
@@ -152,5 +153,19 @@ public class ActorAPI : LuaAPIBase
             return (int)_actor.m_ActorClass.currentClass;
         }
         return -1;
+    }
+    
+    [LuaApiFunction(
+        name = "SetWorldspace",
+        description = "Sets the current worldspace for the actor.")]
+    public int Lua_SetWorldspace(string actorID, string worldspaceID)
+    {
+        Actor _actor = Actor.FindActor(actorID);
+        if (_actor != null)
+        {
+            WorldspaceManager.Instance.SetActorWorldspace(_actor, worldspaceID);
+            return 0;
+        }
+        return 1;
     }
 }

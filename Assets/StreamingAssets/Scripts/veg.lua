@@ -1,3 +1,8 @@
+function OnStart()
+    print("OnStart fruit.lua")
+    Actor.SetWorldspace("Player","Scythia")
+end
+
 -- OnStartInteract is triggered when the player presses F near an interactable item.
 -- This can include potions, NPCs, door's, etc.
 -- In this case, we'll be interacting with an NPC with the ActorID of "Guard"

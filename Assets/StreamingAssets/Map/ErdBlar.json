@@ -1,0 +1,54 @@
+{
+  "mapID":"ErdBlar",
+  "mapWorldspace":"Scythia",
+  "mapName":"Erd'Blar",
+  "mapObjects":
+  [
+    {
+      "objectFile":"Special::Plane",
+      "objectPosition":
+      {
+        "x":0.0,
+        "y":0.0,
+        "z":0.0
+      },
+      "objectRotation":
+      {
+        "x":0.0,
+        "y":0.0,
+        "z":0.0,
+        "w":0.0
+      },
+      "objectScale":
+      {
+        "x":10.0,
+        "y":1.0,
+        "z":10.0
+      },
+      "objectWalkable": true
+    },
+    {
+      "objectFile":"Special::Cube",
+      "objectPosition":
+      {
+        "x":0.0,
+        "y":1.0,
+        "z":0.0
+      },
+      "objectRotation":
+      {
+        "x":0.0,
+        "y":0.0,
+        "z":0.0,
+        "w":0.0
+      },
+      "objectScale":
+      {
+        "x":1.0,
+        "y":1.0,
+        "z":1.0
+      },
+      "objectWalkable": false
+    }
+  ]
+}

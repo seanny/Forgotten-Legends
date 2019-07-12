@@ -9,7 +9,56 @@
 //
 using System;
 
-public class Unit
+/// <summary>
+/// Defines objects that can be placed in a specific worldspace.
+/// </summary>
+[Serializable]
+public class Map
 {
+    /// <summary>
+    /// The ID for the world.
+    /// </summary>
+    public string mapID;
     
+    /// <summary>
+    /// The worldspace that the map is assigned to. The map will thus only show up if the player is in the specified worldspace.
+    /// </summary>
+    public string mapWorldspace;
+    
+    /// <summary>
+    /// The name for the map that will show up int the User Interface.
+    /// </summary>
+    public string mapName;
+    
+    /// <summary>
+    /// Map objects that will be used to define the object file, position, rotation and scale.
+    /// </summary>
+    public ObjectItem[] mapObjects;
+}
+
+[Serializable]
+public class ObjectItem
+{
+    public string objectFile;
+    public ObjectVector objectPosition;
+    public ObjectQuarternion objectRotation;
+    public ObjectVector objectScale;
+    public bool objectWalkable;
+}
+
+[Serializable]
+public class ObjectVector
+{
+    public float x;
+    public float y;
+    public float z;
+}
+
+[Serializable]
+public class ObjectQuarternion
+{
+    public float x;
+    public float y;
+    public float z;
+    public float w;
 }

@@ -23,6 +23,15 @@ public class PlayerManager : Singleton<PlayerManager>
         Player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
+    public Player GetPlayer()
+    {
+        if (!Player)
+        {
+            AddPlayer();
+        }
+        return Player;
+    }
+    
     public void RemovePlayer()
     {
         Player = null;

@@ -22,7 +22,16 @@ public class NPCMovement : MonoBehaviour
     {
         m_NavMeshDests = FindObjectsOfType<NavMeshDest>();
         m_Agent = GetComponent<NavMeshAgent>();
-        m_Agent.destination = transform.position;
+        StartCoroutine(SetDest(transform.position));
+    }
+
+    private IEnumerator SetDest(Vector3 pos)
+    {
+        while (MapManager.Instance.isUpdating)
+        {
+            yield return null;
+        }
+        m_Agent.destination = pos;
         m_Destination = m_Agent.destination;
         m_Agent.autoRepath = true;
         m_Agent.autoBraking = true;

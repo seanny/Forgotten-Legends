@@ -1,0 +1,14 @@
+{
+  "worldspaceID": "TestWorldspace",
+  "worldspaceName": "Test Worldspace",
+  "worldspaceSkyColour": [
+    "00",
+    "00",
+    "00"
+  ],
+  "worldspaceWaterColour": [
+    "00",
+    "00",
+    "FF"
+  ]
+}

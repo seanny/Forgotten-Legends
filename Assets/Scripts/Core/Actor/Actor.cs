@@ -16,6 +16,7 @@ public abstract class Actor : MonoBehaviour
     public ActorStats m_ActorStats;
     public ActorClass m_ActorClass;
     public ActorHealth m_HealthScript;
+    public string actorWorldspace;
 
     public static Actor GetPlayer()
     {
