@@ -1,3 +1,5 @@
+-- OnStart is triggered as soon as the lua VM executes the script.
+-- You would include any initialisation here.
 function OnStart()
     print("OnStart fruit.lua")
     Actor.SetWorldspace("Player","Scythia")
@@ -34,7 +36,7 @@ function OnDialogueOption(file, key)
     -- "GuardDialogueOptionInsult" will then become "Fuck you pig!"
     -- "GuardDialogueOptionGoodbye" will also become "Goodbye!"
     if key == "GuardDialogueOptionBanditBounty" then
-        -- If the player insults the guard, he/she will then say that the player is under arrest.
+        -- If the agree's to chase a bandit, the guard will give them the details.
         Dialogue.ChangeDialogueDiscussion("GuardDialogueBanditBounty.json")
     end
     if key == "GuardDialogueOptionInsult" then
