@@ -23,18 +23,8 @@ public class ObjectModelFormat : Singleton<ObjectModelFormat>
     
     private string error = String.Empty;
 
-    private void Start()
-    {
-        LoadObjectFile("TestObject/TestObj.json");
-    }
-
     public void LoadObjectFile(string objectMeta)
     {
-        if (!objectMeta.EndsWith(FileExt))
-        {
-            //objectMeta += FileExt;
-        }
-
         string json = AssetUtility.ReadAsset("Models", objectMeta);
         ObjectMetaFile objectMetaFile = JsonUtility.FromJson<ObjectMetaFile>(json);
 
