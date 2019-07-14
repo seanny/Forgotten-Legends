@@ -8,6 +8,7 @@
 // 	without the consent of Outlaw Games Studio.
 //
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 /// <summary>
 /// Defines objects that can be placed in a specific worldspace.
@@ -44,6 +45,18 @@ public class ObjectItem
     public ObjectQuarternion objectRotation;
     public ObjectVector objectScale;
     public bool objectWalkable;
+    public ObjectLight objectLight;
+}
+
+[Serializable]
+public class ObjectLight
+{
+    public bool isEnabled;
+    public bool isSpotLight;
+    public float lightRange;
+    public float lightAngle;
+    public float lightIntensity;
+    public ObjectColor lightColour;
 }
 
 [Serializable]
@@ -52,6 +65,14 @@ public class ObjectVector
     public float x;
     public float y;
     public float z;
+}
+
+[Serializable]
+public class ObjectColor
+{
+    public string r;
+    public string g;
+    public string b;
 }
 
 [Serializable]

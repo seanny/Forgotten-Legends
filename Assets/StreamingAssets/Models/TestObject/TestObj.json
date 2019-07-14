@@ -1,0 +1,6 @@
+{
+  "meshObj": "TestObject/TestObject.obj",
+  "texturePng": "TestObject/TestTexture.png",
+  "normalPng": "TestObject/TestNormal.png",
+  "objectName": "The Test Object of Lava"
+}

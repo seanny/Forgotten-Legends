@@ -11,37 +11,54 @@
 using System;
 using UnityEngine;
 using System.IO;
-using System.IO.Compression;
+using Dummiesman;
 
 public class ObjectModelFormat : Singleton<ObjectModelFormat>
 {
-    private static readonly string FileExt = ".omf";
+    private static readonly string FileExt = ".obj";
+    private static readonly string TextureExt = ".png";
+    
+    public Transform parentObject;
+    public Shader shader;
+    
+    private string error = String.Empty;
 
     private void Start()
     {
-        LoadObjectFile("Test.omf");
+        LoadObjectFile("TestObject/TestObj.json");
     }
 
-    public void LoadObjectFile(string objectFile)
+    public void LoadObjectFile(string objectMeta)
     {
-        if (!objectFile.EndsWith(FileExt))
+        if (!objectMeta.EndsWith(FileExt))
         {
-            objectFile += FileExt;
+            //objectMeta += FileExt;
         }
 
-        string filePath = Path.Combine(Application.streamingAssetsPath, "Models", objectFile);
+        string json = AssetUtility.ReadAsset("Models", objectMeta);
+        ObjectMetaFile objectMetaFile = JsonUtility.FromJson<ObjectMetaFile>(json);
+
+        string objectMesh = objectMetaFile.meshObj;
+        string objectTexture = objectMetaFile.texturePng;
+        
+        string filePath = Path.Combine(Application.streamingAssetsPath, "Models", objectMesh);
         if(!File.Exists(filePath))
         {
-            Debug.LogError($"Object Model Format file {objectFile} does not exist on the local disk.");
+            Debug.LogError($"Object Model Format file {objectMesh} does not exist on the local disk.");
+            return;
+        }
+        
+        string texturePath = Path.Combine(Application.streamingAssetsPath, "Models", objectTexture);
+        if(!File.Exists(filePath))
+        {
+            Debug.LogError($"Object Model Format file {objectMesh} does not exist on the local disk.");
             return;
         }
 
-        using (ZipArchive zipArchive = ZipFile.OpenRead(filePath))
+        GameObject _gameObject = new OBJLoader().Load(filePath);
+        if (!string.IsNullOrWhiteSpace(error))
         {
-            foreach (var zip in zipArchive.Entries)
-            {
-                Debug.Log($"Fullname: {zip.FullName}");
-            }
+            Debug.LogError($"ObjectModelFormat Error: {error}");
         }
     }
 }
