@@ -25,7 +25,21 @@
         "y":1.0,
         "z":5.0
       },
-      "objectWalkable": true
+      "objectWalkable": true,
+      "objectLight":
+      {
+        "isEnabled": true,
+        "isSpotLight": false,
+        "lightRange": 1.0,
+        "lightAngle": 45.0,
+        "lightIntensity": 1.0,
+        "lightColour":
+        {
+          "r": "FF",
+          "g": "FF",
+          "b": "00"
+        }
+      }
     }
   ]
 }
