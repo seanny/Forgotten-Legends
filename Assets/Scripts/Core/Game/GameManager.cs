@@ -7,13 +7,14 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
-using UnityEngine;
-using System.Collections;
 
-public class GameManager : Singleton<GameManager>
+namespace Core.Game
 {
-    private void Start()
+    public class GameManager : Singleton<GameManager>
     {
-        //ScriptExec.Instance.RunMethod("OnGameLoad", new object[] { });
+        private void Start()
+        {
+            //ScriptExec.Instance.RunMethod("OnGameLoad", new object[] { });
+        }
     }
 }

@@ -7,120 +7,125 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using System.Collections;
+using Core.Utility;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class MenuLogo : Singleton<MenuLogo>
+namespace Core.MainMenu
 {
-    public bool isLogoFinished;
-    public bool isLogoRunning;
-    public Image splashImage;
-    public GameObject mainMenu;
-    public Image companyLogoNoFade;
-    public TextMeshProUGUI versionText;
-    public const string COMPANY_URL = "https://outlawgamesstudio.com";
-
-    public Button continueButton;
-    public Button newGameButton;
-    public Button loadGameButton;
-    public Button settingsButton;
-    public Button creditsButton;
-    public Button exitButton;
-
-    private void Start()
+    public class MenuLogo : Singleton<MenuLogo>
     {
-        ResetCompanyLogo();
-        ResetMainMenu();
-        StartCoroutine(ShowCompanyLogo());
-    }
+        public bool isLogoFinished;
+        public bool isLogoRunning;
+        public Image splashImage;
+        public GameObject mainMenu;
+        public Image companyLogoNoFade;
+        public TextMeshProUGUI versionText;
+        public const string COMPANY_URL = "https://outlawgamesstudio.com";
 
-    private void ResetCompanyLogo()
-    {;
-        companyLogoNoFade.gameObject.SetActive(false);
-        mainMenu.gameObject.SetActive(false);
-        versionText.gameObject.SetActive(false);
-        ImageUtils.SetAlpha(splashImage, 0.0f);
-    }
+        public Button continueButton;
+        public Button newGameButton;
+        public Button loadGameButton;
+        public Button settingsButton;
+        public Button creditsButton;
+        public Button exitButton;
 
-    private void ResetMainMenu()
-    {
-        ImageUtils.SetAlpha(splashImage, 0.0f);
-    }
-
-    private IEnumerator ShowCompanyLogo()
-    {
-        isLogoRunning = true;
-        yield return new WaitForSeconds(0.25f);
-        ImageUtils.FadeAlpha(splashImage, 1.0f, 3f);
-        yield return new WaitForSeconds(3f);
-
-        ImageUtils.FadeAlpha(splashImage, 0.0f, 3f);
-        yield return new WaitForSeconds(3f);
-
-        isLogoFinished = true;
-    }
-
-    private void Update()
-    {
-        if(isLogoFinished)
+        private void Start()
         {
-            FadeInMainMenu();
+            ResetCompanyLogo();
+            ResetMainMenu();
+            StartCoroutine(ShowCompanyLogo());
         }
-    }
 
-    private void FadeInMainMenu()
-    {
-        mainMenu.gameObject.SetActive(true);
-        companyLogoNoFade.gameObject.SetActive(true);
-        versionText.gameObject.SetActive(true);
-        ImageUtils.FadeAlpha(continueButton, 1.0f, .5f);
-        ImageUtils.FadeAlpha(newGameButton, 1.0f, .5f);
-        ImageUtils.FadeAlpha(loadGameButton, 1.0f, .5f);
-        ImageUtils.FadeAlpha(settingsButton, 1.0f, .5f);
-        ImageUtils.FadeAlpha(creditsButton, 1.0f, .5f);
-        ImageUtils.FadeAlpha(exitButton, 1.0f, .5f);
-    }
+        private void ResetCompanyLogo()
+        {;
+            companyLogoNoFade.gameObject.SetActive(false);
+            mainMenu.gameObject.SetActive(false);
+            versionText.gameObject.SetActive(false);
+            ImageUtils.SetAlpha(splashImage, 0.0f);
+        }
 
-    public void OpenWebsite()
-    {
-        Application.OpenURL(COMPANY_URL);
-    }
+        private void ResetMainMenu()
+        {
+            ImageUtils.SetAlpha(splashImage, 0.0f);
+        }
 
-    public void ContinueGame()
-    {
-        Debug.Log("Not implemented");
-    }
+        private IEnumerator ShowCompanyLogo()
+        {
+            isLogoRunning = true;
+            yield return new WaitForSeconds(0.25f);
+            ImageUtils.FadeAlpha(splashImage, 1.0f, 3f);
+            yield return new WaitForSeconds(3f);
 
-    public void NewGame()
-    {
-        SceneManager.LoadScene("SampleScene");
-    }
+            ImageUtils.FadeAlpha(splashImage, 0.0f, 3f);
+            yield return new WaitForSeconds(3f);
 
-    public void LoadGame()
-    {
-        Debug.Log("Not implemented");
-    }
+            isLogoFinished = true;
+        }
 
-    public void SettingsButton()
-    {
-        Debug.Log("Not implemented");
-    }
+        private void Update()
+        {
+            if(isLogoFinished)
+            {
+                FadeInMainMenu();
+            }
+        }
 
-    public void CreditsButton()
-    {
-        Debug.Log("Not implemented");
-    }
+        private void FadeInMainMenu()
+        {
+            mainMenu.gameObject.SetActive(true);
+            companyLogoNoFade.gameObject.SetActive(true);
+            versionText.gameObject.SetActive(true);
+            ImageUtils.FadeAlpha(continueButton, 1.0f, .5f);
+            ImageUtils.FadeAlpha(newGameButton, 1.0f, .5f);
+            ImageUtils.FadeAlpha(loadGameButton, 1.0f, .5f);
+            ImageUtils.FadeAlpha(settingsButton, 1.0f, .5f);
+            ImageUtils.FadeAlpha(creditsButton, 1.0f, .5f);
+            ImageUtils.FadeAlpha(exitButton, 1.0f, .5f);
+        }
 
-    public void ExitButton()
-    {
+        public void OpenWebsite()
+        {
+            Application.OpenURL(COMPANY_URL);
+        }
+
+        public void ContinueGame()
+        {
+            Debug.Log("Not implemented");
+        }
+
+        public void NewGame()
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
+
+        public void LoadGame()
+        {
+            Debug.Log("Not implemented");
+        }
+
+        public void SettingsButton()
+        {
+            Debug.Log("Not implemented");
+        }
+
+        public void CreditsButton()
+        {
+            Debug.Log("Not implemented");
+        }
+
+        public void ExitButton()
+        {
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
 
 #endif
+        }
     }
 }

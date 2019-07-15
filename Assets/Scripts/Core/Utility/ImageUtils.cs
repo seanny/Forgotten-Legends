@@ -7,40 +7,44 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
-using UnityEngine.UI;
+
 using TMPro;
+using UnityEngine.UI;
 
-public static class ImageUtils
+namespace Core.Utility
 {
-    public static void SetAlpha(Image image, float alpha)
+    public static class ImageUtils
     {
-        image.canvasRenderer.SetAlpha(alpha);
-    }
+        public static void SetAlpha(Image image, float alpha)
+        {
+            image.canvasRenderer.SetAlpha(alpha);
+        }
 
-    public static void SetAlpha(Button button, float alpha)
-    {
-        button.GetComponent<Image>().canvasRenderer.SetAlpha(alpha);
-        button.GetComponentInChildren<TextMeshProUGUI>().canvasRenderer.SetAlpha(alpha);
-    }
+        public static void SetAlpha(Button button, float alpha)
+        {
+            button.GetComponent<Image>().canvasRenderer.SetAlpha(alpha);
+            button.GetComponentInChildren<TextMeshProUGUI>().canvasRenderer.SetAlpha(alpha);
+        }
 
-    public static void SetAlpha(TextMeshProUGUI text, float alpha)
-    {
-        text.GetComponent<TextMeshProUGUI>().canvasRenderer.SetAlpha(alpha);
-    }
+        public static void SetAlpha(TextMeshProUGUI text, float alpha)
+        {
+            text.GetComponent<TextMeshProUGUI>().canvasRenderer.SetAlpha(alpha);
+        }
 
-    public static void FadeAlpha(Image image, float alpha, float duration)
-    {
-        image.CrossFadeAlpha(alpha, duration, false);
-    }
+        public static void FadeAlpha(Image image, float alpha, float duration)
+        {
+            image.CrossFadeAlpha(alpha, duration, false);
+        }
 
-    public static void FadeAlpha(Button button, float alpha, float duration)
-    {
-        button.GetComponent<Image>().CrossFadeAlpha(alpha, duration, false);
-        button.GetComponentInChildren<TextMeshProUGUI>().CrossFadeAlpha(alpha, duration, false);
-    }
+        public static void FadeAlpha(Button button, float alpha, float duration)
+        {
+            button.GetComponent<Image>().CrossFadeAlpha(alpha, duration, false);
+            button.GetComponentInChildren<TextMeshProUGUI>().CrossFadeAlpha(alpha, duration, false);
+        }
 
-    public static void FadeAlpha(TextMeshProUGUI text, float alpha, float duration)
-    {
-        text.GetComponent<TextMeshProUGUI>().CrossFadeAlpha(alpha, duration, false);
+        public static void FadeAlpha(TextMeshProUGUI text, float alpha, float duration)
+        {
+            text.GetComponent<TextMeshProUGUI>().CrossFadeAlpha(alpha, duration, false);
+        }
     }
 }

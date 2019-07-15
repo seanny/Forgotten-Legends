@@ -7,20 +7,24 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using System.IO;
 using UnityEngine;
 
-public static class AssetUtility
+namespace Core.Utility
 {
-    public static string ReadAsset(string folder, string fileName)
+    public static class AssetUtility
     {
-        string filePath = Path.Combine(Application.streamingAssetsPath, folder, fileName);
-
-        if (!File.Exists(filePath))
+        public static string ReadAsset(string folder, string fileName)
         {
-            Debug.LogError($"Cannot load asset data for {fileName}.");
-            return null;
+            string filePath = Path.Combine(Application.streamingAssetsPath, folder, fileName);
+
+            if (!File.Exists(filePath))
+            {
+                Debug.LogError($"Cannot load asset data for {fileName}.");
+                return null;
+            }
+            return File.ReadAllText(filePath);
         }
-        return File.ReadAllText(filePath);
     }
 }

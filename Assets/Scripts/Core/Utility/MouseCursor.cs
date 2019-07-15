@@ -7,26 +7,30 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using UnityEngine;
 
-public static class MouseCursor
+namespace Core.Utility
 {
-    public static void ToggleCursor(bool toggle)
+    public static class MouseCursor
     {
-        Cursor.visible = toggle;
-    }
-
-    public static void LockCursor(bool toggle)
-    {
-        if(toggle)
+        public static void ToggleCursor(bool toggle)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            ToggleCursor(false);
+            Cursor.visible = toggle;
         }
-        else
+
+        public static void LockCursor(bool toggle)
         {
-            Cursor.lockState = CursorLockMode.None;
-            ToggleCursor(true);
+            if(toggle)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                ToggleCursor(false);
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                ToggleCursor(true);
+            }
         }
     }
 }

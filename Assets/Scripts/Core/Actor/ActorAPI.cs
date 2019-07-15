@@ -9,6 +9,7 @@
 //
 
 using System;
+using Core.World;
 using UnityEngine;
 
 namespace Core.Actor

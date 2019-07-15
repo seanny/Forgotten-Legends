@@ -7,44 +7,47 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
-using UnityEngine;
-using System.Collections;
+
 using Core.Actor;
+using UnityEngine;
 
-public class PlayerCombat : ActorCombat
+namespace Core.Player
 {
-    #region Singleton
-    public PlayerCombat Instance { get; private set; }
-
-    private void Awake()
+    public class PlayerCombat : ActorCombat
     {
-        if(Instance == null)
+        #region Singleton
+        public PlayerCombat Instance { get; private set; }
+
+        private void Awake()
         {
-            Instance = this;
+            if(Instance == null)
+            {
+                Instance = this;
+            }
         }
-    }
 
-    private void OnDestroy()
-    {
-        if(Instance == this)
+        private void OnDestroy()
         {
-            Instance = null;
+            if(Instance == this)
+            {
+                Instance = null;
+            }
         }
-    }
-    #endregion // Singleton
+        #endregion // Singleton
 
-    // Use this for initialization
-    protected override void Start()
-    {
-        base.Start();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyUp(KeyCode.Mouse0) && CanAttack() == true)
+        // Use this for initialization
+        protected override void Start()
         {
+            base.Start();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if(Input.GetKeyUp(KeyCode.Mouse0) && CanAttack() == true)
+            {
             
+            }
         }
     }
 }

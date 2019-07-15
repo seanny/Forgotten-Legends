@@ -7,25 +7,26 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
-using UnityEngine;
+
 using System;
-using System.Collections;
-using Core.Actor;
 
-public class PotionEffects : Singleton<PotionEffects>
+namespace Core.Potion
 {
-    public void AddHealthEffect(int health, Actor actor)
+    public class PotionEffects : Singleton<PotionEffects>
     {
-        actor.m_HealthScript.AddHealth(health);
-    }
+        public void AddHealthEffect(int health, Actor.Actor actor)
+        {
+            actor.m_HealthScript.AddHealth(health);
+        }
 
-    public void AddMagicEffect(int magic, Actor actor)
-    {
-        throw new NotImplementedException("Magic Regen Effect not yet implemented");
-    }
+        public void AddMagicEffect(int magic, Actor.Actor actor)
+        {
+            throw new NotImplementedException("Magic Regen Effect not yet implemented");
+        }
 
-    public void AddStaminaEffect(int magic, Actor actor)
-    {
-        throw new NotImplementedException("Stamina Regen Effect not yet implemented");
+        public void AddStaminaEffect(int magic, Actor.Actor actor)
+        {
+            throw new NotImplementedException("Stamina Regen Effect not yet implemented");
+        }
     }
 }

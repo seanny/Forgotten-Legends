@@ -7,24 +7,28 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Slider))]
-public class BlendshapeSlider : MonoBehaviour
+namespace Core.ActorCustomisation
 {
-    [Header("Name w/o Suffix (e.g. Cheek)")]
-    public string blendShapeName;
-    private Slider m_Slider;
-
-    private void Start()
+    [RequireComponent(typeof(Slider))]
+    public class BlendshapeSlider : MonoBehaviour
     {
-        blendShapeName = blendShapeName.Trim();
-        m_Slider = GetComponent<Slider>();
+        [Header("Name w/o Suffix (e.g. Cheek)")]
+        public string blendShapeName;
+        private Slider m_Slider;
 
-        m_Slider.onValueChanged.AddListener(delegate {
+        private void Start()
+        {
+            blendShapeName = blendShapeName.Trim();
+            m_Slider = GetComponent<Slider>();
+
+            m_Slider.onValueChanged.AddListener(delegate {
         
 
-        });
+            });
+        }
     }
 }

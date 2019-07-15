@@ -9,37 +9,39 @@
 //
 
 using Core.Actor;
-using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : ActorHealth
+namespace Core.Player
 {
-    #region Singleton
-    public PlayerHealth Instance { get; private set; }
-
-    private void Awake()
+    public class PlayerHealth : ActorHealth
     {
-        if (Instance == null)
+        #region Singleton
+        public PlayerHealth Instance { get; private set; }
+
+        private void Awake()
         {
-            Instance = this;
+            if (Instance == null)
+            {
+                Instance = this;
+            }
         }
-    }
 
-    private void OnDestroy()
-    {
-        if (Instance == this)
+        private void OnDestroy()
         {
-            Instance = null;
+            if (Instance == this)
+            {
+                Instance = null;
+            }
         }
-    }
-    #endregion // Singleton
+        #endregion // Singleton
 
-    public Scrollbar scrollbar;
+        public Scrollbar scrollbar;
 
-    private void LateUpdate()
-    {
-        // Make sure that we cast currentHealth as a float otherwise C# will floor it for some reason.
-        float healthPoints = (float)currentHealth / maxHealth;
-        scrollbar.size = healthPoints;
+        private void LateUpdate()
+        {
+            // Make sure that we cast currentHealth as a float otherwise C# will floor it for some reason.
+            float healthPoints = (float)currentHealth / maxHealth;
+            scrollbar.size = healthPoints;
+        }
     }
 }

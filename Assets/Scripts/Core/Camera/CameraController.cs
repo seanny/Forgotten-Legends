@@ -7,23 +7,26 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using UnityEngine;
-using System.Collections;
 
-[RequireComponent(typeof(CameraRotation))]
-[RequireComponent(typeof(CameraScrolling))]
-public class CameraController : Singleton<CameraController>
+namespace Core.Camera
 {
-    #region Variables
-
-    // Private Variables
-    public Transform lookAt;
-    public Transform cameraTransform { get; private set; }
-    #endregion
-
-    private void Start()
+    [RequireComponent(typeof(CameraRotation))]
+    [RequireComponent(typeof(CameraScrolling))]
+    public class CameraController : Singleton<CameraController>
     {
-        //MouseCursor.LockCursor(true);
-        cameraTransform = transform;
+        #region Variables
+
+        // Private Variables
+        public Transform lookAt;
+        public Transform cameraTransform { get; private set; }
+        #endregion
+
+        private void Start()
+        {
+            //MouseCursor.LockCursor(true);
+            cameraTransform = transform;
+        }
     }
 }

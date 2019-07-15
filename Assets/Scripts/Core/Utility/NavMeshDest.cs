@@ -1,12 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class NavMeshDest : MonoBehaviour
+namespace Core.Utility
 {
-    private void OnDrawGizmos()
+    public class NavMeshDest : MonoBehaviour
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position, 1);
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(transform.position, 1);
+        }
     }
 }

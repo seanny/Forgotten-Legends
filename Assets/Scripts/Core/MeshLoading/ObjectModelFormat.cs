@@ -9,51 +9,55 @@
 //
 
 using System;
-using UnityEngine;
 using System.IO;
+using Core.Utility;
 using Dummiesman;
+using UnityEngine;
 
-public class ObjectModelFormat : Singleton<ObjectModelFormat>
+namespace Core.MeshLoading
 {
-    private static readonly string FileExt = ".obj";
-    private static readonly string TextureExt = ".png";
-    
-    public Transform parentObject;
-    public Shader shader;
-    
-    private string error = String.Empty;
-
-    public GameObject LoadObjectFile(string objectMeta)
+    public class ObjectModelFormat : Singleton<ObjectModelFormat>
     {
-        string json = AssetUtility.ReadAsset("Models", objectMeta);
-        ObjectMetaFile objectMetaFile = JsonUtility.FromJson<ObjectMetaFile>(json);
+        private static readonly string FileExt = ".obj";
+        private static readonly string TextureExt = ".png";
+    
+        public Transform parentObject;
+        public Shader shader;
+    
+        private string error = String.Empty;
 
-        string objectMesh = objectMetaFile.meshObj;
-        string objectTexture = objectMetaFile.texturePng;
-        
-        string filePath = Path.Combine(Application.streamingAssetsPath, "Models", objectMesh);
-        if(!File.Exists(filePath))
+        public GameObject LoadObjectFile(string objectMeta)
         {
-            Debug.LogError($"Object Model Format file {objectMesh} does not exist on the local disk.");
-            return null;
-        }
-        
-        string texturePath = Path.Combine(Application.streamingAssetsPath, "Models", objectTexture);
-        if(!File.Exists(filePath))
-        {
-            Debug.LogError($"Object Model Format file {objectMesh} does not exist on the local disk.");
-            return null;
-        }
+            string json = AssetUtility.ReadAsset("Models", objectMeta);
+            ObjectMetaFile objectMetaFile = JsonUtility.FromJson<ObjectMetaFile>(json);
 
-        GameObject _gameObject = new OBJLoader().Load(filePath);
-        if (!string.IsNullOrWhiteSpace(error))
-        {
-            Debug.LogError($"ObjectModelFormat Error: {error}");
-            return null;
-        }
+            string objectMesh = objectMetaFile.meshObj;
+            string objectTexture = objectMetaFile.texturePng;
         
-        _gameObject.transform.parent = parentObject;
+            string filePath = Path.Combine(Application.streamingAssetsPath, "Models", objectMesh);
+            if(!File.Exists(filePath))
+            {
+                Debug.LogError($"Object Model Format file {objectMesh} does not exist on the local disk.");
+                return null;
+            }
+        
+            string texturePath = Path.Combine(Application.streamingAssetsPath, "Models", objectTexture);
+            if(!File.Exists(filePath))
+            {
+                Debug.LogError($"Object Model Format file {objectMesh} does not exist on the local disk.");
+                return null;
+            }
 
-        return _gameObject;
+            GameObject _gameObject = new OBJLoader().Load(filePath);
+            if (!string.IsNullOrWhiteSpace(error))
+            {
+                Debug.LogError($"ObjectModelFormat Error: {error}");
+                return null;
+            }
+        
+            _gameObject.transform.parent = parentObject;
+
+            return _gameObject;
+        }
     }
 }

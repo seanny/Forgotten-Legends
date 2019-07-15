@@ -7,26 +7,28 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
-using UnityEngine;
-using System.Collections;
+
 using Core.Actor;
 
-public class Player : Actor
+namespace Core.Player
 {
-    // Use this for initialization
-    protected override void Start()
+    public class Player : Actor.Actor
     {
-        m_HealthScript = GetComponent<PlayerHealth>();
-        if (!m_HealthScript)
+        // Use this for initialization
+        protected override void Start()
         {
-            m_HealthScript = gameObject.AddComponent<ActorHealth>();
+            m_HealthScript = GetComponent<PlayerHealth>();
+            if (!m_HealthScript)
+            {
+                m_HealthScript = gameObject.AddComponent<ActorHealth>();
+            }
+            base.Start();
         }
-        base.Start();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+        // Update is called once per frame
+        void Update()
+        {
 
+        }
     }
 }

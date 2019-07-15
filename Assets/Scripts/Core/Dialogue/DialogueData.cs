@@ -7,13 +7,17 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using System;
 
-[Serializable]
-public class DialogueData
+namespace Core.Dialogue
 {
-    public string npcID;
-    public string dialogueKey;
-    public string[] discussion;
-    public string[] options;
+    [Serializable]
+    public class DialogueData
+    {
+        public string npcID;
+        public string dialogueKey;
+        public string[] discussion;
+        public string[] options;
+    }
 }

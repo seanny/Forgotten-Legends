@@ -10,22 +10,25 @@
 
 using System;
 
-/// <summary>
-/// Defines a worldspace which 
-/// </summary>
-[Serializable]
-public class Worldspace
+namespace Core.World
 {
-    public string worldspaceID;
-    public string worldspaceName;
-    public Colour worldspaceSkyColour;
-    public Colour worldspaceWaterColour;
-}
+    /// <summary>
+    /// Defines a worldspace which 
+    /// </summary>
+    [Serializable]
+    public class Worldspace
+    {
+        public string worldspaceID;
+        public string worldspaceName;
+        public Colour worldspaceSkyColour;
+        public Colour worldspaceWaterColour;
+    }
 
-[Serializable]
-public class Colour
-{
-    public string r;
-    public string g;
-    public string b;
+    [Serializable]
+    public class Colour
+    {
+        public string r;
+        public string g;
+        public string b;
+    }
 }

@@ -7,28 +7,32 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using System.IO;
-using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
+using UnityEngine;
 
-public class PostProcessBuild
+namespace Core.Editor
 {
-    [PostProcessBuildAttribute(1)]
-    public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
+    public class PostProcessBuild
     {
-        if (target == BuildTarget.StandaloneWindows || target == BuildTarget.StandaloneWindows64 ||
-            target == BuildTarget.StandaloneLinux || target == BuildTarget.StandaloneLinux64 || target == BuildTarget.StandaloneLinuxUniversal ||
-            target == BuildTarget.StandaloneOSX)
+        [PostProcessBuild(1)]
+        public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
         {
-            // Get build path
-            string pureBuildPath = Path.GetDirectoryName(pathToBuiltProject);
-
-            // Remove PDB files
-            foreach (string file in Directory.GetFiles(pureBuildPath, "*.pdb"))
+            if (target == BuildTarget.StandaloneWindows || target == BuildTarget.StandaloneWindows64 ||
+                target == BuildTarget.StandaloneLinux || target == BuildTarget.StandaloneLinux64 || target == BuildTarget.StandaloneLinuxUniversal ||
+                target == BuildTarget.StandaloneOSX)
             {
-                Debug.Log(file + " deleted!");
-                File.Delete(file);
+                // Get build path
+                string pureBuildPath = Path.GetDirectoryName(pathToBuiltProject);
+
+                // Remove PDB files
+                foreach (string file in Directory.GetFiles(pureBuildPath, "*.pdb"))
+                {
+                    Debug.Log(file + " deleted!");
+                    File.Delete(file);
+                }
             }
         }
     }

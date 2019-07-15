@@ -1,36 +1,37 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-public class CSVUtils
+namespace Core.Utility
 {
-    public static Dictionary<string, string> parseLocalisationFile(string csvText)
+    public class CSVUtils
     {
-        string[] lines = csvText.Split("\n"[0]);
-        int numLines = lines.Length;
-
-        var result = new Dictionary<string, string>(numLines);
-
-        for (int i = 0; i < numLines; i++)
+        public static Dictionary<string, string> parseLocalisationFile(string csvText)
         {
-            string[] row = SplitCsvLine(lines[i]);
-            if (row.Length > 1)
+            string[] lines = csvText.Split("\n"[0]);
+            int numLines = lines.Length;
+
+            var result = new Dictionary<string, string>(numLines);
+
+            for (int i = 0; i < numLines; i++)
             {
-                var key = row[0];
-                var val = row[1];
-                result[key] = val;
+                string[] row = SplitCsvLine(lines[i]);
+                if (row.Length > 1)
+                {
+                    var key = row[0];
+                    var val = row[1];
+                    result[key] = val;
+                }
             }
+
+            return result;
         }
 
-        return result;
-    }
-
-    static public string[] SplitCsvLine(string line)
-    {
-        return (from System.Text.RegularExpressions.Match m in System.Text.RegularExpressions.Regex.Matches(line,
-        @"(((?<x>(?=[,\r\n]+))|""(?<x>([^""]|"""")+)""|(?<x>[^,\r\n]+)),?)",
-        System.Text.RegularExpressions.RegexOptions.ExplicitCapture)
+        static public string[] SplitCsvLine(string line)
+        {
+            return (from System.Text.RegularExpressions.Match m in System.Text.RegularExpressions.Regex.Matches(line,
+                    @"(((?<x>(?=[,\r\n]+))|""(?<x>([^""]|"""")+)""|(?<x>[^,\r\n]+)),?)",
+                    System.Text.RegularExpressions.RegexOptions.ExplicitCapture)
                 select m.Groups[1].Value).ToArray();
+        }
     }
 }

@@ -7,13 +7,17 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using System;
 
-[Serializable]
-public class PotionStats
+namespace Core.Potion
 {
-    public float potionTime;
-    public int healthRegen;
-    public int staminaRegen;
-    public int magicRegen;
+    [Serializable]
+    public class PotionStats
+    {
+        public float potionTime;
+        public int healthRegen;
+        public int staminaRegen;
+        public int magicRegen;
+    }
 }

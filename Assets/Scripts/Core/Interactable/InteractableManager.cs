@@ -7,54 +7,57 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using UnityEngine;
-using System.Collections;
 
-public class InteractableManager : Singleton<InteractableManager>
+namespace Core.Interactable
 {
-    public bool isInteracting;
-    public Interactable currentInteract;
-
-    private void Update()
+    public class InteractableManager : Singleton<InteractableManager>
     {
-        CheckInteracting();
-    }
+        public bool isInteracting;
+        public Interactable currentInteract;
 
-    public void CheckInteracting()
-    {
-        if (isInteracting == false)
+        private void Update()
         {
-            Interactable interactable = FindNearestInteractable();
-            if (interactable != null)
+            CheckInteracting();
+        }
+
+        public void CheckInteracting()
+        {
+            if (isInteracting == false)
             {
-                if (Input.GetKeyUp(KeyCode.F))
+                Interactable interactable = FindNearestInteractable();
+                if (interactable != null)
                 {
-                    ForceInteract(interactable);
+                    if (Input.GetKeyUp(KeyCode.F))
+                    {
+                        ForceInteract(interactable);
+                    }
                 }
             }
         }
-    }
 
-    public void ForceInteract(Interactable interactable)
-    {
-        if(currentInteract != null)
+        public void ForceInteract(Interactable interactable)
         {
-            currentInteract.StopInteracting();
-        }
-        currentInteract = interactable;
-        interactable.Interact();
-    }
-
-    protected virtual Interactable FindNearestInteractable()
-    {
-        Interactable[] interactables = FindObjectsOfType<Interactable>();
-        for (int i = 0; i < interactables.Length; i++)
-        {
-            if(interactables[i].IsClose())
+            if(currentInteract != null)
             {
-                return interactables[i];
+                currentInteract.StopInteracting();
             }
+            currentInteract = interactable;
+            interactable.Interact();
         }
-        return null;
+
+        protected virtual Interactable FindNearestInteractable()
+        {
+            Interactable[] interactables = FindObjectsOfType<Interactable>();
+            for (int i = 0; i < interactables.Length; i++)
+            {
+                if(interactables[i].IsClose())
+                {
+                    return interactables[i];
+                }
+            }
+            return null;
+        }
     }
 }

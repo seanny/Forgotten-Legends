@@ -7,31 +7,34 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
-[DisallowMultipleComponent]
-public class DialogueOption : MonoBehaviour
+namespace Core.Dialogue
 {
-    public string dialogueFile;
-    public string optionKey;
-    private Button m_Button;
-
-    private void Start()
+    [DisallowMultipleComponent]
+    public class DialogueOption : MonoBehaviour
     {
-        m_Button = GetComponent<Button>();
-        if (m_Button != null)
+        public string dialogueFile;
+        public string optionKey;
+        private Button m_Button;
+
+        private void Start()
         {
-            m_Button.onClick.AddListener(delegate
+            m_Button = GetComponent<Button>();
+            if (m_Button != null)
             {
-                HandleDialogueOption();
-            });
+                m_Button.onClick.AddListener(delegate
+                {
+                    HandleDialogueOption();
+                });
+            }
         }
-    }
 
-    public void HandleDialogueOption()
-    {
-        DialogueManager.Instance.ExecuteDialogOption(dialogueFile, optionKey);
+        public void HandleDialogueOption()
+        {
+            DialogueManager.Instance.ExecuteDialogOption(dialogueFile, optionKey);
+        }
     }
 }

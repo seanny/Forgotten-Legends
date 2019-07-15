@@ -7,17 +7,21 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using System;
 
-[Serializable]
-public class LocalisationData
+namespace Core.Localisation
 {
-    public LocalisationItem[] items;
-}
+    [Serializable]
+    public class LocalisationData
+    {
+        public LocalisationItem[] items;
+    }
 
-[Serializable]
-public class LocalisationItem
-{
-    public string key;
-    public string value;
+    [Serializable]
+    public class LocalisationItem
+    {
+        public string key;
+        public string value;
+    }
 }

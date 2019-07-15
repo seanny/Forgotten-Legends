@@ -7,20 +7,21 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
-using System;
-using UnityEngine;
 
-[LuaApi(
-    luaName = "Player",
-    description = "Player API")]
-public class PlayerAPI : LuaAPIBase
+namespace Core.Player
 {
-    public PlayerAPI() : base("Player") { }
-
-    protected override void InitialiseAPITable()
+    [LuaApi(
+        luaName = "Player",
+        description = "Player API")]
+    public class PlayerAPI : LuaAPIBase
     {
+        public PlayerAPI() : base("Player") { }
+
+        protected override void InitialiseAPITable()
+        {
+
+        }
+
 
     }
-
-
 }

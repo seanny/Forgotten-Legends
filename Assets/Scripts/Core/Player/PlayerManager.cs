@@ -7,33 +7,37 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using UnityEngine;
 
-public class PlayerManager : Singleton<PlayerManager>
+namespace Core.Player
 {
-    public Player Player { get; private set; }
-
-    private void Start()
+    public class PlayerManager : Singleton<PlayerManager>
     {
-        AddPlayer();
-    }
+        public Player Player { get; private set; }
 
-    public void AddPlayer()
-    {
-        Player = GameObject.FindWithTag("Player").GetComponent<Player>();
-    }
-
-    public Player GetPlayer()
-    {
-        if (!Player)
+        private void Start()
         {
             AddPlayer();
         }
-        return Player;
-    }
+
+        public void AddPlayer()
+        {
+            Player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        }
+
+        public Player GetPlayer()
+        {
+            if (!Player)
+            {
+                AddPlayer();
+            }
+            return Player;
+        }
     
-    public void RemovePlayer()
-    {
-        Player = null;
+        public void RemovePlayer()
+        {
+            Player = null;
+        }
     }
 }

@@ -7,60 +7,63 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
-using System.IO;
-using System.Collections;
+
 using System.Collections.Generic;
+using Core.Utility;
 using UnityEngine;
 
-public class LocalisationManager : Singleton<LocalisationManager>
+namespace Core.Localisation
 {
-    private Dictionary<string, string> m_LocalisationInfo;
-    private SystemLanguage m_SystemLanguage;
-    public bool isReady { get; private set; }
-
-    private void Start()
+    public class LocalisationManager : Singleton<LocalisationManager>
     {
-        InitIfNotAlready();
-    }
+        private Dictionary<string, string> m_LocalisationInfo;
+        private SystemLanguage m_SystemLanguage;
+        public bool isReady { get; private set; }
 
-    private void Initialise()
-    {
-        m_LocalisationInfo = new Dictionary<string, string>();
-        m_SystemLanguage = Application.systemLanguage;
-        AddLocalisedText(m_SystemLanguage.ToString() + ".json"); isReady = true;
-    }
-
-    public void AddLocalisedText(string fileName)
-    {
-        string jsonData = AssetUtility.ReadAsset("Locale", fileName);
-        LocalisationData localisationData = JsonUtility.FromJson<LocalisationData>(jsonData);
-        for (int i = 0; i < localisationData.items.Length; i++)
+        private void Start()
         {
-            m_LocalisationInfo.Add(localisationData.items[i].key, localisationData.items[i].value);
+            InitIfNotAlready();
         }
-        isReady = true;
-    }
 
-    private void InitIfNotAlready()
-    {
-        if (m_LocalisationInfo == null)
+        private void Initialise()
         {
-            Initialise();
+            m_LocalisationInfo = new Dictionary<string, string>();
+            m_SystemLanguage = Application.systemLanguage;
+            AddLocalisedText(m_SystemLanguage.ToString() + ".json"); isReady = true;
         }
-    }
 
-    public string GetLocalisedString(string key)
-    {
-        string returnValue = key;
-        InitIfNotAlready();
-        foreach (var item in m_LocalisationInfo)
+        public void AddLocalisedText(string fileName)
         {
-            if (item.Key == key)
+            string jsonData = AssetUtility.ReadAsset("Locale", fileName);
+            LocalisationData localisationData = JsonUtility.FromJson<LocalisationData>(jsonData);
+            for (int i = 0; i < localisationData.items.Length; i++)
             {
-                returnValue = item.Value;
+                m_LocalisationInfo.Add(localisationData.items[i].key, localisationData.items[i].value);
+            }
+            isReady = true;
+        }
+
+        private void InitIfNotAlready()
+        {
+            if (m_LocalisationInfo == null)
+            {
+                Initialise();
             }
         }
-        return returnValue;
+
+        public string GetLocalisedString(string key)
+        {
+            string returnValue = key;
+            InitIfNotAlready();
+            foreach (var item in m_LocalisationInfo)
+            {
+                if (item.Key == key)
+                {
+                    returnValue = item.Value;
+                }
+            }
+            return returnValue;
+        }
     }
 }
 

@@ -7,16 +7,19 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using UnityEngine.UI;
-using System.Collections;
 
-public class PlayerHUD : Singleton<PlayerHUD>
+namespace Core.Player
 {
-    public Image target;
-
-    // Use this for initialization
-    void Start()
+    public class PlayerHUD : Singleton<PlayerHUD>
     {
-        target = GetComponent<Image>();
+        public Image target;
+
+        // Use this for initialization
+        void Start()
+        {
+            target = GetComponent<Image>();
+        }
     }
 }

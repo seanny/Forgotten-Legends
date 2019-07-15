@@ -7,65 +7,69 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using System.IO;
 using UnityEngine;
 
-public static class FileEditing
+namespace Core.Settings
 {
-    public static void EditLine(int line, string text, string fileName)
+    public static class FileEditing
     {
-        if (!File.Exists(fileName))
+        public static void EditLine(int line, string text, string fileName)
         {
-            Debug.LogWarning($"Ignoring {fileName} as it does not exist.");
-            return;
-        }
-        string[] lineArray = File.ReadAllLines(fileName);
-        lineArray[line] = text;
-        File.WriteAllLines(fileName, lineArray);
-    }
-
-    public static void EditKey(string key, string value, string fileName)
-    {
-        if(!File.Exists(fileName))
-        {
-            Debug.LogWarning($"Ignoring {fileName} as it does not exist.");
-            return;
-        }
-        string[] lineArray = File.ReadAllLines(fileName);
-        for (int i = 0; i < lineArray.Length; i++)
-        {
-            if(lineArray[i].Contains("="))
+            if (!File.Exists(fileName))
             {
-                string propKey = lineArray[i].Substring(0, lineArray[i].LastIndexOf("=", System.StringComparison.OrdinalIgnoreCase));
-                if (propKey == key)
+                Debug.LogWarning($"Ignoring {fileName} as it does not exist.");
+                return;
+            }
+            string[] lineArray = File.ReadAllLines(fileName);
+            lineArray[line] = text;
+            File.WriteAllLines(fileName, lineArray);
+        }
+
+        public static void EditKey(string key, string value, string fileName)
+        {
+            if(!File.Exists(fileName))
+            {
+                Debug.LogWarning($"Ignoring {fileName} as it does not exist.");
+                return;
+            }
+            string[] lineArray = File.ReadAllLines(fileName);
+            for (int i = 0; i < lineArray.Length; i++)
+            {
+                if(lineArray[i].Contains("="))
                 {
-                    string lineString = $"{key}={value}";
-                    EditLine(i, lineString, fileName);
+                    string propKey = lineArray[i].Substring(0, lineArray[i].LastIndexOf("=", System.StringComparison.OrdinalIgnoreCase));
+                    if (propKey == key)
+                    {
+                        string lineString = $"{key}={value}";
+                        EditLine(i, lineString, fileName);
+                    }
                 }
             }
         }
-    }
 
-    public static string ReadKey(string key, string fileName)
-    {
-        if (!File.Exists(fileName))
+        public static string ReadKey(string key, string fileName)
         {
-            Debug.LogWarning($"Ignoring {fileName} as it does not exist.");
+            if (!File.Exists(fileName))
+            {
+                Debug.LogWarning($"Ignoring {fileName} as it does not exist.");
+                return null;
+            }
+            string[] lineArray = File.ReadAllLines(fileName);
+            for (int i = 0; i < lineArray.Length; i++)
+            {
+                if (lineArray[i].Contains("="))
+                {
+                    string propKey = lineArray[i].Substring(0, lineArray[i].LastIndexOf("=", System.StringComparison.OrdinalIgnoreCase));
+                    string propValue = lineArray[i].Substring(lineArray[i].LastIndexOf("=", System.StringComparison.OrdinalIgnoreCase));
+                    if (propKey == key)
+                    {
+                        return propValue;
+                    }
+                }
+            }
             return null;
         }
-        string[] lineArray = File.ReadAllLines(fileName);
-        for (int i = 0; i < lineArray.Length; i++)
-        {
-            if (lineArray[i].Contains("="))
-            {
-                string propKey = lineArray[i].Substring(0, lineArray[i].LastIndexOf("=", System.StringComparison.OrdinalIgnoreCase));
-                string propValue = lineArray[i].Substring(lineArray[i].LastIndexOf("=", System.StringComparison.OrdinalIgnoreCase));
-                if (propKey == key)
-                {
-                    return propValue;
-                }
-            }
-        }
-        return null;
     }
 }

@@ -8,14 +8,17 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
-public class BlendShape
+namespace Core.ActorCustomisation
 {
-    public int positiveIndex { get; set; }
-    public int negativeIndex { get; set; }
-
-    public BlendShape(int positive, int negative)
+    public class BlendShape
     {
-        positiveIndex = positive;
-        negativeIndex = negative;
+        public int positiveIndex { get; set; }
+        public int negativeIndex { get; set; }
+
+        public BlendShape(int positive, int negative)
+        {
+            positiveIndex = positive;
+            negativeIndex = negative;
+        }
     }
 }

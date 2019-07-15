@@ -7,14 +7,18 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using System;
 
-[Serializable]
-public class Quest
+namespace Core.Quests
 {
-    public string questID;
-    public string questName;
-    public string questDescription;
-    public string[] objectiveNames;
-    public string[] objectiveDescriptions;
+    [Serializable]
+    public class Quest
+    {
+        public string questID;
+        public string questName;
+        public string questDescription;
+        public string[] objectiveNames;
+        public string[] objectiveDescriptions;
+    }
 }

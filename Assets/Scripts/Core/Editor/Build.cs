@@ -7,61 +7,65 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using System;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
-public class Build : MonoBehaviour
+namespace Core.Editor
 {
-    public static readonly BuildTarget[] BUILD_TARGETS =
+    public class Build : MonoBehaviour
     {
-        BuildTarget.StandaloneWindows64, // Windows x64
-        BuildTarget.StandaloneOSX, // macOS
-        BuildTarget.StandaloneLinux64 // Linux
-    };
-
-    [MenuItem("Tools/Build All")]
-    public static void Init()
-    {
-        bool debugBuild;
-        string[] arguments = Environment.GetCommandLineArgs();
-        switch (arguments[1])
+        public static readonly BuildTarget[] BUILD_TARGETS =
         {
-            case "-prod":
-                debugBuild = false;
-                break;
-            default:
-                debugBuild = true;
-                break;
-        }
+            BuildTarget.StandaloneWindows64, // Windows x64
+            BuildTarget.StandaloneOSX, // macOS
+            BuildTarget.StandaloneLinux64 // Linux
+        };
 
-        InitBuild(debugBuild);
-    }
-
-    private static void InitBuild(bool developmentBuild)
-    {
-        foreach (var target in BUILD_TARGETS)
+        [MenuItem("Tools/Build All")]
+        public static void Init()
         {
-            var locationPathName = "builds/" + ("" + target).ToLower().Replace("standalone", "") + $"/ForgottenLegends";
-            if (target == BuildTarget.StandaloneWindows64)
+            bool debugBuild;
+            string[] arguments = Environment.GetCommandLineArgs();
+            switch (arguments[1])
             {
-                locationPathName += ".exe";
+                case "-prod":
+                    debugBuild = false;
+                    break;
+                default:
+                    debugBuild = true;
+                    break;
             }
 
-            var options = new BuildPlayerOptions
-            {
-                locationPathName = locationPathName,
-                scenes = new[]
-                {
-                    "Assets/Scenes/MainMenu.unity",
-                    "Assets/Scenes/SampleScene.unity"
-                },
-                options = developmentBuild ? BuildOptions.Development : BuildOptions.None,
-                target = target
-            };
+            InitBuild(debugBuild);
+        }
 
-            Debug.Log($"Building {Application.productName} for {target} to {locationPathName}...");
-            BuildPipeline.BuildPlayer(options);
+        private static void InitBuild(bool developmentBuild)
+        {
+            foreach (var target in BUILD_TARGETS)
+            {
+                var locationPathName = "builds/" + ("" + target).ToLower().Replace("standalone", "") + $"/ForgottenLegends";
+                if (target == BuildTarget.StandaloneWindows64)
+                {
+                    locationPathName += ".exe";
+                }
+
+                var options = new BuildPlayerOptions
+                {
+                    locationPathName = locationPathName,
+                    scenes = new[]
+                    {
+                        "Assets/Scenes/MainMenu.unity",
+                        "Assets/Scenes/SampleScene.unity"
+                    },
+                    options = developmentBuild ? BuildOptions.Development : BuildOptions.None,
+                    target = target
+                };
+
+                Debug.Log($"Building {Application.productName} for {target} to {locationPathName}...");
+                BuildPipeline.BuildPlayer(options);
+            }
         }
     }
 }

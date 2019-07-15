@@ -7,35 +7,38 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using UnityEngine;
-using System.Collections;
 
-public class CameraScrolling : Singleton<CameraScrolling>
+namespace Core.Camera
 {
-    public float currentScroll = 0.0f;
-    private const float SCROLL_MIN = 5.0f;
-    private const float SCROLL_MAX = 15.0f;
-    public bool rotationLocked { get; private set; }
-
-    public void ToggleScrolling(bool toggle)
+    public class CameraScrolling : Singleton<CameraScrolling>
     {
-        rotationLocked = toggle;
-    }
+        public float currentScroll = 0.0f;
+        private const float SCROLL_MIN = 5.0f;
+        private const float SCROLL_MAX = 15.0f;
+        public bool rotationLocked { get; private set; }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        if(rotationLocked == false)
+        public void ToggleScrolling(bool toggle)
         {
-            currentScroll += Input.GetAxis("Mouse ScrollWheel");
-            currentScroll = Mathf.Clamp(currentScroll, SCROLL_MIN, SCROLL_MAX);
+            rotationLocked = toggle;
         }
-    }
 
-    private void LateUpdate()
-    {
-        CameraController.Instance.cameraTransform.position = CameraController.Instance.lookAt.position - CameraController.Instance.cameraTransform.forward * currentScroll;
-        CameraController.Instance.cameraTransform.position = CameraController.Instance.lookAt.position - CameraController.Instance.cameraTransform.forward * currentScroll;
-        CameraController.Instance.cameraTransform.LookAt(CameraController.Instance.lookAt.position);
+        // Update is called once per frame
+        private void Update()
+        {
+            if(rotationLocked == false)
+            {
+                currentScroll += Input.GetAxis("Mouse ScrollWheel");
+                currentScroll = Mathf.Clamp(currentScroll, SCROLL_MIN, SCROLL_MAX);
+            }
+        }
+
+        private void LateUpdate()
+        {
+            CameraController.Instance.cameraTransform.position = CameraController.Instance.lookAt.position - CameraController.Instance.cameraTransform.forward * currentScroll;
+            CameraController.Instance.cameraTransform.position = CameraController.Instance.lookAt.position - CameraController.Instance.cameraTransform.forward * currentScroll;
+            CameraController.Instance.cameraTransform.LookAt(CameraController.Instance.lookAt.position);
+        }
     }
 }

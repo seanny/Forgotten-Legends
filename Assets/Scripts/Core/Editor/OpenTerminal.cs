@@ -7,31 +7,35 @@
 //  This document may not be reproduced or transmitted in any form
 //  without the consent of Outlaw Games Studio.
 //
+
 using System;
-using System.IO;
 using System.Diagnostics;
-using UnityEngine;
+using System.IO;
 using UnityEditor;
+using UnityEngine;
 
-public class OpenTerminal : ScriptableObject
+namespace Core.Editor
 {
-    [MenuItem("Tools/Open Terminal")]
-    static void OpenTerminalPrompt()
+    public class OpenTerminal : ScriptableObject
     {
-        string appsFolder = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-        string terminalApp;
+        [MenuItem("Tools/Open Terminal")]
+        static void OpenTerminalPrompt()
+        {
+            string appsFolder = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            string terminalApp;
 
-        Process process = new Process();
+            Process process = new Process();
 #if UNITY_EDITOR_OSX
-        terminalApp = Path.Combine(appsFolder, "Utilities", "Terminal.app");
+            terminalApp = Path.Combine(appsFolder, "Utilities", "Terminal.app");
 
-        // Configure the process using the StartInfo properties.
-        process.StartInfo.FileName = "open";
-        process.StartInfo.Arguments = $"-a \"{terminalApp}\" .";
+            // Configure the process using the StartInfo properties.
+            process.StartInfo.FileName = "open";
+            process.StartInfo.Arguments = $"-a \"{terminalApp}\" .";
 #endif
-        process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-        process.Start();
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+            process.Start();
 
-        UnityEngine.Debug.Log($"Opening terminal at \"{terminalApp}\".\nCmd: {process.StartInfo.FileName} {process.StartInfo.Arguments}");
+            UnityEngine.Debug.Log($"Opening terminal at \"{terminalApp}\".\nCmd: {process.StartInfo.FileName} {process.StartInfo.Arguments}");
+        }
     }
 }

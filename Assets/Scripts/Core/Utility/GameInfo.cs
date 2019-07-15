@@ -7,9 +7,12 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
-using System;
-public static class GameInfo
+
+namespace Core.Utility
 {
-    public const string GAME_NAME = "Forsaken Tales: Forgotten Legends";
-    public const string COMPANY_NAME = "Outlaw Games Studio";
+    public static class GameInfo
+    {
+        public const string GAME_NAME = "Forsaken Tales: Forgotten Legends";
+        public const string COMPANY_NAME = "Outlaw Games Studio";
+    }
 }

@@ -7,22 +7,25 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using UnityEngine;
-using System.Collections;
 
-public class MiniMap : MonoBehaviour
+namespace Core.Minimap
 {
-    public Transform player;
-
-    private void Start()
+    public class MiniMap : MonoBehaviour
     {
-        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
-    }
+        public Transform player;
 
-    private void LateUpdate()
-    {
-        Vector3 newPos = player.position;
-        newPos.y = transform.position.y;
-        transform.position = newPos;
+        private void Start()
+        {
+            player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        }
+
+        private void LateUpdate()
+        {
+            Vector3 newPos = player.position;
+            newPos.y = transform.position.y;
+            transform.position = newPos;
+        }
     }
 }

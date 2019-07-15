@@ -1,30 +1,32 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
-[InitializeOnLoad]
-public class MapEditor : EditorWindow
+namespace Core.World.Editor
 {
-    public Map map;
-
-    static void Init()
+    [InitializeOnLoad]
+    public class MapEditor : EditorWindow
     {
-        MapEditor mapEditor = (MapEditor) EditorWindow.GetWindow(typeof(MapEditor));
-        mapEditor.Show();
-    }
+        public Map map;
 
-    private void OnGUI()
-    {
-        if (map != null) 
+        static void Init()
         {
-            SerializedObject serializedObject = new SerializedObject (this);
-            SerializedProperty serializedProperty = serializedObject.FindProperty ("localizationData");
-            EditorGUILayout.PropertyField (serializedProperty, true);
-            serializedObject.ApplyModifiedProperties ();
+            MapEditor mapEditor = (MapEditor) EditorWindow.GetWindow(typeof(MapEditor));
+            mapEditor.Show();
+        }
 
-            if (GUILayout.Button ("Save data")) 
+        private void OnGUI()
+        {
+            if (map != null) 
             {
-                Debug.Log($"Save data");
+                SerializedObject serializedObject = new SerializedObject (this);
+                SerializedProperty serializedProperty = serializedObject.FindProperty ("localizationData");
+                EditorGUILayout.PropertyField (serializedProperty, true);
+                serializedObject.ApplyModifiedProperties ();
+
+                if (GUILayout.Button ("Save data")) 
+                {
+                    Debug.Log($"Save data");
+                }
             }
         }
     }

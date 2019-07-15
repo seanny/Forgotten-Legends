@@ -7,123 +7,128 @@
 //  This document may not be reproduced or transmitted in any form
 //  without the consent of Outlaw Games Studio.
 //
+
 using System;
+using Core.Settings.Accessors;
 
-/// <summary>
-/// Read and write values of various different types to PlayerPrefs easily.
-/// </summary>
-public class GamePrefs
+namespace Core.Settings
 {
-    private static GamePrefsAccessor<bool> boolAccessor;
-    private static GamePrefsAccessor<float> floatAccessor;
-    private static GamePrefsAccessor<int> intAccessor;
-    private static GamePrefsAccessor<string> stringAccessor;
-    private static GamePrefsAccessor<char> charAccessor;
-    private static GamePrefsAccessor<double> doubleAccessor;
-    private static GamePrefsAccessor<long> longAccessor;
-    private static GamePrefsAccessor<DateTime> dateTimeAccessor;
-
     /// <summary>
-    /// Create a PlayerPrefs accessor to read and write bool type values.
+    /// Read and write values of various different types to PlayerPrefs easily.
     /// </summary>
-    /// <returns>Bool prefs accessor</returns>
-    public static GamePrefsAccessor<bool> ForBool()
+    public class GamePrefs
     {
-        if (boolAccessor == null)
-        {
-            boolAccessor = new GamePrefsAccessor<bool>(new BoolPrefAccessor());
-        }
-        return boolAccessor;
-    }
+        private static GamePrefsAccessor<bool> boolAccessor;
+        private static GamePrefsAccessor<float> floatAccessor;
+        private static GamePrefsAccessor<int> intAccessor;
+        private static GamePrefsAccessor<string> stringAccessor;
+        private static GamePrefsAccessor<char> charAccessor;
+        private static GamePrefsAccessor<double> doubleAccessor;
+        private static GamePrefsAccessor<long> longAccessor;
+        private static GamePrefsAccessor<DateTime> dateTimeAccessor;
 
-    /// <summary>
-    /// Create a PlayerPrefs accessor to read and write float type values.
-    /// </summary>
-    /// <returns>Float prefs accessor</returns>
-    public static GamePrefsAccessor<float> ForFloat()
-    {
-        if (floatAccessor == null)
+        /// <summary>
+        /// Create a PlayerPrefs accessor to read and write bool type values.
+        /// </summary>
+        /// <returns>Bool prefs accessor</returns>
+        public static GamePrefsAccessor<bool> ForBool()
         {
-            floatAccessor = new GamePrefsAccessor<float>(new FloatPrefAccessor());
+            if (boolAccessor == null)
+            {
+                boolAccessor = new GamePrefsAccessor<bool>(new BoolPrefAccessor());
+            }
+            return boolAccessor;
         }
-        return floatAccessor;
-    }
 
-    /// <summary>
-    /// Create a PlayerPrefs accessor to read and write int type values.
-    /// </summary>
-    /// <returns>Int prefs accessor</returns>
-    public static GamePrefsAccessor<int> ForInt()
-    {
-        if (intAccessor == null)
+        /// <summary>
+        /// Create a PlayerPrefs accessor to read and write float type values.
+        /// </summary>
+        /// <returns>Float prefs accessor</returns>
+        public static GamePrefsAccessor<float> ForFloat()
         {
-            intAccessor = new GamePrefsAccessor<int>(new IntPrefAccessor());
+            if (floatAccessor == null)
+            {
+                floatAccessor = new GamePrefsAccessor<float>(new FloatPrefAccessor());
+            }
+            return floatAccessor;
         }
-        return intAccessor;
-    }
 
-    /// <summary>
-    /// Create a PlayerPrefs accessor to read and write string type values.
-    /// </summary>
-    /// <returns>String prefs accessor</returns>
-    public static GamePrefsAccessor<string> ForString()
-    {
-        if (stringAccessor == null)
+        /// <summary>
+        /// Create a PlayerPrefs accessor to read and write int type values.
+        /// </summary>
+        /// <returns>Int prefs accessor</returns>
+        public static GamePrefsAccessor<int> ForInt()
         {
-            stringAccessor = new GamePrefsAccessor<string>(new StringPrefAccessor());
+            if (intAccessor == null)
+            {
+                intAccessor = new GamePrefsAccessor<int>(new IntPrefAccessor());
+            }
+            return intAccessor;
         }
-        return stringAccessor;
-    }
 
-    /// <summary>
-    /// Create a PlayerPrefs accessor to read and write char type values.
-    /// </summary>
-    /// <returns>Char prefs accessor</returns>
-    public static GamePrefsAccessor<char> ForChar()
-    {
-        if (charAccessor == null)
+        /// <summary>
+        /// Create a PlayerPrefs accessor to read and write string type values.
+        /// </summary>
+        /// <returns>String prefs accessor</returns>
+        public static GamePrefsAccessor<string> ForString()
         {
-            charAccessor = new GamePrefsAccessor<char>(new CharPrefAccessor());
+            if (stringAccessor == null)
+            {
+                stringAccessor = new GamePrefsAccessor<string>(new StringPrefAccessor());
+            }
+            return stringAccessor;
         }
-        return charAccessor;
-    }
 
-    /// <summary>
-    /// Create a PlayerPrefs accessor to read and write double type values.
-    /// </summary>
-    /// <returns>Double prefs accessor</returns>
-    public static GamePrefsAccessor<double> ForDouble()
-    {
-        if (doubleAccessor == null)
+        /// <summary>
+        /// Create a PlayerPrefs accessor to read and write char type values.
+        /// </summary>
+        /// <returns>Char prefs accessor</returns>
+        public static GamePrefsAccessor<char> ForChar()
         {
-            doubleAccessor = new GamePrefsAccessor<double>(new DoublePrefAccessor());
+            if (charAccessor == null)
+            {
+                charAccessor = new GamePrefsAccessor<char>(new CharPrefAccessor());
+            }
+            return charAccessor;
         }
-        return doubleAccessor;
-    }
 
-    /// <summary>
-    /// Create a PlayerPrefs accessor to read and write long type values.
-    /// </summary>
-    /// <returns>Long prefs accessor</returns>
-    public static GamePrefsAccessor<long> ForLong()
-    {
-        if (longAccessor == null)
+        /// <summary>
+        /// Create a PlayerPrefs accessor to read and write double type values.
+        /// </summary>
+        /// <returns>Double prefs accessor</returns>
+        public static GamePrefsAccessor<double> ForDouble()
         {
-            longAccessor = new GamePrefsAccessor<long>(new LongPrefAccessor());
+            if (doubleAccessor == null)
+            {
+                doubleAccessor = new GamePrefsAccessor<double>(new DoublePrefAccessor());
+            }
+            return doubleAccessor;
         }
-        return longAccessor;
-    }
 
-    /// <summary>
-    /// Create a PlayerPrefs accessor to read and write DateTime type values.
-    /// </summary>
-    /// <returns>DateTime prefs accessor</returns>
-    public static GamePrefsAccessor<DateTime> ForDateTime()
-    {
-        if (dateTimeAccessor == null)
+        /// <summary>
+        /// Create a PlayerPrefs accessor to read and write long type values.
+        /// </summary>
+        /// <returns>Long prefs accessor</returns>
+        public static GamePrefsAccessor<long> ForLong()
         {
-            dateTimeAccessor = new GamePrefsAccessor<DateTime>(new DateTimePrefAccessor());
+            if (longAccessor == null)
+            {
+                longAccessor = new GamePrefsAccessor<long>(new LongPrefAccessor());
+            }
+            return longAccessor;
         }
-        return dateTimeAccessor;
+
+        /// <summary>
+        /// Create a PlayerPrefs accessor to read and write DateTime type values.
+        /// </summary>
+        /// <returns>DateTime prefs accessor</returns>
+        public static GamePrefsAccessor<DateTime> ForDateTime()
+        {
+            if (dateTimeAccessor == null)
+            {
+                dateTimeAccessor = new GamePrefsAccessor<DateTime>(new DateTimePrefAccessor());
+            }
+            return dateTimeAccessor;
+        }
     }
 }

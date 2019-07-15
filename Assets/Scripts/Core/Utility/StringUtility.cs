@@ -7,14 +7,19 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using System;
-public static class StringUtility
+
+namespace Core.Utility
 {
-    public static string EscapeString(string inputString)
+    public static class StringUtility
     {
-        string outputString = string.Empty;
-        outputString = inputString.Replace("~c~", ",");
-        outputString = outputString.Replace("~n~", Environment.NewLine);
-        return outputString;
+        public static string EscapeString(string inputString)
+        {
+            string outputString = string.Empty;
+            outputString = inputString.Replace("~c~", ",");
+            outputString = outputString.Replace("~n~", Environment.NewLine);
+            return outputString;
+        }
     }
 }

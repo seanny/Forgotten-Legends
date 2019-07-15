@@ -7,29 +7,33 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
-using UnityEngine;
+
 using System.Collections;
+using UnityEngine;
 
-public class SpriteFading : Singleton<SpriteFading>
+namespace Core.Utility
 {
-    public bool isFading;
-    public float alpha;
-
-    public void FadeSprite(SpriteRenderer spriteRenderer, float value, float time)
+    public class SpriteFading : Singleton<SpriteFading>
     {
-        isFading = true;
-        StartCoroutine(OnFadeSprite(spriteRenderer, value, time));
-    }
+        public bool isFading;
+        public float alpha;
 
-    private IEnumerator OnFadeSprite(SpriteRenderer spriteRenderer, float value, float time)
-    {
-        alpha = spriteRenderer.material.color.a;
-        for (float i = 0.0f; i < 1.0f; i += Time.deltaTime / time)
+        public void FadeSprite(SpriteRenderer spriteRenderer, float value, float time)
         {
-            Color color = new Color(spriteRenderer.material.color.r, spriteRenderer.material.color.g, spriteRenderer.material.color.b, Mathf.Lerp(alpha, value, i));
-            spriteRenderer.material.color = color;
-            yield return null;
+            isFading = true;
+            StartCoroutine(OnFadeSprite(spriteRenderer, value, time));
         }
-        isFading = false;
+
+        private IEnumerator OnFadeSprite(SpriteRenderer spriteRenderer, float value, float time)
+        {
+            alpha = spriteRenderer.material.color.a;
+            for (float i = 0.0f; i < 1.0f; i += Time.deltaTime / time)
+            {
+                Color color = new Color(spriteRenderer.material.color.r, spriteRenderer.material.color.g, spriteRenderer.material.color.b, Mathf.Lerp(alpha, value, i));
+                spriteRenderer.material.color = color;
+                yield return null;
+            }
+            isFading = false;
+        }
     }
 }

@@ -7,13 +7,17 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using System;
 
-[Serializable]
-public class ObjectMetaFile
+namespace Core.MeshLoading
 {
-    public string meshObj;
-    public string texturePng;
-    public string normalPng;
-    public string objectName;
+    [Serializable]
+    public class ObjectMetaFile
+    {
+        public string meshObj;
+        public string texturePng;
+        public string normalPng;
+        public string objectName;
+    }
 }

@@ -7,32 +7,34 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using System;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
-public class InteractableGUI : Singleton<InteractableGUI>
+namespace Core.Interactable
 {
-    public TextMeshProUGUI interactionText;
-    public bool isShown { get; private set; }
-
-    private void Start()
+    public class InteractableGUI : Singleton<InteractableGUI>
     {
-        HideInteractString();
-    }
+        public TextMeshProUGUI interactionText;
+        public bool isShown { get; private set; }
 
-    public void ShowInteractString(string objectName, string action)
-    {
-        string interactString = $"{objectName}{Environment.NewLine}F) {action}";
-        interactionText.gameObject.SetActive(true);
-        interactionText.text = interactString;
-        isShown = true;
-    }
+        private void Start()
+        {
+            HideInteractString();
+        }
 
-    public void HideInteractString()
-    {
-        interactionText.gameObject.SetActive(false);
-        isShown = false;
+        public void ShowInteractString(string objectName, string action)
+        {
+            string interactString = $"{objectName}{Environment.NewLine}F) {action}";
+            interactionText.gameObject.SetActive(true);
+            interactionText.text = interactString;
+            isShown = true;
+        }
+
+        public void HideInteractString()
+        {
+            interactionText.gameObject.SetActive(false);
+            isShown = false;
+        }
     }
 }
