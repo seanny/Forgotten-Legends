@@ -23,7 +23,7 @@ public class ObjectModelFormat : Singleton<ObjectModelFormat>
     
     private string error = String.Empty;
 
-    public void LoadObjectFile(string objectMeta)
+    public GameObject LoadObjectFile(string objectMeta)
     {
         string json = AssetUtility.ReadAsset("Models", objectMeta);
         ObjectMetaFile objectMetaFile = JsonUtility.FromJson<ObjectMetaFile>(json);
@@ -35,20 +35,25 @@ public class ObjectModelFormat : Singleton<ObjectModelFormat>
         if(!File.Exists(filePath))
         {
             Debug.LogError($"Object Model Format file {objectMesh} does not exist on the local disk.");
-            return;
+            return null;
         }
         
         string texturePath = Path.Combine(Application.streamingAssetsPath, "Models", objectTexture);
         if(!File.Exists(filePath))
         {
             Debug.LogError($"Object Model Format file {objectMesh} does not exist on the local disk.");
-            return;
+            return null;
         }
 
         GameObject _gameObject = new OBJLoader().Load(filePath);
         if (!string.IsNullOrWhiteSpace(error))
         {
             Debug.LogError($"ObjectModelFormat Error: {error}");
+            return null;
         }
+        
+        _gameObject.transform.parent = parentObject;
+
+        return _gameObject;
     }
 }

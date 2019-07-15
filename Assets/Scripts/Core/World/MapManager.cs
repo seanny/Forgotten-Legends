@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using NavMeshBuilder = UnityEngine.AI.NavMeshBuilder;
+using Object = System.Object;
 
 public class MapManager : Singleton<MapManager>
 {
@@ -147,7 +148,35 @@ public class MapManager : Singleton<MapManager>
                     Debug.LogWarning($"Could not create special object, possible incorrect file name: {item.objectFile}");
                 }
             }
+            else
+            {
+                if (CreateStandardObject(item) == true)
+                {
+                    Debug.LogWarning($"Could not create standard object, possible incorrect file name: {item.objectFile}");
+                }
+            }
         }
+    }
+
+    private bool CreateStandardObject(ObjectItem objectItem)
+    {
+        isUpdating = true;
+        GameObject _gameObject = ObjectModelFormat.Instance.LoadObjectFile(objectItem.objectFile);
+        if (_gameObject != null)
+        {
+            _gameObject.transform.position = new Vector3(objectItem.objectPosition.x, objectItem.objectPosition.y, objectItem.objectPosition.z);
+            _gameObject.transform.rotation = new Quaternion(objectItem.objectRotation.x, objectItem.objectRotation.y,
+                objectItem.objectRotation.z, objectItem.objectRotation.w);
+            _gameObject.transform.localScale = new Vector3(objectItem.objectScale.x, objectItem.objectScale.y, objectItem.objectScale.z);
+            if (objectItem.objectWalkable == true)
+            {
+                _gameObject.AddComponent<NavMeshSourceTag>();
+            }
+            AddLightIfPossible(objectItem, _gameObject);
+            m_GameObjects.Add(_gameObject);
+            return true;
+        }
+        return false;
     }
 
     private bool CreateSpecialObject(ObjectItem objectItem)
@@ -189,10 +218,38 @@ public class MapManager : Singleton<MapManager>
             {
                 _gameObject.AddComponent<NavMeshSourceTag>();
             }
+
+            AddLightIfPossible(objectItem, _gameObject);
             m_GameObjects.Add(_gameObject);
             return true;
         }
         return false;
+    }
+
+    private void AddLightIfPossible(ObjectItem objectItem, GameObject gameObject)
+    {
+        Debug.Log($"ObjectLight = {objectItem.objectLight.isEnabled}");
+        if (objectItem.objectLight.isEnabled == true)
+        {
+            gameObject.AddComponent<Light>();
+            if (objectItem.objectLight.isSpotLight == true)
+            {
+                gameObject.GetComponent<Light>().type = LightType.Spot;
+            }
+            else
+            {
+                gameObject.GetComponent<Light>().type = LightType.Point;
+            }
+
+            gameObject.GetComponent<Light>().range = objectItem.objectLight.lightRange;
+            gameObject.GetComponent<Light>().spotAngle = objectItem.objectLight.lightAngle;
+            gameObject.GetComponent<Light>().intensity = objectItem.objectLight.lightIntensity;
+            gameObject.GetComponent<Light>().color = new Color(
+                int.Parse(objectItem.objectLight.lightColour.r, System.Globalization.NumberStyles.HexNumber),
+                int.Parse(objectItem.objectLight.lightColour.g, System.Globalization.NumberStyles.HexNumber),
+                int.Parse(objectItem.objectLight.lightColour.b, System.Globalization.NumberStyles.HexNumber)
+            );
+        }
     }
     
     void OnDrawGizmosSelected()

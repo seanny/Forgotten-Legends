@@ -25,7 +25,21 @@
         "y":1.0,
         "z":10.0
       },
-      "objectWalkable": true
+      "objectWalkable": true,
+      "objectLight":
+      {
+        "isEnabled": false,
+        "isSpotLight": false,
+        "lightRange": 0.0,
+        "lightAngle": 0.0,
+        "lightIntensity": 0.0,
+        "lightColour":
+        {
+          "r": "00",
+          "g": "00",
+          "b": "00"
+        }
+      }
     },
     {
       "objectFile":"Special::Cube",
@@ -48,7 +62,58 @@
         "y":1.0,
         "z":1.0
       },
-      "objectWalkable": false
+      "objectWalkable": false,
+      "objectLight":
+      {
+        "isEnabled": false,
+        "isSpotLight": false,
+        "lightRange": 0.0,
+        "lightAngle": 0.0,
+        "lightIntensity": 0.0,
+        "lightColour":
+        {
+          "r": "00",
+          "g": "00",
+          "b": "00"
+        }
+      }
+    },
+    {
+      "objectFile":"TestObject/TestObj.json",
+      "objectPosition":
+      {
+        "x":1.0,
+        "y":2.0,
+        "z":3.0
+      },
+      "objectRotation":
+      {
+        "x":0.0,
+        "y":0.0,
+        "z":0.0,
+        "w":0.0
+      },
+      "objectScale":
+      {
+        "x":2.0,
+        "y":2.0,
+        "z":2.0
+      },
+      "objectWalkable": false,
+      "objectLight": 
+      {
+        "isEnabled": true,
+        "isSpotLight": true,
+        "lightRange": 1.0,
+        "lightAngle": 45.0,
+        "lightIntensity": 1.0,
+        "lightColour": 
+        {
+          "r": "FF",
+          "g": "FF",
+          "b": "00"
+        }
+      }
     }
   ]
 }
