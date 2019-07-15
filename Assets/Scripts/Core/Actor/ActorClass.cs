@@ -7,39 +7,40 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
-using UnityEngine;
-using System.Collections;
 
-[System.Serializable]
-public class ActorClass
+namespace Core.Actor
 {
-    /* Class System, selected by the player on character creation.
-     * Certain classes are also assigned to certain NPC's.
-     * NPC: Class
-     * Guards: Knight, Paladin, Fighter
-     * Bandits: Barbarian, Thief, Rogue
-     * Witches, Warlocks: Sorcerer, Wizard
-     * Priests, Monks: Druid, Wizard
-     * Hunter: Ranger
-     * Vampire: Fighter, Barbarian, Sorcerer, Wizard, Ranger, Rogue, Thief
-     * Adventurer: Fighter, Barbarian, Sorcerer, Wizard, Ranger
-     * Demon: Fighter, Barbarian, Sorcerer, Wizard, Ranger, Rogue, 
-     */
-    public enum Class
+    [System.Serializable]
+    public class ActorClass
     {
-        // Common Classes
-        Fighter,
-        Barbarian,
-        Paladin,
-        Bard,
-        Sorcerer,
-        Wizard,
-        Cleric,
-        Druid,
-        Ranger,
-        Rogue,
-        Thief
-    }
+        /* Class System, selected by the player on character creation.
+         * Certain classes are also assigned to certain NPC's.
+         * NPC: Class
+         * Guards: Knight, Paladin, Fighter
+         * Bandits: Barbarian, Thief, Rogue
+         * Witches, Warlocks: Sorcerer, Wizard
+         * Priests, Monks: Druid, Wizard
+         * Hunter: Ranger
+         * Vampire: Fighter, Barbarian, Sorcerer, Wizard, Ranger, Rogue, Thief
+         * Adventurer: Fighter, Barbarian, Sorcerer, Wizard, Ranger
+         * Demon: Fighter, Barbarian, Sorcerer, Wizard, Ranger, Rogue, 
+         */
+        public enum Class
+        {
+            // Common Classes
+            Fighter,
+            Barbarian,
+            Paladin,
+            Bard,
+            Sorcerer,
+            Wizard,
+            Cleric,
+            Druid,
+            Ranger,
+            Rogue,
+            Thief
+        }
 
-    public Class currentClass;
+        public Class currentClass;
+    }
 }

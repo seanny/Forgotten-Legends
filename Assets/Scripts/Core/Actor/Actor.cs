@@ -7,50 +7,53 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
 using UnityEngine;
-using System.Collections;
 
-public abstract class Actor : MonoBehaviour
+namespace Core.Actor
 {
-    public string actorID;
-    public ActorStats m_ActorStats;
-    public ActorClass m_ActorClass;
-    public ActorHealth m_HealthScript;
-    public string actorWorldspace;
-
-    public static Actor GetPlayer()
+    public abstract class Actor : MonoBehaviour
     {
-        return FindActor("Player");
-    }
+        public string actorID;
+        public ActorStats m_ActorStats;
+        public ActorClass m_ActorClass;
+        public ActorHealth m_HealthScript;
+        public string actorWorldspace;
 
-    public void SetPos(Vector3 position)
-    {
-        gameObject.transform.position = position;
-    }
-
-    public void SetPos(float x, float y, float z)
-    {
-        gameObject.transform.position = new Vector3(x, y, z);
-    }
-
-    public static Actor FindActor(string actorID)
-    {
-        Actor[] actors = GameObject.FindObjectsOfType<Actor>();
-        foreach (Actor actor in actors)
+        public static Actor GetPlayer()
         {
-            if (actor.actorID == actorID)
-            {
-                return actor;
-            }  
+            return FindActor("Player");
         }
-        return null;
-    }
 
-    protected virtual void Start()
-    {
-        if(actorID == string.Empty)
+        public void SetPos(Vector3 position)
         {
-            actorID = gameObject.name;
+            gameObject.transform.position = position;
+        }
+
+        public void SetPos(float x, float y, float z)
+        {
+            gameObject.transform.position = new Vector3(x, y, z);
+        }
+
+        public static Actor FindActor(string actorID)
+        {
+            Actor[] actors = GameObject.FindObjectsOfType<Actor>();
+            foreach (Actor actor in actors)
+            {
+                if (actor.actorID == actorID)
+                {
+                    return actor;
+                }  
+            }
+            return null;
+        }
+
+        protected virtual void Start()
+        {
+            if(actorID == string.Empty)
+            {
+                actorID = gameObject.name;
+            }
         }
     }
 }

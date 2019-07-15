@@ -7,45 +7,49 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
-using UnityEngine;
+
 using System.Collections;
+using UnityEngine;
 
-public class ActorHealth : MonoBehaviour
+namespace Core.Actor
 {
-    public int maxHealth;
-    public int currentHealth;
-    public bool healthRegen;
-
-    // Use this for initialization
-    protected virtual void Start()
+    public class ActorHealth : MonoBehaviour
     {
-        // Prevents a divide by 0 error
-        if (maxHealth < 0)
-        {
-            maxHealth = 1;
-        }
-        StartCoroutine(HealthRegen());
-        healthRegen = true;
-    }
+        public int maxHealth;
+        public int currentHealth;
+        public bool healthRegen;
 
-    IEnumerator HealthRegen()
-    {
-        while(true)
+        // Use this for initialization
+        protected virtual void Start()
         {
-            yield return new WaitForSeconds(1);
-            if(currentHealth < maxHealth && healthRegen == true)
+            // Prevents a divide by 0 error
+            if (maxHealth < 0)
             {
-                currentHealth++;
+                maxHealth = 1;
+            }
+            StartCoroutine(HealthRegen());
+            healthRegen = true;
+        }
+
+        IEnumerator HealthRegen()
+        {
+            while(true)
+            {
+                yield return new WaitForSeconds(1);
+                if(currentHealth < maxHealth && healthRegen == true)
+                {
+                    currentHealth++;
+                }
             }
         }
-    }
 
-    public void AddHealth(int health)
-    {
-        currentHealth += health;
-        if (currentHealth > maxHealth)
+        public void AddHealth(int health)
         {
-            currentHealth = maxHealth;
+            currentHealth += health;
+            if (currentHealth > maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
         }
     }
 }

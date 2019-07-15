@@ -10,6 +10,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using Core.Actor;
 
 public class NPCMovement : MonoBehaviour
 {

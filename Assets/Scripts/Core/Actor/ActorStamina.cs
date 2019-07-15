@@ -7,45 +7,49 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
-using UnityEngine;
+
 using System.Collections;
+using UnityEngine;
 
-public class ActorStamina : MonoBehaviour
+namespace Core.Actor
 {
-    public int maxStamina;
-    public int currentStamina;
-    public bool magicRegen;
-
-    // Use this for initialization
-    protected virtual void Start()
+    public class ActorStamina : MonoBehaviour
     {
-        // Prevents a divide by 0 error
-        if (maxStamina < 0)
-        {
-            maxStamina = 1;
-        }
-        StartCoroutine(MagicRegen());
-        magicRegen = true;
-    }
+        public int maxStamina;
+        public int currentStamina;
+        public bool magicRegen;
 
-    IEnumerator MagicRegen()
-    {
-        while (true)
+        // Use this for initialization
+        protected virtual void Start()
         {
-            yield return new WaitForSeconds(1);
-            if (currentStamina < maxStamina && magicRegen == true)
+            // Prevents a divide by 0 error
+            if (maxStamina < 0)
             {
-                currentStamina++;
+                maxStamina = 1;
+            }
+            StartCoroutine(MagicRegen());
+            magicRegen = true;
+        }
+
+        IEnumerator MagicRegen()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(1);
+                if (currentStamina < maxStamina && magicRegen == true)
+                {
+                    currentStamina++;
+                }
             }
         }
-    }
 
-    public void AddMagic(int magic)
-    {
-        currentStamina += magic;
-        if (currentStamina > maxStamina)
+        public void AddMagic(int magic)
         {
-            currentStamina = maxStamina;
+            currentStamina += magic;
+            if (currentStamina > maxStamina)
+            {
+                currentStamina = maxStamina;
+            }
         }
     }
 }

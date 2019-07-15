@@ -7,6 +7,8 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
+using Core.Actor;
 using UnityEngine;
 using UnityEngine.UI;
 

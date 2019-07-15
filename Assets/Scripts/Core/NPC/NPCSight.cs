@@ -11,6 +11,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
+using Core.Actor;
 
 
 public class NPCSight : MonoBehaviour

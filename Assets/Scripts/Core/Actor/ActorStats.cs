@@ -7,33 +7,37 @@
 //  This document may not be reproduced or transmitted in any form
 //  without the consent of Outlaw Games Studio.
 //
+
 using System;
 using System.Collections.Generic;
 
 // Base Class for all characters, including NPC's and the player character
-[Serializable]
-public class ActorStats
+namespace Core.Actor
 {
-    // Actor Health.
-    public int currentHealth;
-    public int maxHealth;
+    [Serializable]
+    public class ActorStats
+    {
+        // Actor Health.
+        public int currentHealth;
+        public int maxHealth;
 
-    // Actor Level. If maxLevel is 0, then they have no level cap.
-    public int currentLevel;
-    public int maxLevel;
+        // Actor Level. If maxLevel is 0, then they have no level cap.
+        public int currentLevel;
+        public int maxLevel;
 
-    // Actor Stats
-    public int strength;
-    public int perception;
-    public int endurance;
-    public int speech;
-    public int intelligence;
-    public int sneak;
-    public int luck;
+        // Actor Stats
+        public int strength;
+        public int perception;
+        public int endurance;
+        public int speech;
+        public int intelligence;
+        public int sneak;
+        public int luck;
 
-    // Actor Gender
-    public int actorGender;
+        // Actor Gender
+        public int actorGender;
 
-    // Actor faction
-    public List<string> factions;
+        // Actor faction
+        public List<string> factions;
+    }
 }

@@ -9,6 +9,7 @@
 //
 using UnityEngine;
 using System.Collections;
+using Core.Actor;
 
 [RequireComponent(typeof(ActorCombat))]
 [RequireComponent(typeof(NPCMovement))]

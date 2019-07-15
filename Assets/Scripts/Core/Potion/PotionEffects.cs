@@ -10,6 +10,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using Core.Actor;
 
 public class PotionEffects : Singleton<PotionEffects>
 {
