@@ -168,10 +168,7 @@ public class MapManager : Singleton<MapManager>
             _gameObject.transform.rotation = new Quaternion(objectItem.objectRotation.x, objectItem.objectRotation.y,
                 objectItem.objectRotation.z, objectItem.objectRotation.w);
             _gameObject.transform.localScale = new Vector3(objectItem.objectScale.x, objectItem.objectScale.y, objectItem.objectScale.z);
-            if (objectItem.objectWalkable == true)
-            {
-                _gameObject.AddComponent<NavMeshSourceTag>();
-            }
+            AddNavMeshSourceIfPossible(objectItem, _gameObject);
             AddLightIfPossible(objectItem, _gameObject);
             m_GameObjects.Add(_gameObject);
             return true;
@@ -214,11 +211,7 @@ public class MapManager : Singleton<MapManager>
             _gameObject.transform.rotation = new Quaternion(objectItem.objectRotation.x, objectItem.objectRotation.y,
                 objectItem.objectRotation.z, objectItem.objectRotation.w);
             _gameObject.transform.localScale = new Vector3(objectItem.objectScale.x, objectItem.objectScale.y, objectItem.objectScale.z);
-            if (objectItem.objectWalkable == true)
-            {
-                _gameObject.AddComponent<NavMeshSourceTag>();
-            }
-
+            AddNavMeshSourceIfPossible(objectItem, _gameObject);
             AddLightIfPossible(objectItem, _gameObject);
             m_GameObjects.Add(_gameObject);
             return true;
@@ -226,9 +219,16 @@ public class MapManager : Singleton<MapManager>
         return false;
     }
 
+    private void AddNavMeshSourceIfPossible(ObjectItem objectItem, GameObject gameObject)
+    {
+        if (objectItem.objectWalkable == true)
+        {
+            gameObject.AddComponent<NavMeshSourceTag>();
+        }
+    }
+    
     private void AddLightIfPossible(ObjectItem objectItem, GameObject gameObject)
     {
-        Debug.Log($"ObjectLight = {objectItem.objectLight.isEnabled}");
         if (objectItem.objectLight.isEnabled == true)
         {
             gameObject.AddComponent<Light>();
