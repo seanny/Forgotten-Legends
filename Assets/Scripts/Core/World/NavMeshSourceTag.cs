@@ -47,8 +47,7 @@ namespace Core.World
         public static void Collect(ref List<NavMeshBuildSource> sources)
         {
             sources.Clear();
-
-            Debug.Log($"Mesh count: {m_Meshes.Count}");
+            
             for (var i = 0; i < m_Meshes.Count; ++i)
             {
                 var mf = m_Meshes[i];
@@ -62,7 +61,6 @@ namespace Core.World
                 s.sourceObject = m;
                 s.transform = mf.transform.localToWorldMatrix;
                 s.area = 0;
-                Debug.Log($"mesh = {s.ToString()}");
                 sources.Add(s);
             }
 
@@ -77,7 +75,6 @@ namespace Core.World
                 // Terrain system only supports translation - so we pass translation only to back-end
                 s.transform = Matrix4x4.TRS(t.transform.position, Quaternion.identity, Vector3.one);
                 s.area = 0;
-                Debug.Log($"terrain = {s.ToString()}");
                 sources.Add(s);
             }
         }
