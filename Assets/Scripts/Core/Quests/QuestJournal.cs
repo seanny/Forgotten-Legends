@@ -34,6 +34,11 @@ namespace Core.Quests
 
         private void Start()
         {
+            InitQuestJournal();
+        }
+
+        private void InitQuestJournal()
+        {
             activeQuests = new Dictionary<Quest, string>();
             completedQuests = new List<Quest>();
             ImageUtils.SetAlpha(questName, 0.0f);
@@ -93,6 +98,10 @@ namespace Core.Quests
 
         public void SetQuestObjective(string questID, string questObjectiveID)
         {
+            if (activeQuests == null)
+            {
+                InitQuestJournal();
+            }
             for (int i = 0; i < activeQuests.Count; i++)
             {
                 Debug.Log($"Item = {activeQuests.ElementAt(i).Key.questID}, {activeQuests.ElementAt(i).Value}");
