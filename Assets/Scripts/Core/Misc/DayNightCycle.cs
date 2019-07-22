@@ -23,6 +23,7 @@ namespace Core.Misc
         public float timeMultiplier = 1f;
 
         float sunInitialIntensity;
+        private bool m_MoonUpdated;
 
         void Start()
         {
@@ -36,8 +37,15 @@ namespace Core.Misc
 
             currentTimeOfDay += (Time.deltaTime / secondsInFullDay) * timeMultiplier;
 
+            if (currentTimeOfDay >= .5f && m_MoonUpdated == false)
+            {
+                m_MoonUpdated = true;
+                MoonController.Instance.IncrementMoonStage(); 
+            }
+            
             if (currentTimeOfDay >= 1)
             {
+                m_MoonUpdated = false;
                 currentTimeOfDay = 0;
             }
         }
