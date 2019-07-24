@@ -9,6 +9,7 @@
 //
 
 using Core.Actor;
+using Core.Interactable;
 using UnityEngine;
 
 namespace Core.NonPlayerChar
@@ -55,9 +56,13 @@ namespace Core.NonPlayerChar
 
 
             NPCDialogueScript = gameObject.AddComponent<NPCDialogue>();
-
-            NPCInteractionScript = gameObject.AddComponent<Interactable.Interactable>();
-            NPCInteractionScript.interactType = Interactable.Interactable.InteractType.Talk;
+            
+            NPCInteractionScript = GetComponent<Interactable.Interactable>();
+            if(!NPCInteractionScript)
+            {
+                NPCInteractionScript = gameObject.AddComponent<Interactable.Interactable>();
+            }
+            NPCInteractionScript.SetInteractableType(InteractableData.InteractType.Talk);
         }
 
         public static NPC FindNPC(string actorID)

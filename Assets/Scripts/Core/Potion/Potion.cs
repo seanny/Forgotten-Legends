@@ -22,7 +22,7 @@ namespace Core.Potion
 
         private void Start()
         {
-            interactableName = "Potion";
+            InteractableData.name = "Potion";
             m_AudioSource = gameObject.AddComponent<AudioSource>();
             m_AudioSource.playOnAwake = false;
             m_AudioSource.clip = soundEffect;
@@ -31,7 +31,6 @@ namespace Core.Potion
         public override void Interact()
         {
             base.Interact();
-            OnPotionUse();
         }
 
         public virtual void OnPotionUse()

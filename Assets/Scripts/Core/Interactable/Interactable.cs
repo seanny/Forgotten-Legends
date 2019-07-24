@@ -8,6 +8,7 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
+using System;
 using Core.Camera;
 using Core.Player;
 using Core.Scripting;
@@ -17,15 +18,7 @@ namespace Core.Interactable
 {
     public class Interactable : MonoBehaviour
     {
-        public enum InteractType
-        {
-            Generic = 0,
-            Talk,
-            Take
-        }
-
-        public InteractType interactType;
-        public string interactableName;
+        public InteractableData InteractableData;
 
         protected virtual void OnLookAt()
         {
@@ -42,6 +35,31 @@ namespace Core.Interactable
             ScriptManager.Instance.CallFunction("OnStopInteract", new object[] { gameObject.name });
         }
 
+        private void InitData()
+        {
+            if (InteractableData == null)
+            {
+                InteractableData = new InteractableData();
+            }
+        }
+
+        private void Start()
+        {
+            InitData();
+        }
+
+        public void SetInteractableType(InteractableData.InteractType interactType)
+        {
+            InitData();
+            InteractableData.type = interactType;
+        }
+        
+        public void SetInteractableCategory(InteractableData.InteractableCategory interactCat)
+        {
+            InitData();
+            InteractableData.category = interactCat;
+        }
+        
         public bool InSight()
         {
             Vector3 dir = (transform.position - CameraController.Instance.transform.position).normalized;
@@ -65,19 +83,20 @@ namespace Core.Interactable
 
         private void ShowInteractGUI()
         {
+            InitData();
             if (InteractableGUI.Instance.isShown == false)
             {
-                switch (interactType)
+                switch (InteractableData.type)
                 {
-                    case InteractType.Generic:
-                        InteractableGUI.Instance.ShowInteractString(interactableName, "Interact");
+                    case InteractableData.InteractType.Generic:
+                        InteractableGUI.Instance.ShowInteractString(InteractableData.name, "Interact");
                         break;
-                    case InteractType.Talk:
-                        InteractableGUI.Instance.ShowInteractString(interactableName, "Talk");
+                    case InteractableData.InteractType.Talk:
+                        InteractableGUI.Instance.ShowInteractString(InteractableData.name, "Talk");
                         break;
-                    case InteractType.Take:
+                    case InteractableData.InteractType.Take:
                         // TODO: If an object is owned by another NPC, then "Take" becomes "Steal"
-                        InteractableGUI.Instance.ShowInteractString(interactableName, "Take");
+                        InteractableGUI.Instance.ShowInteractString(InteractableData.name, "Take");
                         break;
                 }
             }
@@ -85,6 +104,7 @@ namespace Core.Interactable
 
         protected virtual void Update()
         {
+            InitData();
             if (InSight() == true && IsClose() == true)
             {
                 ShowInteractGUI();
