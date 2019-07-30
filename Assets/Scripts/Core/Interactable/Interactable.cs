@@ -9,6 +9,8 @@
 //
 
 using System;
+using System.Collections.Generic;
+using System.Collections;
 using Core.Camera;
 using Core.Player;
 using Core.Scripting;
@@ -18,7 +20,7 @@ namespace Core.Interactable
 {
     public class Interactable : MonoBehaviour
     {
-        public InteractableData InteractableData;
+        public InteractableData interactableData;
 
         protected virtual void OnLookAt()
         {
@@ -37,27 +39,28 @@ namespace Core.Interactable
 
         private void InitData()
         {
-            if (InteractableData == null)
+            if (interactableData == null)
             {
-                InteractableData = new InteractableData();
+                interactableData = new InteractableData();
             }
         }
 
         private void Start()
         {
             InitData();
+            StartCoroutine(OnUpdateInteractable());
         }
 
         public void SetInteractableType(InteractableData.InteractType interactType)
         {
             InitData();
-            InteractableData.type = interactType;
+            interactableData.type = interactType;
         }
         
         public void SetInteractableCategory(InteractableData.InteractableCategory interactCat)
         {
             InitData();
-            InteractableData.category = interactCat;
+            interactableData.category = interactCat;
         }
         
         public bool InSight()
@@ -74,7 +77,7 @@ namespace Core.Interactable
         public bool IsClose()
         {
             float dist = Vector3.Distance(transform.position, PlayerManager.Instance.Player.transform.position);
-            if (dist <= 2.0f)
+            if (dist <= 2.5f)
             {
                 return true;
             }
@@ -86,17 +89,17 @@ namespace Core.Interactable
             InitData();
             if (InteractableGUI.Instance.isShown == false)
             {
-                switch (InteractableData.type)
+                switch (interactableData.type)
                 {
-                    case InteractableData.InteractType.Generic:
-                        InteractableGUI.Instance.ShowInteractString(InteractableData.name, "Interact");
-                        break;
                     case InteractableData.InteractType.Talk:
-                        InteractableGUI.Instance.ShowInteractString(InteractableData.name, "Talk");
+                        InteractableGUI.Instance.ShowInteractString(interactableData.name, "Talk");
                         break;
                     case InteractableData.InteractType.Take:
                         // TODO: If an object is owned by another NPC, then "Take" becomes "Steal"
-                        InteractableGUI.Instance.ShowInteractString(InteractableData.name, "Take");
+                        InteractableGUI.Instance.ShowInteractString(interactableData.name, "Take");
+                        break;
+                    default:
+                        InteractableGUI.Instance.ShowInteractString(interactableData.name, "Interact");
                         break;
                 }
             }
@@ -110,9 +113,17 @@ namespace Core.Interactable
                 ShowInteractGUI();
                 OnLookAt();
             }
-            else
+        }
+
+        protected virtual IEnumerator OnUpdateInteractable()
+        {
+            while (true)
             {
-                InteractableGUI.Instance.HideInteractString();
+                if (InSight() == false)
+                {
+                    InteractableGUI.Instance.HideInteractString();
+                }
+                yield return new WaitForSeconds(0.5f);
             }
         }
     }

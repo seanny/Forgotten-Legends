@@ -1,5 +1,10 @@
 function OnStart()
     print("OnStart fruit.lua")
-    Actor.SetActorPos("Player", 1.1, 2.2, 3.3)
-    print("Platform = " .. Debug.GetPlatformName())
+end
+
+function OnAddItem(item)
+    if item == "Potion" then
+        print("Giving quest Test01")
+        Quest.GiveQuest("Test01")
+    end
 end

@@ -8,6 +8,7 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Core.Interactable
@@ -47,13 +48,14 @@ namespace Core.Interactable
             interactable.Interact();
         }
 
-        protected virtual Interactable FindNearestInteractable()
+        private Interactable FindNearestInteractable()
         {
             Interactable[] interactables = FindObjectsOfType<Interactable>();
             for (int i = 0; i < interactables.Length; i++)
             {
                 if(interactables[i].IsClose())
                 {
+                    Debug.Log($"Found item: {interactables[i].interactableData.name}");
                     return interactables[i];
                 }
             }

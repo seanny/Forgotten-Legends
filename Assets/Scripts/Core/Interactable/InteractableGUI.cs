@@ -29,7 +29,7 @@ namespace Core.Interactable
             interactionText.gameObject.SetActive(true);
             interactionText.text = interactString;
             isShown = true;
-        }
+        } 
 
         public void HideInteractString()
         {

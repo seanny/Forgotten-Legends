@@ -9,43 +9,130 @@
 //
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Core.Interactable;
+using Core.Scripting;
 
 namespace Core.Inventory
 {
     public class EntityInventory : MonoBehaviour
     {
-        public List<InteractableData> inventoryItems { get; private set; }
+        public List<InteractableData> inventoryItems => m_InventoryItems;
+
+        [SerializeField] private List<InteractableData> m_InventoryItems;
 
         private void Start()
         {
-            inventoryItems = new List<InteractableData>();
+            InitInventoryItems();
         }
 
-        public void ShowInventory(bool show)
+        /// <summary>
+        /// Initialise the inventory items list if null.
+        /// </summary>
+        private void InitInventoryItems()
         {
-            InventoryUI.Instance.interactableDataList.Clear();
-            InventoryUI.Instance.interactableDataList = inventoryItems;
-            
-            // List all items in inventory and then show it inside of a GUI
-            InventoryUI.Instance.ToggleUI(show);
+            // Initialise the inventory list if null
+            if (m_InventoryItems == null)
+            {
+                m_InventoryItems = new List<InteractableData>();
+            }
         }
-
+        
+        /// <summary>
+        /// Add the interactable item to the inventory.
+        /// </summary>
+        /// <param name="interactable"></param>
         public void AddItem(Interactable.Interactable interactable)
         {
-            InteractableData interactableData = interactable.InteractableData;
-            inventoryItems.Add(interactableData);
+            InitInventoryItems();
+            
+            // Create instance of interactableData with the data from interactable
+            InteractableData interactableData = interactable.interactableData;
+            
+            // Add the instance to the list
+            m_InventoryItems.Add(interactableData);
+            
+            // Call OnAddItem in Lua
+            ScriptManager.Instance.CallFunction("OnInventoryAddItem", new object[] { interactableData.name });
         }
 
+        /// <summary>
+        /// Clear the inventory
+        /// </summary>
         public void Clear()
         {
-            inventoryItems.Clear();
+            InitInventoryItems();
+            foreach (var item in m_InventoryItems)
+            {
+                // Call OnRemoveItem in Lua
+                ScriptManager.Instance.CallFunction("OnInventoryRemoveItem", new object[] { item.name });
+                
+                // Clear the inventory items
+                m_InventoryItems.Remove(item);
+            }
         }
 
-        public void RemoveItem(int index)
+        /// <summary>
+        /// Remove a single instance with the same name as interactableData.
+        /// </summary>
+        /// <param name="interactableData"></param>
+        public void RemoveSingleItem(InteractableData interactableData)
         {
-            inventoryItems.RemoveAt(index);
+            InitInventoryItems();
+            foreach (var item in m_InventoryItems)
+            {
+                if (item.name == interactableData.name)
+                {
+                    // Call OnRemoveItem in Lua
+                    ScriptManager.Instance.CallFunction("OnInventoryRemoveItem", new object[] { item.name });
+                    
+                    // Remove item from inventory
+                    m_InventoryItems.Remove(item);
+                    
+                    // Break the loop
+                    break;
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Remove all instances with the same name as interactableData.
+        /// </summary>
+        /// <param name="interactableData"></param>
+        public void RemoveAllItem(InteractableData interactableData)
+        {
+            InitInventoryItems();
+            foreach (var item in m_InventoryItems)
+            {
+                // Check if the item name is the same as interactableData name
+                if (item.name == interactableData.name)
+                {
+                    // Call OnRemoveItem in Lua 
+                    ScriptManager.Instance.CallFunction("OnInventoryRemoveItem", new object[] { item.name });
+                    
+                    // Remove item from inventory
+                    m_InventoryItems.Remove(item);
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Remove an item at the specified index.
+        /// </summary>
+        /// <param name="index"></param>
+        public void RemoveItemAt(int index)
+        {
+            InitInventoryItems();
+            // Check if inventoryItems[index] is not null
+            if (m_InventoryItems.ElementAtOrDefault(index) != null)
+            {
+                // Call OnRemoveItem in Lua 
+                ScriptManager.Instance.CallFunction("OnInventoryRemoveItem", new object[] { m_InventoryItems[index].name });
+                
+                // Remove item from inventory
+                m_InventoryItems.RemoveAt(index);
+            }
         }
     }
 }

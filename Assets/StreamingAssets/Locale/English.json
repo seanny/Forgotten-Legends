@@ -45,6 +45,10 @@
             "value":"Completed:"
         },
         {
+            "key":"QuestFailed",
+            "value":"Failed:"
+        },
+        {
             "key":"Test01_Name",
             "value":"Bounty Hunter"
         },

@@ -8,6 +8,7 @@
 // 	without the consent of Outlaw Games Studio.
 //
 using System.Collections.Generic;
+using Core.Dialogue;
 using Core.Interactable;
 using Core.Utility;
 using UnityEngine;
@@ -34,10 +35,20 @@ namespace Core.Inventory
         public Button buttonKeys;
         public Button buttonMisc;
 
-        private List<GameObject> m_Buttons;
-        private KeyCode m_InventoryKey;
-        private bool m_Enabled;
+        [SerializeField] private List<GameObject> m_Buttons;
 
+        public void ShowInventoryList(List<InteractableData> interactableData)
+        {
+            interactableDataList.Clear();
+            interactableDataList = interactableData;
+            ToggleUI(true);
+        }
+
+        public void HideInventoryList()
+        {
+            ToggleUI(false);
+        }
+        
         private void ClearButtons()
         {
             for (int i = 0; i < m_Buttons.Count; i++)
@@ -52,7 +63,7 @@ namespace Core.Inventory
             for (int i = 0; i < interactableDataList.Count; i++)
             {
                 GameObject button = Instantiate(buttonPrefab, scrollListParent.transform, true);
-                button.GetComponent<TextMeshProUGUI>().text = interactableDataList[i].name;
+                button.GetComponent<DialogueOption>().optionKey = interactableDataList[i].name;
                 m_Buttons.Add(button);
             }
         }
@@ -65,6 +76,7 @@ namespace Core.Inventory
                 {
                     GameObject button = Instantiate(buttonPrefab, scrollListParent.transform, true);
                     button.GetComponent<TextMeshProUGUI>().text = interactableDataList[i].name;
+                    ImageUtils.SetHeight(button.GetComponent<RectTransform>(), 100);
                     m_Buttons.Add(button);                    
                 }
             }
@@ -85,7 +97,6 @@ namespace Core.Inventory
         private void EnableUI(bool toggle)
         {
             inventoryUIGameObject.SetActive(toggle);
-            m_Enabled = toggle;
             PauseUtility.TogglePause(toggle);
         }
 
@@ -100,7 +111,6 @@ namespace Core.Inventory
         private void Start()
         {
             m_Buttons = new List<GameObject>();
-            m_InventoryKey = KeyCode.I;
             buttonAllItems.onClick.AddListener(() => ProcessOnClick());
             buttonWeapons.onClick.AddListener(() => ProcessOnClick(InteractableData.InteractableCategory.Weapon));
             buttonArmour.onClick.AddListener(() => ProcessOnClick(InteractableData.InteractableCategory.Armour));
@@ -110,15 +120,6 @@ namespace Core.Inventory
             buttonBooks.onClick.AddListener(() => ProcessOnClick(InteractableData.InteractableCategory.Book));
             buttonKeys.onClick.AddListener(() => ProcessOnClick(InteractableData.InteractableCategory.Key));
             buttonMisc.onClick.AddListener(() => ProcessOnClick(InteractableData.InteractableCategory.Other));
-        }
-
-        // Update is called once per frame
-        private void Update()
-        {
-            if (Input.GetKeyUp(m_InventoryKey))
-            {
-                ToggleUI(!m_Enabled);
-            }
         }
     }
 }

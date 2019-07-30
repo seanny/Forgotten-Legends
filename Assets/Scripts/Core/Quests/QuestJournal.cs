@@ -20,8 +20,10 @@ namespace Core.Quests
 {
     public class QuestJournal : Singleton<QuestJournal>
     {
-        private const float NAME_FADE = 2.5f;
-        private const float OBJECTIVE_FADE = 5f;
+        private const float NAME_FADE = 0.5f;
+        private const float NAME_FADE_OUT = 1.0f;
+        private const float OBJECTIVE_FADE = 0.5f;
+        private const float OBJECTIVE_FADE_OUT = 1.5f;
 
         public TextMeshProUGUI questName;
         public TextMeshProUGUI questObjective;
@@ -57,7 +59,11 @@ namespace Core.Quests
             }
             if (Input.GetKeyUp(KeyCode.Alpha3))
             {
-                CompleteQuest("Test01");
+                CompleteQuest("Test01", false);
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha4))
+            {
+                CompleteQuest("Test01", true);
             }
         }
 
@@ -86,13 +92,13 @@ namespace Core.Quests
 
         private void FadeInName()
         {
-            ImageUtils.FadeAlpha(questName, 1.0f, 0.5f);
+            ImageUtils.FadeAlpha(questName, 1.0f, NAME_FADE);
             StartCoroutine(FadeOutQuestName());
         }
 
         private void FadeInObjective()
         {
-            ImageUtils.FadeAlpha(questObjective, 1.0f, 0.5f);
+            ImageUtils.FadeAlpha(questObjective, 1.0f, OBJECTIVE_FADE);
             StartCoroutine(FadeOutQuestObjective());
         }
 
@@ -126,16 +132,16 @@ namespace Core.Quests
         IEnumerator FadeOutQuestName()
         {
             yield return new WaitForSeconds(NAME_FADE);
-            ImageUtils.FadeAlpha(questName, 0.0f, 1.0f);
+            ImageUtils.FadeAlpha(questName, 0.0f, NAME_FADE_OUT);
         }
 
         IEnumerator FadeOutQuestObjective()
         {
             yield return new WaitForSeconds(OBJECTIVE_FADE);
-            ImageUtils.FadeAlpha(questObjective, 0.0f, 1.5f);
+            ImageUtils.FadeAlpha(questObjective, 0.0f, OBJECTIVE_FADE_OUT);
         }
 
-        public void CompleteQuest(string questID)
+        public void CompleteQuest(string questID, bool isFailed)
         {
             for(int i = 0; i < activeQuests.Count; i++)
             {
@@ -143,10 +149,22 @@ namespace Core.Quests
                 {
                     completedQuests.Add(activeQuests.ElementAt(i).Key);
 
-                    // TODO: Show the quest completed UI
-                    questName.text =
-                        $"{LocalisationManager.Instance.GetLocalisedString("QuestCompleted")} {LocalisationManager.Instance.GetLocalisedString(activeQuests.ElementAt(i).Key.questName)}";
+                    if (isFailed)
+                    {
+                        // Show the quest completed UI
+                        questName.text =
+                            $"{LocalisationManager.Instance.GetLocalisedString("QuestFailed")} ";
+                    }
+                    else
+                    {
+                        // Show the quest failed UI
+                        questName.text =
+                            $"{LocalisationManager.Instance.GetLocalisedString("QuestCompleted")} ";
+                    }
 
+                    questName.text +=
+                        $"{LocalisationManager.Instance.GetLocalisedString(activeQuests.ElementAt(i).Key.questName)}";
+                    
                     FadeInName();
 
                     m_QuestCompletedSource.Play();

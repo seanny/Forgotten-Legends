@@ -9,12 +9,37 @@
 //
 
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.Utility
 {
     public static class ImageUtils
     {
+        public static void SetSize(RectTransform self, Vector2 size)
+        {
+            Vector2 oldSize = self.rect.size;
+            Vector2 deltaSize = size - oldSize;
+ 
+            self.offsetMin = self.offsetMin - new Vector2(
+                                 deltaSize.x * self.pivot.x,
+                                 deltaSize.y * self.pivot.y);
+            self.offsetMax = self.offsetMax + new Vector2(
+                                 deltaSize.x * (1f - self.pivot.x),
+                                 deltaSize.y * (1f - self.pivot.y));
+        }
+ 
+        public static void SetWidth(RectTransform self, float size)
+        {
+            SetSize(self, new Vector2(size, self.rect.size.y));
+        }
+ 
+        public static void SetHeight(RectTransform self, float size)
+        {
+            SetSize(self, new Vector2(self.rect.size.x, size));
+        }
+
+        
         public static void SetAlpha(Image image, float alpha)
         {
             image.canvasRenderer.SetAlpha(alpha);

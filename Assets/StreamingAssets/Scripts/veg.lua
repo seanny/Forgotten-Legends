@@ -1,7 +1,6 @@
 -- OnStart is triggered as soon as the lua VM executes the script.
 -- You would include any initialisation here.
 function OnStart()
-    print("OnStart fruit.lua")
     Actor.SetWorldspace("Player","Scythia")
 end
 
@@ -25,6 +24,9 @@ function OnDialogueContinue(key)
         Dialogue.ShowDialogueChoices(true)
     end
     if key == "GuardDialogueArrest02" then
+        Dialogue.ShowDialogueChoices(true)
+    end
+    if key == "GuardDialogueBanditBounty02" then
         Dialogue.ShowDialogueChoices(true)
     end
 end
@@ -55,5 +57,79 @@ function OnDialogueOption(file, key)
         -- If the player uses the escape option, exit the dialogue and make guards hostile.
         Dialogue.ExitDialogue()
     end
+    if key == "GuardDialogueBanditBountyOptionOkay" then
+        -- If the player says Okay, then give them a quest to go collect a bounty.
+        Quest.GiveQuest("Test01")
+        Dialogue.ExitDialogue()
+    end
+    if key == "GuardDialogueBanditBountyOptionNevermind" then
+        -- If they say nevermind, exit the dialogue.
+        Dialogue.ExitDialogue()
+    end
     return 0
+end
+
+function OnActorDeath(actorID)
+    print("OnActorDeath")
+end
+
+function OnActorStart(actorID)
+    print("OnActorStart")
+end
+
+function OnActorCombatStart(actorID, enemyID)
+    print("OnActorCombatStart")
+end
+
+function OnActorCombatEnd(actorID, enemyID)
+    print("OnActorCombatEnd")
+end
+
+function OnActorUpdate(actorID)
+    print("OnActorUpdate")
+end
+
+-- OnQuestStart is triggered when the player is given a quest
+function OnQuestStart(questID)
+    print("OnQuestStart")
+end
+
+-- OnQuestEnd is triggered when the player finishes a completes or fails a quest
+function OnQuestEnd(questID, questFailed)
+    print("OnQuestEnd")
+end
+
+-- OnQuestStageStart is triggered when the player is given a new quest stage
+function OnQuestStageStart(questID, questStage)
+    print("OnQuestStageStart")
+end
+
+function OnQuestStageEnd(questID, questStage, questStageFailed)
+    print("OnQuestStageEnd")
+end
+
+-- OnInventoryAddItem is triggered when the player is given an item in their inventory
+function OnInventoryAddItem(interactableData)
+    print("OnInventoryAddItem")
+end
+
+-- OnInventoryRemoveItem is triggered when the player is has an item removed from their inventory
+function OnInventoryRemoveItem(interactableData)
+    print("OnInventoryRemoveItem")
+end
+
+function OnGameFadeOut()
+    print("OnGameFadeOut")
+end
+
+function OnGameFadeIn()
+    print("OnGameFadeIn")
+end
+
+function OnGameSave()
+    print("OnGameSave")
+end
+
+function OnGameLoad()
+    print("OnGameSave")
 end

@@ -8,6 +8,7 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
+using Core.Inventory;
 using UnityEngine;
 
 namespace Core.Actor
@@ -18,6 +19,7 @@ namespace Core.Actor
         public ActorStats m_ActorStats;
         public ActorClass m_ActorClass;
         public ActorHealth m_HealthScript;
+        public EntityInventory actorInventory;
         public string actorWorldspace;
 
         public static Actor GetPlayer()
@@ -54,6 +56,8 @@ namespace Core.Actor
             {
                 actorID = gameObject.name;
             }
+
+            actorInventory = gameObject.AddComponent<EntityInventory>();
         }
     }
 }

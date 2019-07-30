@@ -8,6 +8,8 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
+using System.Collections;
+using Core.Inventory;
 using Core.Player;
 using UnityEngine;
 
@@ -19,18 +21,25 @@ namespace Core.Potion
         public PotionStats potionStats;
         private AudioSource m_AudioSource;
         private bool m_Used;
+        public bool isShown { get; private set; } 
 
         private void Start()
         {
-            InteractableData.name = "Potion";
+            interactableData.name = "Potion";
             m_AudioSource = gameObject.AddComponent<AudioSource>();
             m_AudioSource.playOnAwake = false;
             m_AudioSource.clip = soundEffect;
+            isShown = true;
         }
 
         public override void Interact()
         {
             base.Interact();
+            PlayerManager.Instance.Player.actorInventory.AddItem(this);
+            GetComponent<Renderer>().enabled = false;
+            m_AudioSource.Play();
+            m_Used = true;
+            isShown = false;
         }
 
         public virtual void OnPotionUse()
@@ -56,6 +65,7 @@ namespace Core.Potion
 
         protected override void Update()
         {
+            base.Update();
             if(m_Used == true && !m_AudioSource.isPlaying)
             {
                 Destroy(gameObject);

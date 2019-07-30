@@ -3730,6 +3730,7 @@ MonoBehaviour:
   m_ActorClass:
     currentClass: 0
   m_HealthScript: {fileID: 0}
+  actorInventory: {fileID: 0}
   actorWorldspace: 
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
@@ -3906,10 +3907,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbfe718017cd4e80aae2f845f94bbce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractableData:
-    type: 0
+  interactableData:
+    type: 1
     category: 0
-    name: 
+    name: Guard
 --- !u!1 &561935271
 GameObject:
   m_ObjectHideFlags: 0
@@ -4135,7 +4136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ab2bd4144ac4f20b0a6df8e0f7ff02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 1316548632839680943, guid: 731de57dd5da44814a8a6f4e7273468f,
+  buttonPrefab: {fileID: 7539873392056672576, guid: 68d8a30d4863843d498ddae7acad868e,
     type: 3}
   inventoryUIGameObject: {fileID: 711187299}
   scrollListParent: {fileID: 1399713292}
@@ -4149,6 +4150,7 @@ MonoBehaviour:
   buttonBooks: {fileID: 1303190010}
   buttonKeys: {fileID: 158892219}
   buttonMisc: {fileID: 1406580318}
+  m_Buttons: []
 --- !u!1 &605397463
 GameObject:
   m_ObjectHideFlags: 0
@@ -7767,6 +7769,7 @@ MonoBehaviour:
   m_ActorClass:
     currentClass: 0
   m_HealthScript: {fileID: 0}
+  actorInventory: {fileID: 0}
   actorWorldspace: 
 --- !u!114 &1369134219
 MonoBehaviour:
@@ -8487,6 +8490,7 @@ MonoBehaviour:
   m_ActorClass:
     currentClass: 0
   m_HealthScript: {fileID: 0}
+  actorInventory: {fileID: 0}
   actorWorldspace: 
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
@@ -8553,10 +8557,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbfe718017cd4e80aae2f845f94bbce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractableData:
-    type: 0
+  interactableData:
+    type: 1
     category: 0
-    name: 
+    name: Enemy
 --- !u!1 &1439628621
 GameObject:
   m_ObjectHideFlags: 0
@@ -10291,6 +10295,7 @@ Transform:
   - {fileID: 94015324}
   - {fileID: 11396428}
   - {fileID: 480346076}
+  - {fileID: 1894952735}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10323,7 +10328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714634764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.97, y: 2, z: 0}
+  m_LocalPosition: {x: 21.97, y: 2, z: 20}
   m_LocalScale: {x: 0.1, y: 0.2, z: 0.1}
   m_Children: []
   m_Father: {fileID: 463515667}
@@ -10415,10 +10420,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185af66b21ed54d79b5d59b8a0fb3a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractableData:
+  interactableData:
     type: 0
     category: 0
-    name: 
+    name: Potion
   soundEffect: {fileID: 8300000, guid: b32b94345837b4402af54c51f4dc74c3, type: 3}
   potionStats:
     potionTime: 0
@@ -10525,6 +10530,7 @@ MonoBehaviour:
   m_ActorClass:
     currentClass: 0
   m_HealthScript: {fileID: 0}
+  actorInventory: {fileID: 0}
   actorWorldspace: 
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
@@ -10701,10 +10707,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbfe718017cd4e80aae2f845f94bbce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractableData:
-    type: 0
+  interactableData:
+    type: 1
     category: 0
-    name: 
+    name: Guard
 --- !u!1 &1746928878
 GameObject:
   m_ObjectHideFlags: 0
@@ -10848,7 +10854,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753195441}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 6, z: 0}
+  m_LocalPosition: {x: 0, y: 25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1996849538}
@@ -11267,7 +11273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1857282369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1369134215}
@@ -11482,6 +11488,49 @@ Transform:
   m_Father: {fileID: 818767304}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1894952734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1894952735}
+  - component: {fileID: 1894952736}
+  m_Layer: 0
+  m_Name: '@InventoryManager'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1894952735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894952734}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1689046980}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1894952736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894952734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac53c4159de48a9b56d50274a1246c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1911856112
 GameObject:
   m_ObjectHideFlags: 0
@@ -12708,7 +12757,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089234616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
