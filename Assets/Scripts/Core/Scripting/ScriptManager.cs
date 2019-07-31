@@ -21,7 +21,7 @@ namespace Core.Scripting
         private LuaVM m_LuaVM;
         private string m_CoreScripts;
         private string m_ModScripts;
-        private List<string> m_LoadOrder;
+        public List<string> m_LoadOrder;
 
         /// <summary>
         /// Calls a function which is specified in functionName.

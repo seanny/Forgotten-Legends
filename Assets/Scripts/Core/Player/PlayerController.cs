@@ -8,6 +8,8 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
+using System.Runtime.CompilerServices;
+using Core.Actor;
 using UnityEngine;
 
 namespace Core.Player
@@ -25,8 +27,10 @@ namespace Core.Player
         [SerializeField] private float m_TurnSmoothVelocity;
         [SerializeField] private Rigidbody m_Rigidbody;
         private bool m_Jumping;
+        private bool m_Falling;
 
         private Transform m_Camera;
+        private ActorAnimationController m_AnimationController;
 
         #endregion
 
@@ -36,6 +40,7 @@ namespace Core.Player
         {
             m_Rigidbody = GetComponent<Rigidbody>();
             m_Camera = UnityEngine.Camera.main.transform;
+            m_AnimationController = GetComponent<ActorAnimationController>();
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -49,9 +54,22 @@ namespace Core.Player
         // Update is called once per frame
         private void Update()
         {
-            // TODO: Set player to face direction of camera when pressing forward button.
             velocity = m_Rigidbody.velocity;
 
+            if (velocity.y < -5.0f)
+            {
+                m_Falling = true;
+                m_AnimationController.StartFalling();
+                Debug.Log($"Falling {velocity.y}");
+                return;
+            }
+
+            if (m_Falling == true)
+            {
+                m_AnimationController.StopFalling();
+                m_Falling = false;
+            }
+            
             if (Input.GetKeyUp(KeyCode.Space) && m_Jumping == false)
             {
                 m_Jumping = true;
@@ -72,6 +90,22 @@ namespace Core.Player
             float _speed = ((_running) ? m_RunSpeed : m_WalkSpeed) * _inputDir.magnitude;
 
             transform.Translate(transform.forward * _speed * Time.deltaTime, Space.World);
+
+            if (_inputDir != Vector2.zero)
+            {
+                if (!_running)
+                {
+                    m_AnimationController.StartWalking();
+                }
+                else
+                {
+                    m_AnimationController.StartRunning();
+                }
+            }
+            else
+            {
+                m_AnimationController.StartIdle();
+            }
         }
 
         #endregion
