@@ -16,9 +16,7 @@ namespace Core.Actor
     public class ActorAnimationController : MonoBehaviour
     {
         public Animator m_Animator;
-        private bool m_IsWalking;
-        private bool m_IsRunning;
-        
+
         private void Start()
         {
             m_Animator = GetComponent<Animator>();
