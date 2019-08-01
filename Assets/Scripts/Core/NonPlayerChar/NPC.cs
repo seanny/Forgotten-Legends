@@ -54,6 +54,7 @@ namespace Core.NonPlayerChar
                 m_EnemyScript = gameObject.AddComponent<NPCEnemy>();
             }
 
+            base.m_HealthScript = gameObject.AddComponent<ActorHealth>();
 
             NPCDialogueScript = gameObject.AddComponent<NPCDialogue>();
             
