@@ -39,7 +39,14 @@
           "g": "FF",
           "b": "00"
         }
-      }
+      },
+      "objectInteractable":
+      {
+        "isInteractable": false,
+        "interactionType": 0
+      },
+      "objectCollision": true,
+      "objectRigidbody": false
     }
   ]
 }

@@ -19,12 +19,28 @@ namespace Core.Inventory
     public class EntityInventory : MonoBehaviour
     {
         public List<InteractableData> inventoryItems => m_InventoryItems;
+        public InteractableData selectedWeapon { get; private set; }
 
         [SerializeField] private List<InteractableData> m_InventoryItems;
 
         private void Start()
         {
             InitInventoryItems();
+        }
+
+        public void SelectWeapon(InteractableData weaponData)
+        {
+            if (weaponData.category != InteractableData.InteractableCategory.Weapon)
+            {
+                return;
+            }
+            foreach (var item in inventoryItems)
+            {
+                if (item.category == weaponData.category)
+                {
+                    selectedWeapon = item;
+                }
+            }
         }
 
         /// <summary>
@@ -49,6 +65,11 @@ namespace Core.Inventory
             
             // Create instance of interactableData with the data from interactable
             InteractableData interactableData = interactable.interactableData;
+
+            if (interactableData.category == InteractableData.InteractableCategory.Weapon && selectedWeapon == null)
+            {
+                selectedWeapon = interactableData;
+            }
             
             // Add the instance to the list
             m_InventoryItems.Add(interactableData);

@@ -18,7 +18,7 @@ namespace Core.Inventory
     {
         private KeyCode m_InventoryKey;
         private bool m_Enabled;
-        
+
         private void Start()
         {
             m_InventoryKey = KeyCode.I;

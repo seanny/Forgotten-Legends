@@ -3203,6 +3203,8 @@ MonoBehaviour:
   m_HealthScript: {fileID: 0}
   actorInventory: {fileID: 0}
   actorWorldspace: 
+  actorCombat: {fileID: 0}
+  animationController: {fileID: 0}
 --- !u!114 &461000178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3235,6 +3237,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 0}
+--- !u!114 &461000180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461000171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c347d245d4428f8b34aaaeb24edbf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackButton: 0
+--- !u!114 &461000181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461000171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5ff434714f84c34bd0848c2a3a8810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AssignedActor: {fileID: 0}
+  attackCooldown: 0
+  nextAttackCooldown: 0
 --- !u!1 &463515666
 GameObject:
   m_ObjectHideFlags: 0
@@ -3976,6 +4006,8 @@ MonoBehaviour:
   m_HealthScript: {fileID: 0}
   actorInventory: {fileID: 0}
   actorWorldspace: 
+  actorCombat: {fileID: 0}
+  animationController: {fileID: 0}
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
   m_SightScript: {fileID: 0}
@@ -6700,21 +6732,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5410154681692225863, guid: 1260278d2fc6146aab07ffca0a672e62,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4095451151563758915, guid: 1260278d2fc6146aab07ffca0a672e62,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -8849957759098418870, guid: 1260278d2fc6146aab07ffca0a672e62,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1260278d2fc6146aab07ffca0a672e62,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6769,6 +6786,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410154681692225863, guid: 1260278d2fc6146aab07ffca0a672e62,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095451151563758915, guid: 1260278d2fc6146aab07ffca0a672e62,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8849957759098418870, guid: 1260278d2fc6146aab07ffca0a672e62,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7199902334543741925, guid: 1260278d2fc6146aab07ffca0a672e62,
         type: 3}
@@ -9001,6 +9033,8 @@ MonoBehaviour:
   m_HealthScript: {fileID: 0}
   actorInventory: {fileID: 0}
   actorWorldspace: 
+  actorCombat: {fileID: 0}
+  animationController: {fileID: 0}
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
   m_SightScript: {fileID: 0}
@@ -11041,6 +11075,8 @@ MonoBehaviour:
   m_HealthScript: {fileID: 0}
   actorInventory: {fileID: 0}
   actorWorldspace: 
+  actorCombat: {fileID: 0}
+  animationController: {fileID: 0}
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
   m_SightScript: {fileID: 0}

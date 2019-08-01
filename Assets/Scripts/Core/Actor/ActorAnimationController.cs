@@ -63,5 +63,11 @@ namespace Core.Actor
         {
             m_Animator.SetInteger("Jumping", 1);
         }
+
+        public void SwordAttack(bool attack)
+        {
+            StartIdle();
+            m_Animator.SetBool("SwordAttack", attack);
+        }
     }
 }

@@ -48,6 +48,9 @@ namespace Core.World
         public ObjectVector objectScale;
         public bool objectWalkable;
         public ObjectLight objectLight;
+        public ObjectInteractable objectInteractable;
+        public bool objectCollision;
+        public bool objectRigidbody;
     }
 
     [Serializable]
@@ -84,5 +87,12 @@ namespace Core.World
         public float y;
         public float z;
         public float w;
+    }
+
+    [Serializable]
+    public class ObjectInteractable
+    {
+        public bool isInteractable;
+        public int interactionType;
     }
 }

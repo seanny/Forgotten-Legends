@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using Core.Camera;
+using Core.MathUtil;
 using Core.Player;
 using Core.Scripting;
 using UnityEngine;
@@ -61,6 +62,18 @@ namespace Core.Interactable
         {
             InitData();
             interactableData.category = interactCat;
+        }
+
+        public void SetInteractableName(string name)
+        {
+            InitData();
+            interactableData.name = name;
+        }
+        
+        public void SetInteractablePosition(Vector3 position)
+        {
+            InitData();
+            interactableData.position = new Vec3(position);
         }
         
         public bool InSight()

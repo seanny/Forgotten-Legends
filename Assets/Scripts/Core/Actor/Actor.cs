@@ -8,11 +8,14 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
+using Core.Combat;
 using Core.Inventory;
 using UnityEngine;
 
 namespace Core.Actor
 {
+    [RequireComponent(typeof(CombatBehaviour))]
+    [RequireComponent(typeof(ActorAnimationController))]
     public abstract class Actor : MonoBehaviour
     {
         public string actorID;
@@ -21,6 +24,8 @@ namespace Core.Actor
         public ActorHealth m_HealthScript;
         public EntityInventory actorInventory;
         public string actorWorldspace;
+        public CombatBehaviour actorCombat;
+        public ActorAnimationController animationController;
 
         public static Actor GetPlayer()
         {
@@ -58,6 +63,10 @@ namespace Core.Actor
             }
 
             actorInventory = gameObject.AddComponent<EntityInventory>();
+
+            actorCombat = GetComponent<CombatBehaviour>();
+            animationController = GetComponent<ActorAnimationController>();
+
         }
     }
 }

@@ -51,5 +51,14 @@ namespace Core.Actor
                 currentHealth = maxHealth;
             }
         }
+
+        public void TakeHealth(int health)
+        {
+            currentHealth -= health;
+            if (currentHealth < 0)
+            {
+                currentHealth = 0;
+            }
+        }
     }
 }

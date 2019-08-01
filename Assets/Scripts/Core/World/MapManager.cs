@@ -11,6 +11,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
+using Core.Interactable;
 using Core.MeshLoading;
 using Core.Utility;
 using UnityEngine;
@@ -172,6 +174,9 @@ namespace Core.World
                 _gameObject.transform.localScale = new Vector3(objectItem.objectScale.x, objectItem.objectScale.y, objectItem.objectScale.z);
                 AddNavMeshSourceIfPossible(objectItem, _gameObject);
                 AddLightIfPossible(objectItem, _gameObject);
+                AddInteractionIfPossible(objectItem, _gameObject);
+                AddColliderIfPossible(objectItem, _gameObject);
+                AddRigidbodyIfPossible(objectItem, _gameObject);
                 m_GameObjects.Add(_gameObject);
                 return true;
             }
@@ -209,12 +214,16 @@ namespace Core.World
 
             if (_gameObject != null)
             {
+                Debug.Log($"Adding primitive object {_gameObject.name}...");
                 _gameObject.transform.position = new Vector3(objectItem.objectPosition.x, objectItem.objectPosition.y, objectItem.objectPosition.z);
                 _gameObject.transform.rotation = new Quaternion(objectItem.objectRotation.x, objectItem.objectRotation.y,
                     objectItem.objectRotation.z, objectItem.objectRotation.w);
                 _gameObject.transform.localScale = new Vector3(objectItem.objectScale.x, objectItem.objectScale.y, objectItem.objectScale.z);
                 AddNavMeshSourceIfPossible(objectItem, _gameObject);
                 AddLightIfPossible(objectItem, _gameObject);
+                AddInteractionIfPossible(objectItem, _gameObject);
+                AddColliderIfPossible(objectItem, _gameObject);
+                AddRigidbodyIfPossible(objectItem, _gameObject);
                 m_GameObjects.Add(_gameObject);
                 return true;
             }
@@ -251,6 +260,62 @@ namespace Core.World
                     int.Parse(objectItem.objectLight.lightColour.g, System.Globalization.NumberStyles.HexNumber),
                     int.Parse(objectItem.objectLight.lightColour.b, System.Globalization.NumberStyles.HexNumber)
                 );
+            }
+        }
+
+        private void AddInteractionIfPossible(ObjectItem objectItem, GameObject gameObject)
+        {
+            if (objectItem.objectInteractable.isInteractable == true)
+            {
+                gameObject.AddComponent<Interactable.Interactable>();
+                gameObject.GetComponent<Interactable.Interactable>().SetInteractableName(objectItem.objectFile);
+                switch (objectItem.objectInteractable.interactionType)
+                {
+                    case 0:
+                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Weapon;
+                        break;
+                    case 1:
+                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Armour;
+                        break;
+                    case 2:
+                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Book;
+                        break;
+                    case 3:
+                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Food;
+                        break;
+                    case 4:
+                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Key;
+                        break;
+                    case 5:
+                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Magic;
+                        break;
+                    case 6:
+                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Other;
+                        break;
+                    case 7:
+                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Potion;
+                        break;
+                    case 8:
+                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Other;
+                        break;
+                }
+            }
+        }
+
+        private void AddColliderIfPossible(ObjectItem objectItem, GameObject gameObject)
+        {
+            if (objectItem.objectCollision == true)
+            {
+                gameObject.AddComponent<MeshCollider>();
+                //gameObject.GetComponent<MeshCollider>().sharedMesh = gameObject.GetComponentInChildren<Mesh>();
+            }
+        }
+        
+        private void AddRigidbodyIfPossible(ObjectItem objectItem, GameObject gameObject)
+        {
+            if (objectItem.objectRigidbody == true)
+            {
+                gameObject.AddComponent<Rigidbody>();
             }
         }
     
