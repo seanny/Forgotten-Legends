@@ -40,6 +40,8 @@ namespace Core.Actor
         {
             m_Animator.SetInteger("Walking", 0);
             m_Animator.SetInteger("Running", 0);
+            m_Animator.SetInteger("Jumping", 0);
+            m_Animator.SetInteger("Falling", 0);
         }
         
         public void StartRunning()
@@ -57,6 +59,11 @@ namespace Core.Actor
         {
             m_Animator.SetInteger("Falling", 0);
             m_Animator.SetInteger("Landing", 1);
+        }
+        
+        public void StartJump()
+        {
+            m_Animator.SetInteger("Jumping", 1);
         }
     }
 }

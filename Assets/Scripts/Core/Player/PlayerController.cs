@@ -45,8 +45,14 @@ namespace Core.Player
 
         private void OnCollisionEnter(Collision collision)
         {
+            if (m_Falling == true)
+            {
+                m_AnimationController.StopFalling();
+                m_Falling = false;
+            }
             if (m_Jumping == true)
             {
+                m_AnimationController.StopFalling();
                 m_Jumping = false;
             }
         }
@@ -56,7 +62,7 @@ namespace Core.Player
         {
             velocity = m_Rigidbody.velocity;
 
-            if (velocity.y < -5.0f)
+            if (velocity.y < -7.5f)
             {
                 m_Falling = true;
                 m_AnimationController.StartFalling();
@@ -64,14 +70,9 @@ namespace Core.Player
                 return;
             }
 
-            if (m_Falling == true)
-            {
-                m_AnimationController.StopFalling();
-                m_Falling = false;
-            }
-            
             if (Input.GetKeyUp(KeyCode.Space) && m_Jumping == false)
             {
+                m_AnimationController.StartJump();
                 m_Jumping = true;
                 transform.Translate(transform.up * m_JumpForce * Time.deltaTime, Space.World);
                 //m_Rigidbody.AddForce(new Vector3(0, m_JumpForce * Time.deltaTime, 0));
@@ -91,20 +92,23 @@ namespace Core.Player
 
             transform.Translate(transform.forward * _speed * Time.deltaTime, Space.World);
 
-            if (_inputDir != Vector2.zero)
+            if (m_Jumping == false)
             {
-                if (!_running)
+                if (_inputDir != Vector2.zero)
                 {
-                    m_AnimationController.StartWalking();
+                    if (!_running)
+                    {
+                        m_AnimationController.StartWalking();
+                    }
+                    else
+                    {
+                        m_AnimationController.StartRunning();
+                    }
                 }
                 else
                 {
-                    m_AnimationController.StartRunning();
+                    m_AnimationController.StartIdle();
                 }
-            }
-            else
-            {
-                m_AnimationController.StartIdle();
             }
         }
 
