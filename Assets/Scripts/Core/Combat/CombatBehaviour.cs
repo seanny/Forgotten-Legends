@@ -21,9 +21,10 @@ namespace Core.Combat
     {
         public Actor.Actor m_AssignedActor;
         public float attackCooldown;
-
-        private bool m_PowerAttack;
+        public MeleeWeaponAttackVector m_MeleeWeaponAttackVector;
         
+        private bool m_PowerAttack;
+
         private void Start()
         {
             InitActor();
@@ -34,6 +35,11 @@ namespace Core.Combat
             if (m_AssignedActor == null)
             {
                 m_AssignedActor = GetComponent<Actor.Actor>();
+            }
+
+            if (m_MeleeWeaponAttackVector == null)
+            {
+                m_MeleeWeaponAttackVector = GetComponentInChildren<MeleeWeaponAttackVector>();
             }
         }
 
@@ -49,7 +55,7 @@ namespace Core.Combat
             m_PowerAttack = powerAttack;
             AudioSource.PlayClipAtPoint(CombatManager.Instance.swordSwing, m_AssignedActor.gameObject.transform.position);
             m_AssignedActor.animationController.SwordAttack(true);
-            attackCooldown = 2.5f;
+            attackCooldown = 1.15f;
         }
 
         private void Update()

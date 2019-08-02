@@ -16,36 +16,73 @@ namespace Core.Actor
     public class ActorAnimationController : MonoBehaviour
     {
         public Animator m_Animator;
-
+        public bool hasWeapon = true;
+        private float m_SwordDrawTime;
+        
         private void Start()
         {
             m_Animator = GetComponent<Animator>();
-            m_Animator.Play("Idle");
+            SetIdle();
+        }
+        
+        public void SetIdle()
+        {
+            StartIdle();
+            m_Animator.SetBool("SwordDraw", false);
         }
 
         public void IdleToWalking()
         {
-            m_Animator.SetInteger("Walking", 1);
+            if (!hasWeapon)
+            {
+                m_Animator.SetInteger("Walking", 1);
+            }
+            else
+            {
+                m_Animator.SetBool("SwordWalk", true);
+            }
         }
 
         public void StartWalking()
         {
-            m_Animator.SetInteger("Walking", 1);
-            m_Animator.SetInteger("Running", 0);
+            if (!hasWeapon)
+            {
+                m_Animator.SetInteger("Walking", 1);
+                m_Animator.SetInteger("Running", 0);
+            }
+            else
+            {
+                m_Animator.SetBool("SwordWalk", true);
+                m_Animator.SetBool("SwordRun", false);
+            }
         }
         
         public void StartIdle()
         {
-            m_Animator.SetInteger("Walking", 0);
-            m_Animator.SetInteger("Running", 0);
-            m_Animator.SetInteger("Jumping", 0);
-            m_Animator.SetInteger("Falling", 0);
+            if (!hasWeapon)
+            {
+                m_Animator.SetInteger("Walking", 0);
+                m_Animator.SetInteger("Running", 0);
+            }
+            else
+            {
+                m_Animator.SetBool("SwordWalk", false);
+                m_Animator.SetBool("SwordRun", false);
+            }
         }
         
         public void StartRunning()
         {
-            m_Animator.SetInteger("Walking", 0);
-            m_Animator.SetInteger("Running", 1);
+            if (!hasWeapon)
+            {
+                m_Animator.SetInteger("Walking", 0);
+                m_Animator.SetInteger("Running", 1);
+            }
+            else
+            {
+                m_Animator.SetBool("SwordWalk", false);
+                m_Animator.SetBool("SwordRun", true);
+            }
         }
 
         public void StartFalling()
@@ -61,13 +98,46 @@ namespace Core.Actor
         
         public void StartJump()
         {
-            m_Animator.SetInteger("Jumping", 1);
+            if (!hasWeapon)
+            {
+                m_Animator.SetInteger("Jumping", 1);
+            }
+            else
+            {
+                m_Animator.SetBool("SwordIdleJump", true);
+            }
         }
+
+        public void SwordDraw()
+        {
+            StartIdle();
+            m_Animator.SetBool("SwordDraw", true);
+            m_SwordDrawTime = 1.0f;
+        }
+
+        /*private void Update()
+        {
+            if (m_SwordDrawTime > 0)
+            {
+                m_SwordDrawTime -= Time.deltaTime;
+                if (m_SwordDrawTime <= 0)
+                {
+                    m_Animator.SetBool("SwordDraw", false);
+                }
+            }
+        }*/
 
         public void SwordAttack(bool attack)
         {
             StartIdle();
-            m_Animator.SetBool("SwordAttack", attack);
+            if (!hasWeapon)
+            {
+                m_Animator.SetBool("SwordAttack", attack);
+            }
+            else
+            {
+                m_Animator.SetBool("SwordIdleAttack", attack);
+            }
         }
     }
 }

@@ -19,11 +19,20 @@ namespace Core.Combat
         [SerializeField]
         private Actor.Actor m_Actor;
 
+        private BoxCollider m_Collider;
+
         private void Start()
         {
             m_Actor = GetComponentInParent<Actor.Actor>();
+            m_Collider = GetComponent<BoxCollider>();
+            m_Collider.enabled = false;
         }
 
+        public void EnableCollider()
+        {
+            m_Collider.enabled = true;
+        }
+        
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<Actor.Actor>() != null)
@@ -31,6 +40,7 @@ namespace Core.Combat
                 Actor.Actor victim = other.GetComponent<Actor.Actor>();
                 CombatDamage.ApplyDamage(m_Actor, victim, 5.0f, false);
                 AudioSource.PlayClipAtPoint(CombatManager.Instance.attackDamageSFX, victim.gameObject.transform.position);
+                m_Collider.enabled = false;
             }
         }
     }

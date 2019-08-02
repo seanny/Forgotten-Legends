@@ -9,6 +9,7 @@
 //
 
 using System;
+using Core.Player;
 using UnityEngine;
 
 namespace Core.Combat
@@ -18,5 +19,14 @@ namespace Core.Combat
         public AudioClip attackDamageSFX;
         public AudioClip swordWithdraw;
         public AudioClip swordSwing;
+
+        private void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.R))
+            {
+                PlayerManager.Instance.Player.animationController.SwordDraw();
+                AudioSource.PlayClipAtPoint(swordWithdraw, PlayerManager.Instance.Player.transform.position);
+            }
+        }
     }
 }
