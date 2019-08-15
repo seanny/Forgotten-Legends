@@ -2,5 +2,7 @@
   "meshObj": "TestObject/TestObject.obj",
   "texturePng": "TestObject/TestTexture.png",
   "normalPng": "TestObject/TestNormal.png",
+  "ambientOcclusionPng": "",
+  "heightMapPng": "",
   "objectName": "The Test Object of Lava"
 }

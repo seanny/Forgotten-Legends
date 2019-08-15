@@ -18,6 +18,8 @@ namespace Core.MeshLoading
         public string meshObj;
         public string texturePng;
         public string normalPng;
+        public string ambientOcclusionPng;
+        public string heightMapPng;
         public string objectName;
     }
 }

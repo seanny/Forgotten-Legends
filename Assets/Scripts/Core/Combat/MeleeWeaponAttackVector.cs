@@ -33,6 +33,11 @@ namespace Core.Combat
             m_Collider.enabled = true;
         }
         
+        public void DisableCollider()
+        {
+            m_Collider.enabled = true;
+        }
+        
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<Actor.Actor>() != null)

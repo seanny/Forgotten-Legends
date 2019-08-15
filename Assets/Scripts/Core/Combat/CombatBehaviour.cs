@@ -63,9 +63,14 @@ namespace Core.Combat
             if (attackCooldown > 0.0f)
             {
                 attackCooldown -= Time.deltaTime;
+                if (attackCooldown > 0.0f && attackCooldown <= 0.1f)
+                {
+                    m_MeleeWeaponAttackVector.EnableCollider();                    
+                }
                 if (attackCooldown <= 0)
                 {
                     m_AssignedActor.animationController.SwordAttack(false);
+                    m_MeleeWeaponAttackVector.DisableCollider();
                 }
             }
         }

@@ -2,5 +2,7 @@
   "meshObj": "Test/Test.obj",
   "texturePng": "Test/WarAxe.png",
   "normalPng": "",
+  "ambientOcclusionPng": "",
+  "heightMapPng": "",
   "objectName": "War Axe"
 }

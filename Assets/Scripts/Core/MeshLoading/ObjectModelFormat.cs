@@ -33,6 +33,9 @@ namespace Core.MeshLoading
 
             string objectMesh = objectMetaFile.meshObj;
             string objectTexture = objectMetaFile.texturePng;
+            string objectNormals = objectMetaFile.normalPng;
+            string objectAO = objectMetaFile.ambientOcclusionPng;
+            string objectHM = objectMetaFile.heightMapPng;
         
             string filePath = Path.Combine(Application.streamingAssetsPath, "Models", objectMesh);
             if(!File.Exists(filePath))
@@ -40,12 +43,35 @@ namespace Core.MeshLoading
                 Debug.LogError($"Object Model Format file {objectMesh} does not exist on the local disk.");
                 return null;
             }
-        
+
             string texturePath = Path.Combine(Application.streamingAssetsPath, "Models", objectTexture);
             if(!File.Exists(filePath))
             {
                 Debug.LogError($"Object Model Format file {objectMesh} does not exist on the local disk.");
                 return null;
+            }
+            
+            string normalPath = string.Empty;
+            if (objectNormals.Length > 0)
+            {
+                normalPath = Path.Combine(Application.streamingAssetsPath, "Models", objectNormals);
+                if(!File.Exists(filePath))
+                {
+                    Debug.LogError($"Normal Map file {objectNormals}");
+                    return null;
+                }
+                
+            }
+            
+            string occlusionPath = string.Empty;
+            if (objectAO.Length > 0)
+            {
+                occlusionPath = Path.Combine(Application.streamingAssetsPath, "Models", objectAO);
+                if(!File.Exists(filePath))
+                {
+                    Debug.LogError($"Normal Map file {objectAO}");
+                    return null;
+                }
             }
 
             GameObject _gameObject = new OBJLoader().Load(filePath);
@@ -56,6 +82,15 @@ namespace Core.MeshLoading
             }
         
             _gameObject.transform.parent = parentObject;
+            if (normalPath.Length > 0)
+            {
+                _gameObject.GetComponentInChildren<Renderer>().material.SetTexture("_BumpMap", Utility.ImageUtils.LoadPNG(normalPath));
+            }
+            
+            if (occlusionPath.Length > 0)
+            {
+                _gameObject.GetComponentInChildren<Renderer>().material.SetTexture("_OcclusionMap", Utility.ImageUtils.LoadPNG(occlusionPath));
+            }
 
             return _gameObject;
         }
