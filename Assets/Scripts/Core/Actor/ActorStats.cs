@@ -20,7 +20,8 @@ namespace Core.Actor
         // Actor Health.
         public int currentHealth;
         public int maxHealth;
-
+        public int startingHealth;
+        
         // Actor Level. If maxLevel is 0, then they have no level cap.
         public int currentLevel;
         public int maxLevel;
@@ -35,8 +36,16 @@ namespace Core.Actor
         public int luck;
 
         // Actor Gender
-        public int actorGender;
+        public bool isFemale;
 
+        // Protection Stats
+        public bool isProtected;
+        public bool isUnique;
+        public bool isInvulnerable;
+        
+        // See-Thru
+        public float alphaLevel;
+        
         // Actor faction
         public List<string> factions;
     }

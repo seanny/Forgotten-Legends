@@ -9,6 +9,7 @@
 //
 
 using Core.Actor;
+using Core.DataFormat;
 using Core.Interactable;
 using UnityEngine;
 

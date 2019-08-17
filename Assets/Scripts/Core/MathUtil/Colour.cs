@@ -6,7 +6,12 @@ namespace Core.MathUtil
     [Serializable]
     public class Colour
     {
-        Colour(Color32 colour)
+        public Colour()
+        {
+            
+        }
+        
+        public Colour(Color32 colour)
         {
             r = colour.r;
             g = colour.g;

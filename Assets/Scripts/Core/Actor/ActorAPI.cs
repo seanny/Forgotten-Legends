@@ -141,7 +141,11 @@ namespace Core.Actor
             Actor _actor = Actor.FindActor(actorID);
             if (_actor != null)
             {
-                return _actor.m_ActorStats.actorGender;
+                if (_actor.m_ActorStats.isFemale)
+                {
+                    return 1;
+                }
+                return 0;
             }
             return -1;
         }

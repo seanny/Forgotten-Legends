@@ -9290,6 +9290,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b38ddbb6c7866466bb5671d6e061be37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataFiles:
+  - dataHeader:
+      version: 0
+      author: 
+      description: 
+      parentDataFile: 
+    actionBases:
+    - ID: 
+      scripts: []
+      markerColour:
+        r: 0
+        g: 0
+        b: 0
+        a: 0
+    ActionReferences: []
+    npcBases: []
+    npcReferences: []
 --- !u!1001 &1479212797
 PrefabInstance:
   m_ObjectHideFlags: 0
