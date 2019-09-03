@@ -17,16 +17,32 @@ namespace Core.Game
 {
     public class GameManager : Singleton<GameManager>
     {
+        private const string CORE_OGSD = "ForgottenLegends.ogsd";
+        public List<string> loadOrder;
+
         public List<OGSDFile> dataFiles;
-        
+
         private void Start()
         {
-            OGSDReader ogsdReader = new OGSDReader();
-            ogsdReader.Open(Path.Combine(Application.streamingAssetsPath, "ForgottenLegends.ogsd"));
-            for (int i = 0; i < ogsdReader.dataFile.npcBases.Count; i++)
+            string[] files;
+            files = Directory.GetFiles(Application.streamingAssetsPath);
+            loadOrder.Add(CORE_OGSD);
+            foreach (var file in files)
             {
-                Debug.Log($"{ogsdReader}");
+                if (Path.GetExtension(file) == ".ogsd"
+                    && file != CORE_OGSD)
+                {
+                    loadOrder.Add(file);
+                }
             }
+            
+            foreach (var item in loadOrder)
+            {
+                OGSDReader ogsdReader = new OGSDReader();
+                ogsdReader.Open(Path.Combine(Application.streamingAssetsPath, item));
+                dataFiles.Add(ogsdReader.dataFile);
+            }
+            
             //ScriptExec.Instance.RunMethod("OnGameLoad", new object[] { });
         }
     }

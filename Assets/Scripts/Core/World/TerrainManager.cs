@@ -56,10 +56,10 @@ namespace Core.World
                 Debug.LogError($"Error: {filename} does not exist.");
                 return;
             }
-            StartCoroutine(InternalLoadTerrain(finalPath));
+            //StartCoroutine(InternalLoadTerrain(finalPath));
         }
         
-        private IEnumerator InternalLoadTerrain(string finalPath)
+        /*private IEnumerator InternalLoadTerrain(string finalPath)
         {
             Debug.Log($"Loading terrain {finalPath}...");
             IsLoaded = false;
@@ -93,7 +93,7 @@ namespace Core.World
             m_TerrainData.SetHeights(0,0,dat);
             m_TerrainData.splatPrototypes = terrainTextures;
 
-            /*m_TerrainData.terrainLayers = new TerrainLayer[terrainTextures.Length];
+            m_TerrainData.terrainLayers = new TerrainLayer[terrainTextures.Length];
             Debug.Log($"Terrain Layers: {m_TerrainData.terrainLayers.Length}");
             for (int i = 0; i < m_TerrainData.terrainLayers.Length; i++)
             {
@@ -132,10 +132,10 @@ namespace Core.World
                     map[x, y, 1] = (float)(1 - frac);
                 }
             }
-            m_TerrainData.SetAlphamaps(0, 0, map);*/
+            m_TerrainData.SetAlphamaps(0, 0, map);
             
             IsLoaded = true;
             Debug.Log($"Terrain {finalPath} loaded");
-        }
+        }*/
     }
 }

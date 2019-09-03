@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Core.Factions;
+using Core.World;
 
 namespace Core.DataFormat
 {
@@ -10,14 +12,10 @@ namespace Core.DataFormat
         
         // Models
         
-        // Activator
-        // TODO: Implement Activators
-        public List<ActionBase> actionBases;
+        // Activator Base
 
-        // NPC
-        // TODO: Implement NPC's
-        public List<NPCBase> npcBases;
-        
+        // NPC Base
+
         // Potions
         
         // Weapon Ammo
@@ -53,6 +51,7 @@ namespace Core.DataFormat
         // Explosions
         
         // Factions
+        public List<Faction> factions;
         
         // Tree's
         

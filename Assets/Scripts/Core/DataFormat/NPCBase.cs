@@ -33,7 +33,7 @@ namespace Core.DataFormat
         public int levelMult;
         
         // TODO: Add SoundTrack record
-        //public SoundTrack soundTrack 
+        public string soundtrackID; 
 
         /// <summary>
         /// Is NPC invulnerable.
@@ -52,8 +52,11 @@ namespace Core.DataFormat
         /// Actual health may vary but will not be less than healthOffset
         /// </summary>
         public float healthOffset;
+        
+        // Add faction records
+        public string[] factions;
 
         // TODO: Add Race record
-        //public Race race;
+        public string raceID;
     }
 }

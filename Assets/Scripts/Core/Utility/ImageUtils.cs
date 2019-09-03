@@ -67,6 +67,24 @@ namespace Core.Utility
             button.GetComponent<Image>().canvasRenderer.SetAlpha(alpha);
             button.GetComponentInChildren<TextMeshProUGUI>().canvasRenderer.SetAlpha(alpha);
         }
+        
+        public static void SetAlpha(Scrollbar scrollbar, float alpha)
+        {
+            //gameObject.GetComponent<Image>().canvasRenderer.SetAlpha(alpha);
+            //button.GetComponentInChildren<TextMeshProUGUI>().canvasRenderer.SetAlpha(alpha);
+            Image[] images = scrollbar.GetComponentsInChildren<Image>();
+            TextMeshProUGUI[] texts = scrollbar.GetComponentsInChildren<TextMeshProUGUI>();
+
+            foreach (var item in images)
+            {
+                scrollbar.GetComponent<Image>().canvasRenderer.SetAlpha(alpha);
+            }
+            
+            foreach (var item in texts)
+            {
+                scrollbar.GetComponent<TextMeshProUGUI>().canvasRenderer.SetAlpha(alpha);
+            }
+        }
 
         public static void SetAlpha(TextMeshProUGUI text, float alpha)
         {
@@ -87,6 +105,28 @@ namespace Core.Utility
         public static void FadeAlpha(TextMeshProUGUI text, float alpha, float duration)
         {
             text.GetComponent<TextMeshProUGUI>().CrossFadeAlpha(alpha, duration, false);
+        }
+        
+        public static void FadeAlpha(Scrollbar scrollbar, float alpha, float duration)
+        {
+            Image[] images = scrollbar.GetComponentsInChildren<Image>();
+            TextMeshProUGUI[] texts = scrollbar.GetComponentsInChildren<TextMeshProUGUI>();
+
+            if (images.Length > 0)
+            {
+                foreach (var item in images)
+                {
+                    scrollbar.GetComponent<Image>().CrossFadeAlpha(alpha, duration, false);
+                }
+            }
+
+            if (texts.Length > 0)
+            {
+                foreach (var item in texts)
+                {
+                    //scrollbar.GetComponent<TextMeshProUGUI>().CrossFadeAlpha(alpha, duration, false);
+                }
+            }
         }
         
         public static bool GetImageSize(Texture2D asset, out int width, out int height)

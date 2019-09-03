@@ -999,6 +999,7 @@ Transform:
   - {fileID: 463515667}
   - {fileID: 818767304}
   - {fileID: 1520927353}
+  - {fileID: 1949430181}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3156,7 +3157,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.35, y: 1.73, z: 0.36}
-  m_Center: {x: 0, y: 0.85, z: 0.06}
+  m_Center: {x: 0, y: 0.8573, z: 0.06}
 --- !u!54 &461000175
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3205,6 +3206,7 @@ MonoBehaviour:
   m_ActorStats:
     currentHealth: 0
     maxHealth: 0
+    startingHealth: 0
     currentLevel: 0
     maxLevel: 0
     strength: 0
@@ -3214,7 +3216,11 @@ MonoBehaviour:
     intelligence: 0
     sneak: 0
     luck: 0
-    actorGender: 0
+    isFemale: 0
+    isProtected: 0
+    isUnique: 0
+    isInvulnerable: 0
+    alphaLevel: 0
     factions: []
   m_ActorClass:
     currentClass: 0
@@ -4068,6 +4074,7 @@ MonoBehaviour:
   m_ActorStats:
     currentHealth: 0
     maxHealth: 0
+    startingHealth: 0
     currentLevel: 0
     maxLevel: 0
     strength: 0
@@ -4077,7 +4084,11 @@ MonoBehaviour:
     intelligence: 0
     sneak: 0
     luck: 0
-    actorGender: 0
+    isFemale: 0
+    isProtected: 0
+    isUnique: 0
+    isInvulnerable: 0
+    alphaLevel: 0
     factions:
     - guard
   m_ActorClass:
@@ -6513,6 +6524,49 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &979036423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 979036424}
+  - component: {fileID: 979036425}
+  m_Layer: 0
+  m_Name: '@StatsBar'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &979036424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979036423}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1689046980}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &979036425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979036423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea596f50be4684b01a5889dfef3b160f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &980321537
 GameObject:
   m_ObjectHideFlags: 0
@@ -8957,7 +9011,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420838151}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -9116,6 +9170,7 @@ MonoBehaviour:
   m_ActorStats:
     currentHealth: 0
     maxHealth: 0
+    startingHealth: 0
     currentLevel: 0
     maxLevel: 0
     strength: 0
@@ -9125,7 +9180,11 @@ MonoBehaviour:
     intelligence: 0
     sneak: 0
     luck: 0
-    actorGender: 0
+    isFemale: 0
+    isProtected: 0
+    isUnique: 0
+    isInvulnerable: 0
+    alphaLevel: 0
     factions:
     - bandit
   m_ActorClass:
@@ -9290,23 +9349,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b38ddbb6c7866466bb5671d6e061be37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadOrder: []
   dataFiles:
   - dataHeader:
       version: 0
       author: 
       description: 
       parentDataFile: 
-    actionBases:
-    - ID: 
-      scripts: []
-      markerColour:
-        r: 0
-        g: 0
-        b: 0
-        a: 0
-    ActionReferences: []
-    npcBases: []
-    npcReferences: []
+    factions: []
 --- !u!1001 &1479212797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11096,6 +11146,8 @@ Transform:
   - {fileID: 480346076}
   - {fileID: 1894952735}
   - {fileID: 1496488125}
+  - {fileID: 979036424}
+  - {fileID: 1881505266}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11316,6 +11368,7 @@ MonoBehaviour:
   m_ActorStats:
     currentHealth: 0
     maxHealth: 0
+    startingHealth: 0
     currentLevel: 0
     maxLevel: 0
     strength: 0
@@ -11325,7 +11378,11 @@ MonoBehaviour:
     intelligence: 0
     sneak: 0
     luck: 0
-    actorGender: 0
+    isFemale: 0
+    isProtected: 0
+    isUnique: 0
+    isInvulnerable: 0
+    alphaLevel: 0
     factions:
     - guard
   m_ActorClass:
@@ -12295,6 +12352,58 @@ Transform:
   m_Father: {fileID: 818767304}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1881505265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1881505266}
+  - component: {fileID: 1881505267}
+  m_Layer: 0
+  m_Name: '@WaterManager'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1881505266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881505265}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1689046980}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1881505267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881505265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58dd5449a2fb64d90b383e007cd19051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterParent: {fileID: 1949430181}
+  waterPrefab: {fileID: 1349142538785835206, guid: 26f1df50cc7344f42aa4de8dc435acf4,
+    type: 3}
+  x_Start: 0
+  y_Start: 0
+  columnLength: 500
+  rowLength: 500
+  x_Space: 10
+  y_Space: 10
 --- !u!1 &1894952734
 GameObject:
   m_ObjectHideFlags: 0
@@ -12698,6 +12807,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937990253}
   m_CullTransparentMesh: 0
+--- !u!1 &1949430180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1949430181}
+  m_Layer: 0
+  m_Name: Water
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1949430181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949430180}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 104914629}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1966982427
 GameObject:
   m_ObjectHideFlags: 0
@@ -13570,7 +13709,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089234616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.1, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}

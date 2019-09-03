@@ -214,7 +214,6 @@ namespace Core.World
 
             if (_gameObject != null)
             {
-                Debug.Log($"Adding primitive object {_gameObject.name}...");
                 _gameObject.transform.position = new Vector3(objectItem.objectPosition.x, objectItem.objectPosition.y, objectItem.objectPosition.z);
                 _gameObject.transform.rotation = new Quaternion(objectItem.objectRotation.x, objectItem.objectRotation.y,
                     objectItem.objectRotation.z, objectItem.objectRotation.w);

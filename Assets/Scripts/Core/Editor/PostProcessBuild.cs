@@ -20,9 +20,8 @@ namespace Core.Editor
         [PostProcessBuild(1)]
         public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
         {
-            if (target == BuildTarget.StandaloneWindows || target == BuildTarget.StandaloneWindows64 ||
-                target == BuildTarget.StandaloneLinux || target == BuildTarget.StandaloneLinux64 || target == BuildTarget.StandaloneLinuxUniversal ||
-                target == BuildTarget.StandaloneOSX)
+            // We're only targeting x86_64 targets.
+            if (target == BuildTarget.StandaloneWindows64 || target == BuildTarget.StandaloneLinux64 || target == BuildTarget.StandaloneOSX)
             {
                 // Get build path
                 string pureBuildPath = Path.GetDirectoryName(pathToBuiltProject);

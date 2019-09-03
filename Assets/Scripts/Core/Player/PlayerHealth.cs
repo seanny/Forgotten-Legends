@@ -16,7 +16,7 @@ namespace Core.Player
     public class PlayerHealth : ActorHealth
     {
         #region Singleton
-        public PlayerHealth Instance { get; private set; }
+        public static PlayerHealth Instance { get; private set; }
 
         private void Awake()
         {

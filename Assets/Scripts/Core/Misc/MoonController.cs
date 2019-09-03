@@ -54,14 +54,12 @@ namespace Core.Misc
                 return;
             }
             
-            Debug.Log($"Assigning texture ID {m_MoonStage+1}, previous: {m_MoonStage}");
             m_MoonStage++;
             if (m_MoonStage >= moonTextures.Length)
             {
                 m_MoonStage = 0;
             }
             
-            Debug.Log($"Attempting texture assign");
             moonTexture = moonTextures[m_MoonStage];
             m_Renderer.material.SetTexture("_BaseMap", moonTexture);
         }
