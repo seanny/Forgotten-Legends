@@ -8,6 +8,7 @@ TagManager:
   - HealthBar
   - CameraTarget
   - InteractText
+  - MapExport
   layers:
   - Default
   - TransparentFX

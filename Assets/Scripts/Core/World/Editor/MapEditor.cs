@@ -23,9 +23,9 @@ namespace Core.World.Editor
                 EditorGUILayout.PropertyField (serializedProperty, true);
                 serializedObject.ApplyModifiedProperties ();
 
-                if (GUILayout.Button ("Save data")) 
+                if (GUILayout.Button ("Export Map")) 
                 {
-                    Debug.Log($"Save data");
+                    Debug.Log($"Exporting Map...");
                 }
             }
         }

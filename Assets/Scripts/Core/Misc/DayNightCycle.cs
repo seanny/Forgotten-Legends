@@ -13,7 +13,7 @@ using Core.Settings;
 
 namespace Core.Misc
 {
-    public class DayNightCycle : MonoBehaviour
+    public class DayNightCycle : Singleton<DayNightCycle>
     {
         public Light sun;
         public float secondsInFullDay = 120f;

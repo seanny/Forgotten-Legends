@@ -118,20 +118,16 @@ namespace Core.Interactable
             }
         }
 
-        protected virtual void Update()
+        protected IEnumerator OnUpdateInteractable()
         {
             InitData();
-            if (InSight() == true && IsClose() == true)
-            {
-                ShowInteractGUI();
-                OnLookAt();
-            }
-        }
-
-        protected virtual IEnumerator OnUpdateInteractable()
-        {
             while (true)
             {
+                if (InSight() == true && IsClose() == true)
+                {
+                    ShowInteractGUI();
+                    OnLookAt();
+                }
                 if (InSight() == false)
                 {
                     InteractableGUI.Instance.HideInteractString();

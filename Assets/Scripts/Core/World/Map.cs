@@ -9,6 +9,8 @@
 //
 
 using System;
+using System.Collections.Generic;
+using Core.MathUtil;
 
 namespace Core.World
 {
@@ -17,6 +19,27 @@ namespace Core.World
     /// </summary>
     [Serializable]
     public class Map
+    {
+        /// <summary>
+        /// Map Header that will be used to define the map meta data such as name and worldspace.
+        /// </summary>
+        public MapHeader mapHeader = new MapHeader();
+        
+        /// <summary>
+        /// Map objects that will be used to define the object file, position, rotation and scale.
+        /// </summary>
+        public List<MapObject> mapObjects;
+
+        /*
+        /// <summary>
+        /// Map NPCs that will be used to define the NPC base ID and position.
+        /// </summary>
+        public MapNPC[] mapNpcs;
+        */
+    }
+
+    [Serializable]
+    public class MapHeader
     {
         /// <summary>
         /// The ID for the world.
@@ -32,67 +55,24 @@ namespace Core.World
         /// The name for the map that will show up int the User Interface.
         /// </summary>
         public string mapName;
+    }
     
-        /// <summary>
-        /// Map objects that will be used to define the object file, position, rotation and scale.
-        /// </summary>
-        public ObjectItem[] mapObjects;
+    [Serializable]
+    public class MapObject
+    {
+        public string objectBaseFile;
+        public string objectName;
+        public Vec3 objectPosition;
+        public Quat objectRotation;
+        public Vec3 objectScale;
+        public List<string> objectScripts;
     }
 
     [Serializable]
-    public class ObjectItem
+    public class MapNPC
     {
-        public string objectFile;
-        public ObjectVector objectPosition;
-        public ObjectQuarternion objectRotation;
-        public ObjectVector objectScale;
-        public bool objectWalkable;
-        public ObjectLight objectLight;
-        public ObjectInteractable objectInteractable;
-        public bool objectCollision;
-        public bool objectRigidbody;
-    }
-
-    [Serializable]
-    public class ObjectLight
-    {
-        public bool isEnabled;
-        public bool isSpotLight;
-        public float lightRange;
-        public float lightAngle;
-        public float lightIntensity;
-        public ObjectColor lightColour;
-    }
-
-    [Serializable]
-    public class ObjectVector
-    {
-        public float x;
-        public float y;
-        public float z;
-    }
-
-    [Serializable]
-    public class ObjectColor
-    {
-        public string r;
-        public string g;
-        public string b;
-    }
-
-    [Serializable]
-    public class ObjectQuarternion
-    {
-        public float x;
-        public float y;
-        public float z;
-        public float w;
-    }
-
-    [Serializable]
-    public class ObjectInteractable
-    {
-        public bool isInteractable;
-        public int interactionType;
+        public string npcID;
+        public Vec3 npcPosition;
+        public List<string> npcScripts;
     }
 }

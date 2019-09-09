@@ -27,6 +27,7 @@ namespace Core.World
         public List<GameObject> m_GameObjects;
         public Transform tracked;
         public Vector3 m_Size = new Vector3(80.0f, 20.0f, 80.0f);
+        public Transform parentTransform;
         public bool isUpdating { get; private set; }
     
         NavMeshData m_NavMesh;
@@ -132,7 +133,7 @@ namespace Core.World
             Map map = JsonUtility.FromJson<Map>(jsonData);
         
             // Check if the worldspace in the map is the same as the worldspaceID variable
-            if (map.mapWorldspace == worldspaceID)
+            if (map.mapHeader.mapWorldspace == worldspaceID)
             {
                 // Add the new map into the m_Maps list
                 m_Maps.Add(map);
@@ -145,49 +146,50 @@ namespace Core.World
             isUpdating = true;
             foreach (var item in map.mapObjects)
             {
-                if (item.objectFile.StartsWith("Special::"))
+                if (item.objectBaseFile.StartsWith("Special::"))
                 {
                     if (CreateSpecialObject(item) == false)
                     {
-                        Debug.LogWarning($"Could not create special object, possible incorrect file name: {item.objectFile}");
+                        Debug.LogWarning($"Could not create special object, possible incorrect file name: {item.objectBaseFile}");
                     }
                 }
                 else
                 {
                     if (CreateStandardObject(item) == true)
                     {
-                        Debug.LogWarning($"Could not create standard object, possible incorrect file name: {item.objectFile}");
+                        Debug.LogWarning($"Could not create standard object, possible incorrect file name: {item.objectBaseFile}");
                     }
                 }
             }
         }
 
-        private bool CreateStandardObject(ObjectItem objectItem)
+        private bool CreateStandardObject(MapObject objectItem)
         {
             isUpdating = true;
-            GameObject _gameObject = ObjectModelFormat.Instance.LoadObjectFile(objectItem.objectFile);
+            if (objectItem.objectBaseFile.EndsWith(".json"))
+            {
+                objectItem.objectBaseFile += ".json";
+            }
+            GameObject _gameObject = ObjectModelFormat.Instance.LoadObjectFile(objectItem.objectBaseFile);
             if (_gameObject != null)
             {
                 _gameObject.transform.position = new Vector3(objectItem.objectPosition.x, objectItem.objectPosition.y, objectItem.objectPosition.z);
                 _gameObject.transform.rotation = new Quaternion(objectItem.objectRotation.x, objectItem.objectRotation.y,
                     objectItem.objectRotation.z, objectItem.objectRotation.w);
                 _gameObject.transform.localScale = new Vector3(objectItem.objectScale.x, objectItem.objectScale.y, objectItem.objectScale.z);
-                AddNavMeshSourceIfPossible(objectItem, _gameObject);
-                AddLightIfPossible(objectItem, _gameObject);
-                AddInteractionIfPossible(objectItem, _gameObject);
-                AddColliderIfPossible(objectItem, _gameObject);
-                AddRigidbodyIfPossible(objectItem, _gameObject);
+                _gameObject.name = $"Standard_{objectItem.objectName}";
+                _gameObject.transform.parent = parentTransform;
                 m_GameObjects.Add(_gameObject);
                 return true;
             }
             return false;
         }
 
-        private bool CreateSpecialObject(ObjectItem objectItem)
+        private bool CreateSpecialObject(MapObject objectItem)
         {
             isUpdating = true;
             GameObject _gameObject = null;
-            switch (objectItem.objectFile)
+            switch (objectItem.objectBaseFile)
             {
                 case "Special::Plane":
                     _gameObject = GameObject.CreatePrimitive(PrimitiveType.Plane);
@@ -208,7 +210,7 @@ namespace Core.World
                     _gameObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                     break;
                 default:
-                    Debug.LogWarning($"objectFile (currently \"{objectItem.objectFile}\") is not at a valid value.");
+                    Debug.LogWarning($"objectFile (currently \"{objectItem.objectBaseFile}\") is not at a valid value.");
                     break;
             }
 
@@ -218,106 +220,14 @@ namespace Core.World
                 _gameObject.transform.rotation = new Quaternion(objectItem.objectRotation.x, objectItem.objectRotation.y,
                     objectItem.objectRotation.z, objectItem.objectRotation.w);
                 _gameObject.transform.localScale = new Vector3(objectItem.objectScale.x, objectItem.objectScale.y, objectItem.objectScale.z);
-                AddNavMeshSourceIfPossible(objectItem, _gameObject);
-                AddLightIfPossible(objectItem, _gameObject);
-                AddInteractionIfPossible(objectItem, _gameObject);
-                AddColliderIfPossible(objectItem, _gameObject);
-                AddRigidbodyIfPossible(objectItem, _gameObject);
+                _gameObject.name = $"Special_{objectItem.objectName}";
+                _gameObject.transform.parent = parentTransform;
                 m_GameObjects.Add(_gameObject);
                 return true;
             }
             return false;
         }
 
-        private void AddNavMeshSourceIfPossible(ObjectItem objectItem, GameObject gameObject)
-        {
-            if (objectItem.objectWalkable == true)
-            {
-                gameObject.AddComponent<NavMeshSourceTag>();
-            }
-        }
-    
-        private void AddLightIfPossible(ObjectItem objectItem, GameObject gameObject)
-        {
-            if (objectItem.objectLight.isEnabled == true)
-            {
-                gameObject.AddComponent<Light>();
-                if (objectItem.objectLight.isSpotLight == true)
-                {
-                    gameObject.GetComponent<Light>().type = LightType.Spot;
-                }
-                else
-                {
-                    gameObject.GetComponent<Light>().type = LightType.Point;
-                }
-
-                gameObject.GetComponent<Light>().range = objectItem.objectLight.lightRange;
-                gameObject.GetComponent<Light>().spotAngle = objectItem.objectLight.lightAngle;
-                gameObject.GetComponent<Light>().intensity = objectItem.objectLight.lightIntensity;
-                gameObject.GetComponent<Light>().color = new Color(
-                    int.Parse(objectItem.objectLight.lightColour.r, System.Globalization.NumberStyles.HexNumber),
-                    int.Parse(objectItem.objectLight.lightColour.g, System.Globalization.NumberStyles.HexNumber),
-                    int.Parse(objectItem.objectLight.lightColour.b, System.Globalization.NumberStyles.HexNumber)
-                );
-            }
-        }
-
-        private void AddInteractionIfPossible(ObjectItem objectItem, GameObject gameObject)
-        {
-            if (objectItem.objectInteractable.isInteractable == true)
-            {
-                gameObject.AddComponent<Interactable.Interactable>();
-                gameObject.GetComponent<Interactable.Interactable>().SetInteractableName(objectItem.objectFile);
-                switch (objectItem.objectInteractable.interactionType)
-                {
-                    case 0:
-                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Weapon;
-                        break;
-                    case 1:
-                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Armour;
-                        break;
-                    case 2:
-                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Book;
-                        break;
-                    case 3:
-                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Food;
-                        break;
-                    case 4:
-                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Key;
-                        break;
-                    case 5:
-                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Magic;
-                        break;
-                    case 6:
-                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Other;
-                        break;
-                    case 7:
-                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Potion;
-                        break;
-                    case 8:
-                        gameObject.GetComponent<Interactable.Interactable>().interactableData.category = InteractableData.InteractableCategory.Other;
-                        break;
-                }
-            }
-        }
-
-        private void AddColliderIfPossible(ObjectItem objectItem, GameObject gameObject)
-        {
-            if (objectItem.objectCollision == true)
-            {
-                gameObject.AddComponent<MeshCollider>();
-                //gameObject.GetComponent<MeshCollider>().sharedMesh = gameObject.GetComponentInChildren<Mesh>();
-            }
-        }
-        
-        private void AddRigidbodyIfPossible(ObjectItem objectItem, GameObject gameObject)
-        {
-            if (objectItem.objectRigidbody == true)
-            {
-                gameObject.AddComponent<Rigidbody>();
-            }
-        }
-    
         void OnDrawGizmosSelected()
         {
             if (m_NavMesh)

@@ -8,17 +8,19 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Core.Player;
 using Core.Utility;
 using UnityEngine;
+using Core.CommandConsole;
 
 namespace Core.World
 {
     public class WorldspaceManager : Singleton<WorldspaceManager>
     {
-        private List<Worldspace> m_Worldspaces;
+        public List<Worldspace> m_Worldspaces { get; private set; }
 
         private void Start()
         {
@@ -64,6 +66,31 @@ namespace Core.World
             m_Worldspaces.Add(worldspace);
         }
 
+        [RegisterCommand(Help = "SetPlayerWorldspace")]
+        static void CommandSetPlayerWorldspace(CommandArg[] args)
+        {
+            bool found = false;
+            string worldspaceName = args[0].String;
+            foreach (var item in Instance.m_Worldspaces)
+            {
+                if (worldspaceName == item.worldspaceName)
+                {
+                    Instance.SetPlayerWorldspace(worldspaceName);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                Terminal.print($"Cannot find worldspace: {worldspaceName}");
+            }
+            else
+            {
+                Terminal.print($"Worldspace set to {worldspaceName}");
+            }
+        }
+        
         public void SetPlayerWorldspace(string worldspaceID)
         {
             SetActorWorldspace(PlayerManager.Instance.GetPlayer(), worldspaceID);

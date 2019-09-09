@@ -63,9 +63,8 @@ namespace Core.Potion
             }
         }
 
-        protected override void Update()
+        protected void Update()
         {
-            base.Update();
             if(m_Used == true && !m_AudioSource.isPlaying)
             {
                 Destroy(gameObject);

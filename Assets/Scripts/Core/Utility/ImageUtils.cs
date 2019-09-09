@@ -128,28 +128,5 @@ namespace Core.Utility
                 }
             }
         }
-        
-        public static bool GetImageSize(Texture2D asset, out int width, out int height)
-        {
-            if (asset != null) 
-            {
-                string assetPath = AssetDatabase.GetAssetPath(asset);
-                TextureImporter importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
- 
-                if (importer != null) 
-                {
-                    object[] args = new object[2] { 0, 0 };
-                    MethodInfo mi = typeof(TextureImporter).GetMethod("GetWidthAndHeight", BindingFlags.NonPublic | BindingFlags.Instance);
-                    mi.Invoke(importer, args);
- 
-                    width = (int)args[0];
-                    height = (int)args[1];
-                    return true;
-                }
-            }
- 
-            height = width = 0;
-            return false;
-        }
     }
 }
