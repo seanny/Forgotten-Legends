@@ -35,10 +35,13 @@ namespace Core.Camera
         {
             if (!rotationLocked)
             {
-                GetCameraRotation();
-                ClampCameraRotation();
-                SmoothCamera();
-                RotateCamera();
+                if (CameraController.Instance.freeCamera == false)
+                {
+                    GetCameraRotation();
+                    ClampCameraRotation();
+                    SmoothCamera();
+                    RotateCamera();
+                }
             }
         }
 

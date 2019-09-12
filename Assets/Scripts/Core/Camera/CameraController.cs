@@ -9,6 +9,7 @@
 //
 
 using UnityEngine;
+using Core.Utility;
 
 namespace Core.Camera
 {
@@ -21,12 +22,20 @@ namespace Core.Camera
         // Private Variables
         public Transform lookAt;
         public Transform cameraTransform { get; private set; }
+        
+        public bool freeCamera { get; private set; }
+        
         #endregion
 
         private void Start()
         {
-            //MouseCursor.LockCursor(true);
+            MouseCursor.LockCursor(true);
             cameraTransform = transform;
+        }
+
+        public void ToggleFreeCamera(bool toggle)
+        {
+            freeCamera = toggle;
         }
     }
 }

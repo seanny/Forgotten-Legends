@@ -29,16 +29,22 @@ namespace Core.Camera
         {
             if(rotationLocked == false)
             {
-                currentScroll += Input.GetAxis("Mouse ScrollWheel");
-                currentScroll = Mathf.Clamp(currentScroll, SCROLL_MIN, SCROLL_MAX);
+                if (CameraController.Instance.freeCamera == false)
+                {
+                    currentScroll += Input.GetAxis("Mouse ScrollWheel");
+                    currentScroll = Mathf.Clamp(currentScroll, SCROLL_MIN, SCROLL_MAX);
+                }
             }
         }
 
         private void LateUpdate()
         {
-            CameraController.Instance.cameraTransform.position = CameraController.Instance.lookAt.position - CameraController.Instance.cameraTransform.forward * currentScroll;
-            CameraController.Instance.cameraTransform.position = CameraController.Instance.lookAt.position - CameraController.Instance.cameraTransform.forward * currentScroll;
-            CameraController.Instance.cameraTransform.LookAt(CameraController.Instance.lookAt.position);
+            if (CameraController.Instance.freeCamera == false)
+            {
+                CameraController.Instance.cameraTransform.position = CameraController.Instance.lookAt.position - CameraController.Instance.cameraTransform.forward * currentScroll;
+                CameraController.Instance.cameraTransform.position = CameraController.Instance.lookAt.position - CameraController.Instance.cameraTransform.forward * currentScroll;
+                CameraController.Instance.cameraTransform.LookAt(CameraController.Instance.lookAt.position);
+            }
         }
     }
 }

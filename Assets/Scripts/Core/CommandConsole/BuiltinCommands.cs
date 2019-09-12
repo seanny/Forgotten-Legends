@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using Core.Camera;
 using UnityEngine;
 
 namespace Core.CommandConsole
@@ -68,10 +69,10 @@ namespace Core.CommandConsole
             Terminal.Log(JoinArguments(args));
         }
 
-#if UNITY_DEVELOPMENT || UNITY_EDITOR
         [RegisterCommand(Help = "Output the stack trace of the previous message", MaxArgCount = 0)]
         static void CommandTrace(CommandArg[] args)
         {
+#if UNITY_DEVELOPMENT || UNITY_EDITOR
             int log_count = Terminal.Buffer.Logs.Count;
 
             if (log_count - 2 < 0)
@@ -90,8 +91,10 @@ namespace Core.CommandConsole
             {
                 Terminal.Log(log_item.stack_trace);
             }
-        }
+#else
+            Terminal.Log("Nothing to trace.");
 #endif
+        }
 
         [RegisterCommand(Help = "List all variables or set a variable value")]
         static void CommandSet(CommandArg[] args)
@@ -177,7 +180,7 @@ namespace Core.CommandConsole
                 return;
             }
         }
-        
+
         [RegisterCommand(Help = "No operation")]
         static void CommandNoop(CommandArg[] args) { }
 

@@ -16,7 +16,7 @@ namespace Core.Actor
 {
     [RequireComponent(typeof(CombatBehaviour))]
     [RequireComponent(typeof(ActorAnimationController))]
-    public abstract class Actor : MonoBehaviour
+    public abstract class Actor : WorldEntity
     {
         public string actorID;
         public ActorStats m_ActorStats;
@@ -101,8 +101,9 @@ namespace Core.Actor
             return null;
         }
 
-        protected virtual void Start()
+        protected override void Start()
         {
+            base.Start();
             if(actorID == string.Empty)
             {
                 actorID = gameObject.name;
