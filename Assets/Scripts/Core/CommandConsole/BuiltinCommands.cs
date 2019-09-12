@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 
@@ -113,6 +115,69 @@ namespace Core.CommandConsole
             Terminal.Shell.SetVariable(variable_name, JoinArguments(args, 1));
         }
 
+        [RegisterCommand(Help = "List All GameObjects")]
+        static void CommandListGameObjects(CommandArg[] args)
+        {
+            int maxCount = 0;
+            string ignore = String.Empty;
+            if (args.Length != 0)
+            {
+                maxCount = args[0].Int;
+                ignore = args[1].String.ToString();
+                if (ignore.Length < 1)
+                {
+                    ignore = string.Empty;
+                }
+            }
+            GameObject[] activeGameObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+            
+            for(int i = 0; i < activeGameObjects.Length; i++)
+            {
+                if (activeGameObjects[i].name.Contains(ignore))
+                {
+                    continue;
+                }
+                if (activeGameObjects[i].activeInHierarchy)
+                {
+                    Terminal.Log(TerminalLogType.Message, $"#{i}: {activeGameObjects[i].name} ({activeGameObjects[i].tag})");
+                }
+
+                if (maxCount > 0 && i >= maxCount)
+                {
+                    break;
+                }
+            }
+        }
+
+        [RegisterCommand(Help = "Set Actor Stat")]
+        static void CommandSetActorStat(CommandArg[] args)
+        {
+            // Usage: SetActorStat [Actor Name] [Stat Name] [Value]
+            // SetActorStat Player Intelligence 100
+
+            if (args.Length < 3)
+            {
+                return;
+            }
+            
+            string actorName = args[0].String;
+            string statName = args[1].String;
+            int value = args[2].Int;
+
+            Actor.Actor actorID = Actor.Actor.FindActor(actorName);
+            if (actorID == null)
+            {
+                Terminal.Log(TerminalLogType.Error, $"SetActorValue: Actor Name invalid.");
+                return;
+            }
+
+            if (actorID.SetActorStat(statName, value) == false)
+            {
+                Terminal.Log(TerminalLogType.Error, $"SetActorValue: Stat Name invalid.");
+                return;
+            }
+        }
+        
         [RegisterCommand(Help = "No operation")]
         static void CommandNoop(CommandArg[] args) { }
 

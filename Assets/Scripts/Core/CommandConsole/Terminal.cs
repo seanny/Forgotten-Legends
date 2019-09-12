@@ -10,6 +10,7 @@
 
 using System.Collections;
 using System.Text;
+using Core.Camera;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -113,11 +114,13 @@ namespace Core.CommandConsole
             {
                 case TerminalState.Close:
                 {
+                    CameraScrolling.Instance.ToggleScrolling(false);
                     open_target = 0;
                     break;
                 }
                 case TerminalState.OpenSmall:
                 {
+                    CameraScrolling.Instance.ToggleScrolling(true);
                     open_target = Screen.height * MaxHeight * SmallTerminalRatio;
                     if (current_open_t > open_target)
                     {
@@ -134,6 +137,7 @@ namespace Core.CommandConsole
                 case TerminalState.OpenFull:
                 default:
                 {
+                    CameraScrolling.Instance.ToggleScrolling(true);
                     real_window_size = Screen.height * MaxHeight;
                     open_target = real_window_size;
                     break;

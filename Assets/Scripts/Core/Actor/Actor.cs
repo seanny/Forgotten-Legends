@@ -42,6 +42,52 @@ namespace Core.Actor
             gameObject.transform.position = new Vector3(x, y, z);
         }
 
+        public bool SetActorStat(string statName, int value)
+        {
+            bool returnVal = false;
+            switch (statName)
+            {
+                case "Level":
+                    m_ActorStats.currentLevel = value;
+                    returnVal = true;
+                    break;
+                case "MaxLevel":
+                    m_ActorStats.maxLevel = value;
+                    returnVal = true;
+                    break;
+                case "Strength":
+                    m_ActorStats.strength = value;
+                    returnVal = true;
+                    break;
+                case "Perception":
+                    m_ActorStats.perception = value;
+                    returnVal = true;
+                    break;
+                case "Endurance":
+                    m_ActorStats.endurance = value;
+                    returnVal = true;
+                    break;
+                case "Speech":
+                    m_ActorStats.speech = value;
+                    returnVal = true;
+                    break;
+                case "Intelligence":
+                    m_ActorStats.intelligence = value;
+                    returnVal = true;
+                    break;
+                case "Sneak":
+                    m_ActorStats.sneak = value;
+                    returnVal = true;
+                    break;
+                case "Luck":
+                    m_ActorStats.luck = value;
+                    returnVal = true;
+                    break;
+            }
+
+            return returnVal;
+        }
+        
         public static Actor FindActor(string actorID)
         {
             Actor[] actors = GameObject.FindObjectsOfType<Actor>();
