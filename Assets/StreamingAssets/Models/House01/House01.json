@@ -1,0 +1,45 @@
+{
+    "meshObj": "House01/House01.obj",
+    "meshLODNear": "",
+    "meshLODFar": "",
+    "texturePng": "House01/House01_D.png",
+    "normalPng": "House01/House01_N.png",
+    "ambientOcclusionPng": "House01/House01_AO.png",
+    "heightMapPng": "",
+    "isWalkable": false,
+    "light": {
+        "isEnabled": false,
+        "isSpotlight": false,
+        "range": 0.0,
+        "angle": 0.0,
+        "intensity": 0.0,
+        "colour": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+        }
+    },
+    "interactable": {
+        "isInteractable": false,
+        "interactableType": 0
+    },
+    "rigidbody": {
+        "isEnabled": false,
+        "position": {},
+        "rotation": {},
+        "mass": 0.0,
+        "drag": 0.0
+    },
+    "collider": {
+        "isEnabled": true,
+        "isTrigger": false
+    },
+    "timed": {
+        "isEnabled": false,
+        "activationHour": 0,
+        "deactivationHour": 0
+    },
+    "drawDistance": 300.0,
+    "objectName": "House01"
+}
