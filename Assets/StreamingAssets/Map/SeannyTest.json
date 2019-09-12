@@ -1,1 +1,1 @@
-{"mapHeader":{"mapID":"SeannyTest.json","mapWorldspace":"TestWorldspace","mapName":"Seanny's Test Map"},"mapObjects":[{"objectBaseFile":"House01.json","objectName":"House01","objectPosition":{},"objectRotation":{},"objectScale":{},"objectScripts":["fruits.lua"]}]}
+{"mapHeader":{"mapID":"SeannyTest.json","mapWorldspace":"TestWorldspace","mapName":"Seanny's Test Map"},"mapObjects":[{"objectBaseFile":"House01","objectName":"House01","objectPosition":{},"objectRotation":{},"objectScale":{},"objectScripts":["fruits.lua"]}]}

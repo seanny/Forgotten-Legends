@@ -63,7 +63,7 @@ namespace Core.Editor
                         item.name = item.name.Substring(0, pos);
                     }
                     MapObject mapObject = new MapObject();
-                    mapObject.objectBaseFile = $"{item.name}.json";
+                    mapObject.objectBaseFile = $"{item.name}";
                     mapObject.objectName = item.name;
                     mapObject.objectPosition = new Vec3(item.transform.position);
                     mapObject.objectRotation = new Quat(item.transform.rotation);
