@@ -8,8 +8,6 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
-using System;
-using System.Collections.Generic;
 using System.Collections;
 using Core.Camera;
 using Core.MathUtil;
@@ -19,7 +17,7 @@ using UnityEngine;
 
 namespace Core.Interactable
 {
-    public class Interactable : MonoBehaviour
+    public class Interactable : WorldEntity
     {
         public InteractableData interactableData;
 
