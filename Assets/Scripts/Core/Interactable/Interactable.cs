@@ -13,6 +13,7 @@ using Core.Camera;
 using Core.MathUtil;
 using Core.Player;
 using Core.Scripting;
+using Core.Services;
 using UnityEngine;
 
 namespace Core.Interactable
@@ -87,7 +88,7 @@ namespace Core.Interactable
 
         public bool IsClose()
         {
-            float dist = Vector3.Distance(transform.position, PlayerManager.Instance.Player.transform.position);
+            float dist = Vector3.Distance(transform.position, ServiceLocator.GetService<PlayerManager>().GetPlayer().transform.position);
             if (dist <= 2.5f)
             {
                 return true;

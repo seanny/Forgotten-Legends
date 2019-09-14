@@ -9,17 +9,13 @@
 //
 
 using UnityEngine;
+using Core.Services;
 
 namespace Core.Player
 {
-    public class PlayerManager : Singleton<PlayerManager>
+    public class PlayerManager : IService
     {
         public Player Player { get; private set; }
-
-        private void Start()
-        {
-            AddPlayer();
-        }
 
         public void AddPlayer()
         {
@@ -38,6 +34,16 @@ namespace Core.Player
         public void RemovePlayer()
         {
             Player = null;
+        }
+
+        public void OnStart()
+        {
+            AddPlayer();
+        }
+
+        public void OnEnd()
+        {
+            RemovePlayer();
         }
     }
 }

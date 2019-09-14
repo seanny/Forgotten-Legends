@@ -15,6 +15,7 @@ using Core.Player;
 using Core.Utility;
 using UnityEngine;
 using Core.CommandConsole;
+using Core.Services;
 
 namespace Core.World
 {
@@ -93,7 +94,7 @@ namespace Core.World
         
         public void SetPlayerWorldspace(string worldspaceID)
         {
-            SetActorWorldspace(PlayerManager.Instance.GetPlayer(), worldspaceID);
+            SetActorWorldspace(ServiceLocator.GetService<PlayerManager>().GetPlayer(), worldspaceID);
         }
     
         public void SetActorWorldspace(Actor.Actor actor, string worldspaceID)

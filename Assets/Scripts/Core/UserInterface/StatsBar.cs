@@ -10,6 +10,7 @@
 using System;
 using System.Diagnostics.Contracts;
 using Core.Player;
+using Core.Services;
 using Core.Utility;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,7 +33,7 @@ namespace Core.UserInterface
                 m_Time -= WAIT_TIME;
                 
                 if (
-                    PlayerManager.Instance.Player.m_HealthScript.currentHealth >= PlayerManager.Instance.Player.m_HealthScript.maxHealth
+                    ServiceLocator.GetService<PlayerManager>().GetPlayer().m_HealthScript.currentHealth >= ServiceLocator.GetService<PlayerManager>().GetPlayer().m_HealthScript.maxHealth
                 )
                 {
                     isShown = false;

@@ -10,6 +10,7 @@
 
 using System;
 using Core.Player;
+using Core.Services;
 using UnityEngine;
 
 namespace Core.Inventory
@@ -37,7 +38,7 @@ namespace Core.Inventory
                 else
                 {
                     m_Enabled = true;
-                    ShowInventory(PlayerManager.Instance.Player.actorInventory);
+                    ShowInventory(ServiceLocator.GetService<PlayerManager>().GetPlayer().actorInventory);
                 }
             }
         }

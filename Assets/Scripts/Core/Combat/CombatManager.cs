@@ -10,6 +10,7 @@
 
 using System;
 using Core.Player;
+using Core.Services;
 using UnityEngine;
 
 namespace Core.Combat
@@ -24,8 +25,8 @@ namespace Core.Combat
         {
             if (Input.GetKeyUp(KeyCode.R))
             {
-                PlayerManager.Instance.Player.animationController.SwordDraw();
-                AudioSource.PlayClipAtPoint(swordWithdraw, PlayerManager.Instance.Player.transform.position);
+                ServiceLocator.GetService<PlayerManager>().GetPlayer().animationController.SwordDraw();
+                AudioSource.PlayClipAtPoint(swordWithdraw, ServiceLocator.GetService<PlayerManager>().GetPlayer().transform.position);
             }
         }
     }

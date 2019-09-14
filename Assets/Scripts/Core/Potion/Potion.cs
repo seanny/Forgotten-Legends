@@ -11,6 +11,7 @@
 using System.Collections;
 using Core.Inventory;
 using Core.Player;
+using Core.Services;
 using UnityEngine;
 
 namespace Core.Potion
@@ -35,7 +36,7 @@ namespace Core.Potion
         public override void Interact()
         {
             base.Interact();
-            PlayerManager.Instance.Player.actorInventory.AddItem(this);
+            ServiceLocator.GetService<PlayerManager>().GetPlayer().actorInventory.AddItem(this);
             GetComponent<Renderer>().enabled = false;
             m_AudioSource.Play();
             m_Used = true;
@@ -49,15 +50,15 @@ namespace Core.Potion
                 m_AudioSource.Play();
                 if(potionStats.healthRegen > 0)
                 {
-                    PotionEffects.Instance.AddHealthEffect(potionStats.healthRegen, PlayerManager.Instance.Player);
+                    PotionEffects.Instance.AddHealthEffect(potionStats.healthRegen, ServiceLocator.GetService<PlayerManager>().GetPlayer());
                 }
                 if (potionStats.magicRegen > 0)
                 {
-                    PotionEffects.Instance.AddMagicEffect(potionStats.magicRegen, PlayerManager.Instance.Player);
+                    PotionEffects.Instance.AddMagicEffect(potionStats.magicRegen, ServiceLocator.GetService<PlayerManager>().GetPlayer());
                 }
                 if (potionStats.staminaRegen > 0)
                 {
-                    PotionEffects.Instance.AddStaminaEffect(potionStats.staminaRegen, PlayerManager.Instance.Player);
+                    PotionEffects.Instance.AddStaminaEffect(potionStats.staminaRegen, ServiceLocator.GetService<PlayerManager>().GetPlayer());
                 }
                 m_Used = true;
             }

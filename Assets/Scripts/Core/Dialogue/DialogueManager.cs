@@ -14,6 +14,7 @@ using Core.Localisation;
 using Core.NonPlayerChar;
 using Core.Player;
 using Core.Scripting;
+using Core.Services;
 using Core.Utility;
 using TMPro;
 using UnityEngine;
@@ -156,8 +157,8 @@ namespace Core.Dialogue
 
             // Make sure that NPC is facing the player
             m_CurrentNPC.m_MovementScript.StopMovement();
-            m_CurrentNPC.m_MovementScript.LookAtActor(PlayerManager.Instance.Player);
-            PlayerManager.Instance.Player.transform.LookAt(m_CurrentNPC.transform);
+            m_CurrentNPC.m_MovementScript.LookAtActor(ServiceLocator.GetService<PlayerManager>().GetPlayer());
+            ServiceLocator.GetService<PlayerManager>().GetPlayer().transform.LookAt(m_CurrentNPC.transform);
         }
 
         private void ClearDialogueOptions()

@@ -9,6 +9,7 @@
 //
 
 using Core.Player;
+using Core.Services;
 using UnityEngine;
 
 namespace Core.NonPlayerChar
@@ -31,7 +32,7 @@ namespace Core.NonPlayerChar
             }
             else
             {
-                m_ParentScript.m_MovementScript.MoveTowardsActor(PlayerManager.Instance.Player);
+                m_ParentScript.m_MovementScript.MoveTowardsActor(ServiceLocator.GetService<PlayerManager>().GetPlayer());
             }
         }
 
@@ -39,7 +40,7 @@ namespace Core.NonPlayerChar
         {
             if (m_AttemptingDialogueWithPlayer == false)
             {
-                if (m_ParentScript.m_MovementScript.IsAtActor(PlayerManager.Instance.Player))
+                if (m_ParentScript.m_MovementScript.IsAtActor(ServiceLocator.GetService<PlayerManager>().GetPlayer()))
                 {
                     // Show dialogue Menu
                     return true;
