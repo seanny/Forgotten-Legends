@@ -15,26 +15,6 @@ namespace Core.Player
 {
     public class PlayerStamina : ActorStamina
     {
-        #region Singleton
-        public PlayerStamina Instance { get; private set; }
-
-        private void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-        }
-
-        private void OnDestroy()
-        {
-            if (Instance == this)
-            {
-                Instance = null;
-            }
-        }
-        #endregion // Singleton
-
         public Scrollbar scrollbar;
 
         private void LateUpdate()
