@@ -23,12 +23,22 @@ namespace Core.Services
             {
                 IService service = (IService) Activator.CreateInstance(typeof(T));
                 serviceList.Add(service);
+                service.OnStart();
                 return (T)service;
             }
             catch (Exception e)
             {
                 Debug.LogError($"Cannot return type: {e.Message}");
                 throw;
+            }
+        }
+
+        public static void EndAllServices()
+        {
+            foreach (var service in serviceList)
+            {
+                service.OnEnd();
+                serviceList.Remove(service);
             }
         }
     }
