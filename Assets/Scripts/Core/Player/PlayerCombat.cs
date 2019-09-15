@@ -13,34 +13,8 @@ using UnityEngine;
 
 namespace Core.Player
 {
-    public class PlayerCombat : ActorCombat
+    public class PlayerCombat : ActorCombat, IService
     {
-        #region Singleton
-        public PlayerCombat Instance { get; private set; }
-
-        private void Awake()
-        {
-            if(Instance == null)
-            {
-                Instance = this;
-            }
-        }
-
-        private void OnDestroy()
-        {
-            if(Instance == this)
-            {
-                Instance = null;
-            }
-        }
-        #endregion // Singleton
-
-        // Use this for initialization
-        protected override void Start()
-        {
-            base.Start();
-        }
-
         // Update is called once per frame
         void Update()
         {
@@ -48,6 +22,16 @@ namespace Core.Player
             {
             
             }
+        }
+
+        public void OnStart()
+        {
+            
+        }
+
+        public void OnEnd()
+        {
+            
         }
     }
 }
