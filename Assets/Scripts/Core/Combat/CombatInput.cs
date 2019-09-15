@@ -9,11 +9,12 @@
 //
 
 using System;
+using Core.Services;
 using UnityEngine;
 
 namespace Core.Combat
 {
-    public class CombatInput : Singleton<CombatInput>
+    public class CombatInput : MonoBehaviour, IService
     {
         public int attackButton;
         
@@ -25,6 +26,7 @@ namespace Core.Combat
             ResetPowerAttackTime();
             attackButton = 0;
             m_CombatBehaviour = GetComponent<CombatBehaviour>();
+            ServiceLocator.AddService(this);
         }
 
         private void ResetPowerAttackTime()
@@ -52,6 +54,16 @@ namespace Core.Combat
             {
                 // TODO: Initiate power attack
             }
+        }
+
+        public void OnStart()
+        {
+            
+        }
+
+        public void OnEnd()
+        {
+            
         }
     }
 }
