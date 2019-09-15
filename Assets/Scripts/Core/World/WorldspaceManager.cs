@@ -33,6 +33,8 @@ namespace Core.World
         
             // Load the test worldspace to ensure that the worldspace system gets loaded.
             SetPlayerWorldspace("TestWorldspace");
+            
+            ServiceLocator.GetService<Ocean>().GenerateWater(500, 500);
         }
 
         public void LoadAllWorldspaces()
