@@ -9,10 +9,11 @@
 //
 
 using System;
+using Core.Services;
 
 namespace Core.Potion
 {
-    public class PotionEffects : Singleton<PotionEffects>
+    public class PotionEffects : IService
     {
         public void AddHealthEffect(int health, Actor.Actor actor)
         {
@@ -27,6 +28,16 @@ namespace Core.Potion
         public void AddStaminaEffect(int magic, Actor.Actor actor)
         {
             throw new NotImplementedException("Stamina Regen Effect not yet implemented");
+        }
+
+        public void OnStart()
+        {
+            
+        }
+
+        public void OnEnd()
+        {
+            
         }
     }
 }

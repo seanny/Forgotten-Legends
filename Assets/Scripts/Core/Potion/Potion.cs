@@ -50,15 +50,15 @@ namespace Core.Potion
                 m_AudioSource.Play();
                 if(potionStats.healthRegen > 0)
                 {
-                    PotionEffects.Instance.AddHealthEffect(potionStats.healthRegen, ServiceLocator.GetService<PlayerManager>().GetPlayer());
+                    ServiceLocator.GetService<PotionEffects>().AddHealthEffect(potionStats.healthRegen, ServiceLocator.GetService<PlayerManager>().GetPlayer());
                 }
                 if (potionStats.magicRegen > 0)
                 {
-                    PotionEffects.Instance.AddMagicEffect(potionStats.magicRegen, ServiceLocator.GetService<PlayerManager>().GetPlayer());
+                    ServiceLocator.GetService<PotionEffects>().AddMagicEffect(potionStats.magicRegen, ServiceLocator.GetService<PlayerManager>().GetPlayer());
                 }
                 if (potionStats.staminaRegen > 0)
                 {
-                    PotionEffects.Instance.AddStaminaEffect(potionStats.staminaRegen, ServiceLocator.GetService<PlayerManager>().GetPlayer());
+                    ServiceLocator.GetService<PotionEffects>().AddStaminaEffect(potionStats.staminaRegen, ServiceLocator.GetService<PlayerManager>().GetPlayer());
                 }
                 m_Used = true;
             }
