@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Core.Services;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace Core.World
     {
         public Transform waterParent;
         public GameObject waterPrefab;
+        public List<GameObject> waterTiles = new List<GameObject>();
+        
         private float x_Start; 
         private float y_Start;
         private int columnLength = 500;
@@ -16,6 +19,7 @@ namespace Core.World
 
         public void GenerateWater(int columns, int rows)
         {
+            RemoveWater();
             columnLength = columns;
             rowLength = rows;
             
@@ -24,8 +28,17 @@ namespace Core.World
             {
                 GameObject gameObject = Object.Instantiate(waterPrefab, new Vector3(x_Start + x_Space + (x_Space * (i % columnLength)), 0.0f, y_Start + y_Space * (i / columnLength)), Quaternion.identity);
                 gameObject.transform.parent = waterParent;
+                waterTiles.Add(gameObject);
             }
             Debug.Log($"Generated water with {columnLength} columns and {rowLength} rows.");
+        }
+
+        public void RemoveWater()
+        {
+            foreach (var tile in waterTiles)
+            {
+                GameObject.Destroy(tile);
+            }
         }
 
         private void LoadOceanPrefabAndAssignParent()
