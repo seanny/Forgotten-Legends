@@ -9,11 +9,12 @@
 //
 
 using System.Runtime.CompilerServices;
+using Core.Services;
 using UnityEngine;
 
 namespace Core.Interactable
 {
-    public class InteractableManager : Singleton<InteractableManager>
+    public class InteractableManager : MonoBehaviour, IService
     {
         public bool isInteracting;
         public Interactable currentInteract;
@@ -60,6 +61,16 @@ namespace Core.Interactable
                 }
             }
             return null;
+        }
+
+        public void OnStart()
+        {
+            ServiceLocator.AddService(this);
+        }
+
+        public void OnEnd()
+        {
+            
         }
     }
 }
