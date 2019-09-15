@@ -33,9 +33,6 @@ namespace Core.World
         
             // Load the test worldspace to ensure that the worldspace system gets loaded.
             SetPlayerWorldspace("TestWorldspace");
-            
-            // TODO: Add a reference into the Worldspace files so that this can be modded easily.
-            ServiceLocator.GetService<Ocean>().GenerateWater(500, 500);
         }
 
         public void LoadAllWorldspaces()
@@ -65,7 +62,7 @@ namespace Core.World
         
             // Serialise the json data into a Worldspace data type.
             Worldspace worldspace = JsonUtility.FromJson<Worldspace>(jsonData);
-        
+
             // Add the new worldspace into the m_Worldspaces list
             m_Worldspaces.Add(worldspace);
         }
@@ -98,6 +95,10 @@ namespace Core.World
         public void SetPlayerWorldspace(string worldspaceID)
         {
             SetActorWorldspace(ServiceLocator.GetService<PlayerManager>().GetPlayer(), worldspaceID);
+            
+            // TODO: Add a reference into the Worldspace files so that these can be modded easily.
+            ServiceLocator.GetService<Ocean>().GenerateWater(500, 500);
+            ServiceLocator.GetService<CloudManager>().ToggleCloudGeneration(true);
         }
     
         public void SetActorWorldspace(Actor.Actor actor, string worldspaceID)
