@@ -36,6 +36,5 @@ public class WorldEntity : MonoBehaviour
     protected virtual void Start()
     {
         entityID = Crypto.GenerateKey();
-        Debug.Log($"{gameObject.name} ID: {entityID}");
     }
 }
