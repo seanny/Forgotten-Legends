@@ -20,7 +20,7 @@ namespace Core.Services
                     case "list":
                         for (int i = 0; i < serviceList.Count; i++)
                         {
-                            Terminal.Log($"Service #{i}: {serviceList[i].ToString()} (#{serviceList[i].GetHashCode()})");
+                            Terminal.Log($"Service #{i}: {serviceList[i].ToString()}");
                         }
                         break;
                 }
