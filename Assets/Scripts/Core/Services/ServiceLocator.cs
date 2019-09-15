@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Core.CommandConsole;
+using Object = System.Object;
 
 namespace Core.Services
 {
@@ -8,6 +10,23 @@ namespace Core.Services
     {
         public static List<IService> serviceList = new List<IService>();
 
+        [RegisterCommand(Help = "Display help information about a command", MaxArgCount = 1)]
+        private static void CommandServiceLocator(CommandArg[] args)
+        {
+            if (args.Length >= 1)
+            {
+                switch (args[0].String)
+                {
+                    case "list":
+                        for (int i = 0; i < serviceList.Count; i++)
+                        {
+                            Terminal.Log($"Service #{i}: {serviceList[i].ToString()} (#{serviceList[i].GetHashCode()})");
+                        }
+                        break;
+                }
+            }
+        }
+        
         public static T GetService<T>()
         {
             foreach (var service in serviceList)
