@@ -9,19 +9,16 @@
 //
 
 using System;
+using Core.Services;
 using TMPro;
+using UnityEngine;
 
 namespace Core.Interactable
 {
-    public class InteractableGUI : Singleton<InteractableGUI>
+    public class InteractableGUI : IService
     {
         public TextMeshProUGUI interactionText;
         public bool isShown { get; private set; }
-
-        private void Start()
-        {
-            HideInteractString();
-        }
 
         public void ShowInteractString(string objectName, string action)
         {
@@ -35,6 +32,17 @@ namespace Core.Interactable
         {
             interactionText.gameObject.SetActive(false);
             isShown = false;
+        }
+
+        public void OnStart()
+        {
+            interactionText = GameObject.FindWithTag("InteractText").GetComponent<TextMeshProUGUI>();
+            HideInteractString();
+        }
+
+        public void OnEnd()
+        {
+            
         }
     }
 }

@@ -49,6 +49,7 @@ namespace Core.Interactable
         {
             InitData();
             StartCoroutine(OnUpdateInteractable());
+            ServiceLocator.GetService<InteractableGUI>();
         }
 
         public void SetInteractableType(InteractableData.InteractType interactType)
@@ -103,19 +104,19 @@ namespace Core.Interactable
         private void ShowInteractGUI()
         {
             InitData();
-            if (InteractableGUI.Instance.isShown == false)
+            if (ServiceLocator.GetService<InteractableGUI>().isShown == false)
             {
                 switch (interactableData.type)
                 {
                     case InteractableData.InteractType.Talk:
-                        InteractableGUI.Instance.ShowInteractString(interactableData.name, "Talk");
+                        ServiceLocator.GetService<InteractableGUI>().ShowInteractString(interactableData.name, "Talk");
                         break;
                     case InteractableData.InteractType.Take:
                         // TODO: If an object is owned by another NPC, then "Take" becomes "Steal"
-                        InteractableGUI.Instance.ShowInteractString(interactableData.name, "Take");
+                        ServiceLocator.GetService<InteractableGUI>().ShowInteractString(interactableData.name, "Take");
                         break;
                     default:
-                        InteractableGUI.Instance.ShowInteractString(interactableData.name, "Interact");
+                        ServiceLocator.GetService<InteractableGUI>().ShowInteractString(interactableData.name, "Interact");
                         break;
                 }
             }
@@ -133,7 +134,7 @@ namespace Core.Interactable
                 }
                 if (InSight() == false)
                 {
-                    InteractableGUI.Instance.HideInteractString();
+                    ServiceLocator.GetService<InteractableGUI>().HideInteractString();
                 }
                 yield return new WaitForSeconds(0.5f);
             }
