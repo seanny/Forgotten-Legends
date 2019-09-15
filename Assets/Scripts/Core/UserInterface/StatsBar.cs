@@ -42,7 +42,7 @@ namespace Core.UserInterface
                 {
                     isShown = true;
                 }
-                ImageUtils.FadeAlpha(PlayerHealth.Instance.scrollbar, isShown == true ? 1.0f : 0.0f, 1.0f);
+                ImageUtils.FadeAlpha(ServiceLocator.GetService<PlayerHealth>().GetScrollbar(), isShown == true ? 1.0f : 0.0f, 1.0f);
             }
         }
     }

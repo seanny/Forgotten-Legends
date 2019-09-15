@@ -9,39 +9,44 @@
 //
 
 using Core.Actor;
+using Core.Services;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.Player
 {
-    public class PlayerHealth : ActorHealth
+    public class PlayerHealth : ActorHealth, IService
     {
-        #region Singleton
-        public static PlayerHealth Instance { get; private set; }
-
-        private void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-        }
-
-        private void OnDestroy()
-        {
-            if (Instance == this)
-            {
-                Instance = null;
-            }
-        }
-        #endregion // Singleton
-
-        public Scrollbar scrollbar;
+        [SerializeField] private Scrollbar m_Scrollbar;
 
         private void LateUpdate()
         {
+            if (m_Scrollbar == null)
+            {
+                return;
+            }
+            
             // Make sure that we cast currentHealth as a float otherwise C# will floor it for some reason.
             float healthPoints = (float)currentHealth / maxHealth;
-            scrollbar.size = healthPoints;
+            GetScrollbar().size = healthPoints;
+        }
+
+        public Scrollbar GetScrollbar()
+        {
+            if (m_Scrollbar == null)
+            {
+                m_Scrollbar = GameObject.FindWithTag("HealthBar").GetComponent<Scrollbar>();
+            }
+            Debug.Log($"m_Scrollbar = {m_Scrollbar}");
+            
+            return m_Scrollbar;
+        }
+
+        public void OnStart() { }
+
+        public void OnEnd()
+        {
+            m_Scrollbar = null;
         }
     }
 }
