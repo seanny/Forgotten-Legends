@@ -9,6 +9,7 @@
 //
 
 using Core.Factions;
+using Core.Services;
 using UnityEngine;
 
 namespace Core.NonPlayerChar
@@ -24,6 +25,10 @@ namespace Core.NonPlayerChar
 
         public bool IsEnemyInEnemyFaction(Actor.Actor actor)
         {
+            if (CoreFactions.isReady == false)
+            {
+                return false;
+            }
             // Check if any actor faction ID is in the NPC faction enemy list
             // We will do this by looking up the NPC factions and then comparing the faction enemy list with actor factions
             // FIXME: Some enemies are not detected as enemies
@@ -31,10 +36,10 @@ namespace Core.NonPlayerChar
             {
                 for (int x = 0; x < actor.m_ActorStats.factions.Count; x++)
                 {
-                    for (int y = 0; y < CoreFactions.Instance.factions[i].enemyFactions.Count; y++)
+                    for (int y = 0; y < ServiceLocator.GetService<CoreFactions>().factions[i].enemyFactions.Count; y++)
                     {
                         // Check if NPC faction contains actor faction listed    inside of enemyFactions
-                        if (CoreFactions.Instance.factions[i].enemyFactions.Contains(actor.m_ActorStats.factions[x]))
+                        if (ServiceLocator.GetService<CoreFactions>().factions[i].enemyFactions.Contains(actor.m_ActorStats.factions[x]))
                         {
                             return true;
                         }

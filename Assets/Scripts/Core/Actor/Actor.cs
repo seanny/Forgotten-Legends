@@ -9,7 +9,9 @@
 //
 
 using Core.Combat;
+using Core.Factions;
 using Core.Inventory;
+using Core.Services;
 using UnityEngine;
 
 namespace Core.Actor
@@ -26,6 +28,7 @@ namespace Core.Actor
         public string actorWorldspace;
         public CombatBehaviour actorCombat;
         public ActorAnimationController animationController;
+        public ActorFaction actorFaction = new ActorFaction();
 
         public static Actor GetPlayer()
         {
@@ -113,7 +116,6 @@ namespace Core.Actor
 
             actorCombat = GetComponent<CombatBehaviour>();
             animationController = GetComponent<ActorAnimationController>();
-
         }
     }
 }

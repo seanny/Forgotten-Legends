@@ -10,22 +10,19 @@
 
 using System.Collections.Generic;
 using System.IO;
+using Core.Services;
 using UnityEngine;
 
 namespace Core.Factions
 {
-    public class CoreFactions : Singleton<CoreFactions>
+    public class CoreFactions : IService
     {
+        public static bool isReady { get; private set; }
         public const string FACTION_EXT = ".fctn";
         public const string FACTION_DIR = "Factions";
+        private bool alreadySetup;
 
-        public List<global::Core.Factions.Faction> factions;
-
-        // Use this for initialization
-        void Start()
-        {
-            LoadFactions();
-        }
+        public List<Faction> factions = new List<Faction>();
 
         private void LoadFactions()
         {
@@ -38,9 +35,24 @@ namespace Core.Factions
                     continue;
                 }
                 string dataAsJson = File.ReadAllText(Path.Combine(path, files[i]));
-                global::Core.Factions.Faction _fac = JsonUtility.FromJson<global::Core.Factions.Faction>(dataAsJson);
+                Faction _fac = JsonUtility.FromJson<Faction>(dataAsJson);
                 factions.Add(_fac);
             }
+        }
+
+        public void OnStart()
+        {
+            if (!alreadySetup)
+            {
+                LoadFactions();
+                isReady = true;
+                alreadySetup = true;
+            }
+        }
+
+        public void OnEnd()
+        {
+            
         }
     }
 }
