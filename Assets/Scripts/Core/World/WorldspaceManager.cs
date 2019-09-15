@@ -34,6 +34,7 @@ namespace Core.World
             // Load the test worldspace to ensure that the worldspace system gets loaded.
             SetPlayerWorldspace("TestWorldspace");
             
+            // TODO: Add a reference into the Worldspace files so that this can be modded easily.
             ServiceLocator.GetService<Ocean>().GenerateWater(500, 500);
         }
 
