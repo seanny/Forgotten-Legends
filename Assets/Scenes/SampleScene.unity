@@ -3102,7 +3102,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthRegen: 1
-  scrollbar: {fileID: 1386479474}
+  m_Scrollbar: {fileID: 0}
 --- !u!114 &461000177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5680,7 +5680,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1689046980}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &812378990
 MonoBehaviour:
@@ -8433,7 +8433,7 @@ GameObject:
   - component: {fileID: 1386479474}
   m_Layer: 5
   m_Name: HealthBar
-  m_TagString: Untagged
+  m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11025,7 +11025,6 @@ Transform:
   - {fileID: 1894952735}
   - {fileID: 1496488125}
   - {fileID: 979036424}
-  - {fileID: 1881505266}
   - {fileID: 812378989}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -12276,58 +12275,6 @@ Transform:
   m_Father: {fileID: 818767304}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1881505265
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1881505266}
-  - component: {fileID: 1881505267}
-  m_Layer: 0
-  m_Name: '@WaterManager'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1881505266
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1881505265}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1689046980}
-  m_RootOrder: 17
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1881505267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1881505265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58dd5449a2fb64d90b383e007cd19051, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waterParent: {fileID: 1949430181}
-  waterPrefab: {fileID: 1349142538785835206, guid: 26f1df50cc7344f42aa4de8dc435acf4,
-    type: 3}
-  x_Start: 0
-  y_Start: 0
-  columnLength: 500
-  rowLength: 500
-  x_Space: 10
-  y_Space: 10
 --- !u!1 &1894952734
 GameObject:
   m_ObjectHideFlags: 0
