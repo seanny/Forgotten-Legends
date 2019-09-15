@@ -8,6 +8,7 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
+using Core.Services;
 using UnityEngine;
 
 namespace Core.Camera
@@ -29,7 +30,7 @@ namespace Core.Camera
         {
             if(rotationLocked == false)
             {
-                if (CameraController.Instance.freeCamera == false)
+                if (ServiceLocator.GetService<CameraController>().freeCamera == false)
                 {
                     currentScroll += Input.GetAxis("Mouse ScrollWheel");
                     currentScroll = Mathf.Clamp(currentScroll, SCROLL_MIN, SCROLL_MAX);
@@ -39,11 +40,11 @@ namespace Core.Camera
 
         private void LateUpdate()
         {
-            if (CameraController.Instance.freeCamera == false)
+            if (ServiceLocator.GetService<CameraController>().freeCamera == false)
             {
-                CameraController.Instance.cameraTransform.position = CameraController.Instance.lookAt.position - CameraController.Instance.cameraTransform.forward * currentScroll;
-                CameraController.Instance.cameraTransform.position = CameraController.Instance.lookAt.position - CameraController.Instance.cameraTransform.forward * currentScroll;
-                CameraController.Instance.cameraTransform.LookAt(CameraController.Instance.lookAt.position);
+                ServiceLocator.GetService<CameraController>().cameraTransform.position = ServiceLocator.GetService<CameraController>().lookAt.position - ServiceLocator.GetService<CameraController>().cameraTransform.forward * currentScroll;
+                ServiceLocator.GetService<CameraController>().cameraTransform.position = ServiceLocator.GetService<CameraController>().lookAt.position - ServiceLocator.GetService<CameraController>().cameraTransform.forward * currentScroll;
+                ServiceLocator.GetService<CameraController>().cameraTransform.LookAt(ServiceLocator.GetService<CameraController>().lookAt.position);
             }
         }
     }

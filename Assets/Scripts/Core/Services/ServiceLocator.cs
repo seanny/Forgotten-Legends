@@ -20,16 +20,29 @@ namespace Core.Services
 
             try
             {
-                IService service = (IService) Activator.CreateInstance(typeof(T));
-                serviceList.Add(service);
-                service.OnStart();
-                return (T)service;
+                return AddService<T>();
             }
             catch (Exception e)
             {
                 Debug.LogError($"Cannot return type: {e.Message}");
                 throw;
             }
+        }
+
+        public static T AddService<T>()
+        {
+            IService service = (IService) Activator.CreateInstance(typeof(T));
+            serviceList.Add(service);
+            service.OnStart();
+            return (T) service;
+        }
+
+        public static T AddService<T>(T serviceObject)
+        {
+            IService service = (IService) serviceObject;
+            serviceList.Add(service);
+            service.OnStart();
+            return (T) service;
         }
 
         public static void EndAllServices()

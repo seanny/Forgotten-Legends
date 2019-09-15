@@ -77,7 +77,11 @@ namespace Core.Interactable
         
         public bool InSight()
         {
-            Vector3 dir = (transform.position - CameraController.Instance.transform.position).normalized;
+            if (CameraController.isReady == false)
+            {
+                return false;
+            }
+            Vector3 dir = (transform.position - ServiceLocator.GetService<CameraController>().transform.position).normalized;
             float dot = Vector3.Dot(dir, transform.forward);
             if (dot > 0.5f)
             {

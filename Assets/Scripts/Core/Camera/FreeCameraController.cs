@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Core.CommandConsole;
+using Core.Services;
 using UnityEngine.UI;
 
 namespace Core.Camera
@@ -64,7 +65,7 @@ namespace Core.Camera
         [RegisterCommand(Help = "Toggle Free Camera")]
         static void CommandToggleFreeCam(CommandArg[] args)
         {
-            if (CameraController.Instance.freeCamera == false)
+            if (ServiceLocator.GetService<CameraController>().freeCamera == false)
             {
                 Instance.StartLooking();
             }
@@ -81,7 +82,7 @@ namespace Core.Camera
 
         void Update()
         {
-            if (CameraController.Instance.freeCamera == true)
+            if (ServiceLocator.GetService<CameraController>().freeCamera == true)
             {
                 var fastMode = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
                 var movementSpeed = fastMode ? this.fastMovementSpeed : this.movementSpeed;
@@ -164,7 +165,7 @@ namespace Core.Camera
             looking = true;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            CameraController.Instance.ToggleFreeCamera(true);
+            ServiceLocator.GetService<CameraController>().ToggleFreeCamera(true);
         }
 
         /// <summary>
@@ -175,7 +176,7 @@ namespace Core.Camera
             looking = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            CameraController.Instance.ToggleFreeCamera(false);
+            ServiceLocator.GetService<CameraController>().ToggleFreeCamera(false);
         }
     }
 }

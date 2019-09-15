@@ -8,6 +8,7 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
+using Core.Services;
 using UnityEngine;
 
 namespace Core.Camera
@@ -35,7 +36,7 @@ namespace Core.Camera
         {
             if (!rotationLocked)
             {
-                if (CameraController.Instance.freeCamera == false)
+                if (ServiceLocator.GetService<CameraController>().freeCamera == false)
                 {
                     GetCameraRotation();
                     ClampCameraRotation();
@@ -66,7 +67,7 @@ namespace Core.Camera
 
         private void RotateCamera()
         {
-            CameraController.Instance.cameraTransform.eulerAngles = currentRot;
+            ServiceLocator.GetService<CameraController>().cameraTransform.eulerAngles = currentRot;
         }
     }
 }

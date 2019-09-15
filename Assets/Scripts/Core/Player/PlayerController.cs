@@ -11,6 +11,7 @@
 using System.Runtime.CompilerServices;
 using Core.Actor;
 using Core.Camera;
+using Core.Services;
 using UnityEngine;
 
 namespace Core.Player
@@ -71,7 +72,7 @@ namespace Core.Player
                 return;
             }
 
-            if (CameraController.Instance.freeCamera == true)
+            if (ServiceLocator.GetService<CameraController>().freeCamera == true)
             {
                 return;
             }
