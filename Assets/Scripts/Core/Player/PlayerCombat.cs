@@ -15,6 +15,12 @@ namespace Core.Player
 {
     public class PlayerCombat : ActorCombat, IService
     {
+        protected override void Start()
+        {
+            base.Start();
+            ServiceLocator.AddService(this);
+        }
+
         // Update is called once per frame
         void Update()
         {

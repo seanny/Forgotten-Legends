@@ -9,6 +9,7 @@
 //
 
 using Core.Actor;
+using Core.Services;
 using UnityEngine.UI;
 
 namespace Core.Player
@@ -16,6 +17,12 @@ namespace Core.Player
     public class PlayerStamina : ActorStamina
     {
         public Scrollbar scrollbar;
+
+        protected override void Start()
+        {
+            base.Start();
+            ServiceLocator.AddService(this);
+        }
 
         private void LateUpdate()
         {

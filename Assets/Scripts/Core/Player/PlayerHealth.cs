@@ -19,6 +19,12 @@ namespace Core.Player
     {
         [SerializeField] private Scrollbar m_Scrollbar;
 
+        protected override void Start()
+        {
+            base.Start();
+            ServiceLocator.AddService(this);
+        }
+
         private void LateUpdate()
         {
             if (m_Scrollbar == null)
