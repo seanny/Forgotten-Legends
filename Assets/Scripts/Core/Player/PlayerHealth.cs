@@ -43,8 +43,7 @@ namespace Core.Player
             {
                 m_Scrollbar = GameObject.FindWithTag("HealthBar").GetComponent<Scrollbar>();
             }
-            Debug.Log($"m_Scrollbar = {m_Scrollbar}");
-            
+
             return m_Scrollbar;
         }
 
