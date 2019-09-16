@@ -9,6 +9,7 @@
 //
 
 using System;
+using Core.Services;
 using Core.World;
 using UnityEngine;
 
@@ -171,7 +172,7 @@ namespace Core.Actor
             Actor _actor = Actor.FindActor(actorID);
             if (_actor != null)
             {
-                WorldspaceManager.Instance.SetActorWorldspace(_actor, worldspaceID);
+                ServiceLocator.GetService<WorldspaceManager>().SetActorWorldspace(_actor, worldspaceID);
                 return 0;
             }
             return 1;

@@ -9,6 +9,7 @@
 //
 
 using System;
+using Core.Services;
 
 namespace Core.World
 {
@@ -32,7 +33,7 @@ namespace Core.World
             description = "Load all worldspaces from the file system into memory.")]
         private int Lua_LoadAllWorldspaces()
         {
-            WorldspaceManager.Instance.LoadAllWorldspaces();
+            ServiceLocator.GetService<WorldspaceManager>().LoadAllWorldspaces();
             return 0;
         }
     
@@ -41,7 +42,7 @@ namespace Core.World
             description = "Load a worldspace into memory.")]
         private int Lua_LoadWorldspace(string worldspaceID)
         {
-            WorldspaceManager.Instance.LoadWorldspace(worldspaceID);
+            ServiceLocator.GetService<WorldspaceManager>().LoadWorldspace(worldspaceID);
             return 0;
         }
     }

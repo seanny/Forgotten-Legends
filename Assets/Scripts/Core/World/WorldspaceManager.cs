@@ -18,21 +18,9 @@ using Core.Services;
 
 namespace Core.World
 {
-    public class WorldspaceManager : Singleton<WorldspaceManager>
+    public class WorldspaceManager : IService
     {
-        private List<Worldspace> m_Worldspaces;
-
-        private void Start()
-        {
-            // Initialise the m_Worldspace object
-            m_Worldspaces = new List<Worldspace>();
-        
-            // Load all worldspaces
-            LoadAllWorldspaces();
-        
-            // Load the test worldspace to ensure that the worldspace system gets loaded.
-            SetPlayerWorldspace("TestWorldspace");
-        }
+        public List<Worldspace> worldspaces = new List<Worldspace>();
 
         public void LoadAllWorldspaces()
         {
@@ -63,19 +51,19 @@ namespace Core.World
             Worldspace worldspace = JsonUtility.FromJson<Worldspace>(jsonData);
 
             // Add the new worldspace into the m_Worldspaces list
-            m_Worldspaces.Add(worldspace);
+            worldspaces.Add(worldspace);
         }
 
         [RegisterCommand(Help = "SetPlayerWorldspace")]
-        static void CommandSetPlayerWorldspace(CommandArg[] args)
+        private static void CommandSetPlayerWorldspace(CommandArg[] args)
         {
             bool found = false;
             string worldspaceName = args[0].String;
-            foreach (var item in Instance.m_Worldspaces)
+            foreach (var item in ServiceLocator.GetService<WorldspaceManager>().worldspaces)
             {
                 if (worldspaceName == item.worldspaceID)
                 {
-                    Instance.SetPlayerWorldspace(worldspaceName);
+                    ServiceLocator.GetService<WorldspaceManager>().SetPlayerWorldspace(worldspaceName);
                     found = true;
                     break;
                 }
@@ -117,6 +105,20 @@ namespace Core.World
         private void LoadAllMaps(string worldspaceID)
         {
             MapManager.Instance.LoadAllMaps(worldspaceID);
+        }
+
+        public void OnStart()
+        {
+            // Load all worldspaces
+            LoadAllWorldspaces();
+        
+            // Load the test worldspace to ensure that the worldspace system gets loaded.
+            SetPlayerWorldspace("TestWorldspace");
+        }
+
+        public void OnEnd()
+        {
+            RemoveAllMaps();
         }
     }
 }
