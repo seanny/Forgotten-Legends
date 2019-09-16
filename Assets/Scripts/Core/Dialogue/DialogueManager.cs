@@ -121,7 +121,7 @@ namespace Core.Dialogue
                 {
                     string nextKey = m_CurrentDiscussion[i];
                     m_CurrentDiscussionComplete[i] = true;
-                    npcDialogue.text = StringUtility.EscapeString(LocalisationManager.Instance.GetLocalisedString(nextKey));
+                    npcDialogue.text = StringUtility.EscapeString(ServiceLocator.GetService<LocalisationManager>().GetLocalisedString(nextKey));
                     ScriptManager.Instance.CallFunction("OnDialogueContinue", new object[] { nextKey });
                     break;
                 }
@@ -210,7 +210,7 @@ namespace Core.Dialogue
             {
                 GameObject _gameObject = Instantiate(dialogOptionPrefab);
                 _gameObject.transform.SetParent(dialogueOptionHolder.transform);
-                _gameObject.GetComponentInChildren<TextMeshProUGUI>().text = LocalisationManager.Instance.GetLocalisedString(m_DialogueOptions[i]);
+                _gameObject.GetComponentInChildren<TextMeshProUGUI>().text = ServiceLocator.GetService<LocalisationManager>().GetLocalisedString(m_DialogueOptions[i]);
                 _gameObject.GetComponent<DialogueOption>().optionKey = m_DialogueOptions[i];
                 m_DialogueObjects.Add(_gameObject);
             }

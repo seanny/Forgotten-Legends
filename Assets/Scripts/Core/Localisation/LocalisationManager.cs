@@ -9,21 +9,17 @@
 //
 
 using System.Collections.Generic;
+using Core.Services;
 using Core.Utility;
 using UnityEngine;
 
 namespace Core.Localisation
 {
-    public class LocalisationManager : Singleton<LocalisationManager>
+    public class LocalisationManager : IService
     {
         private Dictionary<string, string> m_LocalisationInfo;
         private SystemLanguage m_SystemLanguage;
         public bool isReady { get; private set; }
-
-        private void Start()
-        {
-            InitIfNotAlready();
-        }
 
         private void Initialise()
         {
@@ -63,6 +59,16 @@ namespace Core.Localisation
                 }
             }
             return returnValue;
+        }
+
+        public void OnStart()
+        {
+            InitIfNotAlready();
+        }
+
+        public void OnEnd()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

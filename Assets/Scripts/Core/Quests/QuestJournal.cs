@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Core.Localisation;
+using Core.Services;
 using Core.Utility;
 using TMPro;
 using UnityEngine;
@@ -80,10 +81,10 @@ namespace Core.Quests
             // TODO: Show the quest added UI
             // Output: Started: Quest Name
             questName.text =
-                $"{LocalisationManager.Instance.GetLocalisedString("QuestStarted")} {LocalisationManager.Instance.GetLocalisedString(quest.questName)}";
+                $"{ServiceLocator.GetService<LocalisationManager>().GetLocalisedString("QuestStarted")} {ServiceLocator.GetService<LocalisationManager>().GetLocalisedString(quest.questName)}";
 
             questObjective.text = 
-                $"{LocalisationManager.Instance.GetLocalisedString(quest.questDescription)}";
+                $"{ServiceLocator.GetService<LocalisationManager>().GetLocalisedString(quest.questDescription)}";
 
             FadeInName();
             FadeInObjective();
@@ -120,7 +121,7 @@ namespace Core.Quests
                             activeQuests[activeQuests.ElementAt(i).Key] = questObjectiveID;
 
                             questObjective.text =
-                                $"{LocalisationManager.Instance.GetLocalisedString(questObjectiveID)}";
+                                $"{ServiceLocator.GetService<LocalisationManager>().GetLocalisedString(questObjectiveID)}";
                             FadeInObjective();
                             break;
                         }
@@ -153,17 +154,17 @@ namespace Core.Quests
                     {
                         // Show the quest completed UI
                         questName.text =
-                            $"{LocalisationManager.Instance.GetLocalisedString("QuestFailed")} ";
+                            $"{ServiceLocator.GetService<LocalisationManager>().GetLocalisedString("QuestFailed")} ";
                     }
                     else
                     {
                         // Show the quest failed UI
                         questName.text =
-                            $"{LocalisationManager.Instance.GetLocalisedString("QuestCompleted")} ";
+                            $"{ServiceLocator.GetService<LocalisationManager>().GetLocalisedString("QuestCompleted")} ";
                     }
 
                     questName.text +=
-                        $"{LocalisationManager.Instance.GetLocalisedString(activeQuests.ElementAt(i).Key.questName)}";
+                        $"{ServiceLocator.GetService<LocalisationManager>().GetLocalisedString(activeQuests.ElementAt(i).Key.questName)}";
                     
                     FadeInName();
 
