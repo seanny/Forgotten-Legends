@@ -8,7 +8,6 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Core.Player;
@@ -21,7 +20,7 @@ namespace Core.World
 {
     public class WorldspaceManager : Singleton<WorldspaceManager>
     {
-        public List<Worldspace> m_Worldspaces { get; private set; }
+        private List<Worldspace> m_Worldspaces;
 
         private void Start()
         {
@@ -74,7 +73,7 @@ namespace Core.World
             string worldspaceName = args[0].String;
             foreach (var item in Instance.m_Worldspaces)
             {
-                if (worldspaceName == item.worldspaceName)
+                if (worldspaceName == item.worldspaceID)
                 {
                     Instance.SetPlayerWorldspace(worldspaceName);
                     found = true;
@@ -94,18 +93,20 @@ namespace Core.World
         
         public void SetPlayerWorldspace(string worldspaceID)
         {
+            // TODO: Show a loading screen prior to this
             SetActorWorldspace(ServiceLocator.GetService<PlayerManager>().GetPlayer(), worldspaceID);
             
             // TODO: Add a reference into the Worldspace files so that these can be modded easily.
             ServiceLocator.GetService<Ocean>().GenerateWater(500, 500);
             ServiceLocator.GetService<CloudManager>().ToggleCloudGeneration(true);
+            
+            RemoveAllMaps();
+            LoadAllMaps(worldspaceID);
         }
     
         public void SetActorWorldspace(Actor.Actor actor, string worldspaceID)
         {
             actor.actorWorldspace = worldspaceID;
-            RemoveAllMaps();
-            LoadAllMaps(worldspaceID);
         }
     
         private void RemoveAllMaps()

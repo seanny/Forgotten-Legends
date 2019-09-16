@@ -8,22 +8,20 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
-using System;
 using System.IO;
 using Core.Interactable;
+using Core.Services;
 using Core.Utility;
 using Core.World;
 using Dummiesman;
+using UnityEditor;
 using UnityEngine;
 
 namespace Core.MeshLoading
 {
-    public class ObjectModelFormat : Singleton<ObjectModelFormat>
+    public class ObjectModelFormat : IService
     {
-        private static readonly string FileExt = ".obj";
-        private static readonly string TextureExt = ".png";
-    
-        public Transform parentObject;
+        private Transform m_ParentObject;
 
         public GameObject LoadObjectFile(string objectMeta)
         {
@@ -79,7 +77,7 @@ namespace Core.MeshLoading
 
             GameObject _gameObject = new OBJLoader().Load(filePath);
 
-            _gameObject.transform.parent = parentObject;
+            _gameObject.transform.parent = m_ParentObject;
 
             Material material = _gameObject.GetComponentInChildren<Renderer>().material;
             
@@ -219,6 +217,16 @@ namespace Core.MeshLoading
                     objectItem.rigidbody.rotation.w
                 );
             }
+        }
+
+        public void OnStart()
+        {
+            m_ParentObject = GameObject.Find("_Dynamic").transform;
+        }
+
+        public void OnEnd()
+        {
+            
         }
     }
 }

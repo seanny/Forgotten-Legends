@@ -11,9 +11,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.CompilerServices;
-using Core.Interactable;
 using Core.MeshLoading;
+using Core.Services;
 using Core.Utility;
 using UnityEngine;
 using UnityEngine.AI;
@@ -170,7 +169,9 @@ namespace Core.World
             {
                 objectItem.objectBaseFile += ".json";
             }
-            GameObject _gameObject = ObjectModelFormat.Instance.LoadObjectFile(objectItem.objectBaseFile);
+
+            GameObject _gameObject = Instantiate(ServiceLocator.GetService<ObjectModelFormat>()
+                .LoadObjectFile(objectItem.objectBaseFile));
             if (_gameObject != null)
             {
                 _gameObject.transform.position = new Vector3(objectItem.objectPosition.x, objectItem.objectPosition.y, objectItem.objectPosition.z);
