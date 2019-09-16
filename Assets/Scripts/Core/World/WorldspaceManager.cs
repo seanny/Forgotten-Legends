@@ -15,6 +15,7 @@ using Core.Utility;
 using UnityEngine;
 using Core.CommandConsole;
 using Core.Services;
+using Core.UserInterface;
 
 namespace Core.World
 {
@@ -81,6 +82,8 @@ namespace Core.World
         
         public void SetPlayerWorldspace(string worldspaceID)
         {
+            ServiceLocator.GetService<LoadingScreenService>().ToggleLoadingScreen(true);
+            
             // TODO: Show a loading screen prior to this
             SetActorWorldspace(ServiceLocator.GetService<PlayerManager>().GetPlayer(), worldspaceID);
             
@@ -90,6 +93,7 @@ namespace Core.World
             
             RemoveAllMaps();
             LoadAllMaps(worldspaceID);
+            ServiceLocator.GetService<LoadingScreenService>().ToggleLoadingScreen(false);
         }
     
         public void SetActorWorldspace(Actor.Actor actor, string worldspaceID)
