@@ -9,6 +9,7 @@ TagManager:
   - CameraTarget
   - InteractText
   - MapExport
+  - LoadingScreenTexture
   layers:
   - Default
   - TransparentFX
