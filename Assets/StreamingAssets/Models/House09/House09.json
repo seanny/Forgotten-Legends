@@ -1,0 +1,45 @@
+{
+    "meshObj": "House09/House09.obj",
+    "meshLODNear": "",
+    "meshLODFar": "",
+    "texturePng": "House09/House09_D.png",
+    "normalPng": "House09/House09_N.png",
+    "ambientOcclusionPng": "House09/House09_AO.png",
+    "heightMapPng": "",
+    "isWalkable": false,
+    "light": {
+        "isEnabled": false,
+        "isSpotlight": false,
+        "range": 0.0,
+        "angle": 0.0,
+        "intensity": 0.0,
+        "colour": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+        }
+    },
+    "interactable": {
+        "isInteractable": false,
+        "interactableType": 0
+    },
+    "rigidbody": {
+        "isEnabled": false,
+        "position": {},
+        "rotation": {},
+        "mass": 0.0,
+        "drag": 0.0
+    },
+    "collider": {
+        "isEnabled": true,
+        "isTrigger": false
+    },
+    "timed": {
+        "isEnabled": false,
+        "activationHour": 0,
+        "deactivationHour": 0
+    },
+    "drawDistance": 300.0,
+    "objectName": "House09"
+}
