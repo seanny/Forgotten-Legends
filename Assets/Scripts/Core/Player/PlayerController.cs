@@ -84,7 +84,7 @@ namespace Core.Player
             {
                 m_AnimationController.StartJump();
                 m_Jumping = true;
-                transform.Translate(transform.up * m_JumpForce * Time.deltaTime, Space.World);
+                //transform.Translate(transform.up * m_JumpForce * Time.deltaTime, Space.World);
                 //m_Rigidbody.AddForce(new Vector3(0, m_JumpForce * Time.deltaTime, 0));
             }
 
@@ -123,8 +123,14 @@ namespace Core.Player
 
         private void FixedUpdate()
         {
-            m_Rigidbody.MovePosition(transform.position + (transform.forward * m_Speed * Time.deltaTime));
-                //AddForce(Vector3.forward * (m_Speed * 2));
+            if (m_Jumping == true)
+            {
+                m_Rigidbody.MovePosition(transform.position + (transform.up * m_JumpForce * Time.deltaTime));
+            }
+            else
+            {
+                m_Rigidbody.MovePosition(transform.position + (transform.forward * m_Speed * Time.deltaTime));
+            }
         }
 
         #endregion
