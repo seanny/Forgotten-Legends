@@ -8,6 +8,7 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
+using System;
 using System.Runtime.CompilerServices;
 using Core.Actor;
 using Core.Camera;
@@ -30,7 +31,9 @@ namespace Core.Player
         [SerializeField] private Rigidbody m_Rigidbody;
         private bool m_Jumping;
         private bool m_Falling;
-
+        private float m_Speed;
+        private Vector3 m_Direction;
+        
         private Transform m_Camera;
         private ActorAnimationController m_AnimationController;
 
@@ -95,9 +98,8 @@ namespace Core.Player
             }
 
             bool _running = Input.GetKey(KeyCode.LeftShift);
-            float _speed = ((_running) ? m_RunSpeed : m_WalkSpeed) * _inputDir.magnitude;
-
-            transform.Translate(transform.forward * _speed * Time.deltaTime, Space.World);
+            m_Speed = ((_running) ? m_RunSpeed : m_WalkSpeed) * _inputDir.magnitude;
+            m_Direction = _inputDir;
 
             if (m_Jumping == false)
             {
@@ -117,6 +119,12 @@ namespace Core.Player
                     m_AnimationController.StartIdle();
                 }
             }
+        }
+
+        private void FixedUpdate()
+        {
+            m_Rigidbody.MovePosition(transform.position + (transform.forward * m_Speed * Time.deltaTime));
+                //AddForce(Vector3.forward * (m_Speed * 2));
         }
 
         #endregion
