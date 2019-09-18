@@ -1,0 +1,14 @@
+{
+  "BookName": "Seanny's Scripture of Testing",
+  "bookType": 1,
+  "bookAuthor": "Seanny",
+  "bookDate": "17 September 2019",
+  "bookText":
+  [
+    "Hello World~br~~italic~Sample Italic~enditalic~~br~~strike~striked~endstrike~~br~~line~underline~endline~~br~~br~-Seanny",
+    "~aligncentre~Centre Align~endalign~~br~~alignright~I am right~endalign~~br~~alignleft~I am left~endalign~~br~~hide~I am hidden~endhide~",
+    "áéíóú~br~äëïöü~br~ãñõ",
+    "Hello World~br~Hola Mundo~br~Dia duit Domhanda"
+  ]
+  
+}

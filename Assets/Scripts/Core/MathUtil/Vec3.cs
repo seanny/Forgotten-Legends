@@ -15,9 +15,9 @@ namespace Core.MathUtil
     [Serializable]
     public class Vec3
     {
-        public float x { get; private set; }
-        public float y { get; private set; }
-        public float z { get; private set; }
+        public float x;
+        public float y;
+        public float z;
         
         public Vec3(float x, float y, float z)
         {

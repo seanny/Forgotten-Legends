@@ -10,6 +10,7 @@ TagManager:
   - InteractText
   - MapExport
   - LoadingScreenTexture
+  - BookImage
   layers:
   - Default
   - TransparentFX

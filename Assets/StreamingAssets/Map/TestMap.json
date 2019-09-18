@@ -5,14 +5,14 @@
     "mapWorldspace":"TestWorldspace",
     "mapName":"Test Map"
   },
-  "mapObjects":
+  "mapObjects": 
   [
     {
       "objectBaseFile":"CityWallArchway01",
       "objectName": "CityWallArchway01",
       "objectPosition":
       {
-        "x":0.0,
+        "x":10.0,
         "y":1.0,
         "z":0.0
       },
@@ -29,6 +29,33 @@
         "y":1.0,
         "z":1.0
       },
+      "objectType": 0,
+      "bookID": "TestBook",
+      "objectScripts": [ "fruits.lua" ]
+    }, 
+    {
+      "objectBaseFile":"Book01",
+      "objectName": "Book01",
+      "objectPosition":
+      {
+        "x":-9.23,
+        "y":-0.95,
+        "z":26.32
+      },
+      "objectRotation":
+      {
+        "x":0.0,
+        "y":0.0,
+        "z":0.0,
+        "w":0.0
+      },
+      "objectScale":
+      {
+        "x":1.0,
+        "y":1.0,
+        "z":1.0
+      },
+      "bookID": "TestBook",
       "objectScripts": [ "fruits.lua" ]
     }
   ]

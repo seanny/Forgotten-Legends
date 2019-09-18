@@ -11,6 +11,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Core.Books;
 using Core.MeshLoading;
 using Core.Services;
 using Core.Utility;
@@ -155,7 +156,7 @@ namespace Core.World
                 }
                 else
                 {
-                    if (CreateStandardObject(item) == true)
+                    if (CreateStandardObject(item) == false)
                     {
                         Debug.LogWarning($"Could not create standard object, possible incorrect file name: {item.objectBaseFile}");
                     }
@@ -171,8 +172,8 @@ namespace Core.World
                 objectItem.objectBaseFile += ".json";
             }
 
-            GameObject _gameObject = Instantiate(ServiceLocator.GetService<ObjectModelFormat>()
-                .LoadObjectFile(objectItem.objectBaseFile));
+            GameObject _gameObject = ServiceLocator.GetService<ObjectModelFormat>()
+                .LoadObjectFile(objectItem.objectBaseFile);
             if (_gameObject != null)
             {
                 _gameObject.transform.position = new Vector3(objectItem.objectPosition.x, objectItem.objectPosition.y, objectItem.objectPosition.z);
@@ -180,7 +181,14 @@ namespace Core.World
                     objectItem.objectRotation.z, objectItem.objectRotation.w);
                 _gameObject.transform.localScale = new Vector3(objectItem.objectScale.x, objectItem.objectScale.y, objectItem.objectScale.z);
                 _gameObject.name = $"Standard_{objectItem.objectName}";
-                _gameObject.transform.parent = parentTransform;
+
+                if (objectItem.bookID.Length > 0)
+                {
+                    string json = AssetUtility.ReadAsset("Books", $"{objectItem.bookID}.json");
+                    Book book = JsonUtility.FromJson<Book>(json);
+                    _gameObject.AddComponent<BookObject>().book = book;
+                }
+
                 m_GameObjects.Add(_gameObject);
                 return true;
             }
@@ -223,7 +231,7 @@ namespace Core.World
                     objectItem.objectRotation.z, objectItem.objectRotation.w);
                 _gameObject.transform.localScale = new Vector3(objectItem.objectScale.x, objectItem.objectScale.y, objectItem.objectScale.z);
                 _gameObject.name = $"Special_{objectItem.objectName}";
-                _gameObject.transform.parent = parentTransform;
+                //_gameObject.transform.parent = parentTransform;
                 m_GameObjects.Add(_gameObject);
                 return true;
             }

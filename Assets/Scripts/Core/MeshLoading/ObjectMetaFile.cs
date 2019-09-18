@@ -31,6 +31,7 @@ namespace Core.MeshLoading
         public MetaTimed timed;
         public float drawDistance;
         public string objectName;
+        public string bookID;
     }
 
     [Serializable]

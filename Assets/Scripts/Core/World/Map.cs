@@ -65,6 +65,7 @@ namespace Core.World
         public Vec3 objectPosition;
         public Quat objectRotation;
         public Vec3 objectScale;
+        public string bookID;
         public List<string> objectScripts;
     }
 

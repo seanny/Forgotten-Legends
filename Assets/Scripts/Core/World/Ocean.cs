@@ -10,8 +10,8 @@ namespace Core.World
         public GameObject waterPrefab;
         public List<GameObject> waterTiles = new List<GameObject>();
         
-        private float x_Start; 
-        private float y_Start;
+        private float x_Start = 0; 
+        private float y_Start = 0;
         private int columnLength = 500;
         private int rowLength = 500;
         private float x_Space = 10; 

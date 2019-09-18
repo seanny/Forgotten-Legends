@@ -14,15 +14,12 @@ using Core.Services;
 using Core.Utility;
 using Core.World;
 using Dummiesman;
-using UnityEditor;
 using UnityEngine;
 
 namespace Core.MeshLoading
 {
     public class ObjectModelFormat : IService
     {
-        private Transform m_ParentObject;
-
         public GameObject LoadObjectFile(string objectMeta)
         {
             string objMetaFile = objectMeta;
@@ -76,9 +73,6 @@ namespace Core.MeshLoading
             }
 
             GameObject _gameObject = new OBJLoader().Load(filePath);
-
-            _gameObject.transform.parent = m_ParentObject;
-
             Material material = _gameObject.GetComponentInChildren<Renderer>().material;
             
             if (texturePath.Length > 0)
@@ -95,7 +89,7 @@ namespace Core.MeshLoading
             {
                 material.SetTexture("_OcclusionMap", Utility.ImageUtils.LoadPNG(occlusionPath));
             }
-
+            
             AddTimedIfPossible(objectMetaFile, _gameObject);
             AddNavMeshSourceIfPossible(objectMetaFile, _gameObject);
             AddInteractionIfPossible(objectMetaFile, _gameObject);
@@ -170,6 +164,7 @@ namespace Core.MeshLoading
             {
                 gameObject.AddComponent<MeshCollider>();
                 gameObject.GetComponent<MeshCollider>().isTrigger = objectItem.collider.isTrigger;
+                gameObject.GetComponent<MeshCollider>().sharedMesh = gameObject.GetComponentInChildren<MeshFilter>().mesh;
             }
         }
         
@@ -221,7 +216,7 @@ namespace Core.MeshLoading
 
         public void OnStart()
         {
-            m_ParentObject = GameObject.Find("_Dynamic").transform;
+            
         }
 
         public void OnEnd()

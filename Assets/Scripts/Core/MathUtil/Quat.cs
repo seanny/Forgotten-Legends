@@ -15,10 +15,10 @@ namespace Core.MathUtil
     [Serializable]
     public class Quat
     {
-        public float x { get; private set; }
-        public float y { get; private set; }
-        public float z { get; private set; }
-        public float w { get; private set; }
+        public float x;
+        public float y;
+        public float z;
+        public float w;
         
         public Quat(float x, float y, float z, float w)
         {
