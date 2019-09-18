@@ -30,7 +30,6 @@ namespace Core.World
                 gameObject.transform.parent = waterParent;
                 waterTiles.Add(gameObject);
             }
-            Debug.Log($"Generated water with {columnLength} columns and {rowLength} rows.");
         }
 
         public void RemoveWater()

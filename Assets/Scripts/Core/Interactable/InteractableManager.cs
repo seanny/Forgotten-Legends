@@ -56,7 +56,6 @@ namespace Core.Interactable
             {
                 if(interactables[i].IsClose())
                 {
-                    Debug.Log($"Found item: {interactables[i].interactableData.name}");
                     return interactables[i];
                 }
             }

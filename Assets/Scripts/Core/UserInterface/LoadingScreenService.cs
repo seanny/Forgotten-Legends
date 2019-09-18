@@ -20,7 +20,6 @@ namespace Core.UserInterface
             string[] files = Directory.GetFiles(folderPath, "*.png", SearchOption.AllDirectories);
             foreach (var textureFile in files)
             {
-                Debug.Log($"textureFile: {textureFile}");
                 m_Textures.Add(Utility.ImageUtils.LoadPNG(textureFile));
             }
         }
