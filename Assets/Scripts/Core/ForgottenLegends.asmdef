@@ -1,0 +1,19 @@
+{
+    "name": "ForgottenLegends",
+    "references": [
+        "Unity.TextMeshPro",
+        "OBJImport",
+        "Lua",
+        "MoonSharp",
+        "UnityLogger",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

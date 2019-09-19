@@ -1,0 +1,15 @@
+{
+    "name": "Lua",
+    "references": [
+        "GUID:1b3a6f7e614984e4481e31318c5a7a3f",
+        "GUID:cecaddaa5aa9a40c48017f5acf2a6f4d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
