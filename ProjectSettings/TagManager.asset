@@ -11,6 +11,8 @@ TagManager:
   - MapExport
   - LoadingScreenTexture
   - BookImage
+  - MiniMap
+  - StatsBar
   layers:
   - Default
   - TransparentFX
