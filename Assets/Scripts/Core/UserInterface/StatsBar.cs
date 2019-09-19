@@ -17,12 +17,23 @@ using UnityEngine.UI;
 
 namespace Core.UserInterface
 {
-    public class StatsBar : Singleton<StatsBar>
+    public class StatsBar : MonoBehaviour, IService
     {
         private const float WAIT_TIME = 1.0f;
         private float m_Time;
-        private GameObject m_StatsBar;
+        [SerializeField] private GameObject m_StatsBar;
         private bool isShown;
+
+        public void ToggleStatsBar(bool toggle)
+        {
+            m_StatsBar.SetActive(toggle);
+        }
+
+        private void Start()
+        {
+            m_StatsBar = GameObject.FindWithTag("StatsBar");
+            ServiceLocator.AddService(this);
+        }
 
         private void Update()
         {
@@ -44,6 +55,16 @@ namespace Core.UserInterface
                 }
                 ImageUtils.FadeAlpha(ServiceLocator.GetService<PlayerHealth>().GetScrollbar(), isShown == true ? 1.0f : 0.0f, 1.0f);
             }
+        }
+
+        public void OnStart()
+        {
+            
+        }
+
+        public void OnEnd()
+        {
+            
         }
     }
 }

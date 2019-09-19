@@ -8,17 +8,26 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
+using System;
+using Core.Services;
+using Core.Utility;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Core.Minimap
 {
-    public class MiniMap : MonoBehaviour
+    public class MiniMap : MonoBehaviour, IService
     {
         public Transform player;
+        
+        [SerializeField]
+        private GameObject minimapUI;
 
         private void Start()
         {
             player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+            minimapUI = GameObject.FindWithTag("MiniMap");
+            ServiceLocator.AddService(this);
         }
 
         private void LateUpdate()
@@ -26,6 +35,21 @@ namespace Core.Minimap
             Vector3 newPos = player.position;
             newPos.y = transform.position.y;
             transform.position = newPos;
+        }
+
+        public void ToggleMinimap(bool toggle)
+        {
+            minimapUI.SetActive(toggle);
+        }
+
+        public void OnStart()
+        {
+            
+        }
+
+        public void OnEnd()
+        {
+            
         }
     }
 }
