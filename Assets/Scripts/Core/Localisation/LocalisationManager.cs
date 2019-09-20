@@ -68,7 +68,7 @@ namespace Core.Localisation
 
         public void OnEnd()
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }
