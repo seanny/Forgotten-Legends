@@ -69,8 +69,8 @@ namespace Core.Services
             foreach (var service in serviceList)
             {
                 service.OnEnd();
-                serviceList.Remove(service);
             }
+            serviceList.Clear();
         }
     }
 }
