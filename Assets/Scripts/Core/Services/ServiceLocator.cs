@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Core.CommandConsole;
-using Object = System.Object;
 
 namespace Core.Services
 {
     public static class ServiceLocator
     {
         public static List<IService> serviceList = new List<IService>();
-
+        
+#if UNITY_DEVELOPMENT || UNITY_EDITOR
         [RegisterCommand(Help = "Display help information about a command", MaxArgCount = 1)]
         private static void CommandServiceLocator(CommandArg[] args)
         {
@@ -26,6 +26,7 @@ namespace Core.Services
                 }
             }
         }
+#endif
         
         public static T GetService<T>()
         {
