@@ -45,9 +45,12 @@ namespace Core.Actor
 
         public void AddHealth(int health)
         {
+            Debug.Log($"1");
             currentHealth += health;
+            Debug.Log($"2");
             if (currentHealth > maxHealth)
             {
+                Debug.Log($"3");
                 currentHealth = maxHealth;
             }
         }
