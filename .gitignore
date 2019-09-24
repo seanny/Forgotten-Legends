@@ -17,7 +17,7 @@ Library/*
 [Ll]ogs/
 Assets/AssetStoreTools*
 !Assets/Scripts/Editor/Build
-Assets/Models/Models
+Assets/Models/Models/*
 !Assets/Models/Models/.gitkeep
 
 # Visual Studio cache directory
