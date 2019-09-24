@@ -1,0 +1,31 @@
+{
+    "mapHeader": {
+        "mapID": "ATestMap.json",
+        "mapWorldspace": "TestWorldspace",
+        "mapName": "A Test Map"
+    },
+    "mapObjects": [
+        {
+            "objectBaseFile": "Special::Cube",
+            "objectName": "Item",
+            "objectPosition": {
+                "x": 21.969999313354493,
+                "y": 2.0,
+                "z": 20.0
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 0.10000000149011612,
+                "y": 0.20000000298023225,
+                "z": 0.10000000149011612
+            },
+            "bookID": "",
+            "objectScripts": []
+        }
+    ]
+}

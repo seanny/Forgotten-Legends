@@ -49,12 +49,12 @@ namespace Core.Editor
                 mapID += ".json";
             }
             
-            GameObject[] gameObjects = GameObject.FindObjectsOfType<GameObject>();
+            GameObject[] gameObjects = FindObjectsOfType<GameObject>();
 
             int count = 0;
             foreach (var item in gameObjects)
             {
-                if (item.tag == "MapExport")
+                if (item.transform.tag == "MapExport")
                 {
                     if (item.name.Contains(" ("))
                     {
@@ -69,16 +69,24 @@ namespace Core.Editor
                     mapObject.objectRotation = new Quat(item.transform.rotation);
                     mapObject.objectScale = new Vec3(item.transform.localScale);
                     ExportAttachedScript exportAttachedScript;
-                    if (item.TryGetComponent<ExportAttachedScript>(out exportAttachedScript) == true)
+                    if (item.TryGetComponent(out exportAttachedScript))
                     {
                         mapObject.objectScripts = exportAttachedScript.luaScripts;
                     }
+                
+                    ExportAttachedObject exportAttachedObject;
+                    if (item.TryGetComponent(out exportAttachedObject))
+                    {
+                        mapObject.objectBaseFile = exportAttachedObject.objectID;
+                        mapObject.bookID = exportAttachedObject.bookID;
+                    }
+                
                     map.mapObjects.Add(mapObject);
                     count++;
                 }
             }
             
-            string jsonData = JsonUtility.ToJson(map);
+            string jsonData = JsonUtility.ToJson(map, true);
             string finalPath = Path.Combine(path, mapID);
             File.WriteAllText(finalPath, jsonData);
             Debug.Log($"Exported {count} objects to \"{finalPath}\"");
