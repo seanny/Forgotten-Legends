@@ -62,7 +62,7 @@ namespace Core.Actor
             Actor _actor = Actor.FindActor(actorID);
             if (_actor != null)
             {
-                _actor.m_ActorStats.currentLevel = level;
+                _actor.actorStatController.level.statValue = level;
                 return 0;
             }
             return 1;
@@ -76,7 +76,7 @@ namespace Core.Actor
             Actor _actor = Actor.FindActor(actorID);
             if (_actor != null)
             {
-                return _actor.m_ActorStats.currentLevel;
+                return _actor.actorStatController.level.statValue;
             }
             return -1;
         }

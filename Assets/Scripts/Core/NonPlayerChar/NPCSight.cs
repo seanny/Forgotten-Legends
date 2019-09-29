@@ -27,7 +27,7 @@ namespace Core.NonPlayerChar
 
         public float CalculateLineOfSight()
         {
-            return lineOfSight + m_ParentScript.m_ActorStats.perception;
+            return lineOfSight + m_ParentScript.actorStatController.GetStat("perception").statValue;
         }
 
         public Actor.Actor LookForEnemy()

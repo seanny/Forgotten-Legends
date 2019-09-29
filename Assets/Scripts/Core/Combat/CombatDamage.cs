@@ -15,17 +15,17 @@ namespace Core.Combat
     {
         public static void ApplyDamage(Actor.Actor attacker, Actor.Actor victim, float baseDamage, bool powerAttack)
         {
-            float damage = baseDamage + attacker.m_ActorStats.strength;
+            float damage = baseDamage + attacker.actorStatController.GetStat("strength").statValue;
             if (powerAttack)
             {
                 damage += (baseDamage * 1.5f) 
-                          + (attacker.m_ActorStats.luck / 2)
-                          + (attacker.m_ActorStats.currentLevel / 5);
+                          + (attacker.actorStatController.GetStat("luck").statValue / 2)
+                          + (attacker.actorStatController.level.statValue / 5);
             }
             else
             {
-                damage += (attacker.m_ActorStats.luck / 2)
-                          + (attacker.m_ActorStats.currentLevel / 5);
+                damage += (attacker.actorStatController.GetStat("luck").statValue / 2)
+                          + (attacker.actorStatController.level.statValue / 5);
             }
             victim.m_HealthScript.TakeHealth(Mathf.FloorToInt(damage));
             attacker.animationController.SwordAttack(false);

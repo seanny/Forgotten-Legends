@@ -17,19 +17,6 @@ namespace Core.Actor
     [Serializable]
     public class ActorStats
     {
-        // Actor Level. If maxLevel is 0, then they have no level cap.
-        public int currentLevel;
-        public int maxLevel;
-
-        // Actor Stats
-        public int strength;
-        public int perception;
-        public int endurance;
-        public int speech;
-        public int intelligence;
-        public int sneak;
-        public int luck;
-
         // Actor Gender
         public bool isFemale;
 
