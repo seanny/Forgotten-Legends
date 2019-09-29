@@ -16,7 +16,7 @@ using UnityEngine;
 
 namespace Core.Editor
 {
-    public class OpenTerminal : ScriptableObject
+    public static class OpenTerminal
     {
         [MenuItem("Tools/Open Terminal")]
         static void OpenTerminalPrompt()

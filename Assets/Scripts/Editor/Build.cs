@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Core.Editor
 {
-    public class Build : MonoBehaviour
+    public static class Build
     {
         public static readonly BuildTarget[] BUILD_TARGETS =
         {

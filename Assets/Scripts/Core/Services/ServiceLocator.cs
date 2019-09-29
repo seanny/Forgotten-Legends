@@ -44,7 +44,7 @@ namespace Core.Services
             }
             catch (Exception e)
             {
-                Debug.LogError($"Cannot return type: {e.Message}");
+                Debug.LogError($"Cannot return type for {typeof(T).ToString()}: {e.Message}");
                 throw;
             }
         }

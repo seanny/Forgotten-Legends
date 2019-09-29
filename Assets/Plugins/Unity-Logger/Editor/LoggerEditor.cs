@@ -7,6 +7,7 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 
@@ -63,3 +64,4 @@ public class LoggerEditor : EditorWindow
         Logger.SetChannels(loggerChannels);
     }
 }
+#endif

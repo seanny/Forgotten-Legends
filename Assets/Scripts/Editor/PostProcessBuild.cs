@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Core.Editor
 {
-    public class PostProcessBuild
+    public static class PostProcessBuild
     {
         [PostProcessBuild(1)]
         public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)

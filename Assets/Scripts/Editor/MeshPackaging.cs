@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.IO;
 using Core.MathUtil;
 using Core.MeshLoading;
@@ -200,3 +201,4 @@ namespace Core.Editor
         }
     }
 }
+#endif

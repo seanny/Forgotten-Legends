@@ -7,7 +7,7 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
-
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.IO;
 using Core.Factions;
@@ -120,3 +120,4 @@ namespace Core.Editor
         }
     }
 }
+#endif

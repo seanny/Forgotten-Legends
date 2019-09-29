@@ -1,8 +1,7 @@
-using System;
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.IO;
 using Core.MathUtil;
-using Core.Utility;
 using UnityEditor;
 using UnityEngine;
 using Core.World;
@@ -93,3 +92,4 @@ namespace Core.Editor
         }
     }
 }
+#endif
