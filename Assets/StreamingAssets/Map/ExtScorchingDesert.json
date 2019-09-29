@@ -1,0 +1,515 @@
+{
+    "mapHeader": {
+        "mapID": "ExtScorchingDesert",
+        "mapWorldspace": "Scythia",
+        "mapName": "Scorching Desert"
+    },
+    "mapObjects": [
+        {
+            "objectBaseFile": "House10",
+            "objectName": "House10",
+            "objectPosition": {
+                "x": 343.2032470703125,
+                "y": 41.810001373291019,
+                "z": -1487.15625
+            },
+            "objectRotation": {
+                "x": 0.051098838448524478,
+                "y": -0.13126268982887269,
+                "z": -0.006775069981813431,
+                "w": 0.990006685256958
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "Well",
+            "objectName": "Well",
+            "objectPosition": {
+                "x": 323.1641845703125,
+                "y": 41.63999938964844,
+                "z": -1492.86474609375
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "StandingStone02",
+            "objectName": "StandingStone02",
+            "objectPosition": {
+                "x": 323.8345947265625,
+                "y": 45.70000076293945,
+                "z": -1498.0208740234375
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "StandingStone02",
+            "objectName": "StandingStone02",
+            "objectPosition": {
+                "x": 343.05999755859377,
+                "y": 45.619998931884769,
+                "z": -1498.47998046875
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "StandingStone02",
+            "objectName": "StandingStone02",
+            "objectPosition": {
+                "x": 393.276611328125,
+                "y": 58.70000076293945,
+                "z": -1038.9041748046875
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "Rock04",
+            "objectName": "Rock04",
+            "objectPosition": {
+                "x": 328.70001220703127,
+                "y": 10.699999809265137,
+                "z": -1052.0999755859375
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "Rock04",
+            "objectName": "Rock04",
+            "objectPosition": {
+                "x": 329.3074951171875,
+                "y": 22.697303771972658,
+                "z": -1062.5999755859375
+            },
+            "objectRotation": {
+                "x": 0.033666957169771197,
+                "y": -0.24610650539398194,
+                "z": 0.131288081407547,
+                "w": 0.9597195386886597
+            },
+            "objectScale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "Rock04",
+            "objectName": "Rock04",
+            "objectPosition": {
+                "x": 330.5,
+                "y": 17.92723846435547,
+                "z": -1077.4000244140625
+            },
+            "objectRotation": {
+                "x": -0.08815710246562958,
+                "y": -0.004758335649967194,
+                "z": 0.05368668958544731,
+                "w": 0.9946473836898804
+            },
+            "objectScale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "Rock01",
+            "objectName": "Rock01",
+            "objectPosition": {
+                "x": 328.42822265625,
+                "y": 14.199999809265137,
+                "z": -1088.4647216796875
+            },
+            "objectRotation": {
+                "x": -0.14103703200817109,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 0.9900043606758118
+            },
+            "objectScale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "Cactus02",
+            "objectName": "Cactus02",
+            "objectPosition": {
+                "x": 125.61000061035156,
+                "y": 22.309999465942384,
+                "z": -910.9490966796875
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "Rock05",
+            "objectName": "Rock05",
+            "objectPosition": {
+                "x": 142.8477783203125,
+                "y": 24.120872497558595,
+                "z": -942.9757080078125
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "Rock01",
+            "objectName": "Rock01",
+            "objectPosition": {
+                "x": 147.238037109375,
+                "y": 22.057083129882814,
+                "z": -937.6267700195313
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "House10",
+            "objectName": "House10",
+            "objectPosition": {
+                "x": 123.97900390625,
+                "y": 27.15999984741211,
+                "z": -941.6099853515625
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "House05",
+            "objectName": "House05",
+            "objectPosition": {
+                "x": 96.0064697265625,
+                "y": 27.3700008392334,
+                "z": -954.013427734375
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "Rock05",
+            "objectName": "Rock05",
+            "objectPosition": {
+                "x": 109.4659423828125,
+                "y": 23.247947692871095,
+                "z": -908.6682739257813
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "Rock03",
+            "objectName": "Rock03",
+            "objectPosition": {
+                "x": 96.62000274658203,
+                "y": 26.549999237060548,
+                "z": -919.9500122070313
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "House06",
+            "objectName": "House06",
+            "objectPosition": {
+                "x": 80.8499984741211,
+                "y": 26.440000534057618,
+                "z": -947.3800048828125
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": -0.32263463735580447,
+                "z": 0.0,
+                "w": 0.9465236067771912
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "House01",
+            "objectName": "House01",
+            "objectPosition": {
+                "x": 79.13999938964844,
+                "y": 27.3700008392334,
+                "z": -934.239990234375
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": -0.779862642288208,
+                "z": 0.0,
+                "w": 0.6259507536888123
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "Well",
+            "objectName": "Well",
+            "objectPosition": {
+                "x": 94.124755859375,
+                "y": 27.097000122070314,
+                "z": -932.5380249023438
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "Rock05",
+            "objectName": "Rock05",
+            "objectPosition": {
+                "x": 82.80000305175781,
+                "y": 25.865325927734376,
+                "z": -916.9000244140625
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.18761219084262849,
+                "z": 0.0,
+                "w": 0.9822431802749634
+            },
+            "objectScale": {
+                "x": 2.5409998893737795,
+                "y": 2.5409998893737795,
+                "z": 2.5409998893737795
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "Rock01",
+            "objectName": "Rock01",
+            "objectPosition": {
+                "x": 89.70999908447266,
+                "y": 26.290000915527345,
+                "z": -902.3400268554688
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 1.774899959564209,
+                "y": 1.774899959564209,
+                "z": 1.774899959564209
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "Cactus03",
+            "objectName": "Cactus03",
+            "objectPosition": {
+                "x": 103.87000274658203,
+                "y": 26.158660888671876,
+                "z": -906.830078125
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        },
+        {
+            "objectBaseFile": "Cactus01",
+            "objectName": "Cactus01",
+            "objectPosition": {
+                "x": 94.4800033569336,
+                "y": 27.476999282836915,
+                "z": -916.9500122070313
+            },
+            "objectRotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "objectScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "bookID": "",
+            "objectScripts": []
+        }
+    ]
+}

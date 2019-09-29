@@ -29,6 +29,7 @@ namespace Core.Actor
         public CombatBehaviour actorCombat;
         public ActorAnimationController animationController;
         public ActorFaction actorFaction = new ActorFaction();
+        public ActorStatsController actorStatController;
 
         public static Actor GetPlayer()
         {
@@ -116,6 +117,7 @@ namespace Core.Actor
 
             actorCombat = GetComponent<CombatBehaviour>();
             animationController = GetComponent<ActorAnimationController>();
+            actorStatController = gameObject.AddComponent<ActorStatsController>();
         }
     }
 }
