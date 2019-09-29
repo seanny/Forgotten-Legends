@@ -49,46 +49,15 @@ namespace Core.Actor
         public bool SetActorStat(string statName, int value)
         {
             bool returnVal = false;
-            switch (statName)
+            foreach (var actorStat in actorStatController.actorStats)
             {
-                case "Level":
-                    m_ActorStats.currentLevel = value;
+                if (actorStat.statID == statName)
+                {
+                    actorStat.statValue = value;
                     returnVal = true;
                     break;
-                case "MaxLevel":
-                    m_ActorStats.maxLevel = value;
-                    returnVal = true;
-                    break;
-                case "Strength":
-                    m_ActorStats.strength = value;
-                    returnVal = true;
-                    break;
-                case "Perception":
-                    m_ActorStats.perception = value;
-                    returnVal = true;
-                    break;
-                case "Endurance":
-                    m_ActorStats.endurance = value;
-                    returnVal = true;
-                    break;
-                case "Speech":
-                    m_ActorStats.speech = value;
-                    returnVal = true;
-                    break;
-                case "Intelligence":
-                    m_ActorStats.intelligence = value;
-                    returnVal = true;
-                    break;
-                case "Sneak":
-                    m_ActorStats.sneak = value;
-                    returnVal = true;
-                    break;
-                case "Luck":
-                    m_ActorStats.luck = value;
-                    returnVal = true;
-                    break;
+                }
             }
-
             return returnVal;
         }
         

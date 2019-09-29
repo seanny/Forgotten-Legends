@@ -6,49 +6,74 @@ namespace Core.Actor
 {
     public class ActorStatsController : MonoBehaviour
     {
-        private LevelStat m_Level;
-        private CurrentHealth m_Health;
-        private MaxHealthStat m_MaxHealth;
-        private XPStat m_XP;
-        private List<BaseStat> m_ActorStats;
+        public LevelStat level { get; private set; }
+        public CurrentHealth health { get; private set; }
+        public MaxHealthStat maxHealth { get; private set; }
+        public XPStat xp { get; private set; }
+        public List<BaseStat> actorStats { get; private set; }
         private int m_RequiredXP;
+        private int m_LevelUpAdditionalXP = 100;
 
-        public void GiveXP(int xp)
+        public void GiveXP(int exp)
         {
-            m_XP.LevelUp(xp);
-            if (xp >= m_RequiredXP)
+            xp.LevelUp(exp);
+            if (xp.statValue >= m_RequiredXP)
             {
                 LevelUp();
-                m_RequiredXP = m_Level.statValue * (100 + m_Level.statValue);
+                AssignRequiredXP();
             }
+        }
+
+        private void AssignRequiredXP()
+        {
+            m_RequiredXP = level.statValue * (m_LevelUpAdditionalXP + level.statValue);
         }
 
         protected void Start()
         {
-            m_ActorStats = new List<BaseStat>();
-            m_Level = GetComponent<LevelStat>();
-            m_Health = GetComponent<CurrentHealth>();
-            m_MaxHealth = GetComponent<MaxHealthStat>();
+            actorStats = new List<BaseStat>();
+            level = GetComponent<LevelStat>();
+            health = GetComponent<CurrentHealth>();
+            maxHealth = GetComponent<MaxHealthStat>();
             BaseStat[] baseStats = GetComponents<BaseStat>();
             foreach (var baseStat in baseStats)
             {
-                if (baseStat == m_Level 
-                    || baseStat == m_Health 
-                    || baseStat == m_MaxHealth)
+                if (baseStat == level 
+                    || baseStat == health 
+                    || baseStat == maxHealth)
                 {
                     continue;
                 }
-                m_ActorStats.Add(baseStat);
+                actorStats.Add(baseStat);
             }
+
+            int levelUpXP = int.Parse(Settings.GameSettings.Instance.GetProperty("iLevelUpAdditionalXP"));
+            if (levelUpXP > 0)
+            {
+                m_LevelUpAdditionalXP = levelUpXP;
+            }
+            AssignRequiredXP();
+        }
+
+        public BaseStat GetStat(string statID)
+        {
+            foreach (var actorStat in actorStats)
+            {
+                if (actorStat.statID == statID)
+                {
+                    return actorStat;
+                }
+            }
+            return null;
         }
 
         protected virtual void LevelUp()
         {
-            m_Level.LevelUp(1);
-            m_Health.LevelUp(m_MaxHealth.statValue);
-            foreach (var stats in m_ActorStats)
+            level.LevelUp(1);
+            health.LevelUp(maxHealth.statValue);
+            foreach (var stats in actorStats)
             {
-                stats.LevelUp(m_Level.statValue);
+                stats.LevelUp(level.statValue);
             }
         }
     }

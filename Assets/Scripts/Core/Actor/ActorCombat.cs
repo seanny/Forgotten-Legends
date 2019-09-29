@@ -55,7 +55,7 @@ namespace Core.Actor
             {
                 return false;
             }
-            float attackStrength = ((Random.Range(0, m_ParentScript.m_ActorStats.luck) / 2) + (m_ParentScript.m_ActorStats.strength * m_ParentScript.m_ActorStats.currentLevel) - m_ParentScript.m_ActorStats.endurance) / 2;
+            float attackStrength = ((Random.Range(0, m_ParentScript.actorStatController.level.statValue) / 2) + (m_ParentScript.actorStatController.GetStat("strength").statValue * m_ParentScript.actorStatController.level.statValue) - m_ParentScript.actorStatController.GetStat("endurance").statValue) / 2;
             attackStrength += ClassAttackModifier(ref attackStrength);
             if (attackStrength < 1f)
             {
@@ -68,7 +68,7 @@ namespace Core.Actor
             return true;
         }
 
-        public float ClassAttackModifier(ref float attackStrength)
+        private float ClassAttackModifier(ref float attackStrength)
         {
             switch(m_ParentScript.m_ActorClass.currentClass)
             {

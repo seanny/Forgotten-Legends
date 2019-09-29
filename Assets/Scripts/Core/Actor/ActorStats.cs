@@ -17,11 +17,6 @@ namespace Core.Actor
     [Serializable]
     public class ActorStats
     {
-        // Actor Health.
-        public int currentHealth;
-        public int maxHealth;
-        public int startingHealth;
-        
         // Actor Level. If maxLevel is 0, then they have no level cap.
         public int currentLevel;
         public int maxLevel;

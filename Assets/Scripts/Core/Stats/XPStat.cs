@@ -6,13 +6,13 @@ namespace Core.Stats
         
         private void Start()
         {
-            statID = "current_health";
+            statID = "xp";
             Reset();
         }
 
-        public override void LevelUp(int amount)
+        public void SetLevelUp(bool toggle)
         {
-            statValue += amount;
+            canLevelUp = toggle;
         }
 
         public override void Reset()

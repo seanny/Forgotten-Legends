@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text;
+using Core.Services;
+using Core.Stats;
 using UnityEngine;
 
 namespace Core.CommandConsole
@@ -158,6 +160,7 @@ namespace Core.CommandConsole
 
             if (args.Length < 3)
             {
+                Terminal.Log(TerminalLogType.Error, $"Usage: SetActorStat [Actor Name] [Stat Name] [Value]");
                 return;
             }
             
@@ -171,11 +174,10 @@ namespace Core.CommandConsole
                 Terminal.Log(TerminalLogType.Error, $"SetActorValue: Actor Name invalid.");
                 return;
             }
-
-            if (actorID.SetActorStat(statName, value) == false)
+            
+            if (ServiceLocator.GetService<StatControlService>().SetActorStat(actorID, statName, value) == false)
             {
                 Terminal.Log(TerminalLogType.Error, $"SetActorValue: Stat Name invalid.");
-                return;
             }
         }
 
