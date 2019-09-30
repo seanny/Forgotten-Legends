@@ -1,48 +1,53 @@
 using System;
-using Core.Player;
+using Core.Localisation;
 using Core.Services;
+using Core.Settings;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using Random = UnityEngine.Random;
 
 namespace Core.UserInterface
 {
     public class LevelUp : MonoBehaviour
     {
-        private const float LEVEL_UP_TIME = 5f;
-        
-        private float m_LevelUpTime = 0f;
-        private bool m_LevelUpShown = false;
-
         private GameObject m_LevelUpUI;
-        
+        private Button m_LevelUpOKButton;
+        private TextMeshProUGUI m_Text;
+        private AudioSource m_LevelUpAudioSource;
+
+        private int m_LocalisationKeys = 5;
+
         private void Start()
         {
+            m_LevelUpOKButton.GetComponentInChildren<Button>();
+            m_LevelUpAudioSource.GetComponentInChildren<AudioSource>();
+            m_Text = m_LevelUpOKButton.GetComponentInChildren<TextMeshProUGUI>();
             ToggleLevelUp(false);
-        }
-
-        private void Update()
-        {
-            if (!m_LevelUpShown)
-            {
-                return;
-            }
-
-            m_LevelUpTime += Time.deltaTime;
-            if (m_LevelUpTime >= LEVEL_UP_TIME)
-            {
-                ToggleLevelUp(false);
-            }
+            m_LocalisationKeys = int.Parse(GameSettings.Instance.GetProperty("iLevelUpLocalisationKeys"));
         }
 
         private void ToggleLevelUp(bool toggle)
         {
-            m_LevelUpShown = toggle;
-            m_LevelUpTime = 0;
+            m_LevelUpUI.SetActive(toggle);
         }
         
         public void ShowLevelUp()
         {
-            m_LevelUpShown = true;
-            m_LevelUpTime = 0;
+            // Get a random string from the locale file and then add 1 as the locale goes from 1 to 5, not 0 to 4.
+            int index = Random.Range(0, m_LocalisationKeys) + 1;
+            
+            // Add a leading 0 if the index is below 10. I.e. 1 becomes 01, etc. 10 stays as 10.
+            string num = index < 10 ? $"0{index}" : index.ToString();
+
+            // Get the correct localisation string and return it.
+            m_Text.text = ServiceLocator.GetService<LocalisationManager>().GetLocalisedString($"LevelUp_{num}");
+            
+            // Show the level up interface
+            ToggleLevelUp(true);
+            
+            // Play the level up audio
+            m_LevelUpAudioSource.Play();
         }
     }
 }

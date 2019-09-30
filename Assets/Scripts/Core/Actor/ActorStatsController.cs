@@ -11,20 +11,10 @@ namespace Core.Actor
         public MaxHealthStat maxHealth { get; private set; }
         public XPStat xp { get; private set; }
         public List<BaseStat> actorStats { get; private set; }
-        private int m_RequiredXP;
-        private int m_LevelUpAdditionalXP = 100;
+        protected int m_RequiredXP;
+        protected int m_LevelUpAdditionalXP = 100;
 
-        public void GiveXP(int exp)
-        {
-            xp.LevelUp(exp);
-            if (xp.statValue >= m_RequiredXP)
-            {
-                LevelUp();
-                AssignRequiredXP();
-            }
-        }
-
-        private void AssignRequiredXP()
+        protected void AssignRequiredXP()
         {
             m_RequiredXP = level.statValue * (m_LevelUpAdditionalXP + level.statValue);
         }

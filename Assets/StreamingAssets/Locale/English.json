@@ -87,6 +87,26 @@
         {
             "key":"Test01_ObjDesc04",
             "value":"Objective Description 4"
+        },
+        {
+            "key":"LevelUp_01",
+            "value":"Nothing can dim the light which shines from within."
+        },
+        {
+            "key":"LevelUp_02",
+            "value":"Our greatest fear should not be of failure, but of succeeding at something that doesnt really matter."
+        },
+        {
+            "key":"LevelUp_03",
+            "value":"Many of life’s failures are people who did not realize how close they were to success when they gave up."
+        },
+        {
+            "key":"LevelUp_04",
+            "value":"Success does not consist in never making mistakes but in never making the same one a second time."
+        },
+        {
+            "key":"LevelUp_05",
+            "value":"We become what we think about most of the time, and that’s the strangest secret."
         }
     ]
 }
