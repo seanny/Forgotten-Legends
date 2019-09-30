@@ -2893,7 +2893,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.49499512, y: 0.40499973}
   m_SizeDelta: {x: -9.370001, y: 6.4700003}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4178,7 +4178,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457920063}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
@@ -4278,18 +4278,6 @@ MonoBehaviour:
   entityID: 
   actorID: 
   m_ActorStats:
-    currentHealth: 0
-    maxHealth: 0
-    startingHealth: 0
-    currentLevel: 0
-    maxLevel: 0
-    strength: 0
-    perception: 0
-    endurance: 0
-    speech: 0
-    intelligence: 0
-    sneak: 0
-    luck: 0
     isFemale: 0
     isProtected: 0
     isUnique: 0
@@ -4303,6 +4291,7 @@ MonoBehaviour:
   actorWorldspace: 
   actorCombat: {fileID: 0}
   animationController: {fileID: 0}
+  actorStatController: {fileID: 0}
 --- !u!114 &461000178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4848,7 +4837,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.49499512, y: 0.42000008}
   m_SizeDelta: {x: -9.370003, y: 6.7199993}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5208,18 +5197,6 @@ MonoBehaviour:
   entityID: 
   actorID: Guard
   m_ActorStats:
-    currentHealth: 0
-    maxHealth: 0
-    startingHealth: 0
-    currentLevel: 0
-    maxLevel: 0
-    strength: 0
-    perception: 0
-    endurance: 0
-    speech: 0
-    intelligence: 0
-    sneak: 0
-    luck: 0
     isFemale: 0
     isProtected: 0
     isUnique: 0
@@ -5234,6 +5211,7 @@ MonoBehaviour:
   actorWorldspace: 
   actorCombat: {fileID: 0}
   animationController: {fileID: 0}
+  actorStatController: {fileID: 0}
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
   m_SightScript: {fileID: 0}
@@ -11270,7 +11248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1375910408
 Transform:
   m_ObjectHideFlags: 0
@@ -12044,18 +12022,6 @@ MonoBehaviour:
   entityID: 
   actorID: Enemy
   m_ActorStats:
-    currentHealth: 0
-    maxHealth: 0
-    startingHealth: 0
-    currentLevel: 0
-    maxLevel: 0
-    strength: 0
-    perception: 0
-    endurance: 0
-    speech: 0
-    intelligence: 0
-    sneak: 0
-    luck: 0
     isFemale: 0
     isProtected: 0
     isUnique: 0
@@ -12070,6 +12036,7 @@ MonoBehaviour:
   actorWorldspace: 
   actorCombat: {fileID: 0}
   animationController: {fileID: 0}
+  actorStatController: {fileID: 0}
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
   m_SightScript: {fileID: 0}
@@ -13407,7 +13374,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.47000122, y: 0.43500042}
   m_SizeDelta: {x: -9.360001, y: 6.7300005}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -14936,18 +14903,6 @@ MonoBehaviour:
   entityID: 
   actorID: Guard
   m_ActorStats:
-    currentHealth: 0
-    maxHealth: 0
-    startingHealth: 0
-    currentLevel: 0
-    maxLevel: 0
-    strength: 0
-    perception: 0
-    endurance: 0
-    speech: 0
-    intelligence: 0
-    sneak: 0
-    luck: 0
     isFemale: 0
     isProtected: 0
     isUnique: 0
@@ -14962,6 +14917,7 @@ MonoBehaviour:
   actorWorldspace: 
   actorCombat: {fileID: 0}
   animationController: {fileID: 0}
+  actorStatController: {fileID: 0}
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
   m_SightScript: {fileID: 0}
