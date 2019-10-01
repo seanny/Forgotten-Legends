@@ -86,7 +86,10 @@ namespace Core.Actor
 
             actorCombat = GetComponent<CombatBehaviour>();
             animationController = GetComponent<ActorAnimationController>();
-            actorStatController = gameObject.AddComponent<ActorStatsController>();
+            if (!actorStatController)
+            {
+                actorStatController = gameObject.AddComponent<ActorStatsController>();
+            }
         }
     }
 }

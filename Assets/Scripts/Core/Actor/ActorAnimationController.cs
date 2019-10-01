@@ -17,8 +17,7 @@ namespace Core.Actor
     {
         public Animator m_Animator;
         public bool hasWeapon = true;
-        private float m_SwordDrawTime;
-        
+
         private void Start()
         {
             m_Animator = GetComponent<Animator>();
@@ -112,20 +111,7 @@ namespace Core.Actor
         {
             StartIdle();
             m_Animator.SetBool("SwordDraw", true);
-            m_SwordDrawTime = 1.0f;
         }
-
-        /*private void Update()
-        {
-            if (m_SwordDrawTime > 0)
-            {
-                m_SwordDrawTime -= Time.deltaTime;
-                if (m_SwordDrawTime <= 0)
-                {
-                    m_Animator.SetBool("SwordDraw", false);
-                }
-            }
-        }*/
 
         public void SwordAttack(bool attack)
         {

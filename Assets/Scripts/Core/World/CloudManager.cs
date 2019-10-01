@@ -1,4 +1,5 @@
 using Core.Services;
+using Core.Settings;
 using UnityEngine;
 
 namespace Core.World
@@ -8,7 +9,7 @@ namespace Core.World
         private GameObject[] cloudPrefabs;
         private Transform parentTransform;
 
-        private float m_NextActionTime = 0.0f;
+        private float m_NextActionTime = 1.0f;
         private float m_WaitTime = 0f;
         private bool m_IsEnabled;
         
@@ -32,7 +33,7 @@ namespace Core.World
             if (m_IsEnabled)
             {
                 m_WaitTime += Time.deltaTime;
-                if(m_WaitTime >= 1.0f)
+                if(m_WaitTime >= m_NextActionTime)
                 {
                     m_WaitTime = 0;
                     OnCloudSpawn();
@@ -55,6 +56,7 @@ namespace Core.World
         private void Start()
         {
             AddClouds();
+            m_NextActionTime = float.Parse(GameSettings.Instance.GetProperty("fCloudNextActionTime"));
             ServiceLocator.AddService(this);
         }
 

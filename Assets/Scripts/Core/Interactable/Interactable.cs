@@ -45,7 +45,7 @@ namespace Core.Interactable
             }
         }
 
-        private void Start()
+        protected override void Start()
         {
             InitData();
             StartCoroutine(OnUpdateInteractable());

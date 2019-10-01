@@ -30,6 +30,8 @@ namespace Core.Player
             }
 
             m_HungerController = gameObject.AddComponent<HungerController>();
+            
+            actorStatController = gameObject.AddComponent<PlayerStatsController>();
             base.Start();
         }
 

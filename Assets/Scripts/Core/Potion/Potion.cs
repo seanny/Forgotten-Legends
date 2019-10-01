@@ -24,7 +24,7 @@ namespace Core.Potion
         private bool m_Used;
         public bool isShown { get; private set; } 
 
-        private void Start()
+        protected override void Start()
         {
             interactableData.name = "Potion";
             m_AudioSource = gameObject.AddComponent<AudioSource>();

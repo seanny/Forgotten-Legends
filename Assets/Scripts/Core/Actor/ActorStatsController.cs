@@ -61,10 +61,6 @@ namespace Core.Actor
         {
             level.LevelUp(1);
             health.LevelUp(maxHealth.statValue);
-            foreach (var stats in actorStats)
-            {
-                stats.LevelUp(level.statValue);
-            }
         }
     }
 }

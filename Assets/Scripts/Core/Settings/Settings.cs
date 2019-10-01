@@ -10,6 +10,7 @@
 
 using System;
 using System.IO;
+using UnityEngine;
 
 namespace Core.Settings
 {
@@ -41,6 +42,7 @@ namespace Core.Settings
         /// </summary>
         /// <value>Settings.ini</value>
         public const string CONFIG_FILE_NAME = "Settings.ini";
+        public const string DEFAULT_FILE_NAME = "SettingsDefault.ini";
 
         private void Start()
         {
@@ -51,10 +53,10 @@ namespace Core.Settings
             }
 
             ConfigFile = Path.Combine(FolderName, CONFIG_FILE_NAME);
-            //if (!File.Exists(ConfigFile))
-            //{
-
-            //}
+            if (!File.Exists(ConfigFile))
+            {
+                File.Copy(Path.Combine(Application.streamingAssetsPath, DEFAULT_FILE_NAME), ConfigFile);
+            }
         }
 
         /// <summary>

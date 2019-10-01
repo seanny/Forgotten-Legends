@@ -45,12 +45,12 @@ namespace Core.CommandConsole
         [Header("Input")]
         [SerializeField] Font ConsoleFont;
         [SerializeField] string InputCaret = ">";
-        [SerializeField] bool ShowGUIButtons;
-        [SerializeField] bool RightAlignButtons;
+        [SerializeField] bool ShowGUIButtons = false;
+        [SerializeField] bool RightAlignButtons = false;
 
         [Header("Theme")]
         [Range(0, 1)]
-        [SerializeField] float InputContrast;
+        [SerializeField] float InputContrast = 0;
         [Range(0, 1)]
         [SerializeField] float InputAlpha = 0.5f;
 

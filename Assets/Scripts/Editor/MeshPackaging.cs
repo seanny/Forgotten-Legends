@@ -111,10 +111,10 @@ namespace Core.Editor
                 return;
             }
 
+            Interactable.Interactable referenceInteractable = (Interactable.Interactable)m_ReferenceInteractable;
             m_Interactable = new MetaInteractable();
-            m_Interactable.interactableType = m_Interactable.interactableType;
-            m_Interactable.isInteractable = m_Interactable.isInteractable;
-            
+            m_Interactable.interactableType = (int)referenceInteractable.interactableData.type;
+
             Light light;
             if (m_ReferenceLight != null)
             {

@@ -1,4 +1,3 @@
-using System;
 using Core.Localisation;
 using Core.Services;
 using Core.Settings;
@@ -9,19 +8,20 @@ using Random = UnityEngine.Random;
 
 namespace Core.UserInterface
 {
-    public class LevelUp : MonoBehaviour
+    public class LevelUp : MonoBehaviour, IService
     {
-        private GameObject m_LevelUpUI;
-        private Button m_LevelUpOKButton;
-        private TextMeshProUGUI m_Text;
-        private AudioSource m_LevelUpAudioSource;
+        [SerializeField] private Image m_LevelUpUI;
+        [SerializeField] private Button m_LevelUpOKButton;
+        [SerializeField] private TextMeshProUGUI m_Text;
+        [SerializeField] private AudioSource m_LevelUpAudioSource;
 
         private int m_LocalisationKeys = 5;
 
         private void Start()
         {
-            m_LevelUpOKButton.GetComponentInChildren<Button>();
-            m_LevelUpAudioSource.GetComponentInChildren<AudioSource>();
+            m_LevelUpUI = GetComponentInChildren<Image>();
+            m_LevelUpOKButton = m_LevelUpUI.GetComponentInChildren<Button>();
+            m_LevelUpAudioSource = GetComponentInChildren<AudioSource>();
             m_Text = m_LevelUpOKButton.GetComponentInChildren<TextMeshProUGUI>();
             ToggleLevelUp(false);
             m_LocalisationKeys = int.Parse(GameSettings.Instance.GetProperty("iLevelUpLocalisationKeys"));
@@ -29,7 +29,7 @@ namespace Core.UserInterface
 
         private void ToggleLevelUp(bool toggle)
         {
-            m_LevelUpUI.SetActive(toggle);
+            m_LevelUpUI.gameObject.SetActive(toggle);
         }
         
         public void ShowLevelUp()
@@ -48,6 +48,16 @@ namespace Core.UserInterface
             
             // Play the level up audio
             m_LevelUpAudioSource.Play();
+        }
+
+        public void OnStart()
+        {
+            
+        }
+
+        public void OnEnd()
+        {
+            
         }
     }
 }

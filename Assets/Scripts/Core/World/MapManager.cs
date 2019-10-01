@@ -63,7 +63,7 @@ namespace Core.World
             while (true)
             {
                 UpdateNavMesh();
-                yield return m_Operation;
+                yield return new WaitForSeconds(1);
             }
         }
     
