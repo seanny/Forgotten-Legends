@@ -49,12 +49,12 @@ namespace Core.NonPlayerChar
             return false;
         }
 
-        private void Update()
+        /*private void Update()
         {
             if(IsAttemptingDialogueAndCloseToPlayer() == true)
             {
 
             }
-        }
+        }*/
     }
 }

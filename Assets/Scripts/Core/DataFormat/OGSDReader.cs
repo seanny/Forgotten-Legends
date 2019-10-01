@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using Core.Utility;
 using UnityEngine;
 
 namespace Core.DataFormat
@@ -28,7 +29,7 @@ namespace Core.DataFormat
         {
             if (!File.Exists(filePath))
             {
-                Debug.LogError($"[OGSDReader]: {Path.GetFileName(filePath)} does not exist.");
+                Logging.LogError($"[OGSDReader]: {Path.GetFileName(filePath)} does not exist.");
                 return;
             }
 
@@ -42,12 +43,12 @@ namespace Core.DataFormat
         {
             if (File.Exists(filePath))
             {
-                Debug.LogWarning($"Overwriting file {filePath}...");
+                Logging.LogWarning($"Overwriting file {filePath}...");
                 File.Delete(filePath);
             }
             else
             {
-                Debug.Log($"Writing file {filePath}...");
+                Logging.Log($"Writing file {filePath}...");
             }
 
             FileStream fileStream = File.Open(filePath, FileMode.Create);
@@ -58,7 +59,7 @@ namespace Core.DataFormat
             }
             catch (SerializationException error)
             {
-                Debug.LogError($"[OGSDReader]: {Path.GetFileName(filePath)} cannot be serialised: {error.Message}");
+                Logging.LogError($"[OGSDReader]: {Path.GetFileName(filePath)} cannot be serialised: {error.Message}");
             }
             finally
             {

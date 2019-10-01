@@ -95,7 +95,7 @@ namespace Core.MainMenu
 
         public void ContinueGame()
         {
-            Debug.Log("Not implemented");
+            Logging.Log("Not implemented");
         }
 
         public void NewGame()
@@ -105,17 +105,17 @@ namespace Core.MainMenu
 
         public void LoadGame()
         {
-            Debug.Log("Not implemented");
+            Logging.Log("Not implemented");
         }
 
         public void SettingsButton()
         {
-            Debug.Log("Not implemented");
+            Logging.Log("Not implemented");
         }
 
         public void CreditsButton()
         {
-            Debug.Log("Not implemented");
+            Logging.Log("Not implemented");
         }
 
         public void ExitButton()

@@ -38,14 +38,14 @@ namespace Core.MeshLoading
             string filePath = Path.Combine(Application.streamingAssetsPath, "Models", objectMesh);
             if(!File.Exists(filePath))
             {
-                Debug.LogError($"Object Model Format file {objectMesh} does not exist on the local disk.");
+                Logging.LogError($"Object Model Format file {objectMesh} does not exist on the local disk.");
                 return null;
             }
 
             string texturePath = Path.Combine(Application.streamingAssetsPath, "Models", objectTexture);
             if(!File.Exists(filePath))
             {
-                Debug.LogError($"Diffuse (Colour) Texture file {texturePath} does not exist on the local disk.");
+                Logging.LogError($"Diffuse (Colour) Texture file {texturePath} does not exist on the local disk.");
                 return null;
             }
             
@@ -55,7 +55,7 @@ namespace Core.MeshLoading
                 normalPath = Path.Combine(Application.streamingAssetsPath, "Models", objectNormals);
                 if(!File.Exists(filePath))
                 {
-                    Debug.LogError($"Normal Map Texture file {objectNormals} does not exist on the local disk.");
+                    Logging.LogError($"Normal Map Texture file {objectNormals} does not exist on the local disk.");
                     return null;
                 }
                 
@@ -67,7 +67,7 @@ namespace Core.MeshLoading
                 occlusionPath = Path.Combine(Application.streamingAssetsPath, "Models", objectAO);
                 if(!File.Exists(filePath))
                 {
-                    Debug.LogError($"Ambient Occlusion Texture file {objectAO} does not exist on the local disk.");
+                    Logging.LogError($"Ambient Occlusion Texture file {objectAO} does not exist on the local disk.");
                     return null;
                 }
             }

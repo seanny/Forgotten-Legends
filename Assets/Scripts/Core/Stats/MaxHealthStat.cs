@@ -1,3 +1,4 @@
+using Core.Utility;
 using UnityEngine;
 
 namespace Core.Stats
@@ -26,7 +27,7 @@ namespace Core.Stats
             }
             
             statValue += levelAmount;
-            Debug.Log($"{statID} has been leveled up by {levelAmount} to {statValue}");
+            Logging.Log($"{statID} has been leveled up by {levelAmount} to {statValue}");
         }
 
         public override void Reset()

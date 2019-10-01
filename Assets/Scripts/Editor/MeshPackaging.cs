@@ -1,3 +1,5 @@
+
+using Core.Utility;
 #if UNITY_EDITOR
 using System.IO;
 using Core.MathUtil;
@@ -80,7 +82,7 @@ namespace Core.Editor
             string meshLocation = AssetDatabase.GetAssetPath(m_GameObject);
             if (meshObj == null)
             {
-                Debug.LogError("You must assign a mesh.");
+                Logging.LogError("You must assign a mesh.");
                 return;
             }
             
@@ -91,7 +93,7 @@ namespace Core.Editor
             string diffuseLocation = AssetDatabase.GetAssetPath(m_Texture);
             if (diffusePNG == null)
             {
-                Debug.LogError("You must assign a texture.");
+                Logging.LogError("You must assign a texture.");
                 return;
             }
 
@@ -99,7 +101,7 @@ namespace Core.Editor
             string normalLocation = AssetDatabase.GetAssetPath(m_Normal);
             if (normalPNG == null)
             {
-                Debug.LogError("You must assign a normal map.");
+                Logging.LogError("You must assign a normal map.");
                 return;
             }
             
@@ -107,7 +109,7 @@ namespace Core.Editor
             string occlusionLocation = AssetDatabase.GetAssetPath(m_AmbientOcclusion);
             if (occlusionPNG == null)
             {
-                Debug.LogError("You must assign an occlusion map.");
+                Logging.LogError("You must assign an occlusion map.");
                 return;
             }
 

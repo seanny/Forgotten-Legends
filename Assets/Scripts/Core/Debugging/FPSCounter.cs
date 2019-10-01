@@ -14,13 +14,10 @@ namespace Core.Debugging
 {
     public class FPSCounter : Singleton<FPSCounter>
     {
+#if UNITY_DEVELOPMENT || UNITY_EDITOR 
         float deltaTime = 0.0f;
         float m_FPS, m_MS;
-#if UNITY_DEVELOPMENT || UNITY_EDITOR
         public bool showFPSCounter = true;
-#else
-    public bool showFPSCounter = false;
-#endif
 
         // Update is called once per frame
         private void Update()
@@ -50,4 +47,5 @@ namespace Core.Debugging
             GUI.Label(rect, text, style);
         }
     }
+#endif
 }

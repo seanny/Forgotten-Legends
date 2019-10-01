@@ -48,6 +48,7 @@ namespace Core.Quests
             ImageUtils.SetAlpha(questObjective, 0.0f);
         }
 
+#if UNITY_DEVELOPMENT || UNITY_EDITOR
         private void Update()
         {
             if (Input.GetKeyUp(KeyCode.Alpha1))
@@ -67,6 +68,7 @@ namespace Core.Quests
                 CompleteQuest("Test01", true);
             }
         }
+#endif
 
         public void GiveQuest(string questID)
         {
@@ -111,7 +113,6 @@ namespace Core.Quests
             }
             for (int i = 0; i < activeQuests.Count; i++)
             {
-                Debug.Log($"Item = {activeQuests.ElementAt(i).Key.questID}, {activeQuests.ElementAt(i).Value}");
                 if (activeQuests.ElementAt(i).Key.questID == questID)
                 {
                     for (int x = 0; x < activeQuests.ElementAt(i).Key.objectiveNames.Length; x++)

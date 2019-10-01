@@ -26,7 +26,7 @@ namespace Core.Utility
         [RegisterCommand(Help = "Get Game Version")]
         public static void CommandVersion(CommandArg[] args)
         {
-            Debug.Log($"Current Version: {GetVersion()}");
+            Terminal.print($"Current Version: {GetVersion()}");
         }
 
         public static string GetVersion()

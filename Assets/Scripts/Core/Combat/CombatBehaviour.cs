@@ -50,8 +50,7 @@ namespace Core.Combat
             {
                 return;
             }
-
-            Debug.Log($"{m_AssignedActor.gameObject.name} is initiating an attack move.");
+            
             m_PowerAttack = powerAttack;
             AudioSource.PlayClipAtPoint(CombatManager.Instance.swordSwing, m_AssignedActor.gameObject.transform.position);
             m_AssignedActor.animationController.SwordAttack(true);

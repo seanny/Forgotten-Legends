@@ -21,7 +21,7 @@ namespace Core.Utility
 
             if (!File.Exists(filePath))
             {
-                Debug.LogError($"Cannot load asset data for {filePath}.");
+                Logging.LogError($"Cannot load asset data for {filePath}.");
                 return null;
             }
             return File.ReadAllText(filePath);

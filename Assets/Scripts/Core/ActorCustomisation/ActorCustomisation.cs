@@ -10,6 +10,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Core.Utility;
 using UnityEngine;
 
 namespace Core.ActorCustomisation
@@ -102,7 +103,7 @@ namespace Core.ActorCustomisation
 
 
                 if (m_BlendShapes.ContainsKey(noSuffix))
-                    Debug.LogError(noSuffix + " already exists within the Database!");
+                    Logging.LogError(noSuffix + " already exists within the Database!");
 
                 m_BlendShapes.Add(noSuffix, new BlendShape(postiveIndex, negativeIndex));
 

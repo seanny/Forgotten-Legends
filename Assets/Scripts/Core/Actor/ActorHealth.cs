@@ -9,6 +9,7 @@
 //
 
 using System.Collections;
+using Core.Utility;
 using UnityEngine;
 
 namespace Core.Actor
@@ -45,12 +46,12 @@ namespace Core.Actor
 
         public void AddHealth(int health)
         {
-            Debug.Log($"1");
+            Logging.Log($"1");
             currentHealth += health;
-            Debug.Log($"2");
+            Logging.Log($"2");
             if (currentHealth > maxHealth)
             {
-                Debug.Log($"3");
+                Logging.Log($"3");
                 currentHealth = maxHealth;
             }
         }

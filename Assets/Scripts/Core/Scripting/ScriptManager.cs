@@ -11,6 +11,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Core.Utility;
 using MoonSharp.Interpreter;
 using UnityEngine;
 
@@ -105,7 +106,7 @@ namespace Core.Scripting
             m_CoreScripts = Path.Combine(Application.streamingAssetsPath, "Scripts");
             if(!Directory.Exists(m_CoreScripts))
             {
-                Debug.LogError($"Core Scripts directory does not exist: {m_CoreScripts}");
+                Logging.LogError($"Core Scripts directory does not exist: {m_CoreScripts}");
                 return;
             }
         }

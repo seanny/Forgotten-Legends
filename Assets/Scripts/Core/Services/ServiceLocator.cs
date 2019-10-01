@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Core.CommandConsole;
+using Core.Utility;
 
 namespace Core.Services
 {
@@ -44,7 +45,7 @@ namespace Core.Services
             }
             catch (Exception e)
             {
-                Debug.LogError($"Cannot return type for {typeof(T).ToString()}: {e.Message}");
+                Logging.LogError($"Cannot return type for {typeof(T).ToString()}: {e.Message}");
                 throw;
             }
         }

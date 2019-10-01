@@ -8,6 +8,8 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
+using System;
+using System.Collections;
 using Core.Actor;
 using Core.DataFormat;
 using Core.Interactable;
@@ -82,6 +84,12 @@ namespace Core.NonPlayerChar
 
         private void Update()
         {
+            if (actorStatController.health.statValue < 0)
+            {
+                // NPC is dead, don't continue further.
+                return;
+            }
+            
             Actor.Actor actor = m_SightScript.NearestActor();
             if(actor != null && m_EnemyScript.IsEnemy(actor) == true)
             {
@@ -105,5 +113,13 @@ namespace Core.NonPlayerChar
                 }
             }
         }
+        
+#if UNITY_EDITOR
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, m_SightScript.lineOfSight);
+        }
+#endif
     }
 }
