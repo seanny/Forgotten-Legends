@@ -24,7 +24,7 @@ namespace Core.UserInterface
             m_LevelUpAudioSource = GetComponentInChildren<AudioSource>();
             m_Text = m_LevelUpOKButton.GetComponentInChildren<TextMeshProUGUI>();
             ToggleLevelUp(false);
-            m_LocalisationKeys = int.Parse(GameSettings.Instance.GetProperty("iLevelUpLocalisationKeys"));
+            int.TryParse(GameSettings.Instance.GetProperty("iLevelUpLocalisationKeys"), out m_LocalisationKeys);
         }
 
         private void ToggleLevelUp(bool toggle)

@@ -4,10 +4,9 @@ namespace Core.Stats
     {
         public bool canLevelUp { get; private set; }
         
-        private void Start()
+        public XPStat()
         {
             statID = "xp";
-            Reset();
         }
 
         public void SetLevelUp(bool toggle)

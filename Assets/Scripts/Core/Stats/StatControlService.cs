@@ -18,7 +18,7 @@ namespace Core.Stats
         public bool SetActorStat(Actor.Actor actor, string statID, int value)
         {
             BaseStat baseStat = actor.actorStatController.GetStat(statID);
-            if (baseStat)
+            if (baseStat != null)
             {
                 baseStat.statValue = value;
                 return true;

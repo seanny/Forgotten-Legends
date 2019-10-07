@@ -7,7 +7,7 @@ namespace Core.Stats
     {
         private const int MIN_VALUE = 100;
 
-        private void Start()
+        public MaxHealthStat()
         {
             statID = "max_health";
             statValue = MIN_VALUE;

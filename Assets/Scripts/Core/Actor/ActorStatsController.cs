@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Core.Stats;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace Core.Actor
         public CurrentHealth health { get; private set; }
         public MaxHealthStat maxHealth { get; private set; }
         public XPStat xp { get; private set; }
-        public List<BaseStat> actorStats { get; private set; }
+        public List<BaseStat> actorStats;
         protected int m_RequiredXP;
         protected int m_LevelUpAdditionalXP = 100;
 
@@ -22,22 +23,19 @@ namespace Core.Actor
         protected void Start()
         {
             actorStats = new List<BaseStat>();
-            level = GetComponent<LevelStat>();
-            health = GetComponent<CurrentHealth>();
-            maxHealth = GetComponent<MaxHealthStat>();
-            BaseStat[] baseStats = GetComponents<BaseStat>();
-            foreach (var baseStat in baseStats)
-            {
-                if (baseStat == level 
-                    || baseStat == health 
-                    || baseStat == maxHealth)
-                {
-                    continue;
-                }
-                actorStats.Add(baseStat);
-            }
+            level = new LevelStat();
+            actorStats.Add(level);
+            
+            health = new CurrentHealth();
+            actorStats.Add(health);
+            
+            maxHealth = new MaxHealthStat();
+            actorStats.Add(maxHealth);
+            
+            xp = new XPStat();
+            actorStats.Add(xp);
 
-            int levelUpXP = int.Parse(Settings.GameSettings.Instance.GetProperty("iLevelUpAdditionalXP"));
+            int.TryParse(Settings.GameSettings.Instance.GetProperty("iLevelUpAdditionalXP"), out int levelUpXP);
             if (levelUpXP > 0)
             {
                 m_LevelUpAdditionalXP = levelUpXP;
@@ -45,6 +43,24 @@ namespace Core.Actor
             AssignRequiredXP();
         }
 
+        /// <summary>
+        /// Returns the BaseStat of a type, if none exists, create one and return that.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public BaseStat GetStat<T>()
+        {
+            foreach (var actorStat in actorStats)
+            {
+                if (actorStat.GetType() == typeof(T))
+                {
+                    return actorStat;
+                }
+            }
+            BaseStat baseStat = (BaseStat) Activator.CreateInstance(typeof(T));
+            return baseStat;
+        }
+        
         public BaseStat GetStat(string statID)
         {
             foreach (var actorStat in actorStats)

@@ -7,6 +7,8 @@
 // 	This document may not be reproduced or transmitted in any form
 // 	without the consent of Outlaw Games Studio.
 //
+
+using Core.Stats;
 using UnityEngine;
 
 namespace Core.Combat
@@ -15,16 +17,16 @@ namespace Core.Combat
     {
         public static void ApplyDamage(Actor.Actor attacker, Actor.Actor victim, float baseDamage, bool powerAttack)
         {
-            float damage = baseDamage + attacker.actorStatController.GetStat("strength").statValue;
+            float damage = baseDamage + attacker.actorStatController.GetStat<Strength>().statValue;
             if (powerAttack)
             {
                 damage += (baseDamage * 1.5f) 
-                          + (attacker.actorStatController.GetStat("luck").statValue / 2)
+                          + (attacker.actorStatController.GetStat<Luck>().statValue / 2)
                           + (attacker.actorStatController.level.statValue / 5);
             }
             else
             {
-                damage += (attacker.actorStatController.GetStat("luck").statValue / 2)
+                damage += (attacker.actorStatController.GetStat<Luck>().statValue / 2)
                           + (attacker.actorStatController.level.statValue / 5);
             }
             victim.m_HealthScript.TakeHealth(Mathf.FloorToInt(damage));

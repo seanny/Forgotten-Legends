@@ -56,7 +56,7 @@ namespace Core.World
         private void Start()
         {
             AddClouds();
-            m_NextActionTime = float.Parse(GameSettings.Instance.GetProperty("fCloudNextActionTime"));
+            float.TryParse(GameSettings.Instance.GetProperty("fCloudNextActionTime"), out m_NextActionTime);
             ServiceLocator.AddService(this);
         }
 

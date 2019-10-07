@@ -9,6 +9,7 @@
 //
 
 using System.Collections.Generic;
+using Core.Stats;
 using UnityEngine;
 
 namespace Core.NonPlayerChar
@@ -27,7 +28,7 @@ namespace Core.NonPlayerChar
 
         public float CalculateLineOfSight()
         {
-            return lineOfSight + m_ParentScript.actorStatController.GetStat("perception").statValue;
+            return lineOfSight + m_ParentScript.actorStatController.GetStat<Perception>().statValue;
         }
 
         public Actor.Actor LookForEnemy()

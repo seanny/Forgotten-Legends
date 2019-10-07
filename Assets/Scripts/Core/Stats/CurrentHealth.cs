@@ -4,7 +4,7 @@ namespace Core.Stats
     {
         private int DEFAULT_HEALTH = 100;
         
-        private void Start()
+        public CurrentHealth()
         {
             statID = "current_health";
             statValue = DEFAULT_HEALTH;

@@ -4,6 +4,11 @@ namespace Core.Stats
     {
         private int MAX_VALUE = 100;
 
+        public Thirst()
+        {
+            statID = "thirst";
+        }
+        
         public override void LevelUp(int amount)
         {
             // Reset the players hunger level on level up.

@@ -36,10 +36,8 @@ namespace Core.NonPlayerChar
             {
                 yield return null;
             }
-            m_Agent.destination = pos;
-            m_Destination = m_Agent.destination;
-            m_Agent.autoRepath = true;
-            m_Agent.autoBraking = true;
+
+            MoveTowards(pos);
         }
 
         public void MoveTowardsActor(Actor.Actor actor)
@@ -55,7 +53,12 @@ namespace Core.NonPlayerChar
         public void MoveTowards(Vector3 destination)
         {
             m_Destination = destination;
-            m_Agent.destination = m_Destination;
+            if (m_Agent.isOnNavMesh)
+            {
+                m_Agent.destination = m_Destination;
+            }
+            m_Agent.autoRepath = true;
+            m_Agent.autoBraking = true;
         }
 
         public void RandomDest()
@@ -88,7 +91,7 @@ namespace Core.NonPlayerChar
         {
             //float dist = Vector3.Distance(m_Destination, transform.position);
             //if (dist > 1.5f)
-            if(m_Agent.remainingDistance > m_Agent.stoppingDistance)
+            if(m_Agent.isOnNavMesh && m_Agent.remainingDistance > m_Agent.stoppingDistance)
             {
                 return false;
             }

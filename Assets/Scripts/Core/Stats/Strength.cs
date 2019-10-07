@@ -4,7 +4,7 @@ namespace Core.Stats
     {
         private int MIN_VALUE = 1;
         
-        private void Start()
+        public Strength()
         {
             statID = "strength";
             Reset();

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Core.Stats
 {
-    public class BaseStat : MonoBehaviour
+    public class BaseStat
     {
         public string statID { get; protected set; }
         public int statValue;

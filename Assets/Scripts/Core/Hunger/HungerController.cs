@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using Core.Stats;
 
 namespace Core.Hunger
 {
@@ -12,7 +10,7 @@ namespace Core.Hunger
 
         private void Start()
         {
-            m_Hunger = gameObject.AddComponent<Stats.Hunger>();
+            m_Hunger = new Stats.Hunger();
         }
 
         public void OnEatFood(int hungerSatiationLevel)

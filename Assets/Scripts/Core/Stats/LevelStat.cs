@@ -7,7 +7,7 @@ namespace Core.Stats
     {
         private int MIN_LEVEL = 1;
 
-        private void Start()
+        public LevelStat()
         {
             statID = "current_level";
             statValue = MIN_LEVEL;

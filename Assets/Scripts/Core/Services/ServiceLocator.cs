@@ -52,6 +52,7 @@ namespace Core.Services
 
         public static T AddService<T>()
         {
+            Logging.Log($"Added {typeof(T).ToString()} to serviceList");
             IService service = (IService) Activator.CreateInstance(typeof(T));
             serviceList.Add(service);
             service.OnStart();
@@ -60,6 +61,7 @@ namespace Core.Services
 
         public static T AddService<T>(T serviceObject)
         {
+            Logging.Log($"Added {serviceObject.ToString()} to serviceList");
             IService service = (IService) serviceObject;
             serviceList.Add(service);
             service.OnStart();
