@@ -3,6 +3,7 @@ using System.Timers;
 
 namespace Core.Stats
 {
+    [Serializable]
     public class Hunger : BaseStat
     {
         private int MAX_VALUE = 100;

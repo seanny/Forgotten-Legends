@@ -1,5 +1,8 @@
+using System;
+
 namespace Core.Stats
 {
+    [Serializable]
     public class XPStat : BaseStat
     {
         public bool canLevelUp { get; private set; }

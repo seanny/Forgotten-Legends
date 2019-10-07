@@ -1,8 +1,10 @@
+using System;
 using Core.Utility;
 using UnityEngine;
 
 namespace Core.Stats
 {
+    [Serializable]
     public class LevelStat : BaseStat
     {
         private int MIN_LEVEL = 1;

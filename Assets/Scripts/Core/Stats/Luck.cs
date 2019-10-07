@@ -1,5 +1,8 @@
+using System;
+
 namespace Core.Stats
 {
+    [Serializable]
     public class Luck : BaseStat
     {
         private int MIN_VALUE = 1;

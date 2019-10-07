@@ -1,5 +1,8 @@
+using System;
+
 namespace Core.Stats
 {
+    [Serializable]
     public class CurrentHealth : BaseStat
     {
         private int DEFAULT_HEALTH = 100;

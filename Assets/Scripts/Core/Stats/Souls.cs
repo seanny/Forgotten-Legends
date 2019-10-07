@@ -1,7 +1,9 @@
+using System;
 using Core.CommandConsole;
 
 namespace Core.Stats
 {
+    [Serializable]
     public class Souls : BaseStat
     {
         public static int SoulsCollected { get; private set; }

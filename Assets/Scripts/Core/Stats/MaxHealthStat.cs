@@ -1,8 +1,10 @@
+using System;
 using Core.Utility;
 using UnityEngine;
 
 namespace Core.Stats
 {
+    [Serializable]
     public class MaxHealthStat : BaseStat
     {
         private const int MIN_VALUE = 100;

@@ -12,6 +12,7 @@ using Core.Combat;
 using Core.Factions;
 using Core.Inventory;
 using Core.Services;
+using Core.Utility;
 using UnityEngine;
 
 namespace Core.Actor
@@ -20,6 +21,7 @@ namespace Core.Actor
     [RequireComponent(typeof(ActorAnimationController))]
     public abstract class Actor : WorldEntity
     {
+        public string actorHash;
         public string actorID;
         public ActorStats m_ActorStats;
         public ActorClass m_ActorClass;
@@ -81,6 +83,7 @@ namespace Core.Actor
             {
                 actorID = gameObject.name;
             }
+            actorHash = Crypto.GenerateKey();
 
             actorInventory = gameObject.AddComponent<EntityInventory>();
 

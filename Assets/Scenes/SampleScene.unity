@@ -643,6 +643,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Well (1)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3875698b02f164be19dc677240f277a6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3875698b02f164be19dc677240f277a6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1519,6 +1524,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: House01
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8f906adfa7f6940cea7717bbb53e224f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8f906adfa7f6940cea7717bbb53e224f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1755,7 +1765,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1925,7 +1935,7 @@ MonoBehaviour:
     spaceCount: 4
     wordCount: 18
     linkCount: 0
-    lineCount: 1
+    lineCount: 4
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -2876,6 +2886,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: House05
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: b5b6309f9b07849828acd42c1047ad05,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: b5b6309f9b07849828acd42c1047ad05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2966,7 +2981,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.49499512, y: 0.40499973}
   m_SizeDelta: {x: -9.370001, y: 6.4700003}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3850,6 +3865,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Well
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3875698b02f164be19dc677240f277a6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3875698b02f164be19dc677240f277a6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4423,7 +4443,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457920063}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
@@ -4521,6 +4541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityID: 
+  actorHash: 
   actorID: 
   m_ActorStats:
     isFemale: 0
@@ -4537,6 +4558,7 @@ MonoBehaviour:
   actorCombat: {fileID: 0}
   animationController: {fileID: 0}
   actorStatController: {fileID: 0}
+  hungerCheckTime: 0
 --- !u!114 &461000178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5082,7 +5104,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.49499512, y: 0.42000008}
   m_SizeDelta: {x: -9.370003, y: 6.7199993}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5440,6 +5462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityID: 
+  actorHash: 
   actorID: Guard
   m_ActorStats:
     isFemale: 0
@@ -7387,9 +7410,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &730251353
 MonoBehaviour:
@@ -7647,6 +7670,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cactus01
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: a24b7379083e64e218304c781e0c564e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: a24b7379083e64e218304c781e0c564e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7715,6 +7743,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock03
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 652095354461942baa68d67c568d05e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 652095354461942baa68d67c568d05e7,
         type: 3}
@@ -8124,7 +8157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &843892899
 Transform:
   m_ObjectHideFlags: 0
@@ -8620,6 +8653,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock05 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 821a7efdcd30b44e49f1eecb8345dd8f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 821a7efdcd30b44e49f1eecb8345dd8f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8936,6 +8974,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock05 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 821a7efdcd30b44e49f1eecb8345dd8f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 821a7efdcd30b44e49f1eecb8345dd8f,
         type: 3}
@@ -9849,6 +9892,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock04 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 521cec4fb86f24ad988d898d75bf6e0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 521cec4fb86f24ad988d898d75bf6e0d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10692,7 +10740,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 348425447d1c94582a6cc05a14e71b8f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 348425447d1c94582a6cc05a14e71b8f,
         type: 3}
@@ -11388,6 +11436,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock04
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 521cec4fb86f24ad988d898d75bf6e0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 521cec4fb86f24ad988d898d75bf6e0d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11828,6 +11881,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StandingStone02
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: ec9091ffab9f74842ba848bf0803d6eb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ec9091ffab9f74842ba848bf0803d6eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11915,7 +11973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1375910408
 Transform:
   m_ObjectHideFlags: 0
@@ -12687,6 +12745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityID: 
+  actorHash: 
   actorID: Enemy
   m_ActorStats:
     isFemale: 0
@@ -14198,7 +14257,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.47000122, y: 0.43500042}
   m_SizeDelta: {x: -9.360001, y: 6.7300005}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -14637,6 +14696,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock01
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 348425447d1c94582a6cc05a14e71b8f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 348425447d1c94582a6cc05a14e71b8f,
         type: 3}
@@ -15204,6 +15268,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StandingStone02 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: ec9091ffab9f74842ba848bf0803d6eb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ec9091ffab9f74842ba848bf0803d6eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15293,7 +15362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000008608218}
+  m_AnchoredPosition: {x: 0, y: 0.00009616495}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1675875890
@@ -16172,6 +16241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityID: 
+  actorHash: 
   actorID: Guard
   m_ActorStats:
     isFemale: 0
@@ -16386,6 +16456,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: House10 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 65642e477fab34299b8afcd797c042d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 65642e477fab34299b8afcd797c042d8,
         type: 3}
@@ -16989,6 +17064,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cactus02
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: cccd9cb1614424b7f80c1d415168e1f0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cccd9cb1614424b7f80c1d415168e1f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17062,6 +17142,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: House10
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 65642e477fab34299b8afcd797c042d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 65642e477fab34299b8afcd797c042d8,
         type: 3}
@@ -17978,6 +18063,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock04 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 521cec4fb86f24ad988d898d75bf6e0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 521cec4fb86f24ad988d898d75bf6e0d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18091,6 +18181,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 348425447d1c94582a6cc05a14e71b8f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 348425447d1c94582a6cc05a14e71b8f,
         type: 3}
@@ -18373,6 +18468,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock05
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 821a7efdcd30b44e49f1eecb8345dd8f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 821a7efdcd30b44e49f1eecb8345dd8f,
         type: 3}
@@ -18774,6 +18874,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: House06
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 2f3603dea063a4de39504e092247656f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2f3603dea063a4de39504e092247656f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18842,6 +18947,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StandingStone02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: ec9091ffab9f74842ba848bf0803d6eb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ec9091ffab9f74842ba848bf0803d6eb,
         type: 3}
@@ -19465,6 +19575,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cactus03
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0fe64334ab156487889e7dd773eb047a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0fe64334ab156487889e7dd773eb047a,
         type: 3}

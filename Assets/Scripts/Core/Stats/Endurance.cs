@@ -1,5 +1,8 @@
+using System;
+
 namespace Core.Stats
 {
+    [Serializable]
     public class Endurance : BaseStat
     {
         private int MIN_VALUE = 1;

@@ -17,9 +17,9 @@ namespace Core.Player
     public class Player : Actor.Actor
     {
         private HungerController m_HungerController;
-        private float HungerCheckTime = 0f;
+        public float hungerCheckTime = 0f;
         private const int HUNGER_CHECK_MINUTES = 5;
-        
+
         // Use this for initialization
         protected override void Start()
         {
@@ -38,8 +38,8 @@ namespace Core.Player
         // Update is called once per frame
         void Update()
         {
-            HungerCheckTime += Time.deltaTime;
-            if (HungerCheckTime > (60.0f * HUNGER_CHECK_MINUTES) && m_HungerController.HungerLevel < 1)
+            hungerCheckTime += Time.deltaTime;
+            if (hungerCheckTime > (60.0f * HUNGER_CHECK_MINUTES) && m_HungerController.HungerLevel < 1)
             {
                 // Drain the players health every 5 minutes by 10 points if they are hungry.
                 m_HealthScript.TakeHealth(10);

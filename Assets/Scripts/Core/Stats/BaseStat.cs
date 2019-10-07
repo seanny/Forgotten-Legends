@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 namespace Core.Stats
 {
+    [Serializable]
     public class BaseStat
     {
         public string statID { get; protected set; }

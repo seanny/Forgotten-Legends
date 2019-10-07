@@ -13,6 +13,7 @@ using System.Collections;
 using Core.Actor;
 using Core.DataFormat;
 using Core.Interactable;
+using Core.Utility;
 using UnityEngine;
 
 namespace Core.NonPlayerChar

@@ -1,5 +1,8 @@
+using System;
+
 namespace Core.Stats
 {
+    [Serializable]
     public class Thirst : BaseStat
     {
         private int MAX_VALUE = 100;
