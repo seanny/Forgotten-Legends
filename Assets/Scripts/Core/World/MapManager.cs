@@ -37,7 +37,6 @@ namespace Core.World
 
         private void Start()
         {
-            ServiceLocator.GetService<WorldspaceManager>();
             isUpdating = true;
             StartCoroutine(NavMeshUpdate());
         }

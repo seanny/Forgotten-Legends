@@ -49,7 +49,6 @@ namespace Core.Interactable
         {
             InitData();
             StartCoroutine(OnUpdateInteractable());
-            ServiceLocator.GetService<InteractableGUI>();
         }
 
         public void SetInteractableType(InteractableData.InteractType interactType)

@@ -83,7 +83,7 @@ namespace Core.World
         public void SetPlayerWorldspace(string worldspaceID)
         {
             ServiceLocator.GetService<LoadingScreenService>().ToggleLoadingScreen(true);
-            
+
             // TODO: Show a loading screen prior to this
             SetActorWorldspace(ServiceLocator.GetService<PlayerManager>().GetPlayer(), worldspaceID);
             

@@ -13,7 +13,7 @@ namespace Core.Actor
         public ActorFaction()
         {
             // Make sure that CoreFactions service is running.
-            ServiceLocator.GetService<CoreFactions>();
+            
         }
 
         public void AssignFaction(Faction faction)
