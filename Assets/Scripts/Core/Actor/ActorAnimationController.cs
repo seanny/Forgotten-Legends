@@ -24,6 +24,12 @@ namespace Core.Actor
             SetIdle();
         }
         
+        public void SetSwim(bool toggle)
+        {
+            StartIdle();
+            m_Animator.SetBool("Swimming", toggle);
+        }
+        
         public void SetIdle()
         {
             StartIdle();

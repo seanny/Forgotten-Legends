@@ -46,6 +46,6 @@ namespace Core.Debugging
             string text = $"{m_FPS} FPS ({m_MS} ms)";
             GUI.Label(rect, text, style);
         }
-    }
 #endif
+    }
 }

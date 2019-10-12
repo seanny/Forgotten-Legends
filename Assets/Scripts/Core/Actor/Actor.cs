@@ -12,6 +12,7 @@ using Core.Combat;
 using Core.Factions;
 using Core.Inventory;
 using Core.Services;
+using Core.Swimming;
 using Core.Utility;
 using UnityEngine;
 
@@ -32,7 +33,8 @@ namespace Core.Actor
         public ActorAnimationController animationController;
         public ActorFaction actorFaction = new ActorFaction();
         public ActorStatsController actorStatController;
-
+        public ActorSwimmingController actorSwimmingController;
+        
         public static Actor GetPlayer()
         {
             return FindActor("Player");
@@ -92,6 +94,11 @@ namespace Core.Actor
             if (!actorStatController)
             {
                 actorStatController = gameObject.AddComponent<ActorStatsController>();
+            }
+
+            if (!actorSwimmingController)
+            {
+                actorSwimmingController = gameObject.AddComponent<ActorSwimmingController>();
             }
         }
     }
