@@ -9,12 +9,15 @@
 //
 
 using System;
+using Core.MathUtil;
 
 namespace Core.Potion
 {
     [Serializable]
     public class PotionStats
     {
+        public Vec3 currentPosition;
+        public Quat currentRotation;
         public float potionTime;
         public int healthRegen;
         public int staminaRegen;

@@ -9,9 +9,7 @@
 //
 
 using Core.Combat;
-using Core.Factions;
 using Core.Inventory;
-using Core.Services;
 using Core.Swimming;
 using Core.Utility;
 using UnityEngine;

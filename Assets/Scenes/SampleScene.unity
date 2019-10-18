@@ -1906,7 +1906,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 6
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -1935,7 +1935,7 @@ MonoBehaviour:
     spaceCount: 4
     wordCount: 18
     linkCount: 0
-    lineCount: 4
+    lineCount: 91
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -4558,6 +4558,7 @@ MonoBehaviour:
   actorCombat: {fileID: 0}
   animationController: {fileID: 0}
   actorStatController: {fileID: 0}
+  actorSwimmingController: {fileID: 0}
   hungerCheckTime: 0
 --- !u!114 &461000178
 MonoBehaviour:
@@ -5480,6 +5481,7 @@ MonoBehaviour:
   actorCombat: {fileID: 0}
   animationController: {fileID: 0}
   actorStatController: {fileID: 0}
+  actorSwimmingController: {fileID: 0}
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
   m_SightScript: {fileID: 0}
@@ -12806,6 +12808,7 @@ MonoBehaviour:
   actorCombat: {fileID: 0}
   animationController: {fileID: 0}
   actorStatController: {fileID: 0}
+  actorSwimmingController: {fileID: 0}
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
   m_SightScript: {fileID: 0}
@@ -15405,7 +15408,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00002554059}
+  m_AnchoredPosition: {x: 0, y: 0.0000063540015}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1675875890
@@ -16303,6 +16306,7 @@ MonoBehaviour:
   actorCombat: {fileID: 0}
   animationController: {fileID: 0}
   actorStatController: {fileID: 0}
+  actorSwimmingController: {fileID: 0}
   m_CombatScript: {fileID: 0}
   m_MovementScript: {fileID: 0}
   m_SightScript: {fileID: 0}

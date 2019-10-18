@@ -4,6 +4,7 @@ using System.Security.Principal;
 using Core.NonPlayerChar;
 using Core.Player;
 using Core.Quests;
+using Core.Weather;
 
 namespace Core.SaveFile
 {
@@ -92,5 +93,10 @@ namespace Core.SaveFile
         /// Completed Quests
         /// </summary>
         public List<Quest> completedQuests;
+
+        /// <summary>
+        /// Current Weather as of the time of saving.
+        /// </summary>
+        public WeatherData weatherData;
     }
 }

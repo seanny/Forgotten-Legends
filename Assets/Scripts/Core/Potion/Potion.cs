@@ -8,8 +8,7 @@
 // 	without the consent of Outlaw Games Studio.
 //
 
-using System.Collections;
-using Core.Inventory;
+using Core.MathUtil;
 using Core.Player;
 using Core.Services;
 using UnityEngine;
@@ -41,6 +40,7 @@ namespace Core.Potion
             m_AudioSource.Play();
             m_Used = true;
             isShown = false;
+            SavePotionStats();
         }
 
         public virtual void OnPotionUse()
@@ -62,6 +62,12 @@ namespace Core.Potion
                 }
                 m_Used = true;
             }
+        }
+
+        public void SavePotionStats()
+        {
+            potionStats.currentPosition = new Vec3(transform.position);
+            potionStats.currentRotation = new Quat(transform.rotation);
         }
 
         protected void Update()
